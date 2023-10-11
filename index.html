@@ -282,12 +282,12 @@
 
 
       const list = document.getElementById('list')
-
+      console.log(list,'list')
 
       const entries = Object.entries(urlParameters);
       for (const [key, value] of entries) {
          console.log(key,value,'test')
-         list.appendChild(`<li>${key}:${value}</li>`)
+         list && list.appendChild(`<li>${key}:${value}</li>`)
       }
  
  
