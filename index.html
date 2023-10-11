@@ -209,7 +209,7 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               getDataverse("accounts?$select=name,address1_city&$top=10", response.accessToken, callback);
+               getDataverse("accounts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
