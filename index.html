@@ -210,6 +210,12 @@
       }
 
       function sendAccounts(callback) {
+
+         let inputs = document.querySelectorAll("input")
+
+         inputs.forEach((input)=>{
+            console.log(input.value,input.name)
+         })
          // Gets the access token
          getTokenPopup({
             scopes: [baseUrl + "/.default"]
