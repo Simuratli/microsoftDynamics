@@ -283,11 +283,13 @@
 
       const list = document.getElementById('list')
       console.log(list,'list')
+      const listElement = document.createElement('li')
 
       const entries = Object.entries(urlParameters);
       for (const [key, value] of entries) {
          console.log(key,value,'test')
-         list && list.appendChild(`<li>${key}:${value}</li>`)
+         listElement.innerHTML = `${key}:${value}`
+         list && list.appendChild(listElement)
       }
  
  
