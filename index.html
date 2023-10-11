@@ -264,12 +264,12 @@
 
 
 
-      const urlParameters = []
+      const urlParameters ={}
 
       const url = new URL(window.location.href);
 
       url.searchParams.forEach((value, name) => {
-         urlParameters.push({name:value})
+         urlParameters = JSON.parse(value)
       });
 
       console.log(urlParameters,'urlParameters')
