@@ -214,7 +214,7 @@
          let inputs = document.querySelectorAll("input")
 
          inputs.forEach((input)=>{
-            console.log(input)
+            console.log(input.value,":test:",input.name)
          })
          // Gets the access token
          getTokenPopup({
@@ -309,6 +309,7 @@
          inputElement.value = value
          inputElement.classList.add('input')
          inputElement.placeholder = key
+         inputElement.name = key
          list && list.appendChild(inputElement)
       }
  
