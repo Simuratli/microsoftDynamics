@@ -1,0 +1,246 @@
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script>
+      const baseUrl = "https://orgfdbab4d2.api.crm.dynamics.com";      //<= Change this
+      const clientId = "8d5c861b-044a-4978-b3ac-d9d913169ff2"; //<= Change this
+      const tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
+      const redirectUrl = "/";
+      const webAPIEndpoint = baseUrl +"/api/data/v9.2";
+
+
+      // Configuration object to be passed to MSAL instance on creation. 
+
+      const msalConfig = {
+         auth: {       
+            clientId: clientId,
+            // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
+            authority: "https://login.microsoftonline.com/"+tenantId,       
+            redirectUri: redirectUrl,
+         },
+         cache: {
+            cacheLocation: "sessionStorage" // This configures where your cache will be stored
+         },
+         system: {   
+            loggerOptions: {   
+               loggerCallback: (level, message, containsPii) => {   
+                     if (containsPii) {      
+                        return;      
+                     }      
+                     switch (level) {      
+                        case msal.LogLevel.Error:      
+                           console.error(message);      
+                           return;      
+                        case msal.LogLevel.Info:      
+                           console.info(message);      
+                           return;      
+                        case msal.LogLevel.Verbose:      
+                           console.debug(message);      
+                           return;      
+                        case msal.LogLevel.Warning:      
+                           console.warn(message);      
+                           return;      
+                     }   
+               }   
+            }   
+         }
+      };
+
+   </script>
+      <!-- Latest version of msal-browser.js from CDN as of 2022/09 -->
+   <script
+         type="text/javascript" 
+         src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js">
+   </script>
+   <style>
+      body {  
+         font-family: 'Segoe UI';  
+      }  
+
+      table {  
+         border-collapse: collapse;  
+      }  
+
+      td, th {  
+         border: 1px solid black;  
+      }
+
+      #message {  
+         color: green;  
+      }
+</style>
+</head>
+<body>
+<div>
+   <button id="loginButton" onclick="signIn()">Login</button>
+   <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
+   <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get Accounts</button>  
+   <div id="message"></div>
+   <table id="accountsTable" style="display:none;">  
+    <thead><tr><th>Name</th><th>City</th></tr></thead>  
+    <tbody id="accountsTableBody"></tbody>  
+   </table>
+</div>
+<script>
+   const loginButton = document.getElementById("loginButton");
+   const logoutButton = document.getElementById("logoutButton");
+   const getAccountsButton = document.getElementById("getAccountsButton");
+   const accountsTable = document.getElementById("accountsTable");
+   const accountsTableBody = document.getElementById("accountsTableBody");
+   const message = document.getElementById("message");
+   // Create the main myMSALObj instance
+   const myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+   let username = "";
+
+   // Sets the username. Called at the end of this script.
+   function selectAccount() {
+
+      const currentAccounts = myMSALObj.getAllAccounts();
+      if (currentAccounts.length === 0) {
+         return;
+      } else if (currentAccounts.length > 1) {
+         // Add choose account code here
+         console.warn("Multiple accounts detected.");
+      } else if (currentAccounts.length === 1) {
+         username = currentAccounts[0].username;
+         showWelcomeMessage(username);
+      }
+   }
+
+   // Called by the loginButton
+   function signIn() {
+      myMSALObj.loginPopup({
+         scopes: ["User.Read",baseUrl+"/user_impersonation"] //<= Includes Dataverse scope
+         })
+         .then(response =>{
+            if (response !== null) {
+            username = response.account.username;
+            showWelcomeMessage(username);
+               } else {
+                  selectAccount();
+               }
+         })
+         .catch(error => {
+               console.error(error);
+         });
+   }
+
+   // Shows greeting and enables logoutButton and getAccountsButton
+   // Called from signIn or selectAccount functions
+   function showWelcomeMessage(username) {
+    message.innerHTML = `Welcome ${username}`;
+    loginButton.style.display = "none";
+    logoutButton.style.display = "block";
+    getAccountsButton.style.display = "block";
+   }
+
+   // Called by the logoutButton
+   function signOut() {
+
+      const logoutRequest = {
+         account: myMSALObj.getAccountByUsername(username),
+         postLogoutRedirectUri: msalConfig.auth.redirectUri,
+         mainWindowRedirectUri: msalConfig.auth.redirectUri
+      };
+
+      myMSALObj.logoutPopup(logoutRequest);
+   }
+
+   // Provides the access token for a request, opening pop-up if necessary.
+   // Used by GetAccounts function
+   function getTokenPopup(request) {
+
+      request.account = myMSALObj.getAccountByUsername(username);
+
+      return myMSALObj.acquireTokenSilent(request)
+         .catch(error => {
+               console.warn("Silent token acquisition fails. Acquiring token using popup");
+               if (error instanceof msal.InteractionRequiredAuthError) {
+                  // fallback to interaction when silent call fails
+                  return myMSALObj.acquireTokenPopup(request)
+                     .then(tokenResponse => {
+                           console.log(tokenResponse);
+                           return tokenResponse;
+                     }).catch(error => {
+                           console.error(error);
+                     });
+               } else {
+                  console.warn(error);   
+               }
+      });
+   }
+
+   // Retrieves top 10 account records from Dataverse
+   function getAccounts(callback) {
+      // Gets the access token
+      getTokenPopup({
+            scopes: [baseUrl+"/.default"]
+         })
+         .then(response => {
+            getDataverse("accounts?$select=name,address1_city&$top=10", response.accessToken, callback);
+         }).catch(error => {
+            console.error(error);
+         });
+   }
+
+   /** 
+    * Helper function to get data from Dataverse
+   * using the authorization bearer token scheme
+   * callback is the writeTable function below
+   */
+   function getDataverse(url, token, callback) {
+       const headers = new Headers();
+       const bearer = `Bearer ${token}`;
+       headers.append("Authorization", bearer);
+       // Other Dataverse headers
+       headers.append("Accept", "application/json"); 
+       headers.append("OData-MaxVersion", "4.0");  
+       headers.append("OData-Version", "4.0");  
+
+       const options = {
+          method: "GET",
+          headers: headers,
+       };
+
+     console.log('GET Request made to Dataverse at: ' + new Date().toString());
+
+     fetch(webAPIEndpoint+"/"+url, options)
+          .then(response => response.json())
+          .then(response => callback(response))
+          .catch(error => console.log(error));
+    }
+
+    // Renders the table with data from GetAccounts
+    function writeTable(data) {
+
+       data.value.forEach(function (account) {
+
+           var name = account.name;
+           var city = account.address1_city;
+
+           var nameCell = document.createElement("td");
+           nameCell.textContent = name;
+
+           var cityCell = document.createElement("td");
+           cityCell.textContent = city;
+
+           var row = document.createElement("tr");
+
+           row.appendChild(nameCell);
+           row.appendChild(cityCell);
+
+           accountsTableBody.appendChild(row); 
+
+       });
+
+       accountsTable.style.display = "block";
+       getAccountsButton.style.display = "none";
+    }
+
+    selectAccount();
+  </script>
+ </body>
+</html>
