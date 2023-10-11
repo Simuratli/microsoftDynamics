@@ -82,12 +82,17 @@
          outline: none;
          border: none;
       }
+      #loginButton{
+         padding: 17px 43px;
+         background: #383680;
+         color: white;
+      }
    </style>
 </head>
 
 <body>
    <div>
-      <button id="loginButton" onclick="signIn()">Login</button>
+      
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
       <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get Accounts</button>
       <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Send new Accounts</button>
@@ -101,8 +106,9 @@
          </thead>
          <tbody id="accountsTableBody"></tbody>
       </table>
-
       <div id="list"></div>
+
+      <button id="loginButton" onclick="signIn()">Login</button>
    </div>
    <script>
       const loginButton = document.getElementById("loginButton");
@@ -340,7 +346,7 @@
 
          accountsTable.style.display = "block";
          getAccountsButton.style.display = "none";
-         sendAccountsButton.style.display = "none";
+         // sendAccountsButton.style.display = "none";
       }
 
       selectAccount();
