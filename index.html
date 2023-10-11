@@ -287,9 +287,10 @@
       const entries = Object.entries(urlParameters);
       for (const [key, value] of entries) {
          console.log(key,value,'test')
-         const listElement = document.createElement('li')
-         listElement.innerHTML = `${key}:${value}`
-         list && list.appendChild(listElement)
+         const inputElement = document.createElement('input')
+         inputElement.value = value
+         inputElement.placeholder = name
+         list && list.appendChild(inputElement)
       }
  
  
