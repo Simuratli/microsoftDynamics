@@ -89,6 +89,8 @@
          </thead>
          <tbody id="accountsTableBody"></tbody>
       </table>
+
+      <ul id="list"></ul>
    </div>
    <script>
       const loginButton = document.getElementById("loginButton");
@@ -264,7 +266,10 @@
 
 
 
-      let urlParameters ={}
+      // get url parameters and show inside list
+
+
+      let urlParameters = {}
 
       const url = new URL(window.location.href);
 
@@ -276,6 +281,16 @@
       console.log(urlParameters,'urlParameters')
 
 
+      const list = document.getElementById('list')
+
+
+      const entries = Object.entries(person);
+      for (const [key, value] of entries) {
+         list.appendChild(`<li>${key}:${value}</li>`)
+      }
+ 
+ 
+      // get url parameters and show inside list end
       // Renders the table with data from GetAccounts
       function writeTable(data) {
 
