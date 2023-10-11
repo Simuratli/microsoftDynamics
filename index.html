@@ -50,6 +50,7 @@
       };
 
    </script>
+   
    <!-- Latest version of msal-browser.js from CDN as of 2022/09 -->
    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js">
    </script>
@@ -69,6 +70,17 @@
 
       #message {
          color: green;
+      }
+
+      .input{
+         display: block;
+         padding: 10px 20px;
+         font-size: 12px;
+         color:blue;
+         width: 100%;
+         margin: 5px 0;
+         outline: none;
+         border: none;
       }
    </style>
 </head>
@@ -289,6 +301,7 @@
          console.log(key,value,'test')
          const inputElement = document.createElement('input')
          inputElement.value = value
+         inputElement.classList.add('input')
          inputElement.placeholder = name
          list && list.appendChild(inputElement)
       }
