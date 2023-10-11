@@ -264,6 +264,17 @@
 
 
 
+      const urlParameters = []
+
+      const url = new URL(window.location.href);
+
+      url.searchParams.forEach((value, name) => {
+         urlParameters.push({name:value})
+      });
+
+      console.log(urlParameters,'urlParameters')
+
+
       // Renders the table with data from GetAccounts
       function writeTable(data) {
 
