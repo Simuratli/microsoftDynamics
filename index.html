@@ -209,7 +209,7 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               getDataverse("accounts", response.accessToken, callback);
+               getDataverse("", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
