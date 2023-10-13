@@ -275,18 +275,14 @@
 
 
          const entries = Object.entries(urlParameters);
-         console.log(entries,'entries')
-         // for (const [key, value] of entries) {
-         //    console.log(key,value,'test')
-         //    const inputElement = document.createElement('input')
-         //    inputElement.value = value
-         //    inputElement.classList.add('input')
-         //    inputElement.placeholder = key
-         //    inputElement.name = key
-         //    list && list.appendChild(inputElement)
-         // }
+        
 
+         const dataObjectForRequest  = {}
+         for (const [key, value] of entries) {
+            dataObjectForRequest[key] = value
+         }
 
+         console.log(dataObjectForRequest,'entries')
          const options = {
             method: "POST",
             headers: headers,
