@@ -209,7 +209,8 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               getDataverse("accounts?$select=name&$filter=contains(name,'Eljan')", response.accessToken, callback);
+               //filter accounts?$select=name&$filter=contains(name,'Eljan')
+               getDataverse("accounts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
