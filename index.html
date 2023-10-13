@@ -210,7 +210,7 @@
          })
             .then(response => {
                //filter accounts?$select=name&$filter=contains(name,'Eljan')
-               getDataverse("contact", response.accessToken, callback);
+               getDataverse("contacts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
