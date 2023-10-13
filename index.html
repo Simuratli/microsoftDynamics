@@ -228,7 +228,7 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               sendDataverse("contacts", response.accessToken, callback);
+               sendDataverse("accounts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
@@ -278,15 +278,47 @@
         
 
          const dataObjectForRequest  = {}
-         for (const [key, value] of entries) {
-            dataObjectForRequest[key] = value ? value : null
+         
+
+         const changeRequestedNames = (name)=>{
+            switch (name) {
+               case 'userName':
+                  return 'fullName';
+               case 'jobtitle':
+                  return 'jobtitle';
+               case 'location':
+                  return 'address1_name';
+               case 'costumer':
+                  return '_parentcustomerid_value';
+               case 'phone':
+                  return 'mobilephone';
+               case 'email':
+                  return 'emailaddress1';
+               default:
+                  break;
+            }
          }
+
+         for (const [key, value] of entries) {
+            dataObjectForRequest[changeRequestedNames(key)] = value
+         }
+
 
          console.log(dataObjectForRequest,'entries')
          const options = {
             method: "POST",
             headers: headers,
-            body:JSON.stringify(dataObjectForRequest)
+            body:JSON.stringify({
+               firstname: "John" + Math.random(),
+               lastname:"",
+               fullName:'',
+               jobtitle:"",
+               address1_name:"",
+               _parentcustomerid_value:"",
+               telephone1:"",
+               mobilephone:"",
+               emailaddress1:""
+            })
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
