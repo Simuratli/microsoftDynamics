@@ -311,8 +311,8 @@
             method: "POST",
             headers: headers,
             body:JSON.stringify({
-               firstname: "John" + Math.random(),
-               lastname:"",
+               firstname: dataObjectForRequest.fullName.split(" ")[0],
+               lastname: dataObjectForRequest.fullName.split(" ")[1],
                fullName:'',
                jobtitle:"",
                address1_name:"",
