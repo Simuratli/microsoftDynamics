@@ -228,7 +228,7 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               sendDataverse("accounts", response.accessToken, callback);
+               sendDataverse("contacts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
@@ -279,24 +279,14 @@
 
          const dataObjectForRequest  = {}
          for (const [key, value] of entries) {
-            dataObjectForRequest[key] = value
+            dataObjectForRequest[key] = value ? value : null
          }
 
          console.log(dataObjectForRequest,'entries')
          const options = {
             method: "POST",
             headers: headers,
-            body:JSON.stringify({
-               firstname: "John" + Math.random(),
-               lastname:"",
-               fullName:'',
-               jobtitle:"",
-               address1_name:"",
-               _parentcustomerid_value:"",
-               telephone1:"",
-               mobilephone:"",
-               emailaddress1:""
-            })
+            body:JSON.stringify(dataObjectForRequest)
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
