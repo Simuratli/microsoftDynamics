@@ -312,7 +312,17 @@
          const options = {
             method: "POST",
             headers: headers,
-            body:JSON.stringify(dataObjectForRequest)
+            body:JSON.stringify({
+               firstname: dataObjectForRequest.fullName.split(" ")[0],
+               lastname: dataObjectForRequest.fullName.split(" ")[1],
+               fullname:dataObjectForRequest.fullName,
+               jobtitle:dataObjectForRequest.jobtitle,
+               address1_name:dataObjectForRequest.address1_name,
+               _parentcustomerid_value:dataObjectForRequest._parentcustomerid_value,
+               telephone1:dataObjectForRequest.telephone1,
+               mobilephone:dataObjectForRequest.mobilephone,
+               emailaddress1:dataObjectForRequest.emailaddress1
+            })
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
