@@ -273,11 +273,33 @@
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
 
+
+         const entries = Object.entries(urlParameters);
+         console.log(entries,'entries')
+         // for (const [key, value] of entries) {
+         //    console.log(key,value,'test')
+         //    const inputElement = document.createElement('input')
+         //    inputElement.value = value
+         //    inputElement.classList.add('input')
+         //    inputElement.placeholder = key
+         //    inputElement.name = key
+         //    list && list.appendChild(inputElement)
+         // }
+
+
          const options = {
             method: "POST",
             headers: headers,
             body:JSON.stringify({
-               name: "John" + Math.random(),
+               firstname: "John" + Math.random(),
+               lastname:"",
+               fullName:'',
+               jobtitle:"",
+               address1_name:"",
+               _parentcustomerid_value:"",
+               telephone1:"",
+               mobilephone:"",
+               emailaddress1:""
             })
          }
 
