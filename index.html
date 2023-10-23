@@ -255,20 +255,14 @@
       }
 
 
-      function filterBackend(url,callback) {
+      async function filterBackend(url,callback) {
          // Gets the access token
          // "contacts?$select=name&$filter=contains(name,'Eljan')"
 
-         getTokenPopup({
-            scopes: [baseUrl + "/.default"]
-         })
-            .then(async (response) => {
-               //filter 
-               const data = await getDataverse(url, response.accessToken, callback);
-               return data
-            }).catch(error => {
-               console.error(error);
-            });
+         const response  = await getTokenPopup({scopes: [baseUrl + "/.default"]});
+         const data = await getDataverse(url, response.accessToken, callback);
+         return data
+           
       }
 
       function sendAccounts(callback) {
@@ -295,7 +289,7 @@
       * using the authorization bearer token scheme
       * callback is the writeTable function below
       */
-      function getDataverse(url, token, callback) {
+      async function getDataverse(url, token, callback) {
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -312,11 +306,9 @@
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
-         fetch(webAPIEndpoint + "/" + url, options)
-            .then(response => response.json())
-            .then(response => response)
-            .catch(error => console.log(error));
-
+         const response = await fetch(webAPIEndpoint + "/" + url, options);
+         const data = response.json()
+         return data
       }
 
       async function sendDataverse(url, token, callback) {
