@@ -318,7 +318,7 @@
 
 
        const createCompany = async (url, token) =>{
-         
+         message.innerHTML = 'Loading...'
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -358,8 +358,9 @@
             message.innerHTML = 'there have company with this id' + urlParameters['customerId']
          }else{
             message.innerHTML = '0 company find. You need to create company first'
-            const createdCompany = createCompany('accounts', token)
+            const createdCompany = await createCompany('accounts', token)
             console.log(createdCompany,'createdCompany')
+            message.innerHTML = 'Company created'
 
 
 
