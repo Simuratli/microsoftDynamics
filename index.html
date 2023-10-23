@@ -347,6 +347,72 @@
          return data
       }
 
+
+
+      const changeRequestedNames = (name) => {
+            switch (name) {
+               case 'userName':
+                  return 'fullName';
+               case 'jobTitle':
+                  return 'jobtitle';
+               case 'location':
+                  return 'address1_name';
+               case 'customer':
+                  return 'parentcustomerid_account';
+               case 'phone':
+                  return 'mobilephone';
+               case 'email':
+                  return 'emailaddress1';
+               case 'linkedinUrl':
+                  return "uds_linkedin"
+               case 'customerId':
+                  return "uds_linkedincompanyid"
+               default:
+                  return "aaa";
+            }
+         }
+
+
+      const createAccount = async (url, token) =>{
+         const headers = new Headers();
+         const bearer = `Bearer ${token}`;
+         headers.append("Authorization", bearer);
+         // Other Dataverse headers
+         headers.append("Accept", "application/json");
+         headers.append("OData-MaxVersion", "4.0");
+         headers.append("OData-Version", "4.0");
+         headers.append("Content-Type", "application/json");
+         const entries = Object.entries(urlParameters);
+         const dataObjectForRequest = {}
+         for (const [key, value] of entries) {
+            dataObjectForRequest[changeRequestedNames(key)] = value
+         }
+         console.log(dataObjectForRequest, 'entries')
+         dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
+         dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
+
+
+         const options = {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+               firstname: dataObjectForRequest.fullName.split(" ")[0],
+               lastname: dataObjectForRequest.fullName.split(" ")[1],
+               fullname: dataObjectForRequest.fullName,
+               jobtitle: dataObjectForRequest.jobtitle,
+               address1_name: dataObjectForRequest.address1_name,
+               parentcustomerid_account: dataObjectForRequest.uds_linkedincompanyid,
+               telephone1: dataObjectForRequest.telephone1,
+               mobilephone: dataObjectForRequest.mobilephone,
+               emailaddress1: dataObjectForRequest.emailaddress1
+            })
+         }
+
+         console.log('GET Request made to Dataverse at: ' + new Date().toString());
+         const response = await fetch(webAPIEndpoint + "/" + url, options)
+         const data = response.json()
+      }
+
       async function sendDataverse(url, token, callback) {
          // filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
          const filtered = await filterBackend(`accounts`, writeTable)
@@ -356,85 +422,14 @@
          if(filtered.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
             console.log('there have company with this id' + urlParameters['customerId'])
             message.innerHTML = 'there have company with this id' + urlParameters['customerId']
+            createAccount('contacts', token)
          }else{
             message.innerHTML = '0 company find. You need to create company first'
             const createdCompany = await createCompany('accounts', token)
             console.log(createdCompany,'createdCompany')
             message.innerHTML = 'Company created'
-
-
-
-         // const headers = new Headers();
-         // const bearer = `Bearer ${token}`;
-         // headers.append("Authorization", bearer);
-         // // Other Dataverse headers
-         // headers.append("Accept", "application/json");
-         // headers.append("OData-MaxVersion", "4.0");
-         // headers.append("OData-Version", "4.0");
-         // headers.append("Content-Type", "application/json");
-
-
-         // const entries = Object.entries(urlParameters);
-
-
-         // const dataObjectForRequest = {}
-
-
-         // const changeRequestedNames = (name) => {
-         //    switch (name) {
-         //       case 'userName':
-         //          return 'fullName';
-         //       case 'jobTitle':
-         //          return 'jobtitle';
-         //       case 'location':
-         //          return 'address1_name';
-         //       case 'customer':
-         //          return 'parentcustomerid_account';
-         //       case 'phone':
-         //          return 'mobilephone';
-         //       case 'email':
-         //          return 'emailaddress1';
-         //       case 'linkedinUrl':
-         //          return "uds_linkedin"
-         //       case 'customerId':
-         //          return "uds_linkedincompanyid"
-         //       default:
-         //          return "aaa";
-         //    }
-         // }
-
-         // for (const [key, value] of entries) {
-         //    dataObjectForRequest[changeRequestedNames(key)] = value
-         // }
-         // console.log(dataObjectForRequest, 'entries')
-         // dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
-         // dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
-
-
-         // const options = {
-         //    method: "POST",
-         //    headers: headers,
-         //    body: JSON.stringify({
-         //       firstname: dataObjectForRequest.fullName.split(" ")[0],
-         //       lastname: dataObjectForRequest.fullName.split(" ")[1],
-         //       fullname: dataObjectForRequest.fullName,
-         //       jobtitle: dataObjectForRequest.jobtitle,
-         //       address1_name: dataObjectForRequest.address1_name,
-         //       parentcustomerid_account: 10889116,
-         //       telephone1: dataObjectForRequest.telephone1,
-         //       mobilephone: dataObjectForRequest.mobilephone,
-         //       emailaddress1: dataObjectForRequest.emailaddress1
-         //    })
-         // }
-
-         // console.log('GET Request made to Dataverse at: ' + new Date().toString());
-
+            createAccount('contacts', token)
          
-
-         // fetch(webAPIEndpoint + "/" + url, options)
-         //    .then(response => response.json())
-         //    .then(response => callback(response))
-         //    .catch(error => console.log(error));
          }
       }
 
