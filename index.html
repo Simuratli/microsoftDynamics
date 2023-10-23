@@ -50,7 +50,7 @@
       };
 
    </script>
-   
+
    <!-- Latest version of msal-browser.js from CDN as of 2022/09 -->
    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js">
    </script>
@@ -72,17 +72,18 @@
          color: green;
       }
 
-      .input{
+      .input {
          display: block;
          padding: 10px 20px;
          font-size: 12px;
-         color:blue;
+         color: blue;
          width: 100%;
          margin: 5px 0;
          outline: none;
          border: none;
       }
-      #loginButton{
+
+      #loginButton {
          padding: 17px 43px;
          background: #383680;
          color: white;
@@ -92,10 +93,11 @@
 
 <body>
    <div>
-      
+
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
       <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get Accounts</button>
-      <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Send new Accounts</button>
+      <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Send new
+         Accounts</button>
       <div id="message"></div>
       <table id="accountsTable" style="display:none;">
          <thead>
@@ -166,6 +168,7 @@
          sendAccountsButton.style.display = "block";
       }
 
+
       // Called by the logoutButton
       function signOut() {
 
@@ -202,6 +205,40 @@
             });
       }
 
+
+      // get url parameters and show inside list
+
+
+      let urlParameters = {}
+
+      const url = new URL(window.location.href);
+
+      url.searchParams.forEach((value, name) => {
+         urlParameters = JSON.parse(value)
+         console.log(value, 'value')
+      });
+
+      console.log(urlParameters, 'urlParameters')
+
+
+      const list = document.getElementById('list')
+      console.log(list, 'list')
+
+      const entries = Object.entries(urlParameters);
+      for (const [key, value] of entries) {
+         console.log(key, value, 'test')
+         const inputElement = document.createElement('input')
+         inputElement.value = value
+         inputElement.classList.add('input')
+         inputElement.placeholder = key
+         inputElement.name = key
+         list && list.appendChild(inputElement)
+      }
+
+
+      // get url parameters and show inside list end
+
+
       // Retrieves top 10 account records from Dataverse
       function getAccounts(callback) {
          // Gets the access token
@@ -219,8 +256,8 @@
 
       function filterBackend(url) {
          // Gets the access token
-// "contacts?$select=name&$filter=contains(name,'Eljan')"
-         
+         // "contacts?$select=name&$filter=contains(name,'Eljan')"
+
          getTokenPopup({
             scopes: [baseUrl + "/.default"]
          })
@@ -236,8 +273,8 @@
 
          let inputs = document.querySelectorAll("input")
 
-         inputs.forEach((input)=>{
-            console.log(input.value,":test:",input.name)
+         inputs.forEach((input) => {
+            console.log(input.value, ":test:", input.name)
          })
          // Gets the access token
          getTokenPopup({
@@ -292,12 +329,12 @@
 
 
          const entries = Object.entries(urlParameters);
-        
 
-         const dataObjectForRequest  = {}
-         
 
-         const changeRequestedNames = (name)=>{
+         const dataObjectForRequest = {}
+
+
+         const changeRequestedNames = (name) => {
             switch (name) {
                case 'userName':
                   return 'fullName';
@@ -321,32 +358,32 @@
          for (const [key, value] of entries) {
             dataObjectForRequest[changeRequestedNames(key)] = value
          }
-         console.log(dataObjectForRequest,'entries')
+         console.log(dataObjectForRequest, 'entries')
          dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
-        
+
          const options = {
             method: "POST",
             headers: headers,
-            body:JSON.stringify({
+            body: JSON.stringify({
                firstname: dataObjectForRequest.fullName.split(" ")[0],
                lastname: dataObjectForRequest.fullName.split(" ")[1],
-               fullname:dataObjectForRequest.fullName,
-               jobtitle:dataObjectForRequest.jobtitle,
-               address1_name:dataObjectForRequest.address1_name,
-               parentcustomerid_account:10889116,
-               telephone1:dataObjectForRequest.telephone1,
-               mobilephone:dataObjectForRequest.mobilephone,
-               emailaddress1:dataObjectForRequest.emailaddress1
+               fullname: dataObjectForRequest.fullName,
+               jobtitle: dataObjectForRequest.jobtitle,
+               address1_name: dataObjectForRequest.address1_name,
+               parentcustomerid_account: 10889116,
+               telephone1: dataObjectForRequest.telephone1,
+               mobilephone: dataObjectForRequest.mobilephone,
+               emailaddress1: dataObjectForRequest.emailaddress1
             })
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
-         filterBackend("contacts?$select=name&$filter=contains(name,'Eljan')")
-         
-         
+         filterBackend(`contacts?$select=name&$filter=contains(customerId,${urlParameters['customerId']})`)
+
+
          fetch(webAPIEndpoint + "/" + url, options)
             .then(response => response.json())
             .then(response => callback(response))
@@ -355,41 +392,11 @@
 
 
 
-      // get url parameters and show inside list
 
-
-      let urlParameters = {}
-
-      const url = new URL(window.location.href);
-
-      url.searchParams.forEach((value, name) => {
-         urlParameters = JSON.parse(value)
-         console.log(value,'value')
-      });
-
-      console.log(urlParameters,'urlParameters')
-
-
-      const list = document.getElementById('list')
-      console.log(list,'list')
-      
-      const entries = Object.entries(urlParameters);
-      for (const [key, value] of entries) {
-         console.log(key,value,'test')
-         const inputElement = document.createElement('input')
-         inputElement.value = value
-         inputElement.classList.add('input')
-         inputElement.placeholder = key
-         inputElement.name = key
-         list && list.appendChild(inputElement)
-      }
- 
- 
-      // get url parameters and show inside list end
       // Renders the table with data from GetAccounts
       function writeTable(data) {
-         console.log(data,'dataaa i am back')
-         
+         console.log(data, 'dataaa i am back')
+
       }
 
       selectAccount();
