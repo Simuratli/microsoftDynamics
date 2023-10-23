@@ -383,6 +383,7 @@
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
          filterBackend(`accounts`, writeTable)
+         .then((response)=>{console.log(response,'response')})
          filterBackend(`accounts?$select=name&$filter=contains(name,'Eljan')`, writeTable)
 
 
@@ -399,6 +400,8 @@
       function writeTable(data) {
          console.log(data, 'dataaa i am back')
          // uds_linkedincompanyid
+
+         return data.value
       }
 
       selectAccount();
