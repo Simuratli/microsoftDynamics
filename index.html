@@ -391,7 +391,7 @@
 
 
       const createCompany = async (url, token) => {
-         message.innerHTML = 'Loading...'
+         message.innerHTML = 'Loading Company...'
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -400,7 +400,7 @@
          headers.append("OData-MaxVersion", "4.0");
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
-
+         console.log(urlParameters,'Company urlParameters')
          let requestData = {}
          for (const [key, value] of urlParameters) {
             requestData[changeRequestedNames(key)] = value
