@@ -406,16 +406,15 @@
             requestData[changeRequestedNames(key)] = value
          }
 
-         console.log(requestData, 'dataRequest')
-
-         // const entries = Object.entries(urlParameters);
-         const dataObjectForRequest = {}
-
          const options = {
             method: "POST",
             headers: headers,
             body: JSON.stringify({
-               uds_linkedincompanyid: urlParameters['customerId'],
+               uds_linkedincompanyid: Number(requestData['uds_linkedincompanyid']),
+               name:requestData['name'],
+               numberofemployees:requestData['numberofemployees'],
+               uds_linkedin:requestData['uds_linkedin'],
+               websiteurl:requestData['websiteurl'],
             })
          }
 
