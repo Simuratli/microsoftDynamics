@@ -308,7 +308,7 @@
 
          const response = await fetch(webAPIEndpoint + "/" + url, options);
          const data = response.json()
-         return data
+         return data.value
       }
 
       async function sendDataverse(url, token, callback) {
