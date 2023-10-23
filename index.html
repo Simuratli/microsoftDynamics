@@ -413,7 +413,7 @@
          dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
-         console.log('accounts saved',accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid)))
+         console.log('accounts saved',accounts.filter(account=>account.uds_linkedincompanyid ===urlParameters['customerId']))
          const options = {
             method: "POST",
             headers: headers,
