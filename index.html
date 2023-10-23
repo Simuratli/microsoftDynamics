@@ -216,6 +216,22 @@
             });
       }
 
+
+      function filterBackend(url) {
+         // Gets the access token
+// "contacts?$select=name&$filter=contains(name,'Eljan')"
+         
+         getTokenPopup({
+            scopes: [baseUrl + "/.default"]
+         })
+            .then(response => {
+               //filter 
+               getDataverse(url, response.accessToken, callback);
+            }).catch(error => {
+               console.error(error);
+            });
+      }
+
       function sendAccounts(callback) {
 
          let inputs = document.querySelectorAll("input")
@@ -261,6 +277,7 @@
             .then(response => response.json())
             .then(response => callback(response))
             .catch(error => console.log(error));
+
       }
 
       function sendDataverse(url, token, callback) {
@@ -327,6 +344,9 @@
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
+         filterBackend("contacts?$select=name&$filter=contains(name,'Eljan')")
+         
+         
          fetch(webAPIEndpoint + "/" + url, options)
             .then(response => response.json())
             .then(response => callback(response))
@@ -368,30 +388,8 @@
       // get url parameters and show inside list end
       // Renders the table with data from GetAccounts
       function writeTable(data) {
-
-         data.value.forEach(function (account) {
-
-            var name = account.name;
-            var city = account.address1_city;
-
-            var nameCell = document.createElement("td");
-            nameCell.textContent = name;
-
-            var cityCell = document.createElement("td");
-            cityCell.textContent = city;
-
-            var row = document.createElement("tr");
-
-            row.appendChild(nameCell);
-            row.appendChild(cityCell);
-
-            accountsTableBody.appendChild(row);
-
-         });
-
-         accountsTable.style.display = "block";
-         getAccountsButton.style.display = "none";
-         // sendAccountsButton.style.display = "none";
+         console.log(data,'dataaa i am back')
+         
       }
 
       selectAccount();
