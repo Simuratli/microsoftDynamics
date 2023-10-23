@@ -262,9 +262,10 @@
          getTokenPopup({
             scopes: [baseUrl + "/.default"]
          })
-            .then(response => {
+            .then(async (response) => {
                //filter 
-               getDataverse(url, response.accessToken, callback);
+               const data = await getDataverse(url, response.accessToken, callback);
+               return data
             }).catch(error => {
                console.error(error);
             });
