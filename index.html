@@ -395,7 +395,7 @@
 
 
       const createAccount = async (url, token) =>{
-         console.log(accounts,'accounts saved')
+         console.log(accounts,'accounts saved',accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid)))
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -423,7 +423,7 @@
                fullname: dataObjectForRequest.fullName,
                jobtitle: dataObjectForRequest.jobtitle,
                address1_name: dataObjectForRequest.address1_name,
-               _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid)[0]),
+               _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid))[0],
                telephone1: dataObjectForRequest.telephone1,
                mobilephone: dataObjectForRequest.mobilephone,
                emailaddress1: dataObjectForRequest.emailaddress1
