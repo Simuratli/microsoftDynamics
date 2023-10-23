@@ -351,6 +351,8 @@
                   return 'emailaddress1';
                case 'linkedinUrl':
                   return "uds_linkedin"
+               case 'customerId':
+                  return "uds_linkedincompanyid"
                default:
                   return "aaa";
             }
@@ -384,7 +386,7 @@
 
          filterBackend(`accounts`, writeTable)
          .then((response)=>{console.log(response,'response')})
-         filterBackend(`accounts?$select=name&$filter=contains(name,'Eljan')`, writeTable)
+         filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
 
 
          // fetch(webAPIEndpoint + "/" + url, options)
@@ -399,9 +401,11 @@
       // Renders the table with data from GetAccounts
       function writeTable(data) {
          console.log(data, 'dataaa i am back')
-         // uds_linkedincompanyid
-
-         return data.value
+         if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
+            console.log('there have company with this id' + urlParameters['customerId'])
+         }else{
+            console.log('0 company find')
+         }
       }
 
       selectAccount();
