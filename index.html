@@ -294,17 +294,10 @@
             });
       }
 
-      function getContacts(callback) {
+      async function getContacts(callback) {
          // Gets the access token
-         getTokenPopup({
-            scopes: [baseUrl + "/.default"]
-         })
-            .then(response => {
-               //filter accounts?$select=name&$filter=contains(name,'Eljan')
-               getDataverse("contacts", response.accessToken, callback);
-            }).catch(error => {
-               console.error(error);
-            });
+         const response = await getTokenPopup({scopes: [baseUrl + "/.default"]})
+         getDataverse("contacts", response.accessToken, callback);
       }
 
 
@@ -325,10 +318,12 @@
 
          const response = await  getTokenPopup({scopes: [baseUrl + "/.default"]})
 
-         if (urlParameters['companyName']) {
+         if (!urlParameters['companyName']) {
+            console.log("nani yoxdur")
             getContacts()
             sendDataverse("contacts", response.accessToken, callback);
          } else {
+            console.log("nani vardir")
             createCompany("accounts", response.accessToken,)
          }
 
