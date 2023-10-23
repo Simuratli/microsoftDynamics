@@ -382,7 +382,7 @@
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
-         filterBackend(`contacts?$filter=contains(uds_linkedincompanyid,${urlParameters['customerId']})`, writeTable)
+         filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,${urlParameters['customerId']})`, writeTable)
 
 
          // fetch(webAPIEndpoint + "/" + url, options)
