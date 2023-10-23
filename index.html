@@ -254,6 +254,21 @@
             });
       }
 
+      function getContacts(callback) {
+         // Gets the access token
+         getTokenPopup({
+            scopes: [baseUrl + "/.default"]
+         })
+            .then(response => {
+               //filter accounts?$select=name&$filter=contains(name,'Eljan')
+               getDataverse("contacts", response.accessToken, callback);
+            }).catch(error => {
+               console.error(error);
+            });
+      }
+
+      getContacts()
+
 
       async function filterBackend(url,callback) {
          // Gets the access token
