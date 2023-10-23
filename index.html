@@ -395,7 +395,7 @@
 
 
       const createAccount = async (url, token) =>{
-         console.log(accounts,'accounts saved',accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid)))
+         
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -413,7 +413,7 @@
          dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
-
+         console.log(accounts,'accounts saved',accounts.filter(account=>account.uds_linkedincompanyid === Number(dataObjectForRequest.uds_linkedincompanyid)))
          const options = {
             method: "POST",
             headers: headers,
