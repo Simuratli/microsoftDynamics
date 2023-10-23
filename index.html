@@ -416,7 +416,7 @@
                fullname: dataObjectForRequest.fullName,
                jobtitle: dataObjectForRequest.jobtitle,
                address1_name: dataObjectForRequest.address1_name,
-               _parentcustomerid_value: `contacts(${dataObjectForRequest.uds_linkedincompanyid})`,
+               _parentcustomerid_value: Number(dataObjectForRequest.uds_linkedincompanyid),
                telephone1: dataObjectForRequest.telephone1,
                mobilephone: dataObjectForRequest.mobilephone,
                emailaddress1: dataObjectForRequest.emailaddress1
