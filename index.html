@@ -273,7 +273,7 @@
       async function filterBackend(url,callback) {
          // Gets the access token
          // "contacts?$select=name&$filter=contains(name,'Eljan')"
-         getContacts()
+        
          const response  = await getTokenPopup({scopes: [baseUrl + "/.default"]});
          const data = await getDataverse(url, response.accessToken, callback);
          return data
@@ -281,7 +281,7 @@
       }
 
       function sendAccounts(callback) {
-
+         getContacts()
          let inputs = document.querySelectorAll("input")
 
          inputs.forEach((input) => {
