@@ -402,7 +402,7 @@
          headers.append("Content-Type", "application/json");
          console.log(urlParameters,'Company urlParameters')
          let requestData = {}
-         for (const [key, value] of urlParameters) {
+         for (const [key, value] of Object.entries(urlParameters)) {
             requestData[changeRequestedNames(key)] = value
          }
 
