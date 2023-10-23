@@ -254,7 +254,7 @@
       }
 
 
-      function filterBackend(url) {
+      function filterBackend(url,callback) {
          // Gets the access token
          // "contacts?$select=name&$filter=contains(name,'Eljan')"
 
@@ -381,7 +381,7 @@
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
-         filterBackend(`contacts?$select=name&$filter=contains(customerId,${urlParameters['customerId']})`)
+         filterBackend(`contacts?$select=name&$filter=contains(customerId,${urlParameters['customerId']})`, writeTable)
 
 
          // fetch(webAPIEndpoint + "/" + url, options)
