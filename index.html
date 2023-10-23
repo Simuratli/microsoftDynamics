@@ -127,7 +127,7 @@
 
       let contacts = null;
       let accounts = null;
-      
+
 
       let username = "";
 
@@ -143,6 +143,40 @@
          } else if (currentAccounts.length === 1) {
             username = currentAccounts[0].username;
             showWelcomeMessage(username);
+         }
+      }
+
+
+      const changeRequestedNames = (name) => {
+         switch (name) {
+            case 'userName':
+               return 'fullName';
+            case 'jobTitle':
+               return 'jobtitle';
+            case 'location':
+               return 'address1_name';
+            case 'customer':
+               return 'parentcustomerid_account';
+            case 'phone':
+               return 'mobilephone';
+            case 'email':
+               return 'emailaddress1';
+            case 'linkedinUrl':
+               return "uds_linkedin"
+            case 'customerId':
+               return "uds_linkedincompanyid"
+            case 'companyName':
+               return "name"
+            case 'numberOfWorkers':
+               return "numberofemployees"
+            case 'companyUrl':
+               return "websiteurl"
+            case 'idOfCompany':
+               return "uds_linkedincompanyid"
+            case 'linkedinUrl':
+               return "uds_linkedinprofilecompanyurl"
+            default:
+               return "aaa";
          }
       }
 
@@ -231,7 +265,7 @@
       console.log(list, 'list')
 
       const entries = Object.entries(urlParameters);
-      
+
       for (const [key, value] of entries) {
          console.log(key, value, 'test')
          const inputElement = document.createElement('input')
@@ -273,35 +307,31 @@
             });
       }
 
-   
 
 
-      async function filterBackend(url,callback) {
+
+      async function filterBackend(url, callback) {
          // Gets the access token
          // "contacts?$select=name&$filter=contains(name,'Eljan')"
-        
-         const response  = await getTokenPopup({scopes: [baseUrl + "/.default"]});
+
+         const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
          const data = await getDataverse(url, response.accessToken, callback);
          return data
-           
+
       }
 
-      function sendAccounts(callback) {
-         getContacts()
-         let inputs = document.querySelectorAll("input")
+      async function sendAccounts(callback) {
 
-         inputs.forEach((input) => {
-            console.log(input.value, ":test:", input.name)
-         })
-         // Gets the access token
-         getTokenPopup({
-            scopes: [baseUrl + "/.default"]
-         })
-            .then(response => {
-               sendDataverse("contacts", response.accessToken, callback);
-            }).catch(error => {
-               console.error(error);
-            });
+
+         const response = await  getTokenPopup({scopes: [baseUrl + "/.default"]})
+
+         if (urlParameters['companyName']) {
+            getContacts()
+            sendDataverse("contacts", response.accessToken, callback);
+         } else {
+            createCompany("accounts", response.accessToken,)
+         }
+
       }
 
 
@@ -331,14 +361,10 @@
          const data = response.json()
          return data
 
-
-         const createCompany = async () =>{
-            
-         }
       }
 
 
-       const createCompany = async (url, token) =>{
+      const createCompanyWithId = async (url, token) => {
          message.innerHTML = 'Loading...'
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
@@ -348,7 +374,7 @@
          headers.append("OData-MaxVersion", "4.0");
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
-         
+
          const entries = Object.entries(urlParameters);
          const dataObjectForRequest = {}
 
@@ -356,13 +382,52 @@
             method: "POST",
             headers: headers,
             body: JSON.stringify({
-               uds_linkedincompanyid:urlParameters['customerId']
+               uds_linkedincompanyid: urlParameters['customerId']
             })
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
-         
+
+         const response = fetch(webAPIEndpoint + "/" + url, options)
+         const data = response ? response.json() : true
+         return data
+      }
+
+
+      const createCompany = async (url, token) => {
+         message.innerHTML = 'Loading...'
+         const headers = new Headers();
+         const bearer = `Bearer ${token}`;
+         headers.append("Authorization", bearer);
+         // Other Dataverse headers
+         headers.append("Accept", "application/json");
+         headers.append("OData-MaxVersion", "4.0");
+         headers.append("OData-Version", "4.0");
+         headers.append("Content-Type", "application/json");
+
+         let requestData = {}
+         for (const [key, value] of urlParameters) {
+            requestData[changeRequestedNames(key)] = value
+         }
+
+         console.log(requestData, 'dataRequest')
+
+         // const entries = Object.entries(urlParameters);
+         const dataObjectForRequest = {}
+
+         const options = {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+               uds_linkedincompanyid: urlParameters['customerId'],
+
+            })
+         }
+
+         console.log('GET Request made to Dataverse at: ' + new Date().toString());
+
+
          const response = fetch(webAPIEndpoint + "/" + url, options)
          const data = response ? response.json() : true
          return data
@@ -370,32 +435,13 @@
 
 
 
-      const changeRequestedNames = (name) => {
-            switch (name) {
-               case 'userName':
-                  return 'fullName';
-               case 'jobTitle':
-                  return 'jobtitle';
-               case 'location':
-                  return 'address1_name';
-               case 'customer':
-                  return 'parentcustomerid_account';
-               case 'phone':
-                  return 'mobilephone';
-               case 'email':
-                  return 'emailaddress1';
-               case 'linkedinUrl':
-                  return "uds_linkedin"
-               case 'customerId':
-                  return "uds_linkedincompanyid"
-               default:
-                  return "aaa";
-            }
-         }
 
 
-      const createAccount = async (url, token) =>{
-         
+
+
+
+      const createAccount = async (url, token) => {
+
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -410,7 +456,7 @@
          for (const [key, value] of entries) {
             dataObjectForRequest[changeRequestedNames(key)] = value
          }
-         console.log(dataObjectForRequest, 'entries')
+
          dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
@@ -424,7 +470,7 @@
                jobtitle: dataObjectForRequest.jobtitle,
                address1_name: dataObjectForRequest.address1_name,
                // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-               'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid})`,
+               'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid})`,
                telephone1: dataObjectForRequest.telephone1,
                mobilephone: dataObjectForRequest.mobilephone,
                emailaddress1: dataObjectForRequest.emailaddress1
@@ -442,17 +488,17 @@
          accounts = filtered.value
 
 
-         if(filtered.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
+         if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             console.log('there have company with this id' + urlParameters['customerId'])
             message.innerHTML = 'there have company with this id' + urlParameters['customerId']
             createAccount('contacts', token)
-         }else{
+         } else {
             message.innerHTML = '0 company find. You need to create company first'
-            const createdCompany = await createCompany('accounts', token)
-            console.log(createdCompany,'createdCompany')
+            const createdCompany = await createCompanyWithId('accounts', token)
+            console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
             createAccount('contacts', token)
-         
+
          }
       }
 
