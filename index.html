@@ -384,10 +384,10 @@
          filterBackend(`contacts?$select=name&$filter=contains(customerId,${urlParameters['customerId']})`)
 
 
-         fetch(webAPIEndpoint + "/" + url, options)
-            .then(response => response.json())
-            .then(response => callback(response))
-            .catch(error => console.log(error));
+         // fetch(webAPIEndpoint + "/" + url, options)
+         //    .then(response => response.json())
+         //    .then(response => callback(response))
+         //    .catch(error => console.log(error));
       }
 
 
@@ -396,7 +396,7 @@
       // Renders the table with data from GetAccounts
       function writeTable(data) {
          console.log(data, 'dataaa i am back')
-
+         // uds_linkedincompanyid
       }
 
       selectAccount();
