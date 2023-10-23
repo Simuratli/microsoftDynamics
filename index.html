@@ -313,13 +313,17 @@
 
          fetch(webAPIEndpoint + "/" + url, options)
             .then(response => response.json())
-            .then(response => callback(response))
+            .then(response => response)
             .catch(error => console.log(error));
 
       }
 
-      function sendDataverse(url, token, callback) {
-         const headers = new Headers();
+      async function sendDataverse(url, token, callback) {
+
+          const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
+            console.log(filtered,'aloyesda')
+         
+          const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
          // Other Dataverse headers
@@ -386,7 +390,7 @@
 
          filterBackend(`accounts`, writeTable)
          .then((response)=>{console.log(response,'response')})
-         filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
+        
 
 
          // fetch(webAPIEndpoint + "/" + url, options)
