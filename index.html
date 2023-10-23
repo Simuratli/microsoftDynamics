@@ -308,14 +308,25 @@
 
          const response = await fetch(webAPIEndpoint + "/" + url, options);
          const data = response.json()
-         return data.value
+         return data
       }
 
       async function sendDataverse(url, token, callback) {
          // filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
          const filtered = await filterBackend(`accounts`, writeTable)
          console.log(filtered,'aloyesda')
+
+
+         if(filtered.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
+            console.log('there have company with this id' + urlParameters['customerId'])
+            message.innerHTML = 'there have company with this id' + urlParameters['customerId']
+         }else{
+            console.log('0 company find')
+
+            message.innerHTML = '0 company find. You need to create company first'
+         }
          
+
           const headers = new Headers();
          const bearer = `Bearer ${token}`;
          headers.append("Authorization", bearer);
@@ -398,14 +409,14 @@
       // Renders the table with data from GetAccounts
       function writeTable(data) {
          console.log(data, 'dataaa i am back')
-         if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
-            console.log('there have company with this id' + urlParameters['customerId'])
-            message.innerHTML = 'there have company with this id' + urlParameters['customerId']
-         }else{
-            console.log('0 company find')
+         // if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
+         //    console.log('there have company with this id' + urlParameters['customerId'])
+         //    message.innerHTML = 'there have company with this id' + urlParameters['customerId']
+         // }else{
+         //    console.log('0 company find')
 
-            message.innerHTML = '0 company find. You need to create company first'
-         }
+         //    message.innerHTML = '0 company find. You need to create company first'
+         // }
       }
 
       selectAccount();
