@@ -404,6 +404,7 @@
          headers.append("OData-MaxVersion", "4.0");
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
+         headers.append("Prefer", 'odata.include-annotations="*"');
          const entries = Object.entries(urlParameters);
          const dataObjectForRequest = {}
          for (const [key, value] of entries) {
@@ -422,7 +423,8 @@
                fullname: dataObjectForRequest.fullName,
                jobtitle: dataObjectForRequest.jobtitle,
                address1_name: dataObjectForRequest.address1_name,
-               _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
+               // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
+               '_parentcustomerid_value@odata.bind': `/accounts(${accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid})`,
                telephone1: dataObjectForRequest.telephone1,
                mobilephone: dataObjectForRequest.mobilephone,
                emailaddress1: dataObjectForRequest.emailaddress1
