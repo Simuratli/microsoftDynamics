@@ -552,7 +552,7 @@
 
 
 
-      const createAccount = async (url, token) => {
+      const createAccount = async (url, token,method) => {
 
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
@@ -574,7 +574,7 @@
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
          const options = {
-            method: "PATCH",
+            method: method,
             headers: headers,
             body: JSON.stringify({
                firstname: dataObjectForRequest.fullName.split(" ")[0],
@@ -612,14 +612,14 @@
                
                if(existedContact){
                   message.innerHTML = 'contact updating... ' 
-                  createAccount(`contacts(${existedContact.contactid})`, token)
+                  createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
+                  message.innerHTML = 'Contact Updated' 
                }else{
                   message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
-                  createAccount('contacts', token)
+                  createAccount('contacts', token,"POST")
+                  message.innerHTML = 'Contact Created' 
                }
             }
-
-
            
             message.innerHTML = 'Contact created'
          } else {
@@ -627,10 +627,7 @@
             const createdCompany = await createCompanyWithId('accounts', token)
             console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
-            createAccount('contacts', token)
-            
-            
-
+            createAccount('contacts', token,"POST")
          }
       }
 
