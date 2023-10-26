@@ -164,18 +164,7 @@
 
 
 
-        // Called from signIn or selectAccount functions
-      function showWelcomeMessage(username) {
-         message.innerHTML = `Welcome ${username}`;
-         loginButton.style.display = "none";
-         logoutButton.style.display = "block";
-         getAccountsButton.style.display = "block";
-         sendAccountsButton.style.display = "block";
-         list.style.visibility = 'visible'
-         list.style.position = 'relative'
-         mainCredentialsForm.style.display = 'none'
-      }
-
+     
       const changeRequestedNames = (name) => {
          switch (name) {
             case 'userName':
@@ -254,12 +243,25 @@
       const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
+   // Called from signIn or selectAccount functions
+      function showWelcomeMessage(username) {
+         message.innerHTML = `Welcome ${username}`;
+         loginButton.style.display = "none";
+         logoutButton.style.display = "block";
+         getAccountsButton.style.display = "block";
+         sendAccountsButton.style.display = "block";
+         list.style.visibility = 'visible'
+         list.style.position = 'relative'
+         mainCredentialsForm.style.display = 'none'
+      }
 
 
 
 
       // new part here 
 
+
+      
       function checkCredentialURLs() {
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
             loginButton.removeAttribute('disabled');
