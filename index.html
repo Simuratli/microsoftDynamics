@@ -573,7 +573,7 @@
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
          const options = {
-            method: "POST",
+            method: "PUT",
             headers: headers,
             body: JSON.stringify({
                firstname: dataObjectForRequest.fullName.split(" ")[0],
