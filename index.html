@@ -288,6 +288,7 @@
             .then(response => {
                if (response !== null) {
                   username = response.account.username;
+                  console.log(response.account,'account')
                   showWelcomeMessage(username);
                } else {
                   selectAccount();
