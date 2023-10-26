@@ -77,6 +77,11 @@
             color: white;
             cursor: no-drop;
          }
+
+         .list{
+            visibility: hidden;
+            position: absolute;
+         }
    </style>
 </head>
 
@@ -110,6 +115,12 @@
       const accountsTable = document.getElementById("accountsTable");
       const accountsTableBody = document.getElementById("accountsTableBody");
       const message = document.getElementById("message");
+
+      const mainCredentialsForm = document.getElementById('mainCredentials')
+      const clientIdInput = document.getElementById("clientIdInput");
+      const tenantIdInput = document.getElementById("tenantIdInput");
+      const crmUrlInput = document.getElementById("crmUrlInput");
+
       // Create the main myMSALObj instance
 
 
@@ -118,6 +129,21 @@
       const tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
       const redirectUrl = "/";
       const webAPIEndpoint = baseUrl + "/api/data/v9.2";
+
+
+
+        // Called from signIn or selectAccount functions
+      function showWelcomeMessage(username) {
+         message.innerHTML = `Welcome ${username}`;
+         loginButton.style.display = "none";
+         logoutButton.style.display = "block";
+         getAccountsButton.style.display = "block";
+         sendAccountsButton.style.display = "block";
+         list.style.visibility = 'visible'
+         list.style.position = 'relative'
+         mainCredentialsForm.style.display = 'none'
+      }
+
 
 
       // Configuration object to be passed to MSAL instance on creation. 
@@ -169,9 +195,7 @@
       // new part here 
 
 
-      const clientIdInput = document.getElementById("clientIdInput");
-      const tenantIdInput = document.getElementById("tenantIdInput");
-      const crmUrlInput = document.getElementById("crmUrlInput");
+      
 
 
 
@@ -275,14 +299,7 @@
       }
 
       // Shows greeting and enables logoutButton and getAccountsButton
-      // Called from signIn or selectAccount functions
-      function showWelcomeMessage(username) {
-         message.innerHTML = `Welcome ${username}`;
-         loginButton.style.display = "none";
-         logoutButton.style.display = "block";
-         getAccountsButton.style.display = "block";
-         sendAccountsButton.style.display = "block";
-      }
+    
 
 
       // Called by the logoutButton
@@ -342,15 +359,14 @@
 
       const entries = Object.entries(urlParameters);
 
-      // for (const [key, value] of entries) {
-      //    console.log(key, value, 'test')
-      //    const inputElement = document.createElement('input')
-      //    inputElement.value = value
-      //    inputElement.classList.add('input')
-      //    inputElement.placeholder = key
-      //    inputElement.name = key
-      //    list && list.appendChild(inputElement)
-      // }
+      for (const [key, value] of entries) {
+         const inputElement = document.createElement('input')
+         inputElement.value = value
+         inputElement.classList.add('input')
+         inputElement.placeholder = key
+         inputElement.name = key
+         list && list.appendChild(inputElement)
+      }
 
 
       // get url parameters and show inside list end
