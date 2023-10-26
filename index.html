@@ -524,7 +524,7 @@
             body: JSON.stringify({
                uds_linkedincompanyid:requestData['uds_linkedincompanyid'].toString(),
                name:requestData['name'],
-               numberofemployees:requestData['numberofemployees'],
+               numberofemployees:Number(requestData['numberofemployees'].split(' ')[0]),
                uds_linkedin:requestData['uds_linkedin'],
                websiteurl:requestData['websiteurl'],
             })
