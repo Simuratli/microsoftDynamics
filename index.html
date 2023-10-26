@@ -248,7 +248,7 @@
          message.innerHTML = `Welcome ${username}`;
          loginButton.style.display = "none";
          logoutButton.style.display = "block";
-         getAccountsButton.style.display = "block";
+         // getAccountsButton.style.display = "block";
          sendAccountsButton.style.display = "block";
          mainCredentialsForm.style.display = 'none'
          list.style.visibility = 'visible'
@@ -297,7 +297,7 @@
             // Add choose account code here
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
-            username = currentAccounts[0].name;
+            username = currentAccounts[0].username;
             showWelcomeMessage(username);
          }
       }
@@ -311,7 +311,7 @@
          })
             .then(response => {
                if (response !== null) {
-                  username = response.account.name;
+                  username = response.account.username;
                   console.log(response.account,'account')
                   showWelcomeMessage(username);
                } else {
