@@ -563,7 +563,7 @@
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
          headers.append("Prefer", 'odata.include-annotations="*"');
-         req.setRequestHeader("Prefer", "return=representation");
+         headers.append("Prefer", "return=representation");
          const entries = Object.entries(urlParameters);
          const dataObjectForRequest = {}
          for (const [key, value] of entries) {
