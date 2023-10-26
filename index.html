@@ -437,7 +437,15 @@
             sendDataverse("contacts", response.accessToken, callback);
          } else {
             console.log("nani vardir")
-            createCompany("accounts", response.accessToken)
+            
+            
+            const companies = await filterBackend(`accounts`, writeTable)
+            accounts = companies.value
+
+
+            console.log(companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters[idOfCompany])),'nolete')
+
+            createCompany("accounts", response.accessToken,'POST')
          }
       }
 
@@ -502,11 +510,7 @@
       }
 
 
-      const createCompany = async (url, token) => {
-
-         const filtered = await filterBackend(`accounts`, writeTable)
-         accounts = filtered.value
-
+      const createCompany = async (url, token, method) => {
 
 
          message.innerHTML = 'Creating Company...'
@@ -525,14 +529,13 @@
          }
          console.log(Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),'nunberofempl')
          const options = {
-            method: "POST",
+            method: method,
             headers: headers,
             body: JSON.stringify({
                uds_linkedincompanyid:requestData['uds_linkedincompanyid'].toString(),
                name:requestData['name'],
                numberofemployees:Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),
                // uds_linkedin:requestData['uds_linkedin'],
-               'accountid@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === urlParameters['idOfCompany'])[0].accountid})`,
                websiteurl:requestData['websiteurl'],
             })
          }
