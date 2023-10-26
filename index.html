@@ -442,7 +442,6 @@
             const companies = await filterBackend(`accounts`, writeTable)
             accounts = companies.value
 
-
             console.log(companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters[idOfCompany])),'nolete')
 
             createCompany("accounts", response.accessToken,'POST')
