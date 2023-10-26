@@ -541,7 +541,7 @@
          let countOfEmployees  = 0
 
          if(requestData['numberofemployees'].includes('-')){
-            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[0])
+            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[1])
          }else{
             Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
          }
