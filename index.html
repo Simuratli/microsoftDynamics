@@ -526,6 +526,7 @@
                name:requestData['name'],
                numberofemployees:Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),
                // uds_linkedin:requestData['uds_linkedin'],
+               'accountid@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid})`,
                websiteurl:requestData['websiteurl'],
             })
          }
