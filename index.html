@@ -517,7 +517,7 @@
          for (const [key, value] of Object.entries(urlParameters)) {
             requestData[changeRequestedNames(key)] = value
          }
-         console.log(Number(requestData['numberofemployees'].split(' ')[0].replace(',', '.')),'nunberofempl')
+         console.log(Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),'nunberofempl')
          const options = {
             method: "POST",
             headers: headers,
