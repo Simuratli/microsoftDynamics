@@ -536,6 +536,15 @@
          for (const [key, value] of Object.entries(urlParameters)) {
             requestData[changeRequestedNames(key)] = value
          }
+
+
+         const countOfEmployees  = 0
+
+         if(requestData['numberofemployees'].includes('-')){
+            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].replace('-', ''))
+         }else{
+            Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
+         }
          console.log(Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),'nunberofempl')
          const options = {
             method: method,
@@ -543,7 +552,7 @@
             body: JSON.stringify({
                uds_linkedincompanyid:requestData['uds_linkedincompanyid'].toString(),
                name:requestData['name'],
-               numberofemployees:Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),
+               numberofemployees:countOfEmployees,
                // uds_linkedin:requestData['uds_linkedin'],
                websiteurl:requestData['websiteurl'],
             })
