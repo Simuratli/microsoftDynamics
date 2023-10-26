@@ -503,6 +503,12 @@
 
 
       const createCompany = async (url, token) => {
+
+         const filtered = await filterBackend(`accounts`, writeTable)
+         accounts = filtered.value
+
+
+
          message.innerHTML = 'Loading Company...'
          const headers = new Headers();
          const bearer = `Bearer ${token}`;
