@@ -598,10 +598,17 @@
          // filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
          const filtered = await filterBackend(`accounts`, writeTable)
          const filteredcontacts = await filterBackend(`contacts`, writeTable)
-         contacts = filteredcontacts.value
+         // contacts = filteredcontacts.value
          accounts = filtered.value
          if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             console.log('there have company with this id' + urlParameters['customerId'])
+            console.log(filteredcontacts.value,'sadasdasdasd all')
+
+            if (filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']).length !== 0){
+               console.log(filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']),'sadasdasdasd')
+            }
+
+
             message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
             createAccount('contacts', token)
             message.innerHTML = 'Contact created'
@@ -611,10 +618,8 @@
             console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
             createAccount('contacts', token)
-            console.log(filteredcontacts.value,'sadasdasdasd all')
-            if (filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']).length !== 0){
-               console.log(filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']),'sadasdasdasd')
-            }
+            
+            
 
          }
       }
