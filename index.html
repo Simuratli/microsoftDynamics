@@ -605,7 +605,10 @@
             // console.log(filteredcontacts.value,'sadasdasdasd all')
 
             if (filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']).length !== 0){
-               console.log(filteredcontacts.value.filter((contact)=>contact.parentcustomerid_value === filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid),'sadasdasdasd')
+               
+               const accountIdTesst = filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid
+               console.log(filteredcontacts.value.filter((contact)=>contact.parentcustomerid_value === accountIdTesst),'accountIdTesst all')
+               console.log(accountIdTesst,'accountIdTesst')
                // 
                // if(f)
 
