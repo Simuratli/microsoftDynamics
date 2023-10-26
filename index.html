@@ -82,6 +82,18 @@
             visibility: hidden;
             position: absolute;
          }
+
+         button{
+            padding: 10px 20px;
+            outline: none;
+            border: none;
+            color: #FFF;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            background: #383680;
+         }
    </style>
 </head>
 
@@ -96,12 +108,14 @@
          <a href="https://www.youtube.com/" target="_blank">Link to tutorial on Youtube</a>
       </div>
 
-      <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
-      <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get Accounts</button>
-      <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Send new
-         Accounts</button>
       <div id="message"></div>
       <div id="list"></div>
+
+
+      <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
+      <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
+      <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
+      
 
       <button id="loginButton" disabled onclick="signIn()">Login</button>
    </div>
