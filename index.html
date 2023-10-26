@@ -563,6 +563,7 @@
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
          headers.append("Prefer", 'odata.include-annotations="*"');
+         req.setRequestHeader("Prefer", "return=representation");
          const entries = Object.entries(urlParameters);
          const dataObjectForRequest = {}
          for (const [key, value] of entries) {
@@ -573,7 +574,7 @@
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
          const options = {
-            method: "POST",
+            method: "PATCH",
             headers: headers,
             body: JSON.stringify({
                firstname: dataObjectForRequest.fullName.split(" ")[0],
@@ -606,7 +607,9 @@
                const accountIdTesst = filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid
                console.log(filteredcontacts.value.filter((contact)=>contact._parentcustomerid_value === accountIdTesst),'accountIdTesst all')
                console.log(accountIdTesst,'accountIdTesst')
+               
                const existedContact = filteredcontacts.value.filter((contact)=>contact._parentcustomerid_value === accountIdTesst)[0]
+               
                if(existedContact){
                   message.innerHTML = 'contact updating... ' 
                   createAccount(`contacts(${existedContact.contactid})`, token)
