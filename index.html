@@ -611,7 +611,7 @@
             console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
             createAccount('contacts', token)
-
+            console.log(filteredcontacts.value,'sadasdasdasd all')
             if (filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']).length !== 0){
                console.log(filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']),'sadasdasdasd')
             }
