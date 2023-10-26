@@ -573,6 +573,9 @@
          dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
          dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
 
+
+         console.log(accounts.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']),'asdafgdagadf')
+
          const options = {
             method: method,
             headers: headers,
@@ -626,7 +629,7 @@
             const createdCompany = await createCompanyWithId('accounts', token)
             console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
-            createAccount('contacts', token,"POST")
+            createAccount('contacts', token, "POST")
          }
       }
 
