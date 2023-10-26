@@ -122,6 +122,8 @@
          .buttonContainer{
             display: flex;
             gap: 10px;
+
+            justify-content: center;
          }
 
          #message{
@@ -144,6 +146,12 @@
 
          #mainCredentials a{
             text-align: center;
+            color: #1A4F95;
+         font-size: 14px;
+         font-style: normal;
+         font-weight: 600;
+         line-height: normal;
+         text-decoration-line: underline;
          }
    </style>
 </head>
@@ -167,10 +175,12 @@
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
       <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
       <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
+
+      <button id="loginButton" disabled onclick="signIn()">Login</button>
      </div>
       
 
-      <button id="loginButton" disabled onclick="signIn()">Login</button>
+      
    </div>
 
    <script src="./main.js"></script>
