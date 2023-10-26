@@ -604,8 +604,8 @@
             console.log('there have company with this id' + urlParameters['customerId'])
             console.log(filteredcontacts.value,'sadasdasdasd all')
 
-            if (filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']).length !== 0){
-               console.log(filteredcontacts.value.filter(contact => contact.fullname === urlParameters['userName']),'sadasdasdasd')
+            if (filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']).length !== 0){
+               console.log(filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']),'sadasdasdasd')
             }
 
 
