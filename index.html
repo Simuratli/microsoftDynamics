@@ -88,11 +88,47 @@
          background: #383680;
          color: white;
       }
+
+
+      #mainCredentials{
+            display:flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 40px;
+         }
+
+         #mainCredentials input{
+            padding: 10px 20px;
+            gap: 10px;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            outline: none;
+            color: #383680;
+            border: none;
+         }
+
+         #mainCredentials h1{
+            color: #232332;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+         }
    </style>
 </head>
 
 <body>
    <div>
+      <div id="mainCredentials">
+         <h1>Azure AD B2C application credentials to access Dynamics 365 CRM</h1>
+         <input type="text" placeholder="ClientID">
+         <input type="text" placeholder="TenantID">
+         <input type="text" placeholder="CRM url">
+
+         <a href="https://www.youtube.com/" target="_blank">Link to tutorial on Youtube</a>
+      </div>
 
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
       <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get Accounts</button>
