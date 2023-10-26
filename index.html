@@ -609,7 +609,7 @@
                const existedContact = filteredcontacts.value.filter((contact)=>contact._parentcustomerid_value === accountIdTesst)[0]
                if(existedContact){
                   message.innerHTML = 'contact updating... ' 
-                  createAccount('contacts/('+ existedContact.contactid + ")", token)
+                  createAccount(`contacts/(${existedContact.contactid})`, token)
                }else{
                   message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
                   createAccount('contacts', token)
