@@ -166,6 +166,40 @@
 
 
 
+      // new part here 
+
+
+      const clientIdInput = document.getElementById("clientIdInput");
+      const tenantIdInput = document.getElementById("tenantIdInput");
+      const crmUrlInput = document.getElementById("crmUrlInput");
+
+
+
+      
+      function checkCredentialURLs() {
+         if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+            loginButton.removeAttribute('disabled');
+
+            console.log("test is not disabled")
+         } else {
+            loginButton.setAttribute('disabled', 'true');
+            console.log("test is  disabled")
+         }
+      }
+
+
+      clientIdInput.addEventListener('input', checkCredentialURLs);
+      tenantIdInput.addEventListener('input', checkCredentialURLs);
+      crmUrlInput.addEventListener('input', checkCredentialURLs);
+
+
+
+      // new part finished here 
+
+
+
+
+
 
       let contacts = null;
       let accounts = null;
