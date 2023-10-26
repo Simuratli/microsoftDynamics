@@ -127,7 +127,7 @@
 
      <div class="buttonContainer">
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
-      <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
+      <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
       <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
      </div>
       
@@ -149,7 +149,10 @@
       const clientIdInput = document.getElementById("clientIdInput");
       const tenantIdInput = document.getElementById("tenantIdInput");
       const crmUrlInput = document.getElementById("crmUrlInput");
-
+      
+      let username = "";
+      let contacts = null;
+      let accounts = null;
       // Create the main myMSALObj instance
 
 
@@ -172,6 +175,40 @@
          list.style.position = 'relative'
          mainCredentialsForm.style.display = 'none'
       }
+
+      const changeRequestedNames = (name) => {
+         switch (name) {
+            case 'userName':
+               return 'fullName';
+            case 'jobTitle':
+               return 'jobtitle';
+            case 'location':
+               return 'address1_name';
+            case 'customer':
+               return 'parentcustomerid_account';
+            case 'phone':
+               return 'mobilephone';
+            case 'email':
+               return 'emailaddress1';
+            case 'linkedinUrl':
+               return "uds_linkedin"
+            case 'customerId':
+               return "uds_linkedincompanyid"
+            case 'companyName':
+               return "name"
+            case 'numberOfWorkers':
+               return "numberofemployees"
+            case 'companyUrl':
+               return "websiteurl"
+            case 'idOfCompany':
+               return "uds_linkedincompanyid"
+            case 'linkedinUrl':
+               return "uds_linkedinprofilecompanyurl"
+            default:
+               return "aaa";
+         }
+      }
+
 
 
 
@@ -223,16 +260,9 @@
 
       // new part here 
 
-
-      
-
-
-
-      
       function checkCredentialURLs() {
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
             loginButton.removeAttribute('disabled');
-
             console.log("test is not disabled")
          } else {
             loginButton.setAttribute('disabled', 'true');
@@ -249,16 +279,10 @@
 
       // new part finished here 
 
+    
 
 
-
-
-
-      let contacts = null;
-      let accounts = null;
-
-
-      let username = "";
+   
 
       // Sets the username. Called at the end of this script.
       function selectAccount() {
@@ -276,39 +300,7 @@
       }
 
 
-      const changeRequestedNames = (name) => {
-         switch (name) {
-            case 'userName':
-               return 'fullName';
-            case 'jobTitle':
-               return 'jobtitle';
-            case 'location':
-               return 'address1_name';
-            case 'customer':
-               return 'parentcustomerid_account';
-            case 'phone':
-               return 'mobilephone';
-            case 'email':
-               return 'emailaddress1';
-            case 'linkedinUrl':
-               return "uds_linkedin"
-            case 'customerId':
-               return "uds_linkedincompanyid"
-            case 'companyName':
-               return "name"
-            case 'numberOfWorkers':
-               return "numberofemployees"
-            case 'companyUrl':
-               return "websiteurl"
-            case 'idOfCompany':
-               return "uds_linkedincompanyid"
-            case 'linkedinUrl':
-               return "uds_linkedinprofilecompanyurl"
-            default:
-               return "aaa";
-         }
-      }
-
+      
       // Called by the loginButton
       function signIn() {
          myMSALObj.loginPopup({
@@ -347,9 +339,7 @@
       // Provides the access token for a request, opening pop-up if necessary.
       // Used by GetAccounts function
       function getTokenPopup(request) {
-
          request.account = myMSALObj.getAccountByUsername(username);
-
          return myMSALObj.acquireTokenSilent(request)
             .catch(error => {
                console.warn("Silent token acquisition fails. Acquiring token using popup");
@@ -424,6 +414,7 @@
 
 
 
+      
 
       async function filterBackend(url, callback) {
          // Gets the access token
@@ -436,10 +427,7 @@
       }
 
       async function sendAccounts(callback) {
-
-
          const response = await  getTokenPopup({scopes: [baseUrl + "/.default"]})
-
          if (!urlParameters['companyName']) {
             console.log("nani yoxdur")
             getContacts()
@@ -448,7 +436,6 @@
             console.log("nani vardir")
             createCompany("accounts", response.accessToken)
          }
-
       }
 
 
@@ -601,8 +588,6 @@
          // filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
          const filtered = await filterBackend(`accounts`, writeTable)
          accounts = filtered.value
-
-
          if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             console.log('there have company with this id' + urlParameters['customerId'])
             message.innerHTML = 'there have company with this id' + urlParameters['customerId']
