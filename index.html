@@ -541,11 +541,11 @@
          const countOfEmployees  = 0
 
          if(requestData['numberofemployees'].includes('-')){
-            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].replace('-', ''))
+            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[0])
          }else{
             Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
          }
-         console.log(Number(requestData['numberofemployees'].split(' ')[0].replace(',', '')),'nunberofempl')
+         console.log(countOfEmployees,'nunberofempl')
          const options = {
             method: method,
             headers: headers,
