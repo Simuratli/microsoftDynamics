@@ -442,9 +442,14 @@
             const companies = await filterBackend(`accounts`, writeTable)
             accounts = companies.value
 
-            console.log(companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters.idOfCompany)),'nolete')
 
-            createCompany("accounts", response.accessToken,'POST')
+            if(companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters.idOfCompany)).length !== 0){
+               createCompany(`accounts${companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters.idOfCompany))[0].accountid}`, response.accessToken,'PATCH')
+            }else{
+               createCompany("accounts", response.accessToken,'POST')
+            }
+
+            
          }
       }
 
@@ -521,6 +526,7 @@
          headers.append("OData-MaxVersion", "4.0");
          headers.append("OData-Version", "4.0");
          headers.append("Content-Type", "application/json");
+         headers.append("Prefer", "return=representation");
          console.log(urlParameters,'Company urlParameters')
          let requestData = {}
          for (const [key, value] of Object.entries(urlParameters)) {
