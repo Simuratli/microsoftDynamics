@@ -153,15 +153,7 @@
          }
 
 
-
-         #loginButton:disabled{
-            background: gray;
-            color: white;
-            cursor: no-drop;
-            box-shadow: none;
-         }
-
-         #loginButton{
+         #loginButton {
             padding: 10px 20px;
             outline: none;
             border: none;
@@ -192,6 +184,17 @@
             text-align: center;
             margin: 0 auto;
          }
+
+
+         #loginButton:disabled{
+            background: gray;
+            color: white;
+            cursor: no-drop;
+            box-shadow: none;
+         }
+
+
+
    </style>
 </head>
 
@@ -243,9 +246,9 @@
       // Create the main myMSALObj instance
 
 
-      var baseUrl = "https://orgfdbab4d2.api.crm.dynamics.com";      //<= Change this
-      var clientId = "8d5c861b-044a-4978-b3ac-d9d913169ff2"; //<= Change this
-      var tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
+      const baseUrl = "https://orgfdbab4d2.api.crm.dynamics.com";      //<= Change this
+      const clientId = "8d5c861b-044a-4978-b3ac-d9d913169ff2"; //<= Change this
+      const tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
       const redirectUrl = "/";
       const webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
@@ -253,42 +256,6 @@
       // base "https://orgfdbab4d2.api.crm.dynamics.com"
       // clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
       // tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
-
-
-            // new part here 
-
-
-      
-      function checkCredentialURLs(e) {
-        switch (e.target.name) {
-         case 'clientIdInput':
-            clientId = e.target.value;
-         case 'tenantIdInput':
-           tenantId = e.target.value;
-         case 'crmUrlInput':
-            baseUrl = e.target.value;
-         default:
-            break;
-        }
-
-         if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
-            loginButton.removeAttribute('disabled');
-            console.log("test is not disabled")
-         } else {
-            loginButton.setAttribute('disabled', 'true');
-            console.log("test is  disabled")
-         }
-      }
-
-
-      clientIdInput.addEventListener('input', checkCredentialURLs);
-      tenantIdInput.addEventListener('input', checkCredentialURLs);
-      crmUrlInput.addEventListener('input', checkCredentialURLs);
-
-      
-
-
-      // new part finished here 
 
      
       const changeRequestedNames = (name) => {
@@ -379,13 +346,34 @@
          mainCredentialsForm.style.display = 'none'
          list.style.visibility = 'visible'
          list.style.position = 'relative'
-        console.log(baseUrl,'baseurl')
+        
       }
 
 
 
 
+      // new part here 
 
+
+      
+      function checkCredentialURLs() {
+         if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+            loginButton.removeAttribute('disabled');
+            console.log("test is not disabled")
+         } else {
+            loginButton.setAttribute('disabled', 'true');
+            console.log("test is  disabled")
+         }
+      }
+
+
+      clientIdInput.addEventListener('input', checkCredentialURLs);
+      tenantIdInput.addEventListener('input', checkCredentialURLs);
+      crmUrlInput.addEventListener('input', checkCredentialURLs);
+
+
+
+      // new part finished here 
 
     
 
@@ -411,10 +399,8 @@
       
       // Called by the loginButton
       function signIn() {
-         console.log(msalConfig,'msalConfig')
-         console.log(clientId,tenantId,baseUrl,'msalConfig baseUrl')
          myMSALObj.loginPopup({
-            scopes: ["User.Read", crmUrlInput.value + "/user_impersonation"] //<= Includes Dataverse scope
+            scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
          })
             .then(response => {
                if (response !== null) {
