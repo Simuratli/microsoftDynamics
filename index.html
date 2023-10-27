@@ -243,9 +243,9 @@
       // Create the main myMSALObj instance
 
 
-      let baseUrl = "";      //<= Change this
-      let clientId = ""; //<= Change this
-      let tenantId = ""; //<= Change this
+      var baseUrl = "";      //<= Change this
+      var clientId = ""; //<= Change this
+      var tenantId = ""; //<= Change this
       const redirectUrl = "/";
       const webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
@@ -253,6 +253,42 @@
       // base "https://orgfdbab4d2.api.crm.dynamics.com"
       // clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
       // tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
+
+
+            // new part here 
+
+
+      
+      function checkCredentialURLs(e) {
+        switch (e.target.name) {
+         case 'clientIdInput':
+            clientId = e.target.value;
+         case 'tenantIdInput':
+           tenantId = e.target.value;
+         case 'crmUrlInput':
+            baseUrl = e.target.value;
+         default:
+            break;
+        }
+
+         if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+            loginButton.removeAttribute('disabled');
+            console.log("test is not disabled")
+         } else {
+            loginButton.setAttribute('disabled', 'true');
+            console.log("test is  disabled")
+         }
+      }
+
+
+      clientIdInput.addEventListener('input', checkCredentialURLs);
+      tenantIdInput.addEventListener('input', checkCredentialURLs);
+      crmUrlInput.addEventListener('input', checkCredentialURLs);
+
+      
+
+
+      // new part finished here 
 
      
       const changeRequestedNames = (name) => {
@@ -295,9 +331,9 @@
 
       const msalConfig = {
          auth: {
-            clientId: clientIdInput.value,
+            clientId: clientId,
             // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
-            authority: "https://login.microsoftonline.com/" + tenantIdInput.value,
+            authority: "https://login.microsoftonline.com/" + tenantId,
             redirectUri: redirectUrl,
          },
          cache: {
@@ -349,40 +385,7 @@
 
 
 
-      // new part here 
 
-
-      
-      function checkCredentialURLs(e) {
-        switch (e.target.name) {
-         case 'clientIdInput':
-            clientId = e.target.value;
-         case 'tenantIdInput':
-           tenantId = e.target.value;
-         case 'crmUrlInput':
-            baseUrl = e.target.value;
-         default:
-            break;
-        }
-
-         if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
-            loginButton.removeAttribute('disabled');
-            console.log("test is not disabled")
-         } else {
-            loginButton.setAttribute('disabled', 'true');
-            console.log("test is  disabled")
-         }
-      }
-
-
-      clientIdInput.addEventListener('input', checkCredentialURLs);
-      tenantIdInput.addEventListener('input', checkCredentialURLs);
-      crmUrlInput.addEventListener('input', checkCredentialURLs);
-
-      
-
-
-      // new part finished here 
 
     
 
