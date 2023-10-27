@@ -295,9 +295,9 @@
 
       const msalConfig = {
          auth: {
-            clientId: clientId,
+            clientId: clientIdInput.value,
             // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
-            authority: "https://login.microsoftonline.com/" + tenantId,
+            authority: "https://login.microsoftonline.com/" + tenantIdInput.value,
             redirectUri: redirectUrl,
          },
          cache: {
@@ -409,9 +409,8 @@
       // Called by the loginButton
       function signIn() {
 
-         console.log(baseUrl,clientId,tenantId,'test here')
          myMSALObj.loginPopup({
-            scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
+            scopes: ["User.Read", crmUrlInput.value + "/user_impersonation"] //<= Includes Dataverse scope
          })
             .then(response => {
                if (response !== null) {
