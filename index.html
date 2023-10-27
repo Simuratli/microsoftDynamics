@@ -162,9 +162,9 @@
    <div>
       <div id="mainCredentials">
          <h1>Azure AD B2C application credentials to access Dynamics 365 CRM</h1>
-         <input id="clientIdInput" type="text" placeholder="ClientID">
-         <input id="tenantIdInput" type="text" placeholder="TenantID">
-         <input id="crmUrlInput" type="text" placeholder="CRM url">
+         <input name="clientIdInput" id="clientIdInput" type="text" placeholder="ClientID">
+         <input name="tenantIdInput" id="tenantIdInput" type="text" placeholder="TenantID">
+         <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
          <p>Check your credentials or ask your system administrator.</p>
          <a href="https://www.youtube.com/" target="_blank">Link to tutorial on Youtube</a>
       </div>
@@ -206,12 +206,16 @@
       // Create the main myMSALObj instance
 
 
-      const baseUrl = "https://orgfdbab4d2.api.crm.dynamics.com";      //<= Change this
-      const clientId = "8d5c861b-044a-4978-b3ac-d9d913169ff2"; //<= Change this
-      const tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
+      const baseUrl = "";      //<= Change this
+      const clientId = ""; //<= Change this
+      const tenantId = ""; //<= Change this
       const redirectUrl = "/";
       const webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
+
+      // base "https://orgfdbab4d2.api.crm.dynamics.com"
+      // clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
+      // tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
 
      
       const changeRequestedNames = (name) => {
@@ -302,7 +306,7 @@
          mainCredentialsForm.style.display = 'none'
          list.style.visibility = 'visible'
          list.style.position = 'relative'
-        
+        console.log(baseUrl,'baseurl')
       }
 
 
@@ -313,6 +317,12 @@
 
       
       function checkCredentialURLs() {
+
+         baseUrl = crmUrlInput.value
+         clientId = clientIdInput.value
+         tenantId = tenantIdInput.value
+         console.log(baseUrl,'baseurl',tenantId)
+
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
             loginButton.removeAttribute('disabled');
             console.log("test is not disabled")
