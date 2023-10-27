@@ -634,11 +634,7 @@
          let countOfEmployees  = 0
 
          if(requestData['numberofemployees'].includes('-')){
-            if(countOfEmployees.toString().includes(",")){
-               countOfEmployees = Number(countOfEmployees.replace(',', ''))
-            }else{
-               countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[1])
-            }
+            countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[1])
          }else{
             Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
          }
