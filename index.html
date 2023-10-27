@@ -412,6 +412,7 @@
       // Called by the loginButton
       function signIn() {
          console.log(msalConfig,'msalConfig')
+         console.log(clientId,tenantId,baseUrl,'msalConfig baseUrl')
          myMSALObj.loginPopup({
             scopes: ["User.Read", crmUrlInput.value + "/user_impersonation"] //<= Includes Dataverse scope
          })
