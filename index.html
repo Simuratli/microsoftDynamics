@@ -159,6 +159,38 @@
             color: white;
             cursor: no-drop;
          }
+
+         #loginButton{
+            padding: 10px 20px;
+            outline: none;
+            border: none;
+            color: #FFF;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            background: #383680;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background: var(--gradients-linear-orange, linear-gradient(270deg, #FF8F3E 4.23%, #FFB178 91.19%));
+            box-shadow: 0px 8px 24px 0px rgba(14, 31, 53, 0.08), 0px 6px 12px 0px rgba(14, 31, 53, 0.12), 0px 3px 6px 0px rgba(14, 31, 53, 0.08);
+            height: 40px;
+            padding: 11px 11px 12px 11px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: var(--background-violet-25, #FEFEFF);
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-align: center;
+            margin: 0 auto;
+         }
    </style>
 </head>
 
@@ -346,6 +378,7 @@
       tenantIdInput.addEventListener('input', checkCredentialURLs);
       crmUrlInput.addEventListener('input', checkCredentialURLs);
 
+      
 
 
       // new part finished here 
@@ -374,6 +407,8 @@
       
       // Called by the loginButton
       function signIn() {
+
+         console.log(baseUrl,clientId,tenantId,'test here')
          myMSALObj.loginPopup({
             scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
          })
