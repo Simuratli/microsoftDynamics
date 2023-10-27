@@ -327,6 +327,8 @@
          tenantId = tenantIdInput.value
          console.log(baseUrl,'baseurl',tenantId)
 
+         [e.target.name] = e.target.value
+
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
             loginButton.removeAttribute('disabled');
             console.log("test is not disabled")
