@@ -450,7 +450,6 @@
 
       // Sets the username. Called at the end of this script.
       function selectAccount() {
-
          const currentAccounts = myMSALObj.getAllAccounts();
          if (currentAccounts.length === 0) {
             return;
@@ -493,12 +492,13 @@
 
       // Called by the logoutButton
       function signOut() {
-
          const logoutRequest = {
             account: myMSALObj.getAccountByUsername(username),
             postLogoutRedirectUri: msalConfig.auth.redirectUri,
             mainWindowRedirectUri: msalConfig.auth.redirectUri
          };
+
+         console.log(logoutRequest,'logoutRequest')
 
          myMSALObj.logoutPopup(logoutRequest);
       }
