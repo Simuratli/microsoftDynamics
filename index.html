@@ -246,11 +246,11 @@
       // Create the main myMSALObj instance
 
 
-      const baseUrl = "https://orgfdbab4d2.api.crm.dynamics.com";      //<= Change this
-      const clientId = "8d5c861b-044a-4978-b3ac-d9d913169ff2"; //<= Change this
-      const tenantId = "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"; //<= Change this
+      const baseUrl = "";      //<= Change this
+      const clientId = ""; //<= Change this
+      const tenantId = ""; //<= Change this
       const redirectUrl = "/";
-      const webAPIEndpoint = baseUrl + "/api/data/v9.2";
+      let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
 
       // base "https://orgfdbab4d2.api.crm.dynamics.com"
@@ -292,11 +292,13 @@
       }
 
 
+      
+
 
 
       // Configuration object to be passed to MSAL instance on creation. 
 
-      const msalConfig = {
+      let msalConfig = {
          auth: {
             clientId: clientId,
             // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
@@ -332,8 +334,9 @@
       };
 
 
+    
 
-      const myMSALObj = new msal.PublicClientApplication(msalConfig);
+      
 
 
    // Called from signIn or selectAccount functions
@@ -355,14 +358,72 @@
       // new part here 
 
 
+      const updateMsalFunction = () => {
+         console.log('client',localStorage.getItem("clientIdInput"))
+         console.log('tenant',localStorage.getItem("tenantIdInput"))
+         console.log('crm',localStorage.getItem("crmUrlInput"))
+         webAPIEndpoint = localStorage.getItem("crmUrlInput") + "/api/data/v9.2";
+
+         msalConfig = {
+         auth: {
+            clientId: localStorage.getItem("clientIdInput"),
+            // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
+            authority: "https://login.microsoftonline.com/" + localStorage.getItem("tenantIdInput"),
+            redirectUri: redirectUrl,
+         },
+         cache: {
+            cacheLocation: "localStorage" // This configures where your cache will be stored
+         },
+         system: {
+            loggerOptions: {
+               loggerCallback: (level, message, containsPii) => {
+                  if (containsPii) {
+                     return;
+                  }
+                  switch (level) {
+                     case msal.LogLevel.Error:
+                        console.error(message);
+                        return;
+                     case msal.LogLevel.Info:
+                        console.info(message);
+                        return;
+                     case msal.LogLevel.Verbose:
+                        console.debug(message);
+                        return;
+                     case msal.LogLevel.Warning:
+                        console.warn(message);
+                        return;
+                  }
+               }
+            }
+         }
+      }
+
+
+      }
+
       
-      function checkCredentialURLs() {
+
+      
+      function checkCredentialURLs(e) {
+
+         switch (e.target.name) {
+            case 'clientIdInput':
+               localStorage.setItem("clientIdInput",e.target.value);
+               break;
+            case 'tenantIdInput':
+               localStorage.setItem("tenantIdInput",e.target.value);
+               break;
+            case 'crmUrlInput':
+               localStorage.setItem("crmUrlInput",e.target.value);
+               break;
+         }
+
+
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
             loginButton.removeAttribute('disabled');
-            console.log("test is not disabled")
          } else {
             loginButton.setAttribute('disabled', 'true');
-            console.log("test is  disabled")
          }
       }
 
@@ -371,11 +432,13 @@
       tenantIdInput.addEventListener('input', checkCredentialURLs);
       crmUrlInput.addEventListener('input', checkCredentialURLs);
 
+      clientIdInput.addEventListener("blur",updateMsalFunction)
+
 
 
       // new part finished here 
 
-    
+      const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
    
