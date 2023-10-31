@@ -246,7 +246,7 @@
       // Create the main myMSALObj instance
 
 
-      const baseUrl = "";      //<= Change this
+      let baseUrl = "";      //<= Change this
       const clientId = ""; //<= Change this
       const tenantId = ""; //<= Change this
       const redirectUrl = "/";
@@ -362,6 +362,7 @@
          console.log('client',localStorage.getItem("clientIdInput"))
          console.log('tenant',localStorage.getItem("tenantIdInput"))
          console.log('crm',localStorage.getItem("crmUrlInput"))
+         baseUrl =  localStorage.getItem("crmUrlInput")
          webAPIEndpoint = localStorage.getItem("crmUrlInput") + "/api/data/v9.2";
 
          msalConfig = {
@@ -433,6 +434,8 @@
       crmUrlInput.addEventListener('input', checkCredentialURLs);
 
       clientIdInput.addEventListener("blur",updateMsalFunction)
+      tenantIdInput.addEventListener("blur",updateMsalFunction)
+      crmUrlInput.addEventListener("blur",updateMsalFunction)
 
 
 
