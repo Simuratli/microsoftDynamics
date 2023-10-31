@@ -247,8 +247,8 @@
 
 
       let baseUrl = "";      //<= Change this
-      const clientId = ""; //<= Change this
-      const tenantId = ""; //<= Change this
+      let clientId = ""; //<= Change this
+      let tenantId = ""; //<= Change this
       const redirectUrl = "/";
       let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
@@ -334,7 +334,7 @@
       };
 
 
-    
+      let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
       
 
@@ -359,12 +359,14 @@
 
 
       const updateMsalFunction = () => {
-         console.log('client',localStorage.getItem("clientIdInput"))
-         console.log('tenant',localStorage.getItem("tenantIdInput"))
-         console.log('crm',localStorage.getItem("crmUrlInput"))
+         // console.log('client',localStorage.getItem("clientIdInput"))
+         // console.log('tenant',localStorage.getItem("tenantIdInput"))
+         // console.log('crm',localStorage.getItem("crmUrlInput"))
          baseUrl =  localStorage.getItem("crmUrlInput")
          webAPIEndpoint = localStorage.getItem("crmUrlInput") + "/api/data/v9.2";
-
+         clientId = localStorage.getItem("clientIdInput")
+         tenantId = localStorage.getItem("tenantIdInput")
+         myMSALObj = new msal.PublicClientApplication(msalConfig);
          msalConfig = {
          auth: {
             clientId: localStorage.getItem("clientIdInput"),
@@ -441,7 +443,7 @@
 
       // new part finished here 
 
-      const myMSALObj = new msal.PublicClientApplication(msalConfig);
+      
 
 
    
@@ -465,6 +467,9 @@
       
       // Called by the loginButton
       function signIn() {
+
+         console.log(msalConfig,'aloye')
+
          myMSALObj.loginPopup({
             scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
          })
