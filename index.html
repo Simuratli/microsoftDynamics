@@ -618,6 +618,7 @@
             }else{
                console.log(companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)),'companies.value')
               if(companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)).length !== 0){
+               console.log(companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)),'companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl))')
                message.innerHTML = 'Company updating...'
                createCompany(`accounts(${companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
                message.innerHTML = 'Company updated'
