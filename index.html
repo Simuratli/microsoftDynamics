@@ -594,8 +594,9 @@
       }
 
       async function sendAccounts(callback) {
+         console.log(baseUrl,'response for send',msalConfig)
          const response = await  getTokenPopup({scopes: [baseUrl + "/.default"]})
-         console.log(response,'response for send')
+        
          if (!urlParameters['companyName']) {
             console.log("nani yoxdur")
             getContacts()
