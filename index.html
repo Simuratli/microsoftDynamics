@@ -215,7 +215,7 @@
 
      <div class="buttonContainer">
       <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
-      <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
+      <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
       <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
 
       <button id="loginButton" disabled onclick="signIn()">Login</button>
@@ -567,7 +567,7 @@
          })
             .then(response => {
                //filter accounts?$select=name&$filter=contains(name,'Eljan')
-               getDataverse("accounts", response.accessToken, callback);
+               getDataverse("contacts", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
