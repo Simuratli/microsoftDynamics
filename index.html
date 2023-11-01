@@ -612,18 +612,18 @@
 
             if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)).length !== 0) {
                message.innerHTML = 'Company updating...'
-               createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
+               await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
                message.innerHTML = 'Company updated'
             } else {
                console.log(companies.value.filter((company => company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)), 'companies.value')
                if (companies.value.filter((company => company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)).length !== 0) {
                   const accountID = companies.value.filter((company => company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl))[0].accountid
                   message.innerHTML = 'Company updating...'
-                  createCompany(`accounts(${accountID})`, response.accessToken, 'PATCH')
+                  await createCompany(`accounts(${accountID})`, response.accessToken, 'PATCH')
                   message.innerHTML = 'Company updated'
                } else {
                   message.innerHTML = 'Company creating ...'
-                  createCompany("accounts", response.accessToken, 'POST')
+                  await createCompany("accounts", response.accessToken, 'POST')
                   message.innerHTML = 'Company created'
                }
             }
@@ -835,17 +835,17 @@
             if (filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl']).length !== 0) {
                const existedContact = filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl'])[0]
                message.innerHTML = 'contact updating... '
-               createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
+               await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
                message.innerHTML = 'Contact Updated'
             } else {
                if (filteredcontacts.value.filter(contact => contact.uds_salesnavigatoruserurl === urlParameters['salesUrl']).length !== 0) {
                   const existedContact = filteredcontacts.value.filter(contact => contact.uds_salesnavigatoruserurl === urlParameters['salesUrl'])[0]
                   message.innerHTML = 'contact updating... '
-                  createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
+                  await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
                   message.innerHTML = 'Contact Updated'
                } else{
                   message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
-                  createAccount('contacts', token, "POST")
+                  await createAccount('contacts', token, "POST")
                   message.innerHTML = 'Contact Created'
                }
 
@@ -856,7 +856,8 @@
             const createdCompany = await createCompanyWithId('accounts', token)
             console.log(createdCompany, 'createdCompany')
             message.innerHTML = 'Company created'
-            createAccount('contacts', token, "POST")
+            await createAccount('contacts', token, "POST")
+            message.innerHTML = 'Contact created'
          }
       }
 
