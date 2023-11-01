@@ -793,15 +793,15 @@
          const filteredcontacts = await filterBackend(`contacts`, writeTable)
          // contacts = filteredcontacts.value
          accounts = filtered.value
+         
+         console.log(filtered.value,'filtered.value')
+
          if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             if (filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']).length !== 0){
-               
                const accountIdTesst = filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid
                console.log(filteredcontacts.value.filter((contact)=>contact._parentcustomerid_value === accountIdTesst),'accountIdTesst all')
                console.log(accountIdTesst,'accountIdTesst')
-               
                const existedContact = filteredcontacts.value.filter((contact)=>contact._parentcustomerid_value === accountIdTesst)[0]
-               
                if(existedContact){
                   message.innerHTML = 'contact updating... ' 
                   createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
@@ -812,7 +812,6 @@
                   message.innerHTML = 'Contact Created' 
                }
             }
-           
          } else {
             message.innerHTML = '0 company find. You need to create company first'
             const createdCompany = await createCompanyWithId('accounts', token)
