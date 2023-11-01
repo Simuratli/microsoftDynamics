@@ -245,9 +245,9 @@
       // Create the main myMSALObj instance
 
 
-      let baseUrl = "";      //<= Change this
-      let clientId = ""; //<= Change this
-      let tenantId = ""; //<= Change this
+      let baseUrl = localStorage.getItem("crmUrlInput");      //<= Change this
+      let clientId =localStorage.getItem("clientIdInput");; //<= Change this
+      let tenantId = localStorage.getItem("tenantIdInput");; //<= Change this
       const redirectUrl = "/";
       let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
