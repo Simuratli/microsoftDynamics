@@ -797,7 +797,7 @@
          // contacts = filteredcontacts.value
          accounts = filtered.value
          
-         console.log(filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['uds_linkedin']),'filteredcontacts.value')
+         console.log(filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl']),'filteredcontacts.value')
 
          if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             if (filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']).length !== 0){
