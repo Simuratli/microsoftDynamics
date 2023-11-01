@@ -299,9 +299,9 @@
 
       let msalConfig = {
          auth: {
-            clientId: clientId,
+            clientId: localStorage.getItem("clientIdInput"),
             // Full directory URL, in the form of https://login.microsoftonline.com/<tenant-id>
-            authority: "https://login.microsoftonline.com/" + tenantId,
+            authority: "https://login.microsoftonline.com/" + localStorage.getItem("tenantIdInput"),
             redirectUri: redirectUrl,
          },
          cache: {
@@ -594,6 +594,7 @@
 
       async function sendAccounts(callback) {
          const response = await  getTokenPopup({scopes: [baseUrl + "/.default"]})
+         console.log(response,'response for send accounts')
          if (!urlParameters['companyName']) {
             console.log("nani yoxdur")
             getContacts()
