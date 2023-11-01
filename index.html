@@ -609,15 +609,15 @@
             accounts = companies.value
             console.log(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)),'companies.value')
 
-            if(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)).length !== 0){
-               message.innerHTML = 'Company updating...'
-               createCompany(`accounts(${companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
-               message.innerHTML = 'Company updated'
-            }else{
-               message.innerHTML = 'Company creating ...'
-               createCompany("accounts", response.accessToken,'POST')
-               message.innerHTML = 'Company created'
-            }
+            // if(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)).length !== 0){
+            //    message.innerHTML = 'Company updating...'
+            //    createCompany(`accounts(${companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
+            //    message.innerHTML = 'Company updated'
+            // }else{
+            //    message.innerHTML = 'Company creating ...'
+            //    createCompany("accounts", response.accessToken,'POST')
+            //    message.innerHTML = 'Company created'
+            // }
 
             
          }
@@ -723,6 +723,7 @@
                uds_new_linkedin:requestData['uds_linkedin'],
                address1_line1:requestData['address1_name'],
                websiteurl:requestData['websiteurl'],
+               uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl']
 
             })
          }
