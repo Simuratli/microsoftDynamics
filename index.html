@@ -609,15 +609,15 @@
             accounts = companies.value
             console.log(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)),'companies.value')
 
-            // if(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)).length !== 0){
-            //    message.innerHTML = 'Company updating...'
-            //    createCompany(`accounts(${companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
-            //    message.innerHTML = 'Company updated'
-            // }else{
-            //    message.innerHTML = 'Company creating ...'
-            //    createCompany("accounts", response.accessToken,'POST')
-            //    message.innerHTML = 'Company created'
-            // }
+            if(companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl)).length !== 0){
+               message.innerHTML = 'Company updating...'
+               createCompany(`accounts(${companies.value.filter((company=>company.uds_linkedinprofilecompanyurl === urlParameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
+               message.innerHTML = 'Company updated'
+            }else{
+               message.innerHTML = 'Company creating ...'
+               createCompany("accounts", response.accessToken,'POST')
+               message.innerHTML = 'Company created'
+            }
 
             
          }
@@ -828,14 +828,14 @@
       // Renders the table with data from GetAccounts
       function writeTable(data) {
          console.log(data, 'dataaa i am back')
-         if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
-            console.log('there have company with this id' + urlParameters['customerId'])
-            message.innerHTML = 'there have company with this id' + urlParameters['customerId']
-         }else{
-            console.log('0 company find')
+         // if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
+         //    console.log('there have company with this id' + urlParameters['customerId'])
+         //    message.innerHTML = 'there have company with this id' + urlParameters['customerId']
+         // }else{
+         //    console.log('0 company find')
 
-            message.innerHTML = '0 company find. You need to create company first'
-         }
+         //    message.innerHTML = '0 company find. You need to create company first'
+         // }
       }
 
       selectAccount();
