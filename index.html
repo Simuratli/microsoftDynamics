@@ -285,6 +285,10 @@
                return "uds_linkedincompanyid"
             case 'linkedinCompanyUrl':
                return "uds_linkedinprofilecompanyurl"
+            case 'salesCompanyUrl':
+               return "uds_salesnavigatorcompanyurl"
+            case 'salesUrl':
+               return "uds_salesnavigatoruserurl"
             default:
                return "aaa";
          }
@@ -723,8 +727,8 @@
                uds_new_linkedin:requestData['uds_linkedin'],
                address1_line1:requestData['address1_name'],
                websiteurl:requestData['websiteurl'],
-               uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl']
-
+               uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl'],
+               uds_salesnavigatorcompanyurl:requestData['uds_salesnavigatorcompanyurl']
             })
          }
 
@@ -782,7 +786,8 @@
                telephone1: dataObjectForRequest.telephone1,
                mobilephone: dataObjectForRequest.mobilephone,
                emailaddress1: dataObjectForRequest.emailaddress1,
-               uds_linkedin:dataObjectForRequest.uds_linkedin
+               uds_linkedin:dataObjectForRequest.uds_linkedin,
+               uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
             })
          }
 
