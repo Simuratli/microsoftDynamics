@@ -619,11 +619,11 @@
                console.log(companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)),'companies.value')
               if(companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl)).length !== 0){
                message.innerHTML = 'Company updating...'
-               // createCompany(`accounts(${companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
+               createCompany(`accounts(${companies.value.filter((company=>company.uds_salesnavigatorcompanyurl === urlParameters.salesCompanyUrl))[0].accountid})`, response.accessToken,'PATCH')
                message.innerHTML = 'Company updated'
               }else{
                message.innerHTML = 'Company creating ...'
-               // createCompany("accounts", response.accessToken,'POST')
+               createCompany("accounts", response.accessToken,'POST')
                message.innerHTML = 'Company created'
               }
             }
