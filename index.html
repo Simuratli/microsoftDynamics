@@ -737,13 +737,13 @@
          }
 
 
-         // if(urlParameters.linkedinCompanyUrl){
-         //    requestForCreateCompany[uds_linkedinprofilecompanyurl] = requestData['uds_linkedinprofilecompanyurl']
-         // }
+         if(urlParameters.linkedinCompanyUrl){
+            requestForCreateCompany[uds_linkedinprofilecompanyurl] = requestData['uds_linkedinprofilecompanyurl']
+         }
 
-         // if(urlParameters.salesCompanyUrl){
-         //    requestForCreateCompany[uds_salesnavigatorcompanyurl] = requestData['uds_salesnavigatorcompanyurl']
-         // }
+         if(urlParameters.salesCompanyUrl){
+            requestForCreateCompany[uds_salesnavigatorcompanyurl] = urlParameters.salesCompanyUrl
+         }
 
          const options = {
             method: method,
