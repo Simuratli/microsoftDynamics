@@ -607,7 +607,7 @@
             
             const companies = await filterBackend(`accounts`, writeTable)
             accounts = companies.value
-
+            console.log(companies.value,'companies.value')
 
             if(companies.value.filter((company=>company.uds_linkedincompanyid === urlParameters.idOfCompany)).length !== 0){
                message.innerHTML = 'Company updating...'
@@ -622,6 +622,7 @@
             
          }
       }
+
 
 
       /** 
