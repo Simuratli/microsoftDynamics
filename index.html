@@ -731,19 +731,16 @@
                numberofemployees:countOfEmployees,
                uds_new_linkedin:requestData['uds_linkedin'],
                address1_line1:requestData['address1_name'],
-               websiteurl:requestData['websiteurl'],
-               // uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl'],
-               // uds_salesnavigatorcompanyurl:requestData['uds_salesnavigatorcompanyurl']
+               websiteurl:requestData['websiteurl']
          }
-
 
          if(urlParameters.linkedinCompanyUrl){
-            requestForCreateCompany[uds_linkedinprofilecompanyurl] = requestData['uds_linkedinprofilecompanyurl']
+            Object.assign(requestForCreateCompany,{uds_linkedinprofilecompanyurl:urlParameters.salesCompanyUrl})
          }
 
-         // if(urlParameters.salesCompanyUrl){
-         //    requestForCreateCompany[uds_salesnavigatorcompanyurl] = urlParameters.salesCompanyUrl
-         // }
+         if(urlParameters.salesCompanyUrl){
+            Object.assign(requestForCreateCompany,{uds_salesnavigatorcompanyurl:urlParameters.salesCompanyUrl})
+         }
 
          const options = {
             method: method,
