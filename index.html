@@ -794,11 +794,10 @@
          const filtered = await filterBackend(`accounts`, writeTable)
          accounts = filtered.value
          const filteredcontacts = await filterBackend(`contacts`, writeTable)
-         console.log(urlParameters,'ohnoe')
          // contacts = filteredcontacts.value
          accounts = filtered.value
          
-         console.log(filteredcontacts.value,'filteredcontacts.value')
+         console.log(filtered.value.filter(account => account.uds_linkedin === urlParameters['uds_linkedin']),'filteredcontacts.value')
 
          if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
             if (filtered.value.filter(account => account.uds_linkedincompanyid === urlParameters['customerId']).length !== 0){
