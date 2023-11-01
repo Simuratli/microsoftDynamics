@@ -725,7 +725,7 @@
          console.log(countOfEmployees,'nunberofempl')
 
 
-         let requestForCreateCompany = {
+         const requestForCreateCompany = {
                uds_linkedincompanyid:requestData['uds_linkedincompanyid'].toString(),
                name:requestData['name'],
                numberofemployees:countOfEmployees,
@@ -741,9 +741,9 @@
             requestForCreateCompany[uds_linkedinprofilecompanyurl] = requestData['uds_linkedinprofilecompanyurl']
          }
 
-         if(urlParameters.salesCompanyUrl){
-            requestForCreateCompany[uds_salesnavigatorcompanyurl] = urlParameters.salesCompanyUrl
-         }
+         // if(urlParameters.salesCompanyUrl){
+         //    requestForCreateCompany[uds_salesnavigatorcompanyurl] = urlParameters.salesCompanyUrl
+         // }
 
          const options = {
             method: method,
