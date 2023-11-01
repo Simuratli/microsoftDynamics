@@ -723,19 +723,32 @@
             Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
          }
          console.log(countOfEmployees,'nunberofempl')
-         const options = {
-            method: method,
-            headers: headers,
-            body: JSON.stringify({
+
+
+         const requestForCreateCompany = {
                uds_linkedincompanyid:requestData['uds_linkedincompanyid'].toString(),
                name:requestData['name'],
                numberofemployees:countOfEmployees,
                uds_new_linkedin:requestData['uds_linkedin'],
                address1_line1:requestData['address1_name'],
                websiteurl:requestData['websiteurl'],
-               uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl'],
-               uds_salesnavigatorcompanyurl:requestData['uds_salesnavigatorcompanyurl']
-            })
+               // uds_linkedinprofilecompanyurl:requestData['uds_linkedinprofilecompanyurl'],
+               // uds_salesnavigatorcompanyurl:requestData['uds_salesnavigatorcompanyurl']
+         }
+
+
+         if(requestData['uds_linkedinprofilecompanyurl']){
+            requestForCreateCompany[uds_linkedinprofilecompanyurl] = requestData['uds_linkedinprofilecompanyurl']
+         }
+
+         if(requestData['uds_salesnavigatorcompanyurl']){
+            requestForCreateCompany[uds_salesnavigatorcompanyurl] = requestData['uds_salesnavigatorcompanyurl']
+         }
+
+         const options = {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(requestForCreateCompany)
          }
 
          console.log('GET Request made to Dataverse at: ' + new Date().toString());
