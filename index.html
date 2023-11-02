@@ -569,8 +569,8 @@
             scopes: [baseUrl + "/.default"]
          })
             .then(response => {
-               //filter accounts?$select=name&$filter=contains(name,'Eljan')
-               getDataverse("contacts", response.accessToken, callback);
+               //filter contacts?$select=name&$filter=contains(name,'Eljan')
+               getDataverse("contacts?$select=name&$filter=contains(uds_linkedin,'https://www.linkedin.com/in/simuratli/')", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
