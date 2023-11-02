@@ -570,7 +570,7 @@
          })
             .then(response => {
                //filter contacts?$select=name&$filter=contains(name,'Eljan')
-               getDataverse("contacts?$select=name&$filter=contains(uds_linkedin,'https://www.linkedin.com/in/simuratli/')", response.accessToken, callback);
+               getDataverse("contacts?$select=uds_linkedin&$filter=contains(uds_linkedin,'https://www.linkedin.com/in/simuratli/')", response.accessToken, callback);
             }).catch(error => {
                console.error(error);
             });
