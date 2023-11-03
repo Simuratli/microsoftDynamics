@@ -27,8 +27,8 @@
 
       <div id="loginWithButton">
          <img src="/assets/BigInfo.png" alt="Big info button">
-         <h1 class="loginWithButtonHeading"></h1>
-         <button id="loginButton" disabled onclick="signIn()">Login</button>
+         <h1 class="loginWithButtonHeading">Log In with your Microsoft Account </h1>
+         <button id="loginButton"  onclick="signIn()">Login</button>
          <a href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Link to tutorial on Youtube</a>
       </div>
 
@@ -37,7 +37,7 @@
          <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
          <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-         <button id="setupButton" onclick="setup()">Setup</button>
+         <button id="setupButton" disabled onclick="setup()">Setup</button>
          
       </div>
 
@@ -249,9 +249,9 @@
 
 
          if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
-            loginButton.removeAttribute('disabled');
+            setupButton.removeAttribute('disabled');
          } else {
-            loginButton.setAttribute('disabled', 'true');
+            setupButton.setAttribute('disabled', 'true');
          }
       }
 
