@@ -290,6 +290,8 @@
 
 
 
+     
+
       const setup = () => {
          updateMsalFunction()
          mainCredentialsForm.style.display = 'none'
@@ -297,6 +299,12 @@
          loginButton.style.display = 'block'
          loginWithButtonForm.style.display = 'flex'
       }
+
+
+      if(localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')){
+         setup()
+      }
+
 
       // Called by the loginButton
       function signIn() {
