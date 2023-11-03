@@ -26,6 +26,7 @@
 
       <div id="mainCapture">
          <img src="/assets/person.svg" alt="">
+         <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
          <h1>Eljan Simuratli</h1>
          <div id="list"></div>
       </div>
@@ -41,7 +42,7 @@
 
 
       <div class="buttonContainer">
-         <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
+         
          <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
          <button id="setupButton" disabled onclick="setup()">Setup</button>
@@ -180,10 +181,11 @@
          getAccountsButton.style.display = "block";
          sendAccountsButton.style.display = "block";
          mainCredentialsForm.style.display = 'none'
+         mainCapture.style.display = 'block' 
          list.style.visibility = 'visible'
          list.style.position = 'relative'
          list.style.display = 'flex'
-         mainCapture.style.display = 'block'
+         
       }
 
 
