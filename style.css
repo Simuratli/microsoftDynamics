@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
     padding: 0;
     margin: 0;
@@ -73,4 +75,26 @@ input{
     font-weight: 600;
     line-height: normal;
     text-decoration-line: underline;
+}
+
+
+.button{
+    border-radius: 5px;
+    background: var(--gradients-linear-orange, linear-gradient(270deg, #FF8F3E 4.23%, #FFB178 91.19%));
+    box-shadow: 0px 8px 24px 0px rgba(14, 31, 53, 0.08), 0px 6px 12px 0px rgba(14, 31, 53, 0.12), 0px 3px 6px 0px rgba(14, 31, 53, 0.08);
+    min-width: 120px;
+    padding: 11px 11px 12px 11px;
+    color: var(--background-violet-25, #FEFEFF);
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.button:disabled{
+   background-color: #696D8C;
+   cursor: no-drop;
 }
