@@ -59,3 +59,17 @@ input{
     flex-direction: column;
     gap: 15px;
 }
+
+#mainCredentials a{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    color: #1A4F95;
+    font-family: Segoe UI;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration-line: underline;
+}
