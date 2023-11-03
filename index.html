@@ -29,7 +29,7 @@
          <img src="/assets/BigInfo.png" alt="Big info button">
          <h1 class="loginWithButtonHeading">Log In with your Microsoft Account </h1>
          <button id="loginButton"  onclick="signIn()">Login</button>
-         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTubee</a>
+         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTube</a>
       </div>
 
 
@@ -167,7 +167,7 @@
       // Called from signIn or selectAccount functions
       function showWelcomeMessage(username) {
          message.innerHTML = `Welcome ${username}`;
-         loginButton.style.display = "none";
+         loginWithButtonForm.style.display = "none";
          logoutButton.style.display = "block";
          getAccountsButton.style.display = "block";
          sendAccountsButton.style.display = "block";
