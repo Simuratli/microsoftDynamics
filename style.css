@@ -1,4 +1,18 @@
-body{
+body {
     height: 573px;
     width: 474px;
-   }
+}
+
+#logoutButton, #getAccountsButton, #sendAccountsButton{
+    display: none;
+}
+
+.buttonContainer{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#list{
+    display: none;
+}
