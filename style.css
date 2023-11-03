@@ -140,6 +140,7 @@ button:disabled{
 
 #mainCapture img{
     margin: 30px auto 20px auto;
+    display: flex;
 }
 
 
