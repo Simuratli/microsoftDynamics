@@ -34,4 +34,26 @@ body {
     font-weight: 600;
     line-height: 130%; /* 26px */
     letter-spacing: 0.2px;
+    margin-bottom: 30px;
+}
+
+
+input{
+    width: 100%;
+    padding: 5px 12px 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #696D8C;
+    background: #FFF;
+    outline: none;
+    cursor: pointer;
+    color: var(--primary-blue-100, #1A4F95);
+    font-family: Segoe UI;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mainCredentials input{
+    margin-bottom: 15px;
 }
