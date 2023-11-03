@@ -22,7 +22,14 @@
       </div>
 
       <div id="message"></div>
-      <div id="list"></div>
+
+
+      <div id="mainCapture">
+         <img src="/assets/person.svg" alt="">
+         <h1>Eljan Simuratli</h1>
+         <div id="list"></div>
+      </div>
+     
 
 
       <div id="loginWithButton">
@@ -60,6 +67,7 @@
       const clientIdInput = document.getElementById("clientIdInput");
       const tenantIdInput = document.getElementById("tenantIdInput");
       const crmUrlInput = document.getElementById("crmUrlInput");
+      const mainCapture = document.getElementById('mainCapture')
 
       let username = "";
       let contacts = null;
@@ -174,7 +182,8 @@
          mainCredentialsForm.style.display = 'none'
          list.style.visibility = 'visible'
          list.style.position = 'relative'
-
+         list.style.display = 'flex'
+         mainCapture.style.display = 'block'
       }
 
 

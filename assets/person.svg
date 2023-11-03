@@ -1,0 +1,29 @@
+<svg width="148" height="148" viewBox="0 0 148 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_ddd_165_2619)">
+<rect x="24" y="16" width="100" height="100" rx="50" fill="#1A4F95"/>
+<path d="M66.8635 68.9062C60.9169 71.5492 56.8203 77.4958 56.8203 84.4996" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M91.1799 84.4996C91.1799 77.4958 87.0833 71.5492 81.1367 68.9062" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M73.9994 71.2864C80.5679 71.2864 85.8926 65.9617 85.8926 59.3932C85.8926 52.8248 80.5679 47.5 73.9994 47.5C67.431 47.5 62.1062 52.8248 62.1062 59.3932C62.1062 65.9617 67.431 71.2864 73.9994 71.2864Z" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_ddd_165_2619" x="0" y="0" width="148" height="148" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="8"/>
+<feGaussianBlur stdDeviation="12"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0562384 0 0 0 0 0.121895 0 0 0 0 0.209437 0 0 0 0.08 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_165_2619"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="6"/>
+<feGaussianBlur stdDeviation="6"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0562384 0 0 0 0 0.121895 0 0 0 0 0.209437 0 0 0 0.12 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_165_2619" result="effect2_dropShadow_165_2619"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="3"/>
+<feGaussianBlur stdDeviation="3"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.054902 0 0 0 0 0.121569 0 0 0 0 0.207843 0 0 0 0.08 0"/>
+<feBlend mode="normal" in2="effect2_dropShadow_165_2619" result="effect3_dropShadow_165_2619"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow_165_2619" result="shape"/>
+</filter>
+</defs>
+</svg>

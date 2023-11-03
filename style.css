@@ -121,3 +121,12 @@ button:disabled{
     text-decoration-line: underline;
     margin-top: 15px;
 }
+
+#mainCapture{
+    display: none;
+}
+
+#list{
+    flex-direction: column;
+    gap: 10px;
+}
