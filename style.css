@@ -54,7 +54,7 @@ input{
     line-height: normal;
 }
 
-.mainCredentials input{
+#mainCredentials input{
     display: flex;
     flex-direction: column;
     gap: 15px;
