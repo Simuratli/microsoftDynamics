@@ -100,6 +100,7 @@ button{
 button:disabled{
    background-color: #696D8C;
    cursor: no-drop;
+   box-shadow: none;
 }
 
 #loginWithButton{
