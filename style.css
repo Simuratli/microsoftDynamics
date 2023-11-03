@@ -1,6 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     height: 573px;
     width: 474px;
+    padding: 30px;
 }
 
 #logoutButton, #getAccountsButton, #sendAccountsButton{
