@@ -12,7 +12,7 @@ body {
     padding: 30px;
 }
 
-#logoutButton, #getAccountsButton, #sendAccountsButton{
+#logoutButton, #getAccountsButton, #sendAccountsButton, #loginButton{
     display: none;
 }
 
@@ -100,4 +100,12 @@ button{
 button:disabled{
    background-color: #696D8C;
    cursor: no-drop;
+}
+
+#loginWithButton{
+    display: none;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
 }

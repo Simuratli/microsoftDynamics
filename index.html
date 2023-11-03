@@ -25,11 +25,20 @@
       <div id="list"></div>
 
 
+      <div id="loginWithButton">
+         <img src="/assets/BigInfo.png" alt="Big info button">
+         <h1 class="loginWithButtonHeading"></h1>
+         <button id="loginButton" disabled onclick="signIn()">Login</button>
+         <a href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Link to tutorial on Youtube</a>
+      </div>
+
+
       <div class="buttonContainer">
          <button id="logoutButton" onclick="signOut()" style="display:none;">Logout</button>
          <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-         <button id="loginButton" disabled onclick="signIn()">Login</button>
+         <button id="setupButton" onclick="setup()">Setup</button>
+         
       </div>
 
 
@@ -40,12 +49,13 @@
    <script>
       const loginButton = document.getElementById("loginButton");
       const logoutButton = document.getElementById("logoutButton");
+      const setupButton = document.getElementById("setupButton");
       const getAccountsButton = document.getElementById("getAccountsButton");
       const sendAccountsButton = document.getElementById("sendAccountsButton");
       const accountsTable = document.getElementById("accountsTable");
       const accountsTableBody = document.getElementById("accountsTableBody");
       const message = document.getElementById("message");
-
+      const loginWithButtonForm = document.getElementById("loginWithButton")
       const mainCredentialsForm = document.getElementById('mainCredentials')
       const clientIdInput = document.getElementById("clientIdInput");
       const tenantIdInput = document.getElementById("tenantIdInput");
@@ -279,6 +289,14 @@
       }
 
 
+
+      const setup = () => {
+         updateMsalFunction()
+         mainCredentialsForm.display = 'none'
+         setupButton.style.display  = 'none'
+         loginButton.style.display = 'block'
+         loginWithButtonForm.style.display = 'flex'
+      }
 
       // Called by the loginButton
       function signIn() {
