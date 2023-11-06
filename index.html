@@ -46,7 +46,6 @@
             <input class="inputForUser" type="text" placeholder="Telephone" name="tel">
             <input class="inputForUser" type="text" placeholder="Email" name="email">
             <input class="inputForUser" type="text" placeholder="Linkedin URL" name="linkedinUrl">
-            <textarea type="text" placeholder="Add comment" name="comment">
             <textarea name="comment" placeholder="Add comment"></textarea>
          </div>
 
@@ -446,14 +445,9 @@
 
       const addValuesToInputFields = () => {
          const inputfields = document.querySelectorAll(".inputForUser")
-
-         for (i = 0; i < inputfields.length; ++i) {
-            console.log(inputfields[i], inputfields[i].target.name, ":noldu")
-         }
-
-
+         console.log(inputfields,'inputfields')
          for (const [key, value] of entries) {
-            console.log(key, value, 'outside comer')
+            console.log(key, value, 'outside comer inputfields')
          }
 
 
