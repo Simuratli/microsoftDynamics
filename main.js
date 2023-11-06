@@ -360,10 +360,8 @@ const entries = Object.entries(urlParameters);
 
 
 const addValuesToInputFields = () => {
+    console.log('asdaasdas load work')
    const inputfields = document.querySelectorAll(".inputForUser")
-
-
-
    for (const [key, value] of entries) {
       console.log(key, value, 'outside comer inputfields')
       for (i = 0; i < inputfields.length; ++i) {
@@ -372,9 +370,11 @@ const addValuesToInputFields = () => {
          }
       }
    }
-
-
 }
+
+const fieldsForUserForms = document.getElementById('fieldsForUser')
+
+fieldsForUserForms.addEventListener("load",addValuesToInputFields)
 
 
 
