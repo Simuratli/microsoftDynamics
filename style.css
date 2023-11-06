@@ -168,6 +168,7 @@ button:disabled{
     background-color: transparent;
     border-radius: 50%;
     margin: 0 auto 30px auto;
+    background-color: transparent;
 }
 
 #logoutButton img{
