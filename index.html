@@ -20,7 +20,7 @@
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
          <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
                alt="Info image"> Watch tutorial on YouTube</a>
-               <button id="setupButton" disabled onclick="setup()">Setup</button>
+         <button id="setupButton" disabled onclick="setup()">Setup</button>
       </div>
 
       <!-- <div id="message"></div> -->
@@ -37,15 +37,15 @@
 
 
          <div id="fieldsForUser">
-            <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Job title" name="jobTitle">
-            <input type="text" placeholder="Adress" name="location">
-            <input type="text" placeholder="Work place" name="costumer">
-            <input type="text" placeholder="Phone" name="phone">
-            <input type="text" placeholder="Telephone" name="tel">
-            <input type="text" placeholder="Email" name="email">
-            <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
+            <input class="inputForUser" type="text" placeholder="Linkedin URL" name="linkedinUrl">
+            <input class="inputForUser" type="text" placeholder="Username" name="username">
+            <input class="inputForUser" type="text" placeholder="Job title" name="jobTitle">
+            <input class="inputForUser" type="text" placeholder="Adress" name="location">
+            <input class="inputForUser" type="text" placeholder="Work place" name="costumer">
+            <input class="inputForUser" type="text" placeholder="Phone" name="phone">
+            <input class="inputForUser" type="text" placeholder="Telephone" name="tel">
+            <input class="inputForUser" type="text" placeholder="Email" name="email">
+            <input class="inputForUser" type="text" placeholder="Linkedin URL" name="linkedinUrl">
             <textarea type="text" placeholder="Add comment" name="comment">
             <textarea name="comment" placeholder="Add comment"></textarea>
          </div>
@@ -69,12 +69,12 @@
       </div>
 
 
-      
+
 
       <div class="buttonContainer">
          <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-         
+
       </div>
 
 
@@ -323,7 +323,7 @@
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
             username = currentAccounts[0].name;
-            console.log(currentAccounts,'currentAccounts')
+            console.log(currentAccounts, 'currentAccounts')
             showWelcomeMessage(username);
          }
       }
@@ -342,9 +342,9 @@
 
 
 
-      console.log(localStorage.getItem('tenantIdInput'),"tenantIdInput")
-      console.log(localStorage.getItem('clientIdInput'),"clientIdInput")
-      console.log(localStorage.getItem('crmUrlInput'),"crmUrlInput")
+      console.log(localStorage.getItem('tenantIdInput'), "tenantIdInput")
+      console.log(localStorage.getItem('clientIdInput'), "clientIdInput")
+      console.log(localStorage.getItem('crmUrlInput'), "crmUrlInput")
       if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
          console.log('allalalala')
          setup()
@@ -442,6 +442,24 @@
       //    list && list.appendChild(inputElement)
       // }
 
+
+
+      const addValuesToInputFields = () => {
+         const inputfields = document.querySelectorAll(".inputForUser")
+
+         for (i = 0; i < inputfields.length; ++i) {
+            console.log(inputfields[i], inputfields[i].target.name, ":noldu")
+         }
+
+
+         for (const [key, value] of entries) {
+            console.log(key, value, 'outside comer')
+         }
+
+
+      }
+
+      addValuesToInputFields()
 
       // get url parameters and show inside list end
 
