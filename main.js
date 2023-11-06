@@ -374,7 +374,9 @@ const addValuesToInputFields = () => {
 
 
 
-fieldsForUserForms.addEventListener("load",addValuesToInputFields)
+fieldsForUserForms.addEventListener("load",()=>{
+    console.log('i am loading fieldsForUserForms')
+})
 
 
 
