@@ -46,7 +46,7 @@
 
 
       <div class="buttonContainer">
-         <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
+         <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
          <button id="setupButton" disabled onclick="setup()">Setup</button>
       </div>
@@ -180,7 +180,7 @@
          message.innerHTML = `Welcome ${username}`;
          loginWithButtonForm.style.display = "none";
          logoutButton.style.display = "block";
-         getAccountsButton.style.display = "block";
+         // getAccountsButton.style.display = "block";
          sendAccountsButton.style.display = "block";
          mainCredentialsForm.style.display = 'none'
          mainCapture.style.display = 'block'
