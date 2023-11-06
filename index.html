@@ -298,7 +298,7 @@
             // Add choose account code here
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
-            username = currentAccounts[0].username;
+            username = currentAccounts[0].name;
             console.log(currentAccounts,'currentAccounts')
             showWelcomeMessage(username);
          }
@@ -332,7 +332,7 @@
          })
             .then(response => {
                if (response !== null) {
-                  username = response.account.username;
+                  username = response.account.name;
                   console.log(response.account, 'account')
                   showWelcomeMessage(username);
                } else {
