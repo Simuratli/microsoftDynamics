@@ -13,15 +13,22 @@
 
 <body>
    <div>
+
+
       <div id="mainCredentials">
          <h1 class="mainCredentialsHeading">Azure AD B2C application credentials <br> to access Dynamics 365 CRM</h1>
          <input name="clientIdInput" id="clientIdInput" type="text" placeholder="ClientID">
          <input name="tenantIdInput" id="tenantIdInput" type="text" placeholder="TenantID">
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
-         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTube</a>
-
+         <a class="youtube" href="https://www.youtube.com/" target="_blank">
+            <img src="/assets/info.svg" alt="Info image"> 
+            <span>Watch tutorial on YouTube</span>
+         </a>
          <button id="setupButton" disabled onclick="setup()">Setup</button>
       </div>
+
+
+
 
       <!-- <div id="message"></div> -->
 
@@ -265,7 +272,7 @@
 
 
       function checkCredentialURLs(e) {
-
+         console.log(e.target.name,'e.target')
          switch (e.target.name) {
             case 'clientIdInput':
                localStorage.setItem("clientIdInput", e.target.value);
@@ -315,7 +322,7 @@
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
             username = currentAccounts[0].name;
-            console.log(currentAccounts,'currentAccounts')
+            console.log(currentAccounts, 'currentAccounts')
             showWelcomeMessage(username);
          }
       }
