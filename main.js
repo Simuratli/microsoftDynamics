@@ -358,7 +358,6 @@ const entries = Object.entries(urlParameters);
 // }
 
 const fieldsForUserForms = document.getElementById('fieldsForUser')
-console.log(fieldsForUserForms,'fieldsForUserForms')
 const addValuesToInputFields = () => {
     console.log('asdaasdas load work')
    const inputfields = document.querySelectorAll(".inputForUser")
@@ -372,11 +371,7 @@ const addValuesToInputFields = () => {
    }
 }
 
-
-
-fieldsForUserForms.addEventListener("load",()=>{
-    console.log('i am loading fieldsForUserForms')
-})
+addValuesToInputFields()
 
 
 
