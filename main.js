@@ -359,12 +359,11 @@ const entries = Object.entries(urlParameters);
 
 const fieldsForUserForms = document.getElementById('fieldsForUser')
 const addValuesToInputFields = () => {
-    console.log('asdaasdas load work')
+   
    const inputfields = document.querySelectorAll(".inputForUser")
    for (const [key, value] of entries) {
-      console.log(key, value, 'outside comer inputfields')
       for (i = 0; i < inputfields.length; ++i) {
-         if(inputfields[i].getAttribute('name') === key){
+         if(inputfields[i].getAttribute('name').includes(key)){
             inputfields[i].setAttribute("value",value)
          }
       }
