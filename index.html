@@ -46,7 +46,7 @@
             <input type="text" placeholder="Telephone" name="tel">
             <input type="text" placeholder="Email" name="email">
             <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
-            <textarea type="text" placeholder="Add comment" name="comment">
+            <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
          </div>
 
          <div class="informationBlock">
@@ -340,12 +340,7 @@
       }
 
 
-
-      console.log(localStorage.getItem('tenantIdInput'),"tenantIdInput")
-      console.log(localStorage.getItem('clientIdInput'),"clientIdInput")
-      console.log(localStorage.getItem('crmUrlInput'),"crmUrlInput")
       if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
-         console.log('allalalala')
          setup()
       }
 
