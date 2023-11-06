@@ -8,7 +8,7 @@
    <!-- Latest version of msal-browser.js from CDN as of 2022/09 -->
    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js">
    </script>
-  <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,7 +18,8 @@
          <input name="clientIdInput" id="clientIdInput" type="text" placeholder="ClientID">
          <input name="tenantIdInput" id="tenantIdInput" type="text" placeholder="TenantID">
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
-         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTube</a>
+         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
+               alt="Info image"> Watch tutorial on YouTube</a>
       </div>
 
       <!-- <div id="message"></div> -->
@@ -26,28 +27,30 @@
 
       <div id="mainCapture">
          <img class="personal" src="/assets/person.svg" alt="">
-         <button id="logoutButton" onclick="signOut()" style="display:none;">
          <h1 id="message">Eljan Simuratli</h1>
-         <img src="/assets/logout.svg" alt="logout"></button>
+         <button id="logoutButton" onclick="signOut()" style="display:none;">
+            <img src="/assets/logout.svg" alt="logout">
+         </button>
          <div id="list"></div>
       </div>
-     
+
 
 
       <div id="loginWithButton">
          <img src="/assets/BigInfo.png" alt="Big info button">
          <h1 class="loginWithButtonHeading">Log In with your Microsoft Account </h1>
-         <button id="loginButton"  onclick="signIn()">Login</button>
-         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTube</a>
+         <button id="loginButton" onclick="signIn()">Login</button>
+         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
+               alt="Info image"> Watch tutorial on YouTube</a>
       </div>
 
 
       <div class="buttonContainer">
-         
+
          <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button>
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
          <button id="setupButton" disabled onclick="setup()">Setup</button>
-         
+
       </div>
 
 
@@ -182,11 +185,11 @@
          getAccountsButton.style.display = "block";
          sendAccountsButton.style.display = "block";
          mainCredentialsForm.style.display = 'none'
-         mainCapture.style.display = 'block' 
+         mainCapture.style.display = 'block'
          list.style.visibility = 'visible'
          list.style.position = 'relative'
          list.style.display = 'flex'
-         
+
       }
 
 
@@ -302,18 +305,18 @@
 
 
 
-     
+
 
       const setup = () => {
          updateMsalFunction()
          mainCredentialsForm.style.display = 'none'
-         setupButton.style.display  = 'none'
+         setupButton.style.display = 'none'
          loginButton.style.display = 'block'
          loginWithButtonForm.style.display = 'flex'
       }
 
 
-      if(localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')){
+      if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
          setup()
       }
 
@@ -694,7 +697,7 @@
                   message.innerHTML = 'contact updating... '
                   await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
                   message.innerHTML = 'Contact Updated'
-               } else{
+               } else {
                   message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
                   await createAccount('contacts', token, "POST")
                   message.innerHTML = 'Contact Created'
