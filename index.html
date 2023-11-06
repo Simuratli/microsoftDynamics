@@ -179,7 +179,7 @@
 
       // Called from signIn or selectAccount functions
       function showWelcomeMessage(username) {
-         message.innerHTML = `Welcome ${username}`;
+         message.innerHTML = `${username}`;
          loginWithButtonForm.style.display = "none";
          logoutButton.style.display = "block";
          getAccountsButton.style.display = "block";
@@ -299,6 +299,7 @@
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
             username = currentAccounts[0].username;
+            console.log(currentAccounts,'currentAccounts')
             showWelcomeMessage(username);
          }
       }
