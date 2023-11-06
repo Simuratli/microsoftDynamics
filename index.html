@@ -18,8 +18,7 @@
          <input name="clientIdInput" id="clientIdInput" type="text" placeholder="ClientID">
          <input name="tenantIdInput" id="tenantIdInput" type="text" placeholder="TenantID">
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
-         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
-               alt="Info image"> Watch tutorial on YouTube</a>
+         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg" alt="Info image"> Watch tutorial on YouTube</a>
       </div>
 
       <!-- <div id="message"></div> -->
@@ -48,6 +47,11 @@
       </div>
 
 
+      <div class="buttonContainer">
+         <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
+         <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
+         <button id="setupButton" disabled onclick="setup()">Setup</button>
+      </div>
 
       <div id="loginWithButton">
          <img src="/assets/BigInfo.png" alt="Big info button">
@@ -63,11 +67,6 @@
          <span>You can complete the empty fields yourself</span>
       </div>
 
-      <div class="buttonContainer">
-         <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
-         <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-         <button id="setupButton" disabled onclick="setup()">Setup</button>
-      </div>
 
 
 
