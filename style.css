@@ -177,3 +177,8 @@ button:disabled{
     margin: 0;
     
 }
+
+#message{
+    position: absolute;
+    visibility: hidden;
+}
