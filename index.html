@@ -20,6 +20,7 @@
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
          <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
                alt="Info image"> Watch tutorial on YouTube</a>
+               <button id="setupButton" disabled onclick="setup()">Setup</button>
       </div>
 
       <!-- <div id="message"></div> -->
@@ -32,6 +33,14 @@
             <img src="/assets/logout.svg" alt="logout">
          </button>
          <div id="list"></div>
+
+
+
+         <div id="fieldsForUser">
+            <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
+         </div>
+
+
       </div>
 
 
@@ -53,7 +62,7 @@
       <div class="buttonContainer">
          <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
          <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-         <button id="setupButton" disabled onclick="setup()">Setup</button>
+         
       </div>
 
 
