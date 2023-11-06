@@ -13,22 +13,14 @@
 
 <body>
    <div>
-
-
       <div id="mainCredentials">
          <h1 class="mainCredentialsHeading">Azure AD B2C application credentials <br> to access Dynamics 365 CRM</h1>
          <input name="clientIdInput" id="clientIdInput" type="text" placeholder="ClientID">
          <input name="tenantIdInput" id="tenantIdInput" type="text" placeholder="TenantID">
          <input name="crmUrlInput" id="crmUrlInput" type="text" placeholder="CRM url">
-         <a class="youtube" href="https://www.youtube.com/" target="_blank">
-            <img src="/assets/info.svg" alt="Info image"> 
-            <span>Watch tutorial on YouTube</span>
-         </a>
-         <button id="setupButton" disabled onclick="setup()">Setup</button>
+         <a class="youtube" href="https://www.youtube.com/" target="_blank"><img src="/assets/info.svg"
+               alt="Info image"> Watch tutorial on YouTube</a>
       </div>
-
-
-
 
       <!-- <div id="message"></div> -->
 
@@ -40,26 +32,9 @@
             <img src="/assets/logout.svg" alt="logout">
          </button>
          <div id="list"></div>
-
-
-         <div class="fields">
-            <input placeholder="Linkedin URL" name="linkedinUrl" type="text">
-            <input placeholder="Username" name="userName" type="text">
-            <input placeholder="Job Title" name="jobTitle" type="text">
-            <input placeholder="Costumer" name="costumer" type="text">
-            <input placeholder="Phone Number" name="phone" type="text">
-            <input placeholder="Telephone" name="tel" type="text">
-            <input placeholder="Email" name="email" type="text">
-            <textarea placeholder="Comment" name="location" type="text">
-         </div>
-
       </div>
 
 
-      <div class="buttonContainer">
-         <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
-         <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
-      </div>
 
       <div id="loginWithButton">
          <img src="/assets/BigInfo.png" alt="Big info button">
@@ -75,6 +50,11 @@
          <span>You can complete the empty fields yourself</span>
       </div>
 
+      <div class="buttonContainer">
+         <!-- <button id="getAccountsButton" onclick="getAccounts(writeTable)" style="display:none;">Get data</button> -->
+         <button id="sendAccountsButton" onclick="sendAccounts(writeTable)" style="display:none;">Capture</button>
+         <button id="setupButton" disabled onclick="setup()">Setup</button>
+      </div>
 
 
 
@@ -268,11 +248,11 @@
 
       }
 
- console.log('Miawii')
+
 
 
       function checkCredentialURLs(e) {
-         console.log(e.target.name,'e.target')
+
          switch (e.target.name) {
             case 'clientIdInput':
                localStorage.setItem("clientIdInput", e.target.value);
@@ -322,7 +302,7 @@
             console.warn("Multiple accounts detected.");
          } else if (currentAccounts.length === 1) {
             username = currentAccounts[0].name;
-            console.log(currentAccounts, 'currentAccounts')
+            console.log(currentAccounts,'currentAccounts')
             showWelcomeMessage(username);
          }
       }
@@ -332,7 +312,6 @@
 
 
       const setup = () => {
-         console.log(`setup guncyion tunnrf one`)
          updateMsalFunction()
          mainCredentialsForm.style.display = 'none'
          setupButton.style.display = 'none'
@@ -342,7 +321,6 @@
 
 
       if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
-         console.log('setup guncyion tunnrf')
          setup()
       }
 
