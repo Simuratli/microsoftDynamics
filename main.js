@@ -362,8 +362,8 @@ const addValuesToInputFields = () => {
    
    const inputfields = document.querySelectorAll(".inputForUser")
    for (const [key, value] of entries) {
-      console.log(key, inputfields[i].getAttribute('name'), 'outside comer inputfields')
       for (i = 0; i < inputfields.length; ++i) {
+        console.log(key, inputfields[i].getAttribute('name'), 'outside comer inputfields')
          if(inputfields[i].getAttribute('name') === key){
             inputfields[i].setAttribute("value",value)
          }
