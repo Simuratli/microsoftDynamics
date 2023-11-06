@@ -38,6 +38,15 @@
 
          <div id="fieldsForUser">
             <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Job title" name="jobTitle">
+            <input type="text" placeholder="Adress" name="location">
+            <input type="text" placeholder="Work place" name="costumer">
+            <input type="text" placeholder="Phone" name="phone">
+            <input type="text" placeholder="Telephone" name="tel">
+            <input type="text" placeholder="Email" name="email">
+            <input type="text" placeholder="Linkedin URL" name="linkedinUrl">
+            <textarea type="text" placeholder="Add comment" name="comment">
          </div>
 
          <div class="informationBlock">
@@ -418,14 +427,14 @@
 
       const entries = Object.entries(urlParameters);
 
-      for (const [key, value] of entries) {
-         const inputElement = document.createElement('input')
-         inputElement.value = value
-         inputElement.classList.add('input')
-         inputElement.placeholder = key
-         inputElement.name = key
-         list && list.appendChild(inputElement)
-      }
+      // for (const [key, value] of entries) {
+      //    const inputElement = document.createElement('input')
+      //    inputElement.value = value
+      //    inputElement.classList.add('input')
+      //    inputElement.placeholder = key
+      //    inputElement.name = key
+      //    list && list.appendChild(inputElement)
+      // }
 
 
       // get url parameters and show inside list end
