@@ -183,6 +183,16 @@ button:disabled{
     display: flex;
     gap: 10px;
     margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary, #1E2432);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Segoe UI;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 19.6px */
 }
 
 .buttonContainer{
