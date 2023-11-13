@@ -203,6 +203,7 @@ button:disabled{
     gap: 10px;
 }
 
+
 #fieldsForCompany textarea ,#fieldsForUser textarea{
     padding: 13px 12px;
     width: 100%;
