@@ -353,11 +353,15 @@ keyValuePairs.forEach(pair => {
    urlParameters[key] = decodeURIComponent(value.replace(/\+/g, ' '));
 });
 
+console.log(urlParameters,'urlParameters')
+
 // urlParams.forEach((value, name) => {
 //    urlParameters = JSON.parse(value)
 //    console.log(value, 'value')
 // });
-console.log(urlParameters,'urlParameters')
+
+
+
 
 const entries = Object.entries(urlParameters);
 
