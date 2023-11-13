@@ -370,15 +370,15 @@ let entries = JSON.parse(params.query)
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
    let iterable = Object.entries(entries);
-   fieldsForCompanyForms.style.display = none
-   fieldsForUserForms.style.display = none
+   fieldsForCompanyForms.style.display = 'none'
+   fieldsForUserForms.style.display = 'none'
 
    if(iterable.includes('companyName')){
-      fieldsForCompanyForms.style.display = block
-      fieldsForUserForms.style.display = none
+      fieldsForCompanyForms.style.display = 'block'
+      fieldsForUserForms.style.display = 'none'
    }else{
-      fieldsForCompanyForms.style.display = none
-      fieldsForUserForms.style.display = block
+      fieldsForCompanyForms.style.display = 'none'
+      fieldsForUserForms.style.display = 'block'
    }
 
 
