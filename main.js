@@ -350,7 +350,7 @@ const keyValuePairs = trimmedQueryString.split('&');
 
 keyValuePairs.forEach(pair => {
    const [key, value] = pair.split('=');
-   urlParameters[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+   urlParameters[key] = decodeURIComponent(value.replace(/\+/g, " "));
 });
 
 console.log(urlParameters,'urlParameters')
