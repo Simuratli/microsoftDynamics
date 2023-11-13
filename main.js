@@ -12,7 +12,7 @@ const clientIdInput = document.getElementById("clientIdInput");
 const tenantIdInput = document.getElementById("tenantIdInput");
 const crmUrlInput = document.getElementById("crmUrlInput");
 const mainCapture = document.getElementById('mainCapture')
-
+const list = document.getElementById('list')
 let username = "";
 let contacts = null;
 let accounts = null;
@@ -351,10 +351,6 @@ url.searchParams.forEach((value, name) => {
 });
 
 console.log(urlParameters, 'urlParameters')
-
-
-const list = document.getElementById('list')
-console.log(list, 'list')
 
 const entries = Object.entries(urlParameters);
 
