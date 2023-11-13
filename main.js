@@ -347,7 +347,7 @@ const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 
-const entries = JSON.parse(params.query)
+let entries = JSON.parse(params.query)
 
 // const entries = Object.entries(urlParameters);
 
