@@ -373,7 +373,8 @@ const addValuesToInputFields = () => {
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
    console.log(iterable,'iterable')
-   if('companyName' in iterable){
+   
+   if('companyName' in entries){
       fieldsForCompanyForms.style.display = 'block'
       fieldsForUserForms.style.display = 'none'
    }else{
