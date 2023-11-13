@@ -346,17 +346,10 @@ let urlParameters = {}
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-console.log(params.query, 'urlParameters')
-const ObjectForUrl = JSON.parse(params.query)
-console.log(ObjectForUrl, 'ObjectForUrl')
-ObjectForUrl.forEach((value, name) => {
-   urlParameters = JSON.parse(value)
-   console.log(value, 'value')
-});
 
-console.log(urlParameters, 'urlParameters')
+const entries = JSON.parse(params.query)
 
-const entries = Object.entries(urlParameters);
+// const entries = Object.entries(urlParameters);
 
 // for (const [key, value] of entries) {
 //    const inputElement = document.createElement('input')
