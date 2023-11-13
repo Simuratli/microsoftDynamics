@@ -375,11 +375,11 @@ const addValuesToInputFields = () => {
    console.log(iterable,'iterable')
    
    if('companyName' in entries){
-      fieldsForCompanyForms.style.display = 'block'
+      fieldsForCompanyForms.style.display = 'flex'
       fieldsForUserForms.style.display = 'none'
    }else{
       fieldsForCompanyForms.style.display = 'none'
-      fieldsForUserForms.style.display = 'block'
+      fieldsForUserForms.style.display = 'flex'
    }
 
 
