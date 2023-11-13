@@ -344,11 +344,13 @@ function getTokenPopup(request) {
 let urlParameters = {}
 
 const url = new URL(window.location.href);
+const urlParams = new URLSearchParams(url.search);
 console.log(url,'i am url')
-// url.searchParams.forEach((value, name) => {
-//    urlParameters = JSON.parse(value)
-//    console.log(value, 'value')
-// });
+
+urlParams.forEach((value, name) => {
+   urlParameters = JSON.parse(value)
+   console.log(value, 'value')
+});
 
 console.log(urlParameters, 'urlParameters')
 
