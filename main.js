@@ -366,7 +366,15 @@ let entries = JSON.parse(params.query)
 
 
 const addValuesToInputFields = () => {
-   
+   entries[Symbol.iterator] = function* () {
+      for (let key in this) {
+        if (this.hasOwnProperty(key)) {
+          yield this[key];
+        }
+      }
+   };
+
+
    const inputfields = document.querySelectorAll(".inputForUser")
 
 
