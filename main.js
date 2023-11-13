@@ -260,9 +260,14 @@ const setup = () => {
 console.log(localStorage.getItem('tenantIdInput'), "tenantIdInput")
 console.log(localStorage.getItem('clientIdInput'), "clientIdInput")
 console.log(localStorage.getItem('crmUrlInput'), "crmUrlInput")
+
+
 if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
    console.log('allalalala')
-   setup()
+   const currentAccounts = myMSALObj.getAllAccounts();
+   if(currentAccounts.length ===0){
+      setup()
+   }
 }
 
 
