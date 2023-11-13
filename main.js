@@ -349,7 +349,7 @@ let urlParameters = {}
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-
+console.log(params,'params')
 let entries = JSON.parse(params.query)
 
 // const entries = Object.entries(urlParameters);
