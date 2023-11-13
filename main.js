@@ -353,7 +353,7 @@ keyValuePairs.forEach(pair => {
    urlParameters[key] = decodeURIComponent(value.replace(/\+/g, ' '));
 });
 
-console.log(urlParameters.query,'urlParameters')
+console.log(urlParameters,'urlParameters')
 
 // urlParams.forEach((value, name) => {
 //    urlParameters = JSON.parse(value)
