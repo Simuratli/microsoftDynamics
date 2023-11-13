@@ -346,7 +346,7 @@ let urlParameters = {}
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-console.log(url, 'urlParameters')
+console.log(params.query, 'urlParameters')
 
 
 // params.query.forEach((value, name) => {
