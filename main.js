@@ -14,7 +14,7 @@ const crmUrlInput = document.getElementById("crmUrlInput");
 const mainCapture = document.getElementById('mainCapture')
 const list = document.getElementById('list')
 const fieldsForUserForms = document.getElementById('fieldsForUser')
-
+const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
 
 let username = "";
 let contacts = null;
@@ -370,6 +370,18 @@ let entries = JSON.parse(params.query)
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
    let iterable = Object.entries(entries);
+   fieldsForCompanyForms.style.display = none
+   fieldsForUserForms.style.display = none
+
+   if(iterable.includes('companyName')){
+      fieldsForCompanyForms.style.display = block
+      fieldsForUserForms.style.display = none
+   }else{
+      fieldsForCompanyForms.style.display = none
+      fieldsForUserForms.style.display = block
+   }
+
+
 
    for (const [key, value] of iterable) {
       console.log(value,'value')
