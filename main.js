@@ -13,6 +13,9 @@ const tenantIdInput = document.getElementById("tenantIdInput");
 const crmUrlInput = document.getElementById("crmUrlInput");
 const mainCapture = document.getElementById('mainCapture')
 const list = document.getElementById('list')
+const fieldsForUserForms = document.getElementById('fieldsForUser')
+
+
 let username = "";
 let contacts = null;
 let accounts = null;
@@ -360,7 +363,8 @@ let entries = JSON.parse(params.query)
 //    list && list.appendChild(inputElement)
 // }
 
-const fieldsForUserForms = document.getElementById('fieldsForUser')
+
+
 const addValuesToInputFields = () => {
    
    const inputfields = document.querySelectorAll(".inputForUser")
@@ -374,7 +378,7 @@ const addValuesToInputFields = () => {
    }
 }
 
-addValuesToInputFields()
+// addValuesToInputFields()
 
 
 
