@@ -345,7 +345,7 @@ let urlParameters = {}
 
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
-console.log(urlParams,'i am url')
+console.log(urlParams.toString(),'i am url')
 
 urlParams.forEach((value, name) => {
    urlParameters = JSON.parse(value)
