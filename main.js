@@ -380,8 +380,10 @@ const addValuesToInputFields = () => {
 
    for (const [key, value] of entries) {
       for (i = 0; i < inputfields.length; ++i) {
+        
          if(inputfields[i].getAttribute('name') === key){
             inputfields[i].setAttribute("value",value)
+            console.log(value,'value')
          }
       }
    }
