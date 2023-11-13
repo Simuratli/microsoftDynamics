@@ -368,9 +368,10 @@ let entries = JSON.parse(params.query)
 const addValuesToInputFields = () => {
    
    const inputfields = document.querySelectorAll(".inputForUser")
+
+
    for (const [key, value] of entries) {
       for (i = 0; i < inputfields.length; ++i) {
-        console.log(key, inputfields[i].getAttribute('name'), 'outside comer inputfields')
          if(inputfields[i].getAttribute('name') === key){
             inputfields[i].setAttribute("value",value)
          }
@@ -378,7 +379,7 @@ const addValuesToInputFields = () => {
    }
 }
 
-// addValuesToInputFields()
+addValuesToInputFields()
 
 
 
