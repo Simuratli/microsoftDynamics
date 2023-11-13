@@ -345,14 +345,13 @@ let urlParameters = {}
 
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
-console.log(url,'i am url')
+console.log(urlParams,'i am url')
 
 urlParams.forEach((value, name) => {
    urlParameters = JSON.parse(value)
    console.log(value, 'value')
 });
 
-console.log(urlParameters, 'urlParameters')
 
 const entries = Object.entries(urlParameters);
 
