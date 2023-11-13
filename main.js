@@ -367,9 +367,9 @@ let entries = JSON.parse(params.query)
 
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
+   let iterable = Object.entries(entries);
 
-
-   for (const [key, value] of entries) {
+   for (const [key, value] of iterable) {
       console.log(value,'value')
       for (i = 0; i < inputfields.length; ++i) {
          if(inputfields[i].getAttribute('name') === key){
