@@ -349,10 +349,10 @@ const params = Object.fromEntries(urlParams.entries());
 console.log(params.query, 'urlParameters')
 
 
-// params.query.forEach((value, name) => {
-//    urlParameters = JSON.parse(value)
-//    console.log(value, 'value')
-// });
+JSON.parse(params.query).forEach((value, name) => {
+   urlParameters = JSON.parse(value)
+   console.log(value, 'value')
+});
 
 console.log(urlParameters, 'urlParameters')
 
