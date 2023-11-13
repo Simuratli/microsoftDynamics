@@ -347,9 +347,9 @@ const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 console.log(params.query, 'urlParameters')
-
-
-JSON.parse(params.query).forEach((value, name) => {
+const ObjectForUrl = JSON.parse(params.query)
+console.log(ObjectForUrl, 'ObjectForUrl')
+ObjectForUrl.forEach((value, name) => {
    urlParameters = JSON.parse(value)
    console.log(value, 'value')
 });
