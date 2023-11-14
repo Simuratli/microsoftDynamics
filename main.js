@@ -666,7 +666,7 @@ const createAccount = async (url, token, method) => {
 
    console.log('GET Request made to Dataverse at: ' + new Date().toString());
    const response = await fetch(webAPIEndpoint + "/" + url, options)
-   const data = response.json()
+   return response
 }
 
 async function sendDataverse(url, token, callback) {
