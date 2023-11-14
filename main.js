@@ -248,7 +248,7 @@ function selectAccount() {
       // Add choose account code here
       console.warn("Multiple accounts detected.");
    } else if (currentAccounts.length === 1) {
-      username = currentAccounts[0].name;
+      username = currentAccounts[0].username;
       console.log(currentAccounts, 'currentAccounts')
       showWelcomeMessage(username);
    }
@@ -297,7 +297,7 @@ function signIn() {
    })
       .then(response => {
          if (response !== null) {
-            username = response.account.name;
+            username = response.account.username;
             console.log(response.account, 'account')
             showWelcomeMessage(username);
          } else {
