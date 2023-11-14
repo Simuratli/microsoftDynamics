@@ -664,9 +664,8 @@ const createAccount = async (url, token, method) => {
 }
 
 async function sendDataverse(url, token, callback) {
-   filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '123123')`, writeTable)
    const parameters = JSON.parse(params.query)
-   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, ${parameters.customerId})`, writeTable)
+   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId})'`, writeTable)
    const filteredcontacts = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
 
    if (filtered.value.length !== 0) {
