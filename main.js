@@ -719,11 +719,11 @@ const checkIfExistOrNot = async() => {
       const parameters = JSON.parse(params.query)
       const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
       if(ifExistUser.value.length === 0){
-         ifExistUserTable.style.display = none
-         mainCapture.style.display = block
+         ifExistUserTable.style.display = 'none'
+         mainCapture.style.display = 'block'
       }else{
-         ifExistUserTable.style.display = block
-         mainCapture.style.display = none
+         ifExistUserTable.style.display = 'block'
+         mainCapture.style.display = 'none'
       }
    }
 }
