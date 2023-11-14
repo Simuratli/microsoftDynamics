@@ -562,7 +562,7 @@ const createCompanyWithId = async (url, token) => {
 
 const createCompany = async (url, token, method) => {
    
-   console.log(document.querySelector(".linkedinCompanyUrl"),'linkedinCompanyUrlInput')
+   console.log(document.querySelector(".linkedinCompanyUrl").value,'linkedinCompanyUrlInput')
    message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
