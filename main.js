@@ -16,6 +16,14 @@ const list = document.getElementById('list')
 const fieldsForUserForms = document.getElementById('fieldsForUser')
 const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
 
+
+
+// inputFields 
+const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
+
+// inputfields end 
+
+
 let username = "";
 let contacts = null;
 let accounts = null;
@@ -534,8 +542,8 @@ const createCompanyWithId = async (url, token) => {
 
 
 const createCompany = async (url, token, method) => {
-
-
+   
+   console.log(linkedinCompanyUrlInput,'linkedinCompanyUrlInput')
    message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
