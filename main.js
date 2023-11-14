@@ -82,7 +82,7 @@ const changeRequestedNames = (name) => {
 
 
 
-const inputElements = document.querySelectorAll('inputForUser');
+const inputElements = document.querySelectorAll('.inputForUser');
 inputElements.forEach(input => {
     input.addEventListener('input', handleInputChange);
 });
