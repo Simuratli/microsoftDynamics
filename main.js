@@ -608,6 +608,7 @@ const createCompany = async (url, token, method) => {
 
 const createAccount = async (url, token, method) => {
    const filtered = await filterBackend(`accounts`, writeTable)
+   const parameters = JSON.parse(params.query)
    accounts = filtered.value
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
@@ -619,39 +620,30 @@ const createAccount = async (url, token, method) => {
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", 'odata.include-annotations="*"');
    headers.append("Prefer", "return=representation");
-   const entries = Object.entries(urlParameters);
-   const dataObjectForRequest = {}
-   for (const [key, value] of entries) {
-      dataObjectForRequest[changeRequestedNames(key)] = value
-   }
-
-   dataObjectForRequest['firstname'] = dataObjectForRequest.fullName.split(" ")[0]
-   dataObjectForRequest['lastname'] = dataObjectForRequest.fullName.split(" ")[1]
-
-
+   
 
    const bodyOfReq = {
-      firstname: dataObjectForRequest.fullName.split(" ")[0],
-      lastname: dataObjectForRequest.fullName.split(" ")[1],
-      fullname: dataObjectForRequest.fullName,
-      jobtitle: dataObjectForRequest.jobtitle,
-      address1_name: dataObjectForRequest.address1_name,
+      firstname: document.querySelector('.userName').split(" ")[0],
+      lastname:  document.querySelector('.userName').split(" ")[1],
+      fullname:  document.querySelector('.userName'),
+      jobtitle:  document.querySelector('.jobTitle'),
+      address1_name: document.querySelector('.location'),
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid})`,
-      telephone1: dataObjectForRequest.telephone1,
-      mobilephone: dataObjectForRequest.mobilephone,
-      emailaddress1: dataObjectForRequest.emailaddress1,
+      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid ===parameters.customerId)[0].accountid})`,
+      telephone1: document.querySelector('.phone'),
+      mobilephone: document.querySelector('.tel'),
+      emailaddress1:document.querySelector('.email'),
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
 
 
-   if (urlParameters.linkedinUrl) {
-      Object.assign(bodyOfReq, { uds_linkedin: dataObjectForRequest.uds_linkedin })
+   if (parameters.linkedinUrl) {
+      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl })
    }
 
-   if (urlParameters.salesUrl) {
-      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: dataObjectForRequest.uds_salesnavigatoruserurl })
+   if (parameters.salesUrl) {
+      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl })
    }
 
    const options = {
@@ -680,7 +672,7 @@ async function sendDataverse(url, token, callback) {
          message.innerHTML = 'Contact Updated'
       } else {
          console.log("there is no company")
-         message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
+         message.innerHTML = 'there have company with this id: ' + parameters.customerId
          await createAccount('contacts', token, "POST")
          message.innerHTML = 'Contact Created'
 
