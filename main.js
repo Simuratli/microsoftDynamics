@@ -572,14 +572,14 @@ const createCompany = async (url, token, method) => {
    headers.append("Prefer", "return=representation");
    
    const requestForCreateCompany = {
-      uds_linkedincompanyid: document.querySelector(".linkedinCompanyUrl").value,
+      uds_linkedincompanyid: parameteres.idOfCompany,
       name: document.querySelector(".companyName").value,
-      numberofemployees: document.querySelector(".numberOfWorkers").value,
+      numberofemployees: 0,
       uds_linkedinprofilecompanyurl: document.querySelector(".linkedinCompanyUrl").value,
       uds_geocodes: document.querySelector(".location").value,
       websiteurl: document.querySelector(".companyUrl").value,
       uds_salesnavigatorcompanyurl:'',
-      uds_linkedinsize: document.querySelector(".lnSize").value,
+      uds_linkedinsize: 0,
       uds_linkedincompanycommentary:document.querySelector(".comment").value,
 
    }
