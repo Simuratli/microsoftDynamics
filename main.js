@@ -562,7 +562,6 @@ const createCompanyWithId = async (url, token) => {
 
 const createCompany = async (url, token, method) => {
    
-   console.log(document.querySelector(".linkedinCompanyUrl").value,'linkedinCompanyUrlInput')
    message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
@@ -574,31 +573,17 @@ const createCompany = async (url, token, method) => {
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", "return=representation");
    
-   console.log(urlParameters, 'Company urlParameters')
-   
-   let requestData = {}
-   for (const [key, value] of Object.entries(urlParameters)) {
-      requestData[changeRequestedNames(key)] = value
-   }
-
-
-   let countOfEmployees = 0
-
-   if (requestData['numberofemployees'].includes('-')) {
-      countOfEmployees = Number(requestData['numberofemployees'].split(' ')[0].split('-')[1])
-   } else {
-      Number(requestData['numberofemployees'].split(' ')[0].replace(',', ''))
-   }
-   console.log(countOfEmployees, 'nunberofempl')
-
-
    const requestForCreateCompany = {
-      uds_linkedincompanyid: requestData['uds_linkedincompanyid'].toString(),
-      name: requestData['name'],
-      numberofemployees: countOfEmployees,
-      uds_new_linkedin: requestData['uds_linkedin'],
-      address1_line1: requestData['address1_name'],
-      websiteurl: requestData['websiteurl']
+      uds_linkedincompanyid: document.querySelector(".linkedinCompanyUrl").value,
+      name: document.querySelector(".companyName").value,
+      numberofemployees: document.querySelector(".numberOfWorkers").value,
+      uds_linkedinprofilecompanyurl: document.querySelector(".linkedinCompanyUrl").value,
+      uds_geocodes: document.querySelector(".location").value,
+      websiteurl: document.querySelector(".companyUrl").value,
+      uds_salesnavigatorcompanyurl:'',
+      uds_linkedinsize: document.querySelector(".lnSize").value,
+      uds_linkedincompanycommentary:document.querySelector(".comment").value,
+
    }
 
    if (urlParameters.linkedinCompanyUrl) {
