@@ -545,7 +545,7 @@ const createCompanyWithId = async (url, token) => {
 
 const createCompany = async (url, token, method) => {
    
-   console.log(linkedinCompanyUrlInput,'linkedinCompanyUrlInput')
+   console.log(document.querySelector(".linkedinCompanyUrl"),'linkedinCompanyUrlInput')
    message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
@@ -556,7 +556,9 @@ const createCompany = async (url, token, method) => {
    headers.append("OData-Version", "4.0");
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", "return=representation");
+   
    console.log(urlParameters, 'Company urlParameters')
+   
    let requestData = {}
    for (const [key, value] of Object.entries(urlParameters)) {
       requestData[changeRequestedNames(key)] = value
