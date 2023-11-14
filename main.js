@@ -525,6 +525,8 @@ async function getDataverse(url, token, callback) {
 
 
 const createCompanyWithId = async (url, token) => {
+
+   const parameters = JSON.parse(params.query)
    message.innerHTML = 'Loading...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
@@ -539,7 +541,7 @@ const createCompanyWithId = async (url, token) => {
       method: "POST",
       headers: headers,
       body: JSON.stringify({
-         uds_linkedincompanyid: urlParameters['customerId']
+         uds_linkedincompanyid: parameters.customerId
       })
    }
 
