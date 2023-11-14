@@ -352,8 +352,6 @@ function getTokenPopup(request) {
 // get url parameters and show inside list
 
 
-let urlParameters = {}
-
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
@@ -361,7 +359,7 @@ console.log(url,'params url')
 console.log(urlParams,'params urlParams')
 console.log(params,'params')
 let entries = JSON.parse(params.query)
-
+let urlParameters = Object.entries(entries);
 // const entries = Object.entries(urlParameters);
 
 // for (const [key, value] of entries) {
@@ -377,7 +375,7 @@ let entries = JSON.parse(params.query)
 
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
-   let iterable = Object.entries(entries);
+   
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
    console.log(iterable,'iterable')
@@ -392,7 +390,7 @@ const addValuesToInputFields = () => {
 
 
 
-   for (const [key, value] of iterable) {
+   for (const [key, value] of urlParameters) {
       console.log(value,'value')
       for (i = 0; i < inputfields.length; ++i) {
          if(inputfields[i].getAttribute('name') === key){
