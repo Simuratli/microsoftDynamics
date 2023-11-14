@@ -540,9 +540,6 @@ const createCompanyWithId = async (url, token) => {
    headers.append("OData-Version", "4.0");
    headers.append("Content-Type", "application/json");
 
-   const entries = Object.entries(urlParameters);
-   const dataObjectForRequest = {}
-
    const options = {
       method: "POST",
       headers: headers,
@@ -561,7 +558,8 @@ const createCompanyWithId = async (url, token) => {
 
 
 const createCompany = async (url, token, method) => {
-   
+   const parameteres = JSON.parse(params.query)
+   console.log(parameteres,'parameteres')
    message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
