@@ -329,8 +329,8 @@ function signOut() {
 // Provides the access token for a request, opening pop-up if necessary.
 // Used by GetAccounts function
 function getTokenPopup(request) {
+   console.log(request,'request',myMSALObj)
    request.account = myMSALObj.getAccountByUsername(username);
-   console.log(request,'request')
    return myMSALObj.acquireTokenSilent(request)
       .catch(error => {
          console.warn("Silent token acquisition fails. Acquiring token using popup");
