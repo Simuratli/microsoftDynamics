@@ -560,7 +560,6 @@ const createCompanyWithId = async (url, token) => {
 const createCompany = async (url, token, method) => {
    const parameteres = JSON.parse(params.query)
    console.log(parameteres,'parameteres')
-   message.innerHTML = 'Creating Company...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
    headers.append("Authorization", bearer);
@@ -586,8 +585,8 @@ const createCompany = async (url, token, method) => {
       Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameteres.linkedinCompanyUrl })
    }
 
-   if (urlParameters.salesCompanyUrl) {
-      Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: urlParameters.salesCompanyUrl })
+   if (parameteres.salesCompanyUrl) {
+      Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameteres.salesCompanyUrl })
    }
 
    const options = {
