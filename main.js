@@ -82,6 +82,23 @@ const changeRequestedNames = (name) => {
 
 
 
+const inputElements = document.querySelectorAll('inputForUser');
+inputElements.forEach(input => {
+    input.addEventListener('input', handleInputChange);
+});
+
+
+function handleInputChange(event) {
+   // Get the ID and value of the changed input
+   const inputId = event.target.id;
+   const inputValue = event.target.value;
+
+   console.log(inputId,inputValue,'inputValue')
+}
+
+
+
+
 
 
 // Configuration object to be passed to MSAL instance on creation. 
