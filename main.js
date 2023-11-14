@@ -623,16 +623,16 @@ const createAccount = async (url, token, method) => {
    
 
    const bodyOfReq = {
-      firstname: document.querySelector('.userName').split(" ")[0],
-      lastname:  document.querySelector('.userName').split(" ")[1],
-      fullname:  document.querySelector('.userName'),
-      jobtitle:  document.querySelector('.jobTitle'),
-      address1_name: document.querySelector('.location'),
+      firstname: document.querySelector('.userName').value.split(" ")[0],
+      lastname:  document.querySelector('.userName').value.split(" ")[1],
+      fullname:  document.querySelector('.userName').value,
+      jobtitle:  document.querySelector('.jobTitle').value,
+      address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid ===parameters.customerId)[0].accountid})`,
-      telephone1: document.querySelector('.phone'),
-      mobilephone: document.querySelector('.tel'),
-      emailaddress1:document.querySelector('.email'),
+      telephone1: document.querySelector('.phone').value,
+      mobilephone: document.querySelector('.tel').value,
+      emailaddress1:document.querySelector('.email').value,
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
