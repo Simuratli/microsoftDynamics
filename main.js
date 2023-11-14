@@ -15,6 +15,10 @@ const mainCapture = document.getElementById('mainCapture')
 const list = document.getElementById('list')
 const fieldsForUserForms = document.getElementById('fieldsForUser')
 const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
+const ifExistUserTable = document.getElementById('ifExistUser')
+
+
+
 
 
 
@@ -706,3 +710,12 @@ function writeTable(data) {
 }
 
 selectAccount();
+
+
+const checkIfExistOrNot = async() => {
+   const parameters = JSON.parse(params.query)
+   const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
+   console.log(ifExistUser,'ifExistUser')
+}
+
+checkIfExistOrNot()

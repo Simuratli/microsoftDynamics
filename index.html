@@ -33,9 +33,7 @@
             <img src="/assets/logout.svg" alt="logout">
          </button>
          <div id="list"></div>
-
-
-
+         
          <div id="fieldsForUser">
             <input class="inputForUser linkedinUrl" type="text" placeholder="Linkedin URL" name="linkedinUrl">
             <input class="inputForUser userName" type="text" placeholder="Username" name="userName">
@@ -62,8 +60,82 @@
             <img src="/assets/info.svg" alt="Information">
             <span>You can complete the empty fields yourself</span>
          </div>
+      </div>
 
 
+
+      <div id="ifExistUser">
+         <img class="personal" src="/assets/person.svg" alt="">
+         <h1 id="message">Eljan Simuratli</h1>
+         <button id="logoutButton" onclick="signOut()" style="display:none;">
+            <img src="/assets/logout.svg" alt="logout">
+         </button>
+         <div class="informationBlock">
+            <img src="/assets/info.svg" alt="Information">
+            <span>Data already exists in the CRM</span>
+         </div>
+
+         <table>
+            <thead>
+               <tr>
+                  <td></td>
+                  <td>Linkedin data</td>
+                  <td>CRm data</td>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Profile link</td>
+                  <td><input placeholder="Profile link" /></td>
+                  <td><input readonly placeholder="Profile link" /></td>
+               </tr>
+               <tr>
+                  <td>Name</td>
+                  <td><input placeholder="Name" /></td>
+                  <td><input readonly placeholder="Name" value="Name"/></td>
+               </tr>
+               <tr>
+                  <td>Job title</td>
+                  <td><input placeholder="Job title" /></td>
+                  <td><input readonly placeholder="Job title" value="Job title"/></td>
+               </tr>
+               <tr>
+                  <td>Address</td>
+                  <td><input placeholder="Address" /></td>
+                  <td><input readonly placeholder="Address" /></td>
+               </tr>
+               <tr>
+                  <td>Company</td>
+                  <td><input placeholder="Company" /></td>
+                  <td><input readonly placeholder="Company" /></td>
+               </tr>
+               <tr>
+                  <td>Work phone</td>
+                  <td><input placeholder="Work phone" /></td>
+                  <td><input readonly placeholder="Work phone" /></td>
+               </tr>
+               <tr>
+                  <td>Personal phone</td>
+                  <td><input placeholder="Personal phone" /></td>
+                  <td><input readonly placeholder="Personal phone" /></td>
+               </tr>
+               <tr>
+                  <td>Email</td>
+                  <td><input placeholder="Email" /></td>
+                  <td><input readonly placeholder="Email" /></td>
+               </tr>
+               <tr>
+                  <td>Personal Email</td>
+                  <td><input placeholder="Personal Email" /></td>
+                  <td><input readonly placeholder="Personal Email" /></td>
+               </tr>
+               <tr>
+                  <td>Comment</td>
+                  <td><textarea>Comment</textarea></td>
+                  <td><textarea readonly>Comment</textarea></td>
+               </tr>
+            </tbody>
+         </table>
       </div>
 
 
