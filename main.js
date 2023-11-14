@@ -460,18 +460,13 @@ async function filterBackend(url, callback) {
 }
 
 async function sendAccounts(callback) {
-   console.log(baseUrl, 'response for send', msalConfig)
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
-
    const parameteres = JSON.parse(params.query)
-   console.log(parameteres,'params.query')
    
    if (!parameteres['companyName']) {
-      console.log("nani yoxdur")
       getContacts()
       sendDataverse("contacts", response.accessToken, callback);
    } else {
-      console.log("nani vardir")
       const companies = await filterBackend(`accounts`, writeTable)
       accounts = companies.value
 
@@ -670,31 +665,20 @@ const createAccount = async (url, token, method) => {
 
 async function sendDataverse(url, token, callback) {
    // filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,123123)`, writeTable)
-   const filtered = await filterBackend(`accounts`, writeTable)
-   accounts = filtered.value
-   const filteredcontacts = await filterBackend(`contacts`, writeTable)
-   // contacts = filteredcontacts.value
-   accounts = filtered.value
+   const parameters = JSON.parse(params.query)
+   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid,${parameters.customerId})`, writeTable)
+   const filteredcontacts = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin,${parameters.linkedinUrl})`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl,${parameters.salesUrl})`, writeTable)
 
-   console.log(filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl']), 'filteredcontacts.value')
-
-   if (filtered.value.some(account => account.uds_linkedincompanyid === urlParameters['customerId'])) {
-      if (filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl']).length !== 0) {
+   if (filtered.value.length !== 0) {
+      if (filteredcontacts.value.length !== 0) {
          const existedContact = filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl'])[0]
          message.innerHTML = 'contact updating... '
          await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
          message.innerHTML = 'Contact Updated'
       } else {
-         if (filteredcontacts.value.filter(contact => contact.uds_salesnavigatoruserurl === urlParameters['salesUrl']).length !== 0) {
-            const existedContact = filteredcontacts.value.filter(contact => contact.uds_salesnavigatoruserurl === urlParameters['salesUrl'])[0]
-            message.innerHTML = 'contact updating... '
-            await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
-            message.innerHTML = 'Contact Updated'
-         } else {
-            message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
-            await createAccount('contacts', token, "POST")
-            message.innerHTML = 'Contact Created'
-         }
+         message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
+         await createAccount('contacts', token, "POST")
+         message.innerHTML = 'Contact Created'
 
       }
 
