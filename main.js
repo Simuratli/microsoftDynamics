@@ -666,9 +666,8 @@ async function sendDataverse(url, token, callback) {
       console.log("there have company")
       if (filteredcontacts.value.length !== 0) {
          console.log("there is no company")
-         const existedContact = filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl'])[0]
          message.innerHTML = 'contact updating... '
-         await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
+         await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH')
          message.innerHTML = 'Contact Updated'
       } else {
          console.log("there is no company")
