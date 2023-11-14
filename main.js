@@ -669,7 +669,7 @@ async function sendDataverse(url, token, callback) {
    const filteredcontacts = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
 
    if (filtered.value.length !== 0) {
-      console.log("there is no company")
+      console.log("there have company")
       if (filteredcontacts.value.length !== 0) {
          console.log("there is no company")
          const existedContact = filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl'])[0]
