@@ -446,7 +446,7 @@ async function filterBackend(url, callback) {
 async function sendAccounts(callback) {
    console.log(baseUrl, 'response for send', msalConfig)
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
-
+   console.log(urlParameters,'urlParameters')
    if (!urlParameters['companyName']) {
       console.log("nani yoxdur")
       getContacts()
