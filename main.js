@@ -669,12 +669,15 @@ async function sendDataverse(url, token, callback) {
    const filteredcontacts = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
 
    if (filtered.value.length !== 0) {
+      console.log("there is no company")
       if (filteredcontacts.value.length !== 0) {
+         console.log("there is no company")
          const existedContact = filteredcontacts.value.filter(contact => contact.uds_linkedin === urlParameters['linkedinUrl'])[0]
          message.innerHTML = 'contact updating... '
          await createAccount(`contacts(${existedContact.contactid})`, token, 'PATCH')
          message.innerHTML = 'Contact Updated'
       } else {
+         console.log("there is no company")
          message.innerHTML = 'there have company with this id: ' + urlParameters['customerId']
          await createAccount('contacts', token, "POST")
          message.innerHTML = 'Contact Created'
@@ -682,6 +685,7 @@ async function sendDataverse(url, token, callback) {
       }
 
    } else {
+      console.log("there is no company")
       message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany, 'createdCompany')
