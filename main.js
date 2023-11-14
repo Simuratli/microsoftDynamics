@@ -633,6 +633,7 @@ const createAccount = async (url, token, method) => {
       telephone1: document.querySelector('.phone').value,
       mobilephone: document.querySelector('.tel').value,
       emailaddress1:document.querySelector('.email').value,
+      uds_linkedinusercommentary:document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
