@@ -210,3 +210,22 @@ button:disabled{
     height: 180px;
     outline: none;
 }
+
+
+.existTable input{
+    padding: 5px 12px 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #E8EBFE;
+    background: #FFF;
+    color: #1A4F95;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family:'Segoe UI';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
+}
+
+.existTable td:last-child{
+    background-color: red;
+}
