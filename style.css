@@ -226,6 +226,9 @@ button:disabled{
     line-height: 130%; /* 15.6px */
 }
 
-.existTable td:last-child{
-    background-color: red;
+.existTable td:last-child input, .existTable td:last-child textarea{
+    border: none;
+}
+table{
+    background-color: #F9FAFF;
 }
