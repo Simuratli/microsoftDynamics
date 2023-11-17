@@ -240,4 +240,23 @@ table tr{
 
 .existTable td:first-child {
     background-color: red;
+    color: var(--text-primary, #1E2432);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    width: 81px;
+    line-height: 130%; /* 15.6px */
 } 
+
+thead td{
+    color: var(--text-primary, #1E2432);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 16.8px */
+    text-transform: uppercase;
+}
