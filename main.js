@@ -401,16 +401,16 @@ const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
    console.log(inputfields,'inputfields')
    
-   fieldsForCompanyForms.style.display = 'none'
-   fieldsForUserForms.style.display = 'none'
+   // fieldsForCompanyForms.style.display = 'none'
+   // fieldsForUserForms.style.display = 'none'
    
-   if('companyName' in entries){
-      fieldsForCompanyForms.style.display = 'flex'
-      fieldsForUserForms.style.display = 'none'
-   }else{
-      fieldsForCompanyForms.style.display = 'none'
-      fieldsForUserForms.style.display = 'flex'
-   }
+   // if('companyName' in entries){
+   //    fieldsForCompanyForms.style.display = 'flex'
+   //    fieldsForUserForms.style.display = 'none'
+   // }else{
+   //    fieldsForCompanyForms.style.display = 'none'
+   //    fieldsForUserForms.style.display = 'flex'
+   // }
 
 
 
@@ -723,11 +723,13 @@ const checkIfExistOrNot = async() => {
       if(ifExistUser.value.length === 0){
          ifExistUserTable.style.display = 'none'
          mainCapture.style.display = 'block'
+         addValuesToInputFields()
       }else{
          ifExistUserTable.style.display = 'block'
          mainCapture.style.display = 'none'
+         addValuesToInputFields()
       }
-      addValuesToInputFields()
+    
    }
 }
 
