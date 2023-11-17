@@ -626,18 +626,20 @@ const createAccount = async (url, token, method) => {
    headers.append("Prefer", 'odata.include-annotations="*"');
    headers.append("Prefer", "return=representation");
    
+   const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
+
 
    const bodyOfReq = {
-      firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname:  document.querySelector('.userName').value.split(" ")[1],
-      fullname:  document.querySelector('.userName').value,
-      jobtitle:  document.querySelector('.jobTitle').value,
-      address1_name: document.querySelector('.location').value,
+      firstname: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value.split(" ")[0]:  document.querySelector("#mainCapture").querySelector('.userName').value.split(" ")[0],
+      lastname: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value.split(" ")[1] : document.querySelector("#mainCapture").querySelector('.userName').value.split(" ")[1] ,
+      fullname:  ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value : document.querySelector("#mainCapture").querySelector('.userName').value,
+      jobtitle:  ifExistUser ? document.querySelector("#ifExistUser").querySelector('.jobTitle').value : document.querySelector("#mainCapture").querySelector('.jobTitle').value,
+      address1_name: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.location').value :  document.querySelector("#mainCapture").querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid ===parameters.customerId)[0].accountid})`,
-      telephone1: document.querySelector('.phone').value,
-      mobilephone: document.querySelector('.tel').value,
-      emailaddress1:document.querySelector('.email').value,
+      telephone1: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.phone').value :  document.querySelector("#mainCapture").querySelector('.phone').value,
+      mobilephone: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.tel').value : document.querySelector("#mainCapture").querySelector('.tel').value,
+      emailaddress1: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.email').value : document.querySelector("#mainCapture").querySelector('.email').value,
       uds_linkedinusercommentary:document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
