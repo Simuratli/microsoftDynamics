@@ -156,7 +156,7 @@ function showWelcomeMessage(username) {
    // getAccountsButton.style.display = "block";
    sendAccountsButton.style.display = "block";
    mainCredentialsForm.style.display = 'none'
-   mainCapture.style.display = 'block'
+   // mainCapture.style.display = 'block'
    list.style.visibility = 'visible'
    list.style.position = 'relative'
    list.style.display = 'flex'
