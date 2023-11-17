@@ -423,7 +423,7 @@ const addValuesToInputFields = () => {
    }
 }
 
-addValuesToInputFields()
+
 
 
 
@@ -726,6 +726,7 @@ const checkIfExistOrNot = async() => {
          ifExistUserTable.style.display = 'block'
          mainCapture.style.display = 'none'
       }
+      addValuesToInputFields()
    }
 }
 
