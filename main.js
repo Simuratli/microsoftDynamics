@@ -468,7 +468,7 @@ async function sendAccounts(callback) {
       sendDataverse("contacts", response.accessToken, callback);
    } else {
       const companies = await filterBackend(`accounts`, writeTable)
-      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`)
+      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameteres.linkedinCompanyUrl}')`)
       
       accounts = companies.value
       console.log(companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)),'buraya test lazim')
