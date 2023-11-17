@@ -306,3 +306,8 @@ thead th{
     padding: 18px 0 17px 0;
     text-align: left;
 }
+
+
+.existTable th:nth-child(2){
+    background-color: red;
+}
