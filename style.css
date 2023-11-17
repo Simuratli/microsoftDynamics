@@ -245,7 +245,6 @@ table td{
 }
 
 .existTable td:first-child {
-    background-color: red;
     color: var(--text-primary, #1E2432);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: 'Segoe UI';
