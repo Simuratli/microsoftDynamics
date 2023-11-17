@@ -466,16 +466,15 @@ async function sendAccounts(callback) {
    if (!parameteres['companyName']) {
       getContacts()
       sendDataverse("contacts", response.accessToken, callback);
+      console.log('hreree')
+
    } else {
       const companies = await filterBackend(`accounts`, writeTable)
-      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameteres.linkedinCompanyUrl}')`)
       
       accounts = companies.value
-      console.log(companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)),'buraya test lazim')
-      console.log(companies2,'buraya test lazim with filter')
+
 
       if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)).length !== 0) {
-        
          message.innerHTML = 'Company updating...'
          await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
          message.innerHTML = 'Company updated'
