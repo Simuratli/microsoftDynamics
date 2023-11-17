@@ -265,3 +265,7 @@ thead th{
     line-height: 140%; /* 16.8px */
     text-transform: uppercase;
 }
+
+.existTable textarea {
+    width: 100px;
+}
