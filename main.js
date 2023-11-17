@@ -397,8 +397,7 @@ let urlParameters = Object.entries(entries);
 
 
 
-const addValuesToInputFields = () => {
-   const inputfields = document.querySelectorAll(".inputForUser")
+const addValuesToInputFields = (inputfields) => {
    console.log(inputfields,'inputfields')
    
    // fieldsForCompanyForms.style.display = 'none'
@@ -723,11 +722,11 @@ const checkIfExistOrNot = async() => {
       if(ifExistUser.value.length === 0){
          ifExistUserTable.style.display = 'none'
          mainCapture.style.display = 'block'
-         addValuesToInputFields()
+         addValuesToInputFields(mainCapture.document.querySelectorAll(".inputForUser"))
       }else{
          ifExistUserTable.style.display = 'block'
          mainCapture.style.display = 'none'
-         addValuesToInputFields()
+         addValuesToInputFields(ifExistUserTable.document.querySelectorAll(".inputForUser"))
       }
     
    }
