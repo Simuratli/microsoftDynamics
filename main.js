@@ -461,27 +461,27 @@ async function filterBackend(url, callback) {
 
 async function sendAccounts(callback) {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
-   const parameteres = JSON.parse(params.query)
+   const parameters = JSON.parse(params.query)
 
-   if (!parameteres['companyName']) {
+   if (!parameters['companyName']) {
       getContacts()
       sendDataverse("contacts", response.accessToken, callback);
       console.log('hreree')
 
    } else {
       const companies = await filterBackend(`accounts`, writeTable)
-      
+      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`)
+      console.log(companies2,'companies2')
       accounts = companies.value
 
-
-      if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)).length !== 0) {
+      if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameters.linkedinCompanyUrl)).length !== 0) {
          message.innerHTML = 'Company updating...'
-         await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
+         await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
          message.innerHTML = 'Company updated'
       } else {
-         console.log(companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameteres.salesCompanyUrl)), 'companies.value')
-         if (companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameteres.salesCompanyUrl)).length !== 0) {
-            const accountID = companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameteres.salesCompanyUrl))[0].accountid
+         console.log(companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl)), 'companies.value')
+         if (companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl)).length !== 0) {
+            const accountID = companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl))[0].accountid
             message.innerHTML = 'Company updating...'
             await createCompany(`accounts(${accountID})`, response.accessToken, 'PATCH')
             message.innerHTML = 'Company updated'
