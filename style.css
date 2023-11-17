@@ -124,7 +124,7 @@ button:disabled{
     display: none;
 }
 
-#mainCapture h1{
+#message{
     color: var(--primary-deep-blue, #1A4F95);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
