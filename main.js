@@ -399,6 +399,7 @@ let urlParameters = Object.entries(entries);
 
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
+   console.log(inputfields,'inputfields')
    
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
