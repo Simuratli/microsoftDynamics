@@ -722,11 +722,12 @@ const checkIfExistOrNot = async() => {
       if(ifExistUser.value.length === 0){
          ifExistUserTable.style.display = 'none'
          mainCapture.style.display = 'block'
-         addValuesToInputFields(mainCapture.document.querySelectorAll(".inputForUser"))
+         addValuesToInputFields(document.querySelector('#mainCapture').querySelectorAll(".inputForUser"))
       }else{
          ifExistUserTable.style.display = 'block'
          mainCapture.style.display = 'none'
-         addValuesToInputFields(ifExistUserTable.document.querySelectorAll(".inputForUser"))
+         console.log(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"),'inputasdas')
+         addValuesToInputFields(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"))
       }
     
    }
