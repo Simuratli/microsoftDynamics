@@ -228,7 +228,16 @@ button:disabled{
 
 .existTable td:last-child input, .existTable td:last-child textarea{
     border: none;
+    background-color: #F9FAFF;
 }
 table{
     background-color: #F9FAFF;
 }
+
+table tr{
+    padding: 10px;
+}
+
+.existTable td:first-child {
+    background-color: red;
+} 
