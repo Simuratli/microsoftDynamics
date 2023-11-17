@@ -267,5 +267,6 @@ thead th{
 }
 
 .existTable textarea {
-    width: 100px;
+    width: 162px;
+    padding: 5px 12px 6px 12px;
 }
