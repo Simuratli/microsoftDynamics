@@ -286,6 +286,7 @@ thead th{
     border-radius: 6px;
     border: 1px solid #E8EBFE;
     background: #FFF;
+    outline: none;
 }
 
 
@@ -297,4 +298,10 @@ thead th{
     font-style: normal;
     font-weight: 400;
     line-height: 130%; /* 15.6px */
+    outline: none;
+}
+
+
+.existTable thead th{
+    padding: 18px 0 17px 0;
 }
