@@ -17,11 +17,6 @@ const fieldsForUserForms = document.getElementById('fieldsForUser')
 const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
 const ifExistUserTable = document.getElementById('ifExistUser')
 
-
-
-
-
-
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
@@ -88,7 +83,7 @@ const changeRequestedNames = (name) => {
 
 const inputElements = document.querySelectorAll('.inputForUser');
 inputElements.forEach(input => {
-    input.addEventListener('input', handleInputChange);
+   input.addEventListener('input', handleInputChange);
 });
 
 
@@ -97,7 +92,7 @@ function handleInputChange(event) {
    const inputId = event.target.id;
    const inputValue = event.target.value;
 
-   console.log(inputId,inputValue,'inputValue')
+   console.log(inputId, inputValue, 'inputValue')
 }
 
 
@@ -272,7 +267,7 @@ function selectAccount() {
       username = currentAccounts[0].username;
       console.log(currentAccounts, 'currentAccounts')
       showWelcomeMessage(username);
-      
+
    }
 }
 
@@ -299,12 +294,12 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
    const currentAccounts = myMSALObj.getAllAccounts();
 
 
-   if(currentAccounts.length ===0){
+   if (currentAccounts.length === 0) {
       setup()
-      console.log(currentAccounts,'allalalala in')
-   }else{
+      console.log(currentAccounts, 'allalalala in')
+   } else {
       selectAccount()
-      console.log(currentAccounts,'allalalala out')
+      console.log(currentAccounts, 'allalalala out')
    }
 }
 
@@ -351,9 +346,9 @@ function signOut() {
 // Provides the access token for a request, opening pop-up if necessary.
 // Used by GetAccounts function
 function getTokenPopup(request) {
-   console.log('request',username)
+   console.log('request', username)
    request.account = myMSALObj.getAccountByUsername(username);
-   
+
    return myMSALObj.acquireTokenSilent(request)
       .catch(error => {
          console.warn("Silent token acquisition fails. Acquiring token using popup");
@@ -379,9 +374,9 @@ function getTokenPopup(request) {
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-console.log(url,'params url')
-console.log(urlParams,'params urlParams')
-console.log(params,'params')
+console.log(url, 'params url')
+console.log(urlParams, 'params urlParams')
+console.log(params, 'params')
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 // const entries = Object.entries(urlParameters);
@@ -399,14 +394,14 @@ let urlParameters = Object.entries(entries);
 
 const addValuesToInputFields = () => {
    const inputfields = document.querySelectorAll(".inputForUser")
-   
+
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
-   
-   if('companyName' in entries){
+
+   if ('companyName' in entries) {
       fieldsForCompanyForms.style.display = 'flex'
       fieldsForUserForms.style.display = 'none'
-   }else{
+   } else {
       fieldsForCompanyForms.style.display = 'none'
       fieldsForUserForms.style.display = 'flex'
    }
@@ -414,10 +409,10 @@ const addValuesToInputFields = () => {
 
 
    for (const [key, value] of urlParameters) {
-      console.log(value,'value')
+      console.log(value, 'value')
       for (i = 0; i < inputfields.length; ++i) {
-         if(inputfields[i].getAttribute('name') === key){
-            inputfields[i].setAttribute("value",value)
+         if (inputfields[i].getAttribute('name') === key) {
+            inputfields[i].setAttribute("value", value)
          }
       }
    }
@@ -467,16 +462,20 @@ async function filterBackend(url, callback) {
 async function sendAccounts(callback) {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
    const parameteres = JSON.parse(params.query)
-   
+
    if (!parameteres['companyName']) {
       getContacts()
       sendDataverse("contacts", response.accessToken, callback);
    } else {
       const companies = await filterBackend(`accounts`, writeTable)
+      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`, writeTable, writeTable)
+      
       accounts = companies.value
 
 
       if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)).length !== 0) {
+         console.log(companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl)),'buraya test lazim')
+         console.log(companies2,'buraya test lazim with filter')
          message.innerHTML = 'Company updating...'
          await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameteres.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
          message.innerHTML = 'Company updated'
@@ -561,7 +560,7 @@ const createCompanyWithId = async (url, token) => {
 
 const createCompany = async (url, token, method) => {
    const parameteres = JSON.parse(params.query)
-   console.log(parameteres,'parameteres')
+   console.log(parameteres, 'parameteres')
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
    headers.append("Authorization", bearer);
@@ -571,7 +570,7 @@ const createCompany = async (url, token, method) => {
    headers.append("OData-Version", "4.0");
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", "return=representation");
-   
+
    const requestForCreateCompany = {
       uds_linkedincompanyid: parameteres.idOfCompany,
       name: document.querySelector(".companyName").value,
@@ -579,7 +578,7 @@ const createCompany = async (url, token, method) => {
       uds_geocodes: document.querySelector(".location").value,
       websiteurl: document.querySelector(".companyUrl").value,
       uds_linkedinsize: 0,
-      uds_linkedincompanycommentary:document.querySelector(".comment").value,
+      uds_linkedincompanycommentary: document.querySelector(".comment").value,
 
    }
 
@@ -625,20 +624,20 @@ const createAccount = async (url, token, method) => {
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", 'odata.include-annotations="*"');
    headers.append("Prefer", "return=representation");
-   
+
 
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname:  document.querySelector('.userName').value.split(" ")[1],
-      fullname:  document.querySelector('.userName').value,
-      jobtitle:  document.querySelector('.jobTitle').value,
+      lastname: document.querySelector('.userName').value.split(" ")[1],
+      fullname: document.querySelector('.userName').value,
+      jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid ===parameters.customerId)[0].accountid})`,
+      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === parameters.customerId)[0].accountid})`,
       telephone1: document.querySelector('.phone').value,
       mobilephone: document.querySelector('.tel').value,
-      emailaddress1:document.querySelector('.email').value,
-      uds_linkedinusercommentary:document.querySelector('.comment').value
+      emailaddress1: document.querySelector('.email').value,
+      uds_linkedinusercommentary: document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
@@ -666,7 +665,7 @@ const createAccount = async (url, token, method) => {
 async function sendDataverse(url, token, callback) {
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`, writeTable)
-   const filteredcontacts = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
+   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
 
    if (filtered.value.length !== 0) {
       console.log("there have company")
@@ -713,17 +712,12 @@ function writeTable(data) {
 selectAccount();
 
 
-const checkIfExistOrNot = async() => {
-   const currentAccounts = myMSALObj.getAllAccounts();
-   if(currentAccounts.length === 1){
-      const parameters = JSON.parse(params.query)
-      const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
-      if(ifExistUser.value.length === 0){
-         
-      }else{
-         
-      }
+const checkIfExistOrNot = async () => {
+   const parameters = JSON.parse(params.query)
+   const ifExistUser = parameters.linkedinUrl ? await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
+   if (ifExistUser.value.length === 0) {
+      return false
+   } else {
+      return true
    }
 }
-
-checkIfExistOrNot()
