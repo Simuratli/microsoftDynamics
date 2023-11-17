@@ -314,5 +314,5 @@ thead th{
 
 
 .existTable th:last-child{
-    background-color: red;
+    padding-left: 23px;
 }
