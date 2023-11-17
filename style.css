@@ -232,7 +232,7 @@ button:disabled{
 }
 table{
     background-color: #F9FAFF;
-    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 table tr{
@@ -247,11 +247,10 @@ table tr{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    width: 81px;
     line-height: 130%; /* 15.6px */
 } 
 
-thead td{
+thead th{
     color: var(--text-primary, #1E2432);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: 'Segoe UI';
