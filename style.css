@@ -233,6 +233,7 @@ button:disabled{
 table{
     background-color: #F9FAFF;
     border-collapse: collapse;
+    margin-top: 30px;
 }
 
 

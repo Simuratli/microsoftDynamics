@@ -729,7 +729,7 @@ const checkIfExistOrNot = async() => {
          console.log(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"),'inputasdas')
          addValuesToInputFields(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"))
       }
-    
+      showWelcomeMessage()
    }
 }
 
