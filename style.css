@@ -266,7 +266,7 @@ thead th{
     text-transform: uppercase;
 }
 
-.existTable textarea {
+.existTable textarea, .existTable input {
     width: 162px;
     padding: 5px 12px 6px 12px;
 }
