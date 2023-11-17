@@ -156,7 +156,7 @@ function showWelcomeMessage(username) {
    // getAccountsButton.style.display = "block";
    sendAccountsButton.style.display = "block";
    mainCredentialsForm.style.display = 'none'
-   // mainCapture.style.display = 'block'
+   mainCapture.style.display = 'block'
    list.style.visibility = 'visible'
    list.style.position = 'relative'
    list.style.display = 'flex'
@@ -397,19 +397,19 @@ let urlParameters = Object.entries(entries);
 
 
 
-const addValuesToInputFields = (inputfields) => {
-   console.log(inputfields,'inputfields')
+const addValuesToInputFields = () => {
+   const inputfields = document.querySelectorAll(".inputForUser")
    
-   // fieldsForCompanyForms.style.display = 'none'
-   // fieldsForUserForms.style.display = 'none'
+   fieldsForCompanyForms.style.display = 'none'
+   fieldsForUserForms.style.display = 'none'
    
-   // if('companyName' in entries){
-   //    fieldsForCompanyForms.style.display = 'flex'
-   //    fieldsForUserForms.style.display = 'none'
-   // }else{
-   //    fieldsForCompanyForms.style.display = 'none'
-   //    fieldsForUserForms.style.display = 'flex'
-   // }
+   if('companyName' in entries){
+      fieldsForCompanyForms.style.display = 'flex'
+      fieldsForUserForms.style.display = 'none'
+   }else{
+      fieldsForCompanyForms.style.display = 'none'
+      fieldsForUserForms.style.display = 'flex'
+   }
 
 
 
@@ -423,7 +423,7 @@ const addValuesToInputFields = (inputfields) => {
    }
 }
 
-
+addValuesToInputFields()
 
 
 
@@ -626,20 +626,18 @@ const createAccount = async (url, token, method) => {
    headers.append("Prefer", 'odata.include-annotations="*"');
    headers.append("Prefer", "return=representation");
    
-   const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
-
 
    const bodyOfReq = {
-      firstname: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value.split(" ")[0]:  document.querySelector("#mainCapture").querySelector('.userName').value.split(" ")[0],
-      lastname: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value.split(" ")[1] : document.querySelector("#mainCapture").querySelector('.userName').value.split(" ")[1] ,
-      fullname:  ifExistUser ? document.querySelector("#ifExistUser").querySelector('.userName').value : document.querySelector("#mainCapture").querySelector('.userName').value,
-      jobtitle:  ifExistUser ? document.querySelector("#ifExistUser").querySelector('.jobTitle').value : document.querySelector("#mainCapture").querySelector('.jobTitle').value,
-      address1_name: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.location').value :  document.querySelector("#mainCapture").querySelector('.location').value,
+      firstname: document.querySelector('.userName').value.split(" ")[0],
+      lastname:  document.querySelector('.userName').value.split(" ")[1],
+      fullname:  document.querySelector('.userName').value,
+      jobtitle:  document.querySelector('.jobTitle').value,
+      address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid ===parameters.customerId)[0].accountid})`,
-      telephone1: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.phone').value :  document.querySelector("#mainCapture").querySelector('.phone').value,
-      mobilephone: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.tel').value : document.querySelector("#mainCapture").querySelector('.tel').value,
-      emailaddress1: ifExistUser ? document.querySelector("#ifExistUser").querySelector('.email').value : document.querySelector("#mainCapture").querySelector('.email').value,
+      telephone1: document.querySelector('.phone').value,
+      mobilephone: document.querySelector('.tel').value,
+      emailaddress1:document.querySelector('.email').value,
       uds_linkedinusercommentary:document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
@@ -720,18 +718,11 @@ const checkIfExistOrNot = async() => {
    if(currentAccounts.length === 1){
       const parameters = JSON.parse(params.query)
       const ifExistUser = parameters.linkedinUrl ?  await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
-      console.log(ifExistUser,'ifExistUser')
       if(ifExistUser.value.length === 0){
-         ifExistUserTable.style.display = 'none'
-         mainCapture.style.display = 'block'
-         addValuesToInputFields(document.querySelector('#mainCapture').querySelectorAll(".inputForUser"))
+         
       }else{
-         ifExistUserTable.style.display = 'block'
-         mainCapture.style.display = 'none'
-         console.log(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"),'inputasdas')
-         addValuesToInputFields(document.querySelector('#ifExistUser').querySelectorAll(".inputForUser"))
+         
       }
-      showWelcomeMessage()
    }
 }
 
