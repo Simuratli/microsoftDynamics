@@ -241,7 +241,7 @@ table, th, td {
   }
 
 table td{
-    padding: 10px 5px;
+    padding: 5px 10px;
 }
 
 .existTable td:first-child {
