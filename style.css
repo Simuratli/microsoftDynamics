@@ -274,3 +274,27 @@ thead th{
 .existTable td:nth-child(2){
     text-align: center;
 }
+
+.existTable td:nth-child(2) textarea{
+    color: #1A4F95;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
+    border-radius: 6px;
+    border: 1px solid #E8EBFE;
+    background: #FFF;
+}
+
+
+.existTable td:last-child textarea{
+    color: var(--text-secondary, #696D8C);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
+}
