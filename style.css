@@ -309,5 +309,10 @@ thead th{
 
 
 .existTable th:nth-child(2){
+    padding-left: 30px;
+}
+
+
+.existTable th:last-child{
     background-color: red;
 }
