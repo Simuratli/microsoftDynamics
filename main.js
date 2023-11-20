@@ -673,14 +673,16 @@ async function sendDataverse(url, token, callback) {
                if(element.name === key){
                   console.log(element.name,element.value,"forof");
                   element.value = value
-                  
+                  if(element.name === "linkedinUrl"){
+                     if(key==='uds_linkedin' && value){
+                        element.value = value
+                     }else if(key==='uds_salesnavigatoruserurl' && value){
+                        element.value = value
+                     }
+                  }
                }
 
-               if(key==='uds_linkedin' && value){
-                  console.log('uds_linkedin', value)
-               }else if(key==='uds_salesnavigatoruserurl' && value){
-
-               }
+               
             
             }
          });
