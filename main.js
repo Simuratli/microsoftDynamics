@@ -466,30 +466,17 @@ async function sendAccounts(callback) {
    if (!parameters['companyName']) {
       getContacts()
       sendDataverse("contacts", response.accessToken, callback);
-      console.log('hreree')
 
    } else {
-      const companies = await filterBackend(`accounts`, writeTable)
-      const companies2 = await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`)
-      console.log(companies2,'companies2')
-      accounts = companies.value
-
-      if (companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameters.linkedinCompanyUrl)).length !== 0) {
+      const companies =parameters.linkedinCompanyUrl ?  await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) :  await filterBackend(`accounts?$select=uds_salesnavigatorcompanyurl&$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
-         await createCompany(`accounts(${companies.value.filter((company => company.uds_linkedinprofilecompanyurl === parameters.linkedinCompanyUrl))[0].accountid})`, response.accessToken, 'PATCH')
+         await createCompany(`accounts(${companies.value.accountid})`, response.accessToken, 'PATCH')
          message.innerHTML = 'Company updated'
       } else {
-         console.log(companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl)), 'companies.value')
-         if (companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl)).length !== 0) {
-            const accountID = companies.value.filter((company => company.uds_salesnavigatorcompanyurl === parameters.salesCompanyUrl))[0].accountid
-            message.innerHTML = 'Company updating...'
-            await createCompany(`accounts(${accountID})`, response.accessToken, 'PATCH')
-            message.innerHTML = 'Company updated'
-         } else {
-            message.innerHTML = 'Company creating ...'
-            await createCompany("accounts", response.accessToken, 'POST')
-            message.innerHTML = 'Company created'
-         }
+         message.innerHTML = 'Company creating ...'
+         await createCompany("accounts", response.accessToken, 'POST')
+         message.innerHTML = 'Company created'
       }
 
 
@@ -667,22 +654,20 @@ async function sendDataverse(url, token, callback) {
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
 
    if (filtered.value.length !== 0) {
-      console.log("there have company")
       if (filteredcontacts.value.length !== 0) {
-         console.log("there is no company")
          message.innerHTML = 'contact updating... '
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH')
          message.innerHTML = 'Contact Updated'
+         mainCapture.style.display = 'none'
+         ifExistUserTable.style.display = 'block'
+
       } else {
-         console.log("there is no company")
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
          await createAccount('contacts', token, "POST")
          message.innerHTML = 'Contact Created'
 
       }
-
    } else {
-      console.log("there is no company")
       message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany, 'createdCompany')
