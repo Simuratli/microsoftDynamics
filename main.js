@@ -661,6 +661,11 @@ async function sendDataverse(url, token, callback) {
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
+         const existedInputs = document.querySelectorAll(".existed");
+
+         existedInputs.forEach(element => {
+            console.log(element.name,element.value,"forof");
+          });
 
       } else {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
