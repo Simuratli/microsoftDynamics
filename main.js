@@ -663,9 +663,18 @@ async function sendDataverse(url, token, callback) {
          ifExistUserTable.style.display = 'block'
          const existedInputs = document.querySelectorAll(".existed");
 
+
+         const keys = Object.keys(filteredcontacts.value);
+
          existedInputs.forEach(element => {
             console.log(element.name,element.value,"forof");
-          });
+            for (const key of keys) {
+               const value = myObject[key];
+               if(element.name === key){
+                  element.value = value
+               }
+            }
+         });
 
       } else {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
