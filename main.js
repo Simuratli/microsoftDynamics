@@ -671,17 +671,15 @@ async function sendDataverse(url, token, callback) {
                const value = filteredcontacts.value[0][key];
                console.log(key,'noluyo qo')
                if(element.name === key){
-                  console.log(element.name,element.value,"forof");
                   element.value = value
-                  if(element.name === "linkedinUrl"){
-                     if(key==='uds_linkedin' && value){
-                        element.value = value
-                     }else if(key==='uds_salesnavigatoruserurl' && value){
-                        element.value = value
-                     }
+               }
+               if(element.name === "linkedinUrl"){
+                  if(key==='uds_linkedin' && value){
+                     element.value = value
+                  }else if(key==='uds_salesnavigatoruserurl' && value){
+                     element.value = value
                   }
                }
-
                
             
             }
