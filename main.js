@@ -667,10 +667,10 @@ async function sendDataverse(url, token, callback) {
          const keys = Object.keys(filteredcontacts.value);
 
          existedInputs.forEach(element => {
-            console.log(element.name,element.value,"forof");
             for (const key of keys) {
                const value = filteredcontacts.value[key];
                if(element.name === key){
+                  console.log(element.name,element.value,"forof");
                   element.value = value
                }
             }
