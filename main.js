@@ -656,7 +656,7 @@ async function sendDataverse(url, token, callback) {
    if (filtered.value.length !== 0) {
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
-         console.log(filteredcontacts.value[0])
+         console.log(filteredcontacts.value[0],'buradadir efenim')
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH')
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
