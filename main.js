@@ -664,11 +664,11 @@ async function sendDataverse(url, token, callback) {
          const existedInputs = document.querySelectorAll(".existed");
 
 
-         const keys = Object.keys(filteredcontacts.value);
+         const keys = Object.keys(filteredcontacts.value[0]);
 
          existedInputs.forEach(element => {
             for (const key of keys) {
-               const value = filteredcontacts.value[key];
+               const value = filteredcontacts.value[0][key];
                console.log(key,'noluyo qo')
                if(element.name === key){
                   console.log(element.name,element.value,"forof");
