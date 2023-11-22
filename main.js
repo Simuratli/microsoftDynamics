@@ -773,7 +773,7 @@ async function sendDataverse(url, token) {
    const bodyOfReq = await getUserMainRequestObject()
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
       if (filteredcontacts.value.length !== 0) {
