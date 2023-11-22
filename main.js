@@ -498,8 +498,8 @@ const getUserUpdatedRequestObject = async () => {
 
 const updateData = async () =>{
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
-   await sendDataverse("contacts", response.accessToken, callback);
-   
+   await sendDataverse("contacts", response.accessToken);
+
    const parameters = JSON.parse(params.query);
    const bodyOfReq = await getUserUpdatedRequestObject()
    if (!parameters['companyName']) {
