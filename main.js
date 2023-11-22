@@ -752,6 +752,14 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
+   elements.forEach(element => {
+      existedInputs.forEach(existedTableElement => {
+         if(changeRequestedNames(element.name) !== existedTableElement.name){
+            console.log(existedTableElement.value,'test main difference')
+         }
+      });
+   });
+
 }
 
 async function sendDataverse(url, token) {
