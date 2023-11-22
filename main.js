@@ -681,7 +681,7 @@ async function sendDataverse(url, token, callback) {
                   }
                }
 
-               console.log(value,'noluyo qo', document.querySelector('#ifExistUser').document.querySelectorAll('.inputForUser'))
+               console.log(value,'noluyo qo', document.querySelector('.existTable').document.querySelectorAll('.inputForUser'))
             
             }
          });
