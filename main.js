@@ -473,7 +473,7 @@ const getUserUpdatedRequestObject = async () => {
       jobtitle: document.querySelector('.jobTitleUpdated').value,
       address1_name: document.querySelector('.locationUpdated').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === parameters.customerId)[0].accountid})`,
+      'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       telephone1: document.querySelector('.phoneUpdated').value,
       mobilephone: document.querySelector('.telUpdated').value,
       emailaddress1: document.querySelector('.emailUpdated').value,
