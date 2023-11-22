@@ -496,7 +496,7 @@ const getUserUpdatedRequestObject = async () => {
 }
 
 
-const updateData = async () =>{
+const updateData = async () => {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
    const parameters = JSON.parse(params.query);
    const bodyOfReq = await getUserUpdatedRequestObject()
@@ -523,7 +523,7 @@ async function sendAccounts(callback) {
       await sendDataverse("contacts", response.accessToken, callback);
 
    } else {
-      const companies =parameters.linkedinCompanyUrl ?  await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) :  await filterBackend(`accounts?$select=uds_salesnavigatorcompanyurl&$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$select=uds_salesnavigatorcompanyurl&$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
          await createCompany(`accounts(${companies.value.accountid})`, response.accessToken, 'PATCH')
@@ -715,19 +715,38 @@ const getUserMainRequestObject = async () => {
 
 
 
-const updateExistedTableForEditableFields = async (data) =>{
-   const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-   const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
+const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
+   const keys = Object.keys(existedData);
 
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
-         if(elementMain.name === element.name){
+         if (elementMain.name === element.name) {
             element.value = elementMain.value
          }
       });
    });
 
-   
+
+   existedInputs.forEach(element => {
+      for (const key of keys) {
+         const value = filteredcontacts.value[0][key];
+
+         if (element.name === key) {
+            element.value = value
+
+         }
+         if (element.name === "linkedinUrl") {
+            if (key === 'uds_linkedin' && value) {
+               element.value = value
+            } else if (key === 'uds_salesnavigatoruserurl' && value) {
+               element.value = value
+            }
+         }
+
+      }
+   });
+
+
 }
 
 async function sendDataverse(url, token) {
@@ -739,17 +758,24 @@ async function sendDataverse(url, token) {
    if (filtered.value.length !== 0) {
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
-         
+
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
-         
+
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
-         await updateExistedTableForEditableFields()
-         
-         // const existedInputs = document.querySelectorAll(".existed");
-         // const keys = Object.keys(filteredcontacts.value[0]);
+
+         //update exist table after capturing
+         const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+         const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
+         const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+         await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
+         //update exist table after capturing end
+
+
+
+         // 
          // const parameterKeys = Object.keys(parameters);
 
          // console.log(parameters,'noluyo qo', filteredcontacts.value[0])
@@ -770,24 +796,7 @@ async function sendDataverse(url, token) {
 
 
 
-         // existedInputs.forEach(element => {
-         //    for (const key of keys) {
-         //       const value = filteredcontacts.value[0][key];
-               
-         //       if(element.name === key){
-         //          element.value = value
-                  
-         //       }
-         //       if(element.name === "linkedinUrl"){
-         //          if(key==='uds_linkedin' && value){
-         //             element.value = value
-         //          }else if(key==='uds_salesnavigatoruserurl' && value){
-         //             element.value = value
-         //          }
-         //       }
-            
-         //    }
-         // });
+
 
       } else {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
