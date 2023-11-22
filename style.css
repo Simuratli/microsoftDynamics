@@ -318,12 +318,12 @@ thead th{
     padding-left: 23px;
 }
 
-.differentInputMain{
-    background-color: #FFF397;
+.differentInputMain{ 
+    background-color: #FFF397 !important;
 }
 
 .differentInputSide{
-    background-color: #E8EBFE;
+    background-color: #E8EBFE !important;
 }
 
 #updateDataButton, #goToCRMButton{
