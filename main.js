@@ -460,6 +460,52 @@ async function filterBackend(url, callback) {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
    const data = await getDataverse(url, response.accessToken, callback);
    return data
+}
+
+
+const getUserUpdatedRequestObject = async () => {
+   const parameters = JSON.parse(params.query);
+   const bodyOfReq = {
+      firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
+      lastname: document.querySelector('.userNameUpdated').value.split(" ")[1],
+      fullname: document.querySelector('.userNameUpdated').value,
+      jobtitle: document.querySelector('.jobTitleUpdated').value,
+      address1_name: document.querySelector('.locationUpdated').value,
+      // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
+      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === parameters.customerId)[0].accountid})`,
+      telephone1: document.querySelector('.phoneUpdated').value,
+      mobilephone: document.querySelector('.telUpdated').value,
+      emailaddress1: document.querySelector('.emailUpdated').value,
+      uds_linkedinusercommentary: document.querySelector('.commentUpdated').value
+      // uds_linkedin:dataObjectForRequest.uds_linkedin,
+      // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
+   }
+
+
+   if (parameters.linkedinUrl) {
+      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl })
+   }
+
+   if (parameters.salesUrl) {
+      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl })
+   }
+
+
+   return bodyOfReq
+}
+
+
+const updateData = async () =>{
+   const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
+   const parameters = JSON.parse(params.query);
+   const bodyOfReq = await getUserUpdatedRequestObject()
+   if (!parameters['companyName']) {
+      getContacts()
+      const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH',bodyOfReq)
+   } else {
+      console.log("company logic not maked")
+   }
 
 }
 
@@ -487,8 +533,6 @@ async function sendAccounts(callback) {
    sendAccountsButton.style.display = 'none'
    goToCRMButton.style.display = 'block'
    updateDataButton.style.display = 'block'
-
-
 }
 
 
@@ -604,7 +648,7 @@ const createCompany = async (url, token, method) => {
 
 
 
-const createAccount = async (url, token, method) => {
+const createAccount = async (url, token, method, bodyOfReq) => {
    const filtered = await filterBackend(`accounts`, writeTable)
    const parameters = JSON.parse(params.query)
    accounts = filtered.value
@@ -619,7 +663,21 @@ const createAccount = async (url, token, method) => {
    headers.append("Prefer", 'odata.include-annotations="*"');
    headers.append("Prefer", "return=representation");
 
+   const options = {
+      method: method,
+      headers: headers,
+      body: JSON.stringify(bodyOfReq)
+   }
 
+   console.log('GET Request made to Dataverse at: ' + new Date().toString());
+   const response = await fetch(webAPIEndpoint + "/" + url, options)
+   return response
+}
+
+
+
+const getUserMainRequestObject = async () => {
+   const parameters = JSON.parse(params.query);
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
       lastname: document.querySelector('.userName').value.split(" ")[1],
@@ -645,18 +703,14 @@ const createAccount = async (url, token, method) => {
       Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl })
    }
 
-   const options = {
-      method: method,
-      headers: headers,
-      body: JSON.stringify(bodyOfReq)
-   }
 
-   console.log('GET Request made to Dataverse at: ' + new Date().toString());
-   const response = await fetch(webAPIEndpoint + "/" + url, options)
-   return response
+   return bodyOfReq
 }
 
-async function sendDataverse(url, token, callback) {
+async function sendDataverse(url, token) {
+
+
+   const bodyOfReq = await getUserMainRequestObject()
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`, writeTable)
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
@@ -665,7 +719,7 @@ async function sendDataverse(url, token, callback) {
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
          console.log(filteredcontacts.value[0],'buradadir efenim')
-         await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH')
+         await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
@@ -714,7 +768,7 @@ async function sendDataverse(url, token, callback) {
 
       } else {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
-         await createAccount('contacts', token, "POST")
+         await createAccount('contacts', token, "POST", bodyOfReq)
          message.innerHTML = 'Contact Created'
 
       }
@@ -723,7 +777,7 @@ async function sendDataverse(url, token, callback) {
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany, 'createdCompany')
       message.innerHTML = 'Company created'
-      await createAccount('contacts', token, "POST")
+      await createAccount('contacts', token, "POST", bodyOfReq)
       message.innerHTML = 'Contact created'
    }
 }
