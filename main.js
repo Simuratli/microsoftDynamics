@@ -672,6 +672,7 @@ async function sendDataverse(url, token, callback) {
                
                if(element.name === key){
                   element.value = value
+                  console.log(value,'noluyo qo', document.querySelector('.existTable').querySelectorAll('.inputForUser'))
                }
                if(element.name === "linkedinUrl"){
                   if(key==='uds_linkedin' && value){
@@ -681,7 +682,7 @@ async function sendDataverse(url, token, callback) {
                   }
                }
 
-               console.log(value,'noluyo qo', document.querySelector('.existTable').querySelectorAll('.inputForUser'))
+               
             
             }
          });
