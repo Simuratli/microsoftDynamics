@@ -427,7 +427,7 @@ const addValuesToInputFields = () => {
          if(inputfields[i].getAttribute('name') === 'linkedinUrl'){
             if(entries['salesUrl']){
                console.log('iam here')
-               inputfields[i].setAttribute("value", entries[salesUrl])
+               inputfields[i].setAttribute("value", entries['salesUrl'])
             }
          }
          
