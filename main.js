@@ -666,13 +666,15 @@ async function sendDataverse(url, token, callback) {
 
          const keys = Object.keys(filteredcontacts.value[0]);
 
+
+
          existedInputs.forEach(element => {
             for (const key of keys) {
                const value = filteredcontacts.value[0][key];
                
                if(element.name === key){
                   element.value = value
-                  console.log(value,'noluyo qo', document.querySelector('.existTable').querySelectorAll('.inputForUser'))
+                  console.log(parameters,'noluyo qo', document.querySelector('.existTable').querySelectorAll('.inputForUser'))
                }
                if(element.name === "linkedinUrl"){
                   if(key==='uds_linkedin' && value){
@@ -681,8 +683,6 @@ async function sendDataverse(url, token, callback) {
                      element.value = value
                   }
                }
-
-               
             
             }
          });
