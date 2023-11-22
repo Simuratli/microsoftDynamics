@@ -723,15 +723,14 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    const keys = Object.keys(existedData);
 
 
-   console.log(elements,'elements')
-   console.log(elementsMain,'elements elementMain')
-   
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
             element.value = elementMain.value
          }
-
+         if(elementMain.name === 'comment'){
+            console.log(elementMain.value,'burayafbdsf')
+         }
       });
    });
 
