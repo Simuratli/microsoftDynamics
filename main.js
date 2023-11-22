@@ -668,6 +668,18 @@ async function sendDataverse(url, token, callback) {
 
          console.log(parameters,'noluyo qo', filteredcontacts.value[0])
 
+         for (let key of keys) {
+            if(parameters[changeRequestedNames(key)]){
+               if (parameters[changeRequestedNames(key)] !== filteredcontacts.value[0][key]) {
+                  console.log(`Values for key '${key}' are different:`);
+                  console.log(`   Object 1: ${obj1[key]}`);
+                  console.log(`   Object 2: ${obj2[key]}`);
+                }
+            }
+          }
+
+
+
          existedInputs.forEach(element => {
             for (const key of keys) {
                const value = filteredcontacts.value[0][key];
