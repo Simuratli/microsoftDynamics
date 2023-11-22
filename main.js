@@ -498,19 +498,19 @@ const getUserUpdatedRequestObject = async () => {
 
 const updateData = async () =>{
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
-   await sendDataverse("contacts", response.accessToken);
-
    const parameters = JSON.parse(params.query);
    const bodyOfReq = await getUserUpdatedRequestObject()
    if (!parameters['companyName']) {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH',bodyOfReq)
+      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH',bodyOfReq)
    } else {
       console.log("company logic not maked")
    }
 
 }
+
+
 
 async function sendAccounts(callback) {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
