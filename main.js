@@ -503,7 +503,9 @@ const updateData = async () =>{
    if (!parameters['companyName']) {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH',bodyOfReq)
+      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
+
+
    } else {
       console.log("company logic not maked")
    }
@@ -716,59 +718,59 @@ async function sendDataverse(url, token) {
 
    const bodyOfReq = await getUserMainRequestObject()
    const parameters = JSON.parse(params.query)
-   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`, writeTable)
-   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
+   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
-         console.log(filteredcontacts.value[0],'buradadir efenim')
+         
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
+         
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
-         const existedInputs = document.querySelectorAll(".existed");
+         
+         // const existedInputs = document.querySelectorAll(".existed");
+         // const keys = Object.keys(filteredcontacts.value[0]);
+         // const parameterKeys = Object.keys(parameters);
+
+         // console.log(parameters,'noluyo qo', filteredcontacts.value[0])
+
+         // for (let key of parameterKeys) {
+         //    if(parameters[key]){
+         //       if (parameters[key] !== filteredcontacts.value[0][changeRequestedNames(key)]) {
+         //          console.log(`Values for key '${key}' are different:`, changeRequestedNames(key));
+         //          console.log(`   Object 1: ${parameters[key]}`);
+         //          console.log(`   Object 2: ${filteredcontacts.value[0][changeRequestedNames(key)]}`);
+         //        }else{
+         //          console.log('second part error')
+         //        }
+         //    }else{
+         //       console.log('forst part error')
+         //    }
+         //  }
 
 
-         const keys = Object.keys(filteredcontacts.value[0]);
-         const parameterKeys = Object.keys(parameters);
 
-         console.log(parameters,'noluyo qo', filteredcontacts.value[0])
-
-         for (let key of parameterKeys) {
-            if(parameters[key]){
-               if (parameters[key] !== filteredcontacts.value[0][changeRequestedNames(key)]) {
-                  console.log(`Values for key '${key}' are different:`, changeRequestedNames(key));
-                  console.log(`   Object 1: ${parameters[key]}`);
-                  console.log(`   Object 2: ${filteredcontacts.value[0][changeRequestedNames(key)]}`);
-                }else{
-                  console.log('second part error')
-                }
-            }else{
-               console.log('forst part error')
-            }
-          }
-
-
-
-         existedInputs.forEach(element => {
-            for (const key of keys) {
-               const value = filteredcontacts.value[0][key];
+         // existedInputs.forEach(element => {
+         //    for (const key of keys) {
+         //       const value = filteredcontacts.value[0][key];
                
-               if(element.name === key){
-                  element.value = value
+         //       if(element.name === key){
+         //          element.value = value
                   
-               }
-               if(element.name === "linkedinUrl"){
-                  if(key==='uds_linkedin' && value){
-                     element.value = value
-                  }else if(key==='uds_salesnavigatoruserurl' && value){
-                     element.value = value
-                  }
-               }
+         //       }
+         //       if(element.name === "linkedinUrl"){
+         //          if(key==='uds_linkedin' && value){
+         //             element.value = value
+         //          }else if(key==='uds_salesnavigatoruserurl' && value){
+         //             element.value = value
+         //          }
+         //       }
             
-            }
-         });
+         //    }
+         // });
 
       } else {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
@@ -803,14 +805,3 @@ function writeTable(data) {
 }
 
 selectAccount();
-
-
-const checkIfExistOrNot = async () => {
-   const parameters = JSON.parse(params.query)
-   const ifExistUser = parameters.linkedinUrl ? await filterBackend(`contacts?$select=uds_linkedin&$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`, writeTable) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`, writeTable)
-   if (ifExistUser.value.length === 0) {
-      return false
-   } else {
-      return true
-   }
-}
