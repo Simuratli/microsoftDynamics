@@ -672,7 +672,7 @@ async function sendDataverse(url, token, callback) {
          for (let key of parameterKeys) {
             if(parameters[key]){
                if (parameters[key] !== filteredcontacts.value[0][changeRequestedNames(key)]) {
-                  console.log(`Values for key '${key}' are different:`);
+                  console.log(`Values for key '${key}' are different:`, changeRequestedNames(key));
                   console.log(`   Object 1: ${parameters[key]}`);
                   console.log(`   Object 2: ${filteredcontacts.value[0][changeRequestedNames(key)]}`);
                 }else{
