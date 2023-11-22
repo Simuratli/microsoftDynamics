@@ -723,15 +723,12 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-
+   console.log(elementsMain,'elementsMain')
 
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
             element.value = elementMain.value
-         }
-         if(elementMain.name === 'comment'){
-            console.log(elementMain.value,'burayafbdsf')
          }
       });
    });
@@ -758,8 +755,6 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
-
-         console.log(changeRequestedNames(element.name),'tsatatrta',existedTableElement.name)
          if(changeRequestedNames(element.name) === existedTableElement.name){
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
