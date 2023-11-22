@@ -79,6 +79,8 @@ const changeRequestedNames = (name) => {
          return "uds_salesnavigatoruserurl"
       case 'comment':
          return "uds_linkedinusercommentary"
+      case 'tel':
+         return "tel"
       default:
          return "aaa";
    }
@@ -766,10 +768,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
          if(changeRequestedNames(element.name) === existedTableElement.name){
-            console.log(element.name,"------",existedTableElement.name)
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
+               console.log(element.name,"------",existedTableElement.name)
             }else{
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
