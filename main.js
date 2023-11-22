@@ -385,6 +385,7 @@ console.log(urlParams, 'params urlParams')
 console.log(params, 'params')
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
+console.log(urlParameters,'urlParameters')
 // const entries = Object.entries(urlParameters);
 
 // for (const [key, value] of entries) {
@@ -723,7 +724,6 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-   console.log(existedData,'elementsMain',existedInputs)
 
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
