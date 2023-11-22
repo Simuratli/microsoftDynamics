@@ -729,7 +729,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
    existedInputs.forEach(element => {
       for (const key of keys) {
-         const value = filteredcontacts.value[0][key];
+         const value = existedData[key];
 
          if (element.name === key) {
             element.value = value
