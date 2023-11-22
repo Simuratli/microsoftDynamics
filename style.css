@@ -325,3 +325,7 @@ thead th{
 .differentInputSide{
     background-color: #E8EBFE;
 }
+
+#updateDataButton, #goToCRMButton{
+    display: none;
+}

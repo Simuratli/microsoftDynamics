@@ -16,6 +16,10 @@ const list = document.getElementById('list')
 const fieldsForUserForms = document.getElementById('fieldsForUser')
 const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
 const ifExistUserTable = document.getElementById('ifExistUser')
+const goToCRMButton = document.getElementById('goToCRMButton')
+const updateDataButton = document.getElementById('updateDataButton')
+
+
 
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
@@ -465,7 +469,7 @@ async function sendAccounts(callback) {
 
    if (!parameters['companyName']) {
       getContacts()
-      sendDataverse("contacts", response.accessToken, callback);
+      await sendDataverse("contacts", response.accessToken, callback);
 
    } else {
       const companies =parameters.linkedinCompanyUrl ?  await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) :  await filterBackend(`accounts?$select=uds_salesnavigatorcompanyurl&$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
@@ -478,9 +482,13 @@ async function sendAccounts(callback) {
          await createCompany("accounts", response.accessToken, 'POST')
          message.innerHTML = 'Company created'
       }
-
-
    }
+
+   sendAccountsButton.style.display = 'none'
+   goToCRMButton.style.display = 'block'
+   updateDataButton.style.display = 'block'
+
+
 }
 
 
