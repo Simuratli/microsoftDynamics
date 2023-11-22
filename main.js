@@ -727,7 +727,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
          if (elementMain.name === element.name) {
             element.value = elementMain.value
 
-           if(elementMain.name === comment){
+           if(elementMain.name === 'comment'){
             console.log(element,elementMain,'denretaer')
            }
 
