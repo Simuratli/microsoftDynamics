@@ -724,7 +724,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
 
    console.log(elements,'elements')
-   console.log(elementMain,'elements elementMain')
+   console.log(elementsMain,'elements elementMain')
    
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
