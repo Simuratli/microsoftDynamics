@@ -500,11 +500,16 @@ const updateData = async () => {
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
    const parameters = JSON.parse(params.query);
    const bodyOfReq = await getUserUpdatedRequestObject()
+   const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+   const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
+   const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+
+
    if (!parameters['companyName']) {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-
+      updateExistedTableForEditableFields(elements,elementsMain,existedInputs,filteredcontacts.value[0])
 
    } else {
       console.log("company logic not maked")
