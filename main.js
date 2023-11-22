@@ -665,15 +665,16 @@ async function sendDataverse(url, token, callback) {
 
 
          const keys = Object.keys(filteredcontacts.value[0]);
+         const parameterKeys = Object.keys(parameters);
 
          console.log(parameters,'noluyo qo', filteredcontacts.value[0])
 
-         for (let key of keys) {
-            if(parameters[changeRequestedNames(key)]){
-               if (parameters[changeRequestedNames(key)] !== filteredcontacts.value[0][key]) {
+         for (let key of parameterKeys) {
+            if(parameters[key]){
+               if (parameters[key] !== filteredcontacts.value[0][changeRequestedNames(key)]) {
                   console.log(`Values for key '${key}' are different:`);
-                  console.log(`   Object 1: ${obj1[key]}`);
-                  console.log(`   Object 2: ${obj2[key]}`);
+                  console.log(`   Object 1: ${parameters[key]}`);
+                  console.log(`   Object 2: ${filteredcontacts.value[0][changeRequestedNames(key)]}`);
                 }else{
                   console.log('second part error')
                 }
