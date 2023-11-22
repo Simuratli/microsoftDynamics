@@ -771,7 +771,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
-               console.log(element.name,"------",existedTableElement.name)
+               console.log(element.name,":",element.value,"------",existedTableElement.name,":", existedTableElement.value)
             }else{
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
