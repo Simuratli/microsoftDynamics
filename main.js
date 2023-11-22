@@ -727,6 +727,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
          if (elementMain.name === element.name) {
             element.value = elementMain.value
          }
+
+         if(elementsMain.name === 'comment'){
+            console.log(elementsMain.value,'hmmmmcomment')
+         }
       });
    });
 
