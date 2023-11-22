@@ -450,7 +450,7 @@ function getAccounts(callback) {
    })
       .then(response => {
          //filter contacts?$select=name&$filter=contains(name,'Eljan')
-         getDataverse("contacts?$select=uds_linkedin&$filter=contains(uds_linkedin,'https://www.linkedin.com/in/simuratli/')", response.accessToken, callback);
+         getDataverse("contacts?$filter=contains(uds_linkedin,'https://www.linkedin.com/in/simuratli/')", response.accessToken, callback);
       }).catch(error => {
          console.error(error);
       });
@@ -519,7 +519,7 @@ const updateData = async () => {
 
    if (!parameters['companyName']) {
       getContacts()
-      const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$select=uds_salesnavigatoruserurl&$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+      const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
       updateExistedTableForEditableFields(elements,elements,existedInputs,filteredcontacts.value[0])
 
@@ -540,7 +540,7 @@ async function sendAccounts(callback) {
       await sendDataverse("contacts", response.accessToken, callback);
 
    } else {
-      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$select=uds_linkedinprofilecompanyurl&$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$select=uds_salesnavigatorcompanyurl&$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
          await createCompany(`accounts(${companies.value.accountid})`, response.accessToken, 'PATCH')
@@ -782,7 +782,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 async function sendDataverse(url, token) {
    const bodyOfReq = await getUserMainRequestObject()
    const parameters = JSON.parse(params.query)
-   const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
