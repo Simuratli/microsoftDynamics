@@ -669,7 +669,7 @@ async function sendDataverse(url, token, callback) {
          existedInputs.forEach(element => {
             for (const key of keys) {
                const value = filteredcontacts.value[0][key];
-               console.log(key,'noluyo qo')
+               
                if(element.name === key){
                   element.value = value
                }
@@ -680,7 +680,8 @@ async function sendDataverse(url, token, callback) {
                      element.value = value
                   }
                }
-               
+
+               console.log(value,'noluyo qo', document.querySelector('#ifExistUser').document.querySelectorAll('.inputForUser'))
             
             }
          });

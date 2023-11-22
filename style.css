@@ -317,3 +317,11 @@ thead th{
 .existTable th:last-child{
     padding-left: 23px;
 }
+
+.differentInputMain{
+    background-color: #FFF397;
+}
+
+.differentInputSide{
+    background-color: #E8EBFE;
+}
