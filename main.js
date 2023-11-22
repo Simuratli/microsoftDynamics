@@ -465,6 +465,7 @@ async function filterBackend(url, callback) {
 
 const getUserUpdatedRequestObject = async () => {
    const parameters = JSON.parse(params.query);
+   const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
       lastname: document.querySelector('.userNameUpdated').value.split(" ")[1],
@@ -678,6 +679,7 @@ const createAccount = async (url, token, method, bodyOfReq) => {
 
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
+   const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
       lastname: document.querySelector('.userName').value.split(" ")[1],
@@ -685,7 +687,7 @@ const getUserMainRequestObject = async () => {
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-      'parentcustomerid_account@odata.bind': `/accounts(${accounts.filter(account => account.uds_linkedincompanyid === parameters.customerId)[0].accountid})`,
+      'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       telephone1: document.querySelector('.phone').value,
       mobilephone: document.querySelector('.tel').value,
       emailaddress1: document.querySelector('.email').value,
