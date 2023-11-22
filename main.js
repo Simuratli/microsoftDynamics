@@ -713,9 +713,24 @@ const getUserMainRequestObject = async () => {
    return bodyOfReq
 }
 
+
+
+const updateExistedTableForEditableFields = async (data) =>{
+   const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+   const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
+
+   elements.forEach(element => {
+      elementsMain.forEach(elementMain => {
+         if(elementMain.name === element.name){
+            element.value = elementMain.value
+         }
+      });
+   });
+
+   
+}
+
 async function sendDataverse(url, token) {
-
-
    const bodyOfReq = await getUserMainRequestObject()
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$select=uds_linkedincompanyid&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
@@ -730,6 +745,8 @@ async function sendDataverse(url, token) {
          message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
+
+         await updateExistedTableForEditableFields()
          
          // const existedInputs = document.querySelectorAll(".existed");
          // const keys = Object.keys(filteredcontacts.value[0]);
