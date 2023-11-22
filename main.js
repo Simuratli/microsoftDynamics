@@ -400,7 +400,7 @@ console.log(urlParameters,'urlParameters')
 
 
 const addValuesToInputFields = () => {
-   const inputfields = document.querySelectorAll(".inputForUser")
+   const inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
 
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
@@ -416,10 +416,14 @@ const addValuesToInputFields = () => {
 
 
    for (const [key, value] of urlParameters) {
-      console.log(value, 'value')
+      console.log(value, 'value', key)
       for (i = 0; i < inputfields.length; ++i) {
          if (inputfields[i].getAttribute('name') === key) {
             inputfields[i].setAttribute("value", value)
+         }
+
+         if(inputfields[i].getAttribute('name') === "linkedinUrl"){
+            
          }
       }
    }
