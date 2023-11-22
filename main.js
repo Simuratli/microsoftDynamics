@@ -674,7 +674,11 @@ async function sendDataverse(url, token, callback) {
                   console.log(`Values for key '${key}' are different:`);
                   console.log(`   Object 1: ${obj1[key]}`);
                   console.log(`   Object 2: ${obj2[key]}`);
+                }else{
+                  console.log('second part error')
                 }
+            }else{
+               console.log('forst part error')
             }
           }
 
