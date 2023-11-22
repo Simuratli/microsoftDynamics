@@ -77,6 +77,8 @@ const changeRequestedNames = (name) => {
          return "uds_salesnavigatorcompanyurl"
       case 'salesUrl':
          return "uds_salesnavigatoruserurl"
+      case 'comment':
+         return "uds_linkedinusercommentary"
       default:
          return "aaa";
    }
