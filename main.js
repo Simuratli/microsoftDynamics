@@ -728,7 +728,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
             element.value = elementMain.value
 
            if(elementMain.name === 'comment'){
-            console.log(element.value,'denretaer',elementMain.value)
+               console.log(element.value,'denretaer',elementMain.value)
            }
 
          }
@@ -793,7 +793,7 @@ async function sendDataverse(url, token) {
          console.log(filtered,'filtered loook here')
          //update exist table after capturing
          const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-         const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
+         const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
          const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
          await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
          //update exist table after capturing end
