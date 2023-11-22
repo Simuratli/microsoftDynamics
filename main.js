@@ -501,7 +501,6 @@ const updateData = async () => {
    const parameters = JSON.parse(params.query);
    const bodyOfReq = await getUserUpdatedRequestObject()
    const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-   const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
    const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
 
 
