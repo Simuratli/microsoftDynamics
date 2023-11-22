@@ -44,7 +44,7 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 const changeRequestedNames = (name) => {
    switch (name) {
       case 'userName':
-         return 'fullName';
+         return 'fullname';
       case 'jobTitle':
          return 'jobtitle';
       case 'location':
