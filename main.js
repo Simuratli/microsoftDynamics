@@ -56,7 +56,7 @@ const changeRequestedNames = (name) => {
       case 'customer':
          return 'parentcustomerid_account';
       case 'phone':
-         return 'mobilephone';
+         return 'telephone1';
       case 'email':
          return 'emailaddress1';
       case 'linkedinUrl':
@@ -80,7 +80,7 @@ const changeRequestedNames = (name) => {
       case 'comment':
          return "uds_linkedinusercommentary"
       case 'tel':
-         return "tel"
+         return "mobilephone"
       default:
          return "aaa";
    }
