@@ -721,14 +721,16 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-   console.log(elementsMain,elements,'denretaer')
+   
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
             element.value = elementMain.value
+
+            console.log(element.value,elementMain.value,'denretaer')
+
          }
 
-         
       });
    });
 
