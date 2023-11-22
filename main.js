@@ -765,7 +765,7 @@ async function sendDataverse(url, token) {
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
-
+         console.log(filtered,'filtered loook here')
          //update exist table after capturing
          const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
          const elementsMain = document.querySelector('#mainCapture').querySelectorAll(".inputForUser")
