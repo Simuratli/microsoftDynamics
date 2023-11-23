@@ -851,6 +851,8 @@ async function sendDataverse(url, token) {
       const bodyOfReq = await getUserMainRequestObject()
       await createAccount('contacts', token, "POST", bodyOfReq)
       message.innerHTML = 'Contact created'
+      mainCapture.querySelector(".informationBlock").style.display = "none"
+      successMessageIndividual.style.display = 'flex'
    }
 }
 
