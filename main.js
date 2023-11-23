@@ -555,8 +555,7 @@ async function sendAccounts(callback) {
    }
 
    sendAccountsButton.style.display = 'none'
-   goToCRMButton.style.display = 'block'
-   updateDataButton.style.display = 'block'
+   
 }
 
 
@@ -830,7 +829,8 @@ async function sendDataverse(url, token) {
          //  }
 
 
-
+         goToCRMButton.style.display = 'block'
+         updateDataButton.style.display = 'block'
 
 
       } else {
