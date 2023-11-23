@@ -835,6 +835,7 @@ async function sendDataverse(url, token) {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
          await createAccount('contacts', token, "POST", bodyOfReq)
          message.innerHTML = 'Contact Created'
+         mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
       }
    } else {
