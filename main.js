@@ -701,6 +701,7 @@ const createAccount = async (url, token, method, bodyOfReq) => {
 
 
 const getUserMainRequestObject = async () => {
+   console.log('i am making error?')
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const bodyOfReq = {
