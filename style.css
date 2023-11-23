@@ -329,3 +329,19 @@ thead th{
 #updateDataButton, #goToCRMButton{
     display: none;
 }
+
+
+.successMessageIndividual{
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: var(--semantic-success, #80BB5B);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Segoe UI';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 25.2px */
+    text-transform: uppercase;
+}
