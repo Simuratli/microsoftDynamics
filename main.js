@@ -784,7 +784,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 }
 
 async function sendDataverse(url, token) {
-   const bodyOfReq = await getUserMainRequestObject()
+   
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
@@ -793,7 +793,7 @@ async function sendDataverse(url, token) {
       console.log("test company had")
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
-
+         const bodyOfReq = await getUserMainRequestObject()
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
 
          message.innerHTML = 'Contact Updated'
@@ -836,6 +836,7 @@ async function sendDataverse(url, token) {
       } else {
          console.log("test company had 2")
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
+         const bodyOfReq = await getUserMainRequestObject()
          await createAccount('contacts', token, "POST", bodyOfReq)
          message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
@@ -847,6 +848,7 @@ async function sendDataverse(url, token) {
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany, 'createdCompany')
       message.innerHTML = 'Company created'
+      const bodyOfReq = await getUserMainRequestObject()
       await createAccount('contacts', token, "POST", bodyOfReq)
       message.innerHTML = 'Contact created'
    }
