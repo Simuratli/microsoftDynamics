@@ -841,7 +841,7 @@ async function sendDataverse(url, token) {
          message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
-         updateDataButton.style.display = 'none'
+         goToCRMButton.style.display = 'block'
       }
    } else {
       console.log("test company had not")
@@ -854,7 +854,7 @@ async function sendDataverse(url, token) {
       message.innerHTML = 'Contact created'
       mainCapture.querySelector(".informationBlock").style.display = "none"
       successMessageIndividual.style.display = 'flex'
-      updateDataButton.style.display = 'none'
+      goToCRMButton.style.display = 'block'
    }
 }
 
