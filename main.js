@@ -789,6 +789,7 @@ async function sendDataverse(url, token) {
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
+      console.log("test company had")
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
 
@@ -839,6 +840,7 @@ async function sendDataverse(url, token) {
          successMessageIndividual.style.display = 'flex'
       }
    } else {
+      console.log("test company had not")
       message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany, 'createdCompany')
