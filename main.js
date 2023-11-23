@@ -18,7 +18,7 @@ const fieldsForCompanyForms = document.getElementById('fieldsForCompany')
 const ifExistUserTable = document.getElementById('ifExistUser')
 const goToCRMButton = document.getElementById('goToCRMButton')
 const updateDataButton = document.getElementById('updateDataButton')
-
+const successMessageIndividual = document.querySelector('.successMessageIndividual')
 
 
 // inputFields 
@@ -835,7 +835,7 @@ async function sendDataverse(url, token) {
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
          await createAccount('contacts', token, "POST", bodyOfReq)
          message.innerHTML = 'Contact Created'
-
+         successMessageIndividual.style.display = 'flex'
       }
    } else {
       message.innerHTML = '0 company find. You need to create company first'

@@ -332,10 +332,10 @@ thead th{
 
 
 .successMessageIndividual{
+    display: none;
     gap: 10px;
     align-items: center;
     justify-content: center;
-    display: flex;
     color: var(--semantic-success, #80BB5B);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: 'Segoe UI';
