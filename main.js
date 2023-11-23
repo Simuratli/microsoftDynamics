@@ -833,6 +833,7 @@ async function sendDataverse(url, token) {
 
 
       } else {
+         console.log("test company had not")
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
          await createAccount('contacts', token, "POST", bodyOfReq)
          message.innerHTML = 'Contact Created'
