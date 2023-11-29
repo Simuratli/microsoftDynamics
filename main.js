@@ -153,7 +153,7 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 // Called from signIn or selectAccount functions
 function showWelcomeMessage(username) {
-   message.innerHTML = `Welcome ${username}`;
+   // message.innerHTML = `Welcome ${username}`;
    loginWithButtonForm.style.display = "none";
    logoutButton.style.display = "block";
    // getAccountsButton.style.display = "block";
@@ -621,6 +621,7 @@ const createCompanyWithId = async (url, token) => {
 
 
 const createCompany = async (url, token, method) => {
+   console.log(url,'test heredd')
    const parameteres = JSON.parse(params.query)
    console.log(parameteres, 'parameteres')
    const headers = new Headers();
