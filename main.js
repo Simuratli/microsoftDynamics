@@ -420,7 +420,6 @@ const addValuesToInputFields = () => {
 
 
    if(inputfields){
-     
       for (const [key, value] of urlParameters) {
          for (i = 0; i < inputfields.length; ++i) {
             console.log(inputfields[i].getAttribute('name'), 'value deneme', key)
