@@ -432,6 +432,13 @@ const addValuesToInputFields = () => {
                   inputfields[i].setAttribute("value", entries['salesUrl'])
                }
             }
+
+            if(inputfields[i].getAttribute('name') === 'numberOfWorkers'){
+               console.log(entries,'entriestest')
+               // if(entries['salesUrl']){
+               //    inputfields[i].setAttribute("value", entries['salesUrl'])
+               // }
+            }
             
          }
       }
