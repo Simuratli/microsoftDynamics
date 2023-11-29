@@ -435,9 +435,9 @@ const addValuesToInputFields = () => {
 
             if(inputfields[i].getAttribute('name') === 'numberOfWorkers'){
                console.log(entries,'entriestest')
-               // if(entries['salesUrl']){
-               //    inputfields[i].setAttribute("value", entries['salesUrl'])
-               // }
+               if(entries['numberOfWorkers']){
+                  inputfields[i].setAttribute("value", entries['numberOfWorkers'.match(/\d+/g)][0])
+               }
             }
             
          }
