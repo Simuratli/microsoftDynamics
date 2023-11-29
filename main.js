@@ -556,7 +556,7 @@ async function sendAccounts(callback) {
             const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
             const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
             const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
-            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
+            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, companies.value[0])
 
 
             goToCRMButton.style.display = 'block'
@@ -760,7 +760,7 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-
+   console.log()
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
