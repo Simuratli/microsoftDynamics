@@ -420,6 +420,7 @@ const addValuesToInputFields = () => {
 
 
    if(inputfields){
+      console.log(inputfields,'beni test et')
       for (const [key, value] of urlParameters) {
          console.log(value, 'value', key)
          for (i = 0; i < inputfields.length; ++i) {
