@@ -410,11 +410,11 @@ const addValuesToInputFields = () => {
    if ('companyName' in entries) {
       fieldsForCompanyForms.style.display = 'flex'
       fieldsForUserForms.style.display = 'none'
-      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
    } else {
       fieldsForCompanyForms.style.display = 'none'
       fieldsForUserForms.style.display = 'flex'
-      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    }
 
 
