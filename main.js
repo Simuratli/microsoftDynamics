@@ -658,12 +658,12 @@ const createCompany = async (url, token, method) => {
 
    const requestForCreateCompany = {
       uds_linkedincompanyid: parameteres.idOfCompany,
-      name: document.querySelector(".companyName").value,
+      name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
       numberofemployees: 0,
-      uds_geocodes: document.querySelector(".location").value,
-      websiteurl: document.querySelector(".companyUrl").value,
+      uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
+      websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
       uds_linkedinsize: 0,
-      uds_linkedincompanycommentary: document.querySelector(".comment").value,
+      uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
 
    }
 
