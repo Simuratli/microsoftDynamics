@@ -548,7 +548,7 @@ async function sendAccounts(callback) {
       
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
-         await createCompany(`accounts(${companies.value.accountid})`, response.accessToken, 'PATCH')
+         await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
          message.innerHTML = 'Company updated'
       } else {
          message.innerHTML = 'Company creating ...'
