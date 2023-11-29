@@ -556,9 +556,11 @@ async function sendAccounts(callback) {
          
          const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST')
          console.log(createdCompanyResponse,'i am waiting')
-         mainCapture.querySelector(".informationBlock").style.display = "none"
-         successMessageIndividual.style.display = 'flex'
-         goToCRMButton.style.display = 'block'
+         if(createdCompanyResponse.status === 200){
+            mainCapture.querySelector(".informationBlock").style.display = "none"
+            successMessageIndividual.style.display = 'flex'
+            goToCRMButton.style.display = 'block'
+         }
          message.innerHTML = 'Company created'
       }
    }
