@@ -513,14 +513,15 @@ const getUserUpdatedRequestObject = async () => {
 
 
 const updateData = async () => {
-   const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
+   
    const parameters = JSON.parse(params.query);
-   const bodyOfReq = await getUserUpdatedRequestObject()
-   const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-   const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
 
 
    if (!parameters['companyName']) {
+      const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
+      const bodyOfReq = await getUserUpdatedRequestObject()
+      const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+      const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
