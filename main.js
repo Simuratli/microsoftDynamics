@@ -549,11 +549,16 @@ async function sendAccounts(callback) {
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
          const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
-         console.log(createdCompanyResponse,'i am waiting')
+         
          message.innerHTML = 'Company updated'
       } else {
          message.innerHTML = 'Company creating ...'
-         await createCompany("accounts", response.accessToken, 'POST')
+         
+         const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST')
+         console.log(createdCompanyResponse,'i am waiting')
+         mainCapture.querySelector(".informationBlock").style.display = "none"
+         successMessageIndividual.style.display = 'flex'
+         goToCRMButton.style.display = 'block'
          message.innerHTML = 'Company created'
       }
    }
