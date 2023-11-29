@@ -552,6 +552,15 @@ async function sendAccounts(callback) {
          if(createdCompanyResponse.status === 200){
             ifExistCompany.style.display = 'block';
             mainCapture.style.display = 'none'
+            
+            const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
+            const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+            const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
+            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
+
+
+            goToCRMButton.style.display = 'block'
+            updateDataButton.style.display = 'block'
          }
          message.innerHTML = 'Company updated'
       } else {
@@ -820,34 +829,8 @@ async function sendDataverse(url, token) {
          const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
          const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
          await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
-         //update exist table after capturing end
-
-
-
-         // 
-         // const parameterKeys = Object.keys(parameters);
-
-         // console.log(parameters,'noluyo qo', filteredcontacts.value[0])
-
-         // for (let key of parameterKeys) {
-         //    if(parameters[key]){
-         //       if (parameters[key] !== filteredcontacts.value[0][changeRequestedNames(key)]) {
-         //          console.log(`Values for key '${key}' are different:`, changeRequestedNames(key));
-         //          console.log(`   Object 1: ${parameters[key]}`);
-         //          console.log(`   Object 2: ${filteredcontacts.value[0][changeRequestedNames(key)]}`);
-         //        }else{
-         //          console.log('second part error')
-         //        }
-         //    }else{
-         //       console.log('forst part error')
-         //    }
-         //  }
-
-
          goToCRMButton.style.display = 'block'
          updateDataButton.style.display = 'block'
-
-
       } else {
          console.log("test company had 2")
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
