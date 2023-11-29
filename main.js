@@ -544,6 +544,8 @@ async function sendAccounts(callback) {
 
    } else {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      console.log(companies.value,'companies')
+      
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
          await createCompany(`accounts(${companies.value.accountid})`, response.accessToken, 'PATCH')
