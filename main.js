@@ -432,13 +432,6 @@ const addValuesToInputFields = () => {
                   inputfields[i].setAttribute("value", entries['salesUrl'])
                }
             }
-
-            if(inputfields[i].getAttribute('name') === 'numberOfWorkers'){
-               console.log(entries,'entriestest')
-               if(entries['numberOfWorkers']){
-                  inputfields[i].setAttribute("value", entries['numberOfWorkers'.match(/\d+/g)][0])
-               }
-            }
             
          }
       }
@@ -666,7 +659,7 @@ const createCompany = async (url, token, method) => {
    const requestForCreateCompany = {
       uds_linkedincompanyid: parameteres.idOfCompany,
       name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
-      numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value.match(/\d+/g)[0],
+      numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
       uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
       websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
       uds_linkedinsize: 0,
