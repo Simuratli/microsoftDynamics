@@ -139,6 +139,81 @@
       </div>
 
 
+      <div style="display:none" id="ifExistCompany" class="existTable">
+         <img class="personal" src="/assets/person.svg" alt="">
+         <h1 id="message">Eljan Simuratli</h1>
+         <button id="logoutButton" onclick="signOut()" style="display:none;">
+            <img src="/assets/logout.svg" alt="logout">
+         </button>
+         <div class="informationBlock">
+            <img src="/assets/info.svg" alt="Information">
+            <span>Data already exists in the CRM</span>
+         </div>
+
+         <table style="width:100%">
+            <thead>
+               <tr>
+                  <th style="width: 86px"></td>
+                  <th>Linkedin data</td>
+                  <th>CRm data</td>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td >Profile link</td>
+                  <td><input placeholder="Profile link"  class="inputForUser linkedinCompanyUrl linkedinCompanyUrlUpdated" name="linkedinUrl"/></td>
+                  <td><input readonly  class="existed" placeholder="Profile link"  name="linkedinUrl" /></td>
+               </tr>
+               <tr>
+                  <td>Name</td>
+                  <td><input placeholder="Name" class="inputForUser userName userNameUpdated" name="userName"/></td>
+                  <td><input class="existed" readonly placeholder="Name" name="fullname"/></td>
+               </tr>
+               <tr>
+                  <td>Job title</td>
+                  <td><input placeholder="Job title" class="inputForUser jobTitle jobTitleUpdated" name="jobTitle"/></td>
+                  <td><input class="existed" readonly placeholder="Job title" name="jobtitle" /></td>
+               </tr>
+               <tr>
+                  <td>Address</td>
+                  <td><input placeholder="Address"  class="inputForUser location locationUpdated" name="location"/></td>
+                  <td><input  class="existed" readonly placeholder="Address" name="address1_name" /></td>
+               </tr>
+               <tr>
+                  <td>Company</td>
+                  <td><input placeholder="Company" class="inputForUser customer customerUpdated" name="customer" /></td>
+                  <td><input class="existedCustomer" readonly placeholder="Company" name="customer"/></td>
+               </tr>
+               <tr>
+                  <td>Work phone</td>
+                  <td><input placeholder="Work phone" class="inputForUser phone phoneUpdated" name="phone"/></td>
+                  <td><input class="existed" readonly placeholder="Work phone"  name="telephone1"/></td>
+               </tr>
+               <tr>
+                  <td>Personal phone</td>
+                  <td><input placeholder="Personal phone" class="inputForUser tel telUpdated" name="tel"/></td>
+                  <td><input  class="existed" readonly placeholder="Personal phone" name="mobilephone"/></td>
+               </tr>
+               <tr>
+                  <td>Email</td>
+                  <td><input placeholder="Email" class="inputForUser email emailUpdated" name="email"/></td>
+                  <td><input class="existed" readonly placeholder="Email" name="emailaddress1" /></td>
+               </tr>
+               <tr>
+                  <td>Personal Email</td>
+                  <td><input placeholder="Personal Email" class="inputForUser personalEmail personalEmailUpdated" name="personalEmail"/></td>
+                  <td><input class="existed" readonly placeholder="Personal Email" name="emailaddress2" /></td>
+               </tr>
+               <tr>
+                  <td>Comment</td>
+                  <td><textarea placeholder="Comment" class="comment inputForUser commentUpdated" name="comment" ></textarea></td>
+                  <td><textarea placeholder="Comment" class="existed" name="uds_linkedinusercommentary" readonly></textarea></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+
+
 
       <div class="successMessageIndividual">
          <img src="./assets/success.png" alt="">

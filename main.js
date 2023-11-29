@@ -19,7 +19,7 @@ const ifExistUserTable = document.getElementById('ifExistUser')
 const goToCRMButton = document.getElementById('goToCRMButton')
 const updateDataButton = document.getElementById('updateDataButton')
 const successMessageIndividual = document.querySelector('.successMessageIndividual')
-
+const ifExistCompany = document.querySelector("#ifExistCompany")
 
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
@@ -549,7 +549,10 @@ async function sendAccounts(callback) {
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
          const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
-         
+         if(createdCompanyResponse.status === 200){
+            ifExistCompany.style.display = 'block';
+            mainCapture.style.display = 'none'
+         }
          message.innerHTML = 'Company updated'
       } else {
          message.innerHTML = 'Company creating ...'
