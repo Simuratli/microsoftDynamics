@@ -402,7 +402,7 @@ console.log(urlParameters,'urlParameters')
 
 
 const addValuesToInputFields = () => {
-   const inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+   let inputfields = null
 
    fieldsForCompanyForms.style.display = 'none'
    fieldsForUserForms.style.display = 'none'
@@ -410,29 +410,30 @@ const addValuesToInputFields = () => {
    if ('companyName' in entries) {
       fieldsForCompanyForms.style.display = 'flex'
       fieldsForUserForms.style.display = 'none'
+      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    } else {
       fieldsForCompanyForms.style.display = 'none'
       fieldsForUserForms.style.display = 'flex'
+      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
    }
 
 
 
-   for (const [key, value] of urlParameters) {
-      console.log(value, 'value', key)
-      for (i = 0; i < inputfields.length; ++i) {
-         if (inputfields[i].getAttribute('name') === key) {
-            inputfields[i].setAttribute("value", value)
-         }
-
-
-
-         if(inputfields[i].getAttribute('name') === 'linkedinUrl'){
-            if(entries['salesUrl']){
-               console.log('iam here')
-               inputfields[i].setAttribute("value", entries['salesUrl'])
+   if(inputfields){
+      for (const [key, value] of urlParameters) {
+         console.log(value, 'value', key)
+         for (i = 0; i < inputfields.length; ++i) {
+            if (inputfields[i].getAttribute('name') === key) {
+               inputfields[i].setAttribute("value", value)
             }
+            if(inputfields[i].getAttribute('name') === 'linkedinUrl'){
+               if(entries['salesUrl']){
+                  console.log('iam here')
+                  inputfields[i].setAttribute("value", entries['salesUrl'])
+               }
+            }
+            
          }
-         
       }
    }
 }
