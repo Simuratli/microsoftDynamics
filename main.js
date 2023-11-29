@@ -760,7 +760,7 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-   console.log(elements,'locationlocationlocation',elementsMain)
+   console.log(existedInputs,'locationlocationlocation',existedData)
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
