@@ -843,13 +843,21 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
             }
          }
 
+         if (element.name === "linkedinCompanyUrl") {
+            if (key === 'uds_linkedinprofilecompanyurl' && value) {
+               element.value = value
+            } else if (key === 'uds_salesnavigatorcompanyurl' && value) {
+               element.value = value
+            }
+         }
+
+
       }
    });
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
             
          if(changeRequestedNames(element.name) === existedTableElement.name){
-            console.log(changeRequestedNames(element.name),existedTableElement.name,'existedTableElement.name')
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
