@@ -581,7 +581,7 @@ const updateData = async () => {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',requestBodyOfCompany)
-      updateExistedTableForEditableFields(elements,elements,existedInputs,filteredcontacts.value[0])
+      updateExistedTableForEditableFields(elements,elements,existedInputs,companies.value[0])
    }
 
 }
