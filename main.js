@@ -354,11 +354,11 @@ const getRequestBodyOfCompany = async (type) =>{
       }
    
       if (parameters.linkedinCompanyUrl) {
-         Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
+         Object.assign(bodyRequest, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
       }
    
       if (parameters.salesCompanyUrl) {
-         Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
+         Object.assign(bodyRequest, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
       }
 
    }else if(type === "updated"){
@@ -374,11 +374,11 @@ const getRequestBodyOfCompany = async (type) =>{
       }
    
       if (parameters.linkedinCompanyUrl) {
-         Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
+         Object.assign(bodyRequest, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
       }
    
       if (parameters.salesCompanyUrl) {
-         Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
+         Object.assign(bodyRequest, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
       }
    }
 
