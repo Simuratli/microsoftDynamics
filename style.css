@@ -28,7 +28,7 @@ body {
     color: var(--primary-deep-blue, #1A4F95);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Segoe UI;
+    font-family:'Segoe UI' , sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -47,7 +47,7 @@ input{
     outline: none;
     cursor: pointer;
     color: var(--primary-blue-100, #1A4F95);
-    font-family: Segoe UI;
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -74,7 +74,7 @@ input{
 }
 #mainCredentials input,#mainCredentials input::placeholder {
     color: var(--primary-blue-100, #1A4F95);
-    font-family: Segoe UI;
+    font-family:'Segoe UI' , sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -90,7 +90,7 @@ input{
     background: var(--gradients-linear-orange, linear-gradient(270deg, #FF8F3E 4.23%, #FFB178 91.19%));
     color: var(--background-violet-25, #FEFEFF);
     text-align: center;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -112,7 +112,7 @@ button{
     padding: 11px 11px 12px 11px;
     color: var(--background-violet-25, #FEFEFF);
     text-align: center;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat' sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -140,7 +140,7 @@ button:disabled{
     color: var(--primary-deep-blue, #1A4F95);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Segoe UI;
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -154,7 +154,7 @@ button:disabled{
     align-items: center;
     justify-content: center;
     color: #1A4F95;
-    font-family: Segoe UI;
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -171,7 +171,7 @@ button:disabled{
     color: var(--primary-deep-blue, #1A4F95);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Segoe UI;
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -229,7 +229,7 @@ button:disabled{
     color: var(--text-primary, #1E2432);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Segoe UI;
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -272,7 +272,7 @@ button:disabled{
     background: #FFF;
     color: #1A4F95;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family:'Segoe UI';
+    font-family:'Segoe UI' , sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -301,7 +301,7 @@ table td{
 .existTable td:first-child {
     color: var(--text-primary, #1E2432);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -312,7 +312,7 @@ table td{
 thead th{
     color: var(--text-primary, #1E2432);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -332,7 +332,7 @@ thead th{
 .existTable td:nth-child(2) textarea{
     color: #1A4F95;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -347,7 +347,7 @@ thead th{
 .existTable td:last-child textarea{
     color: var(--text-secondary, #696D8C);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -405,7 +405,7 @@ thead th{
     justify-content: center;
     color: var(--semantic-success, #80BB5B);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' , sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
