@@ -45,6 +45,18 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 // tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
 
 
+const url = new URL(window.location.href);
+const urlParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlParams.entries());
+console.log(url, 'params url')
+console.log(urlParams, 'params urlParams')
+console.log(params, 'params')
+let entries = JSON.parse(params.query)
+let urlParameters = Object.entries(entries);
+console.log(urlParameters,'urlParameters')
+const parameters = JSON.parse(params.query);
+
+
 const changeRequestedNames = (name) => {
    switch (name) {
       case 'userName':
@@ -78,7 +90,7 @@ const changeRequestedNames = (name) => {
       case 'salesUrl':
          return "uds_salesnavigatoruserurl"
       case 'comment':
-         return "uds_linkedinusercommentary"
+         return parameters.companyName ? "uds_linkedincompanycommentary" : "uds_linkedinusercommentary"
       case 'tel':
          return "mobilephone"
       default:
@@ -427,15 +439,7 @@ function getTokenPopup(request) {
 // get url parameters and show inside list
 
 
-const url = new URL(window.location.href);
-const urlParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlParams.entries());
-console.log(url, 'params url')
-console.log(urlParams, 'params urlParams')
-console.log(params, 'params')
-let entries = JSON.parse(params.query)
-let urlParameters = Object.entries(entries);
-console.log(urlParameters,'urlParameters')
+
 // const entries = Object.entries(urlParameters);
 
 // for (const [key, value] of entries) {
