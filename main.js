@@ -56,9 +56,7 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-console.log(url, 'params url')
-console.log(urlParams, 'params urlParams')
-console.log(params, 'params')
+
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 const parameters = JSON.parse(params.query)
@@ -131,7 +129,6 @@ function handleInputChange(event) {
    const inputId = event.target.id;
    const inputValue = event.target.value;
 
-   console.log(inputId, inputValue, 'inputValue')
 }
 
 
@@ -204,9 +201,6 @@ function showWelcomeMessage(username) {
 
 
 const updateMsalFunction = () => {
-   // console.log('client',localStorage.getItem("clientIdInput"))
-   // console.log('tenant',localStorage.getItem("tenantIdInput"))
-   // console.log('crm',localStorage.getItem("crmUrlInput"))
    baseUrl = localStorage.getItem("crmUrlInput")
    webAPIEndpoint = localStorage.getItem("crmUrlInput") + "/api/data/v9.2";
    clientId = localStorage.getItem("clientIdInput")
@@ -304,7 +298,6 @@ function selectAccount() {
       console.warn("Multiple accounts detected.");
    } else if (currentAccounts.length === 1) {
       username = currentAccounts[0].username;
-      console.log(currentAccounts, 'currentAccounts')
       showWelcomeMessage(username);
 
    }
@@ -324,9 +317,6 @@ const setup = () => {
 
 
 
-console.log(localStorage.getItem('tenantIdInput'), "tenantIdInput")
-console.log(localStorage.getItem('clientIdInput'), "clientIdInput")
-console.log(localStorage.getItem('crmUrlInput'), "crmUrlInput")
 
 
 if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput') && localStorage.getItem('clientIdInput')) {
@@ -335,10 +325,8 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
 
    if (currentAccounts.length === 0) {
       setup()
-      console.log(currentAccounts, 'allalalala in')
    } else {
       selectAccount()
-      console.log(currentAccounts, 'allalalala out')
    }
 }
 
@@ -346,7 +334,6 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
 // Called by the loginButton
 function signIn() {
 
-   console.log(msalConfig, 'aloye')
 
    myMSALObj.loginPopup({
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
@@ -354,7 +341,6 @@ function signIn() {
       .then(response => {
          if (response !== null) {
             username = response.account.username;
-            console.log(response.account, 'account')
             showWelcomeMessage(username);
          } else {
             selectAccount();
@@ -425,7 +411,6 @@ function signOut() {
       mainWindowRedirectUri: msalConfig.auth.redirectUri
    };
 
-   console.log(logoutRequest, 'logoutRequest')
 
    myMSALObj.logoutPopup(logoutRequest);
 }
@@ -433,7 +418,6 @@ function signOut() {
 // Provides the access token for a request, opening pop-up if necessary.
 // Used by GetAccounts function
 function getTokenPopup(request) {
-   console.log('request', username)
    request.account = myMSALObj.getAccountByUsername(username);
 
    return myMSALObj.acquireTokenSilent(request)
@@ -443,7 +427,6 @@ function getTokenPopup(request) {
             // fallback to interaction when silent call fails
             return myMSALObj.acquireTokenPopup(request)
                .then(tokenResponse => {
-                  console.log(tokenResponse);
                   return tokenResponse;
                }).catch(error => {
                   console.error(error);
@@ -508,7 +491,6 @@ const addValuesToInputFields = () => {
             
             if(inputfields[i].getAttribute('name') === 'linkedinCompanyUrl'){
                if(entries['salesCompanyUrl']){
-                  console.log('elomyfriend',entries)
                   inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
                }
             }
@@ -618,7 +600,6 @@ const updateData = async () => {
       updateExistedTableForEditableFields(elements,elements,existedInputs,filteredcontacts.value[0])
 
    } else {
-      console.log("company logic not maked")
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
@@ -642,7 +623,6 @@ async function sendAccounts(callback) {
 
    } else {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      console.log(companies.value,'companies')
       
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
@@ -666,7 +646,6 @@ async function sendAccounts(callback) {
          message.innerHTML = 'Company creating ...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
          const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST',bodyOfCompany)
-         console.log(createdCompanyResponse,'i am waiting')
          if(createdCompanyResponse.ok){
             mainCapture.querySelector(".informationBlock").style.display = "none"
             successMessageIndividual.style.display = 'flex'
@@ -703,7 +682,6 @@ async function getDataverse(url, token, callback) {
 
    }
 
-   console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
    const response = await fetch(webAPIEndpoint + "/" + url, options);
    const data = response.json()
@@ -733,7 +711,6 @@ const createCompanyWithId = async (url, token) => {
       })
    }
 
-   console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
 
    const response = fetch(webAPIEndpoint + "/" + url, options)
@@ -743,9 +720,7 @@ const createCompanyWithId = async (url, token) => {
 
 
 const createCompany = async (url, token, method,requestBodyOfCompany) => {
-   console.log(url,'test heredd')
    const parameteres = JSON.parse(params.query)
-   console.log(parameteres, 'parameteres')
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
    headers.append("Authorization", bearer);
@@ -764,7 +739,6 @@ const createCompany = async (url, token, method,requestBodyOfCompany) => {
       body: JSON.stringify(requestBodyOfCompany)
    }
 
-   console.log('GET Request made to Dataverse at: ' + new Date().toString());
 
 
    const response = fetch(webAPIEndpoint + "/" + url, options)
@@ -799,7 +773,6 @@ const createAccount = async (url, token, method, bodyOfReq) => {
       body: JSON.stringify(bodyOfReq)
    }
 
-   console.log('GET Request made to Dataverse at: ' + new Date().toString());
    const response = await fetch(webAPIEndpoint + "/" + url, options)
    return response
 }
@@ -807,7 +780,6 @@ const createAccount = async (url, token, method, bodyOfReq) => {
 
 
 const getUserMainRequestObject = async () => {
-   console.log('i am making error?')
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const bodyOfReq = {
@@ -861,7 +833,6 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-   console.log(existedInputs,'locationlocationlocation',elements)
    
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
@@ -875,7 +846,6 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    existedInputs.forEach(element => {
       for (const key of keys) {
          const value = existedData[key];
-         console.log(existedData,'existedData') 
          if (element.name === key) {
             element.value = value
 
@@ -906,7 +876,6 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
-               console.log(element.name,":",element.value,"------",existedTableElement.name,":", existedTableElement.value)
             }else{
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
@@ -924,7 +893,6 @@ async function sendDataverse(url, token) {
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
-      console.log("test company had")
       if (filteredcontacts.value.length !== 0) {
          message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
@@ -934,7 +902,6 @@ async function sendDataverse(url, token) {
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
-         console.log(filtered,'filtered loook here')
          //update exist table after capturing
          const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
          const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
@@ -943,7 +910,6 @@ async function sendDataverse(url, token) {
          goToCRMButton.style.display = 'block'
          updateDataButton.style.display = 'block'
       } else {
-         console.log("test company had 2")
          message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
          await createAccount('contacts', token, "POST", bodyOfReq)
@@ -953,10 +919,8 @@ async function sendDataverse(url, token) {
          goToCRMButton.style.display = 'block'
       }
    } else {
-      console.log("test company had not")
       message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
-      console.log(createdCompany, 'createdCompany')
       message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       await createAccount('contacts', token, "POST", bodyOfReq)
@@ -972,15 +936,7 @@ async function sendDataverse(url, token) {
 
 // Renders the table with data from GetAccounts
 function writeTable(data) {
-   console.log(data, 'dataaa i am back')
-   // if(data.value.some(account=>account.uds_linkedincompanyid === urlParameters['customerId'])){
-   //    console.log('there have company with this id' + urlParameters['customerId'])
-   //    message.innerHTML = 'there have company with this id' + urlParameters['customerId']
-   // }else{
-   //    console.log('0 company find')
-
-   //    message.innerHTML = '0 company find. You need to create company first'
-   // }
+   
 }
 
 selectAccount();
@@ -998,18 +954,13 @@ const goToCrm = async () =>{
    }
 
    if(data.value){
-      console.log(data.value[0])
-      // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn={Entity Name}&id=${data.value[0].accountid}`, "_blank");
 
       if(!parameters["companyName"]){
-         // console.log(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=contact&id=${data.value[0].contactid}`)
          window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=contact&id=${data.value[0].contactid}`, "_blank");
       }else{
          window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=account&id=${data.value[0].accountid}`, "_blank");
-         // console.log(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=account&id=${data.value[0].accountid}`)
       }
 
 
    }
-   // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn={Entity Name}&id={Entity GUID}`, "_blank");
 }
