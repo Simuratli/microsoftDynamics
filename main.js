@@ -476,7 +476,6 @@ const addValuesToInputFields = () => {
    if(inputfields){
       for (const [key, value] of urlParameters) {
          for (i = 0; i < inputfields.length; ++i) {
-            console.log(inputfields[i].getAttribute('name'), 'value deneme', key)
             if (inputfields[i].getAttribute('name') === key) {
                inputfields[i].setAttribute("value", value)
             }
@@ -844,12 +843,11 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
          }
 
          if (element.name === "uds_linkedinprofilecompanyurl") {
-           
             if (key === 'uds_linkedinprofilecompanyurl' && value) {
                console.log(key,'deneme',value)
                element.value = value
             } else if (key === 'uds_salesnavigatorcompanyurl' && value) {
-               console.log(key,'deneme2',value)
+               console.log(key,'deneme2',value,element)
                element.value = value
             }
          }
