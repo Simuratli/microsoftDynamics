@@ -512,7 +512,10 @@ const addValuesToInputFields = () => {
                   inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
                }
             }
-
+            
+            if(inputfields[i].getAttribute('name') === 'lnSize'){
+               inputfields[i].setAttribute("value", Number(value))
+            }
             
             
          }
