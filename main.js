@@ -29,7 +29,7 @@ const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
 const hashedString = CryptoJS.SHA256(originalString).toString();
 
-console.log("lreomget",ChashedString)
+console.log("lreomget",hashedString)
 
 
 let username = "";
