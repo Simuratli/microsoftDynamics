@@ -25,20 +25,13 @@ const ifExistCompany = document.querySelector("#ifExistCompany")
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
 // inputfields end 
-const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
-// Encryption (AES)
-const secretKey = "yourSecretKey";
-const encryptedString = CryptoJS.AES.encrypt(originalString, "nazrin").toString();
+// const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
+// // Encryption (AES)
+// const secretKey = "yourSecretKey";
+// const encryptedString = CryptoJS.AES.encrypt(originalString, "nazrin").toString();
 
 
 
-// Decryption (AES)
-const decryptedBytes = CryptoJS.AES.decrypt(encryptedString, "nazrin");
-const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-
-
-console.log("Original String: ", originalString);
-console.log("Encrypted String:", decryptedString);
 
 
 
@@ -70,7 +63,18 @@ let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 console.log(urlParameters,'urlParameters')
 const parameters = JSON.parse(params.query);
-console.log(parameters,'buraya bi baksans')
+console.log(parameters,test,'buraya bi baksans')
+
+
+// Decryption (AES)
+const decryptedBytes = CryptoJS.AES.decrypt((parameters.test, "secret key 123"));
+const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+
+console.log("Encrypted String:", decryptedString);
+
+
+
 
 const changeRequestedNames = (name) => {
    switch (name) {
