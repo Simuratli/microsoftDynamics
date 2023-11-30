@@ -339,7 +339,7 @@ function signIn() {
 
 const getRequestBodyOfCompany = async (type) =>{
    const parameters = JSON.parse(params.query);
-   const bodyRequest = {}
+   let bodyRequest = {}
 
    if(type === 'main'){
       bodyRequest = {
