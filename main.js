@@ -91,6 +91,8 @@ const changeRequestedNames = (name) => {
          return "uds_salesnavigatoruserurl"
       case 'lnSize':
          return "uds_linkedinsize"
+      case 'linkedinCompanyUrl':
+         return "uds_linkedinprofilecompanyurl"
       case 'comment':
          return parameters.companyName ? "uds_linkedincompanycommentary" : "uds_linkedinusercommentary"
       case 'tel':
