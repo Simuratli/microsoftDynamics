@@ -337,6 +337,54 @@ function signIn() {
 // Shows greeting and enables logoutButton and getAccountsButton
 
 
+const getRequestBodyOfCompany = async (type) =>{
+   const parameters = JSON.parse(params.query);
+   const bodyRequest = {}
+
+   if(type === 'main'){
+      bodyRequest = {
+         uds_linkedincompanyid: parameters.idOfCompany,
+         name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
+         numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
+         uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
+         websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
+         uds_linkedinsize: 0,
+         uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
+   
+      }
+   
+      if (parameters.linkedinCompanyUrl) {
+         Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
+      }
+   
+      if (parameters.salesCompanyUrl) {
+         Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
+      }
+
+   }else if(type === "updated"){
+      bodyRequest = {
+         uds_linkedincompanyid: parameters.idOfCompany,
+         name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value,
+         numberofemployees: document.querySelector('#ifExistCompany').querySelector(".numberofemployeesUpdated").value,
+         uds_geocodes: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value,
+         websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
+         uds_linkedinsize: 0,
+         uds_linkedincompanycommentary: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
+   
+      }
+   
+      if (parameters.linkedinCompanyUrl) {
+         Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
+      }
+   
+      if (parameters.salesCompanyUrl) {
+         Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
+      }
+   }
+
+   return bodyRequest
+}
+
 
 // Called by the logoutButton
 function signOut() {
@@ -531,7 +579,9 @@ const updateData = async () => {
       console.log("company logic not maked")
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
+      const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
+      const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',requestBodyOfCompany)
+      updateExistedTableForEditableFields(elements,elements,existedInputs,filteredcontacts.value[0])
    }
 
 }
@@ -552,7 +602,8 @@ async function sendAccounts(callback) {
       
       if (companies.value.length !== 0) {
          message.innerHTML = 'Company updating...'
-         const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
+         const bodyOfCompany = await getRequestBodyOfCompany('main');
+         const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',bodyOfCompany)
          if(createdCompanyResponse.status === 200){
             ifExistCompany.style.display = 'block';
             mainCapture.style.display = 'none'
@@ -569,8 +620,8 @@ async function sendAccounts(callback) {
          message.innerHTML = 'Company updated'
       } else {
          message.innerHTML = 'Company creating ...'
-         
-         const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST')
+         const bodyOfCompany = await getRequestBodyOfCompany('main');
+         const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST',bodyOfCompany)
          console.log(createdCompanyResponse,'i am waiting')
          if(createdCompanyResponse.status === 200){
             mainCapture.querySelector(".informationBlock").style.display = "none"
@@ -646,7 +697,7 @@ const createCompanyWithId = async (url, token) => {
 }
 
 
-const createCompany = async (url, token, method) => {
+const createCompany = async (url, token, method,requestBodyOfCompany) => {
    console.log(url,'test heredd')
    const parameteres = JSON.parse(params.query)
    console.log(parameteres, 'parameteres')
@@ -660,29 +711,12 @@ const createCompany = async (url, token, method) => {
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", "return=representation");
 
-   const requestForCreateCompany = {
-      uds_linkedincompanyid: parameteres.idOfCompany,
-      name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
-      numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
-      uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
-      websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
-      uds_linkedinsize: 0,
-      uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
-
-   }
-
-   if (parameteres.linkedinCompanyUrl) {
-      Object.assign(requestForCreateCompany, { uds_linkedinprofilecompanyurl: parameteres.linkedinCompanyUrl })
-   }
-
-   if (parameteres.salesCompanyUrl) {
-      Object.assign(requestForCreateCompany, { uds_salesnavigatorcompanyurl: parameteres.salesCompanyUrl })
-   }
+  
 
    const options = {
       method: method,
       headers: headers,
-      body: JSON.stringify(requestForCreateCompany)
+      body: JSON.stringify(requestBodyOfCompany)
    }
 
    console.log('GET Request made to Dataverse at: ' + new Date().toString());
