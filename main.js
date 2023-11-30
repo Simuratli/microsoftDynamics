@@ -348,7 +348,7 @@ const getRequestBodyOfCompany = async (type) =>{
          numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
          uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
          websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
-         uds_linkedinsize: document.querySelector('#fieldsForCompany').querySelector(".lnSize").value,
+         uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value),
          uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
    
       }
@@ -368,7 +368,7 @@ const getRequestBodyOfCompany = async (type) =>{
          numberofemployees: document.querySelector('#ifExistCompany').querySelector(".numberofemployeesUpdated").value,
          uds_geocodes: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value,
          websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
-         uds_linkedinsize: document.querySelector('#ifExistCompany').querySelector(".lnSize").value,
+         uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value),
          uds_linkedincompanycommentary: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
    
       }
