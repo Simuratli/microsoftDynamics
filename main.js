@@ -65,17 +65,27 @@ console.log(urlParameters,'urlParameters')
 const parameters = JSON.parse(params.query);
 console.log(parameters['image'],'papappraprpa')
 
-// // Decryption (AES)
-// const decryptedBytes = CryptoJS.AES.decrypt((parameters.test, "secret key 123"));
-// const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+// // // Decryption (AES)
+// // const decryptedBytes = CryptoJS.AES.decrypt((parameters.test, "secret key 123"));
+// // const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
 
-// console.log("Encrypted String:", decryptedString);
+// // console.log("Encrypted String:", decryptedString);
+// // Decrypt
+// var bytes  = CryptoJS.AES.decrypt("parameters['image']", 'nazrin');
+// var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+// console.log(originalText,'papappraprpa asd',bytes); // 'my message'
+
+// Encrypt
+var ciphertext = CryptoJS.AES.encrypt('https://media.licdn.com/dms/image/C4E0BAQHFY6lQRTW…eta&t=ytr9-HhWwFxRktTQxfEVSGoBRSZYfoIzSyfvq23kD_M', 'nazrin').toString();
+
 // Decrypt
-var bytes  = CryptoJS.AES.decrypt(parameters['image'], 'nazrin');
+var bytes  = CryptoJS.AES.decrypt(ciphertext, 'nazrin');
 var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-console.log(originalText,'papappraprpa asd',bytes); // 'my message'
+console.log(ciphertext,'testtttt');
+console.log(originalText,'testtttt prgii');
 
 
 
