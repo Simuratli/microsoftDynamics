@@ -68,7 +68,6 @@ if(parameters['companyName']){
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'block'
    message.innerHTML = parameters['companyName']
 }else{
-   document.querySelector('#mainImage').src =  '/assets/person.svg'
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'block'
    message.innerHTML = parameters['userName']
