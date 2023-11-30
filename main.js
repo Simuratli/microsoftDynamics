@@ -957,9 +957,9 @@ const goToCrm = async () =>{
 
       if(!parameters["companyName"]){
          console.log(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].fullname}&id=${data.value[0].contactid}`)
-         window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].fullname}&id=${data.value[0].contactid}`, "_blank");
+         // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].fullname}&id=${data.value[0].contactid}`, "_blank");
       }else{
-         window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].name}&id=${data.value[0].accountid}`, "_blank");
+         // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].name}&id=${data.value[0].accountid}`, "_blank");
       }
 
 
