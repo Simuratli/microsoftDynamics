@@ -579,6 +579,8 @@ const updateData = async () => {
       console.log("company logic not maked")
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
+      const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',requestBodyOfCompany)
       updateExistedTableForEditableFields(elements,elements,existedInputs,companies.value[0])
