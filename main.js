@@ -515,6 +515,11 @@ const addValuesToInputFields = () => {
             
             if(inputfields[i].getAttribute('name') === 'lnSize'){
                inputfields[i].setAttribute("value", Number(value))
+               if(isNaN(value)){
+                  inputfields[i].setAttribute("value", 0)
+               }else{
+                  inputfields[i].setAttribute("value", Number(value))
+               }
             }
             
             
