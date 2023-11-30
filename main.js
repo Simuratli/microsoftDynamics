@@ -20,7 +20,7 @@ const goToCRMButton = document.getElementById('goToCRMButton')
 const updateDataButton = document.getElementById('updateDataButton')
 const successMessageIndividual = document.querySelector('.successMessageIndividual')
 const ifExistCompany = document.querySelector("#ifExistCompany")
-
+const mainImage = document.querySelector('#mainImage')
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
@@ -62,30 +62,6 @@ console.log(params, 'params')
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 console.log(urlParameters,'urlParameters')
-const parameters = JSON.parse(params.query);
-console.log(parameters['image'],'papappraprpa')
-
-// // // Decryption (AES)
-// // const decryptedBytes = CryptoJS.AES.decrypt((parameters.test, "secret key 123"));
-// // const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-
-
-// // console.log("Encrypted String:", decryptedString);
-// // Decrypt
-// var bytes  = CryptoJS.AES.decrypt("parameters['image']", 'nazrin');
-// var originalText = bytes.toString(CryptoJS.enc.Utf8);
-
-// console.log(originalText,'papappraprpa asd',bytes); // 'my message'
-
-// Encrypt
-var ciphertext = CryptoJS.AES.encrypt('https://media.licdn.com/dms/image/C4E0BAQHFY6lQRTW…eta&t=ytr9-HhWwFxRktTQxfEVSGoBRSZYfoIzSyfvq23kD_M', 'nazrin').toString();
-
-// Decrypt
-var bytes  = CryptoJS.AES.decrypt(ciphertext, 'nazrin');
-var originalText = bytes.toString(CryptoJS.enc.Utf8);
-
-console.log(ciphertext,'testtttt');
-console.log(originalText,'testtttt prgii');
 
 
 
@@ -488,6 +464,14 @@ function getTokenPopup(request) {
 
 
 const addValuesToInputFields = () => {
+   const parameters = JSON.parse(params.query)
+
+   if(parameters['companyName']){
+      mainImage.src = '/assets/company.svg'
+   }else{
+      mainImage.src = '/assets/person.svg'
+   }
+
    let inputfields = null
 
    fieldsForCompanyForms.style.display = 'none'
