@@ -61,8 +61,15 @@ console.log(urlParams, 'params urlParams')
 console.log(params, 'params')
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
-console.log(urlParameters,'urlParameters')
+const parameters = JSON.parse(params.query)
 
+if(parameters['companyName']){
+   document.querySelector('#mainImage').src =  '/assets/company.svg'
+   console.log(' i am compant page')
+}else{
+   document.querySelector('#mainImage').src =  '/assets/person.svg'
+   console.log(' i am person page')
+}
 
 
 const changeRequestedNames = (name) => {
@@ -464,15 +471,7 @@ function getTokenPopup(request) {
 
 
 const addValuesToInputFields = () => {
-   const parameters = JSON.parse(params.query)
 
-   if(parameters['companyName']){
-      document.querySelector('#mainImage').src =  '/assets/company.svg'
-      console.log(' i am compant page')
-   }else{
-      document.querySelector('#mainImage').src =  '/assets/person.svg'
-      console.log(' i am person page')
-   }
 
    let inputfields = null
 
