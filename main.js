@@ -50,7 +50,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 console.log(url, 'params url')
 console.log(urlParams, 'params urlParams')
-console.log(params, 'params')
+console.log(params.query, 'params')
 let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 console.log(urlParameters,'urlParameters')
