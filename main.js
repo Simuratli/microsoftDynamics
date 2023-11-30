@@ -26,10 +26,20 @@ const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
 // inputfields end 
 
-const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
-const hashedString = CryptoJS.SHA256(originalString).toString();
+// Encryption (AES)
+const secretKey = "yourSecretKey";
+const encryptedString = CryptoJS.AES.encrypt(originalString, "nazrin").toString();
 
-console.log("lreomget",hashedString)
+
+
+// Decryption (AES)
+const decryptedBytes = CryptoJS.AES.decrypt(encryptedString, "nazrin");
+const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+
+console.log("Original String: ", originalString);
+console.log("Encrypted String:", decryptedString);
+
 
 
 let username = "";
