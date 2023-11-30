@@ -644,6 +644,7 @@ async function sendAccounts(callback) {
             mainCapture.querySelector(".informationBlock").style.display = "none"
             successMessageIndividual.style.display = 'flex'
             goToCRMButton.style.display = 'block'
+            goToCRMButton.classList.add = 'goldGoToCrmButton'
          }
          message.innerHTML = 'Company created'
       }
