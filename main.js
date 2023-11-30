@@ -529,6 +529,9 @@ const updateData = async () => {
 
    } else {
       console.log("company logic not maked")
+      const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
+      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH')
    }
 
 }
