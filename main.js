@@ -844,6 +844,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
          }
 
          if (element.name === "linkedinCompanyUrl") {
+            console.log(element.name,key,'deneme')
             if (key === 'uds_linkedinprofilecompanyurl' && value) {
                element.value = value
             } else if (key === 'uds_salesnavigatorcompanyurl' && value) {
