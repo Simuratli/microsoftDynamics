@@ -895,6 +895,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       existedInputs.forEach(existedTableElement => {
             
          if(changeRequestedNames(element.name) === existedTableElement.name){
+           if(element.value){
             if(element.value !== existedTableElement.value){
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
@@ -903,6 +904,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
             }
+           }
          }
       });
    });
