@@ -485,6 +485,10 @@ const addValuesToInputFields = () => {
                   console.log('iam here')
                   inputfields[i].setAttribute("value", entries['salesUrl'])
                }
+
+               if(entries['salesCompanyUrl']){
+                  inputfields[i].setAttribute("value", entries['salesUrl'])
+               }
             }
             
          }
