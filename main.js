@@ -63,7 +63,7 @@ let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 console.log(urlParameters,'urlParameters')
 const parameters = JSON.parse(params.query);
-console.log(parameters,'papappraprpa')
+console.log(parameters['test'],'papappraprpa')
 
 // // Decryption (AES)
 // const decryptedBytes = CryptoJS.AES.decrypt((parameters.test, "secret key 123"));
@@ -71,7 +71,11 @@ console.log(parameters,'papappraprpa')
 
 
 // console.log("Encrypted String:", decryptedString);
+// Decrypt
+// var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+// var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
+// console.log(originalText); // 'my message'
 
 
 
