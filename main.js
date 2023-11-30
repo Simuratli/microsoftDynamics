@@ -26,7 +26,10 @@ const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
 // inputfields end 
 
-console.log("lreomget",CryptoJS.enc.Utf8.parse('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?'))
+const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
+const hashedString = CryptoJS.SHA256(originalString).toString();
+
+console.log("lreomget",ChashedString)
 
 
 let username = "";
