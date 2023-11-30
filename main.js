@@ -72,7 +72,7 @@ console.log(parameters['test'],'papappraprpa')
 
 // console.log("Encrypted String:", decryptedString);
 // Decrypt
-var bytes  = CryptoJS.AES.decrypt(parameters['test'], 'secret key 123');
+var bytes  = CryptoJS.AES.decrypt(parameters['test'], 'nazrin');
 var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
 console.log(originalText,'papappraprpa asd',bytes); // 'my message'
