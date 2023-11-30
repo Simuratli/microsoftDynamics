@@ -64,7 +64,7 @@ const changeRequestedNames = (name) => {
       case 'jobTitle':
          return 'jobtitle';
       case 'location':
-         return 'address1_name';
+         return parameters.companyName ? "uds_geocodes" : 'address1_name';
       case 'customer':
          return 'parentcustomerid_account';
       case 'phone':
@@ -89,6 +89,8 @@ const changeRequestedNames = (name) => {
          return "uds_salesnavigatorcompanyurl"
       case 'salesUrl':
          return "uds_salesnavigatoruserurl"
+      case 'lnSize':
+         return "uds_linkedinsize"
       case 'comment':
          return parameters.companyName ? "uds_linkedincompanycommentary" : "uds_linkedinusercommentary"
       case 'tel':
@@ -805,6 +807,7 @@ const getUserMainRequestObject = async () => {
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
    console.log(existedInputs,'locationlocationlocation',elements)
+   
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
