@@ -66,9 +66,11 @@ const parameters = JSON.parse(params.query)
 if(parameters['companyName']){
    document.querySelector('#mainImage').src =  '/assets/company.svg'
    console.log(' i am compant page')
+   message.innerHTML = parameters['userName']
 }else{
    document.querySelector('#mainImage').src =  '/assets/person.svg'
    console.log(' i am person page')
+   message.innerHTML = parameters['companyName']
 }
 
 
