@@ -25,7 +25,7 @@ const ifExistCompany = document.querySelector("#ifExistCompany")
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
 // inputfields end 
-
+const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
 // Encryption (AES)
 const secretKey = "yourSecretKey";
 const encryptedString = CryptoJS.AES.encrypt(originalString, "nazrin").toString();
