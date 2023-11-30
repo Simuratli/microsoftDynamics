@@ -70,7 +70,7 @@ let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 console.log(urlParameters,'urlParameters')
 const parameters = JSON.parse(params.query);
-
+console.log(parameters,'buraya bi baksans')
 
 const changeRequestedNames = (name) => {
    switch (name) {
