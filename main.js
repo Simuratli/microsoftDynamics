@@ -938,3 +938,21 @@ function writeTable(data) {
 }
 
 selectAccount();
+
+
+const goToCrm = async () =>{
+
+
+   const parameters = JSON.parse(params.query)
+   let data = null
+   if(!parameters["companyName"]){
+      data = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+   }else{
+      data = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+   }
+
+   if(data.value){
+      console.log(data.value[0])
+   }
+   // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn={Entity Name}&id={Entity GUID}`, "_blank");
+}
