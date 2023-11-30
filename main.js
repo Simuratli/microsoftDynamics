@@ -960,6 +960,7 @@ const goToCrm = async () =>{
          // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].fullname}&id=${data.value[0].contactid}`, "_blank");
       }else{
          // window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].name}&id=${data.value[0].accountid}`, "_blank");
+         console.log(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=${data.value[0].name}&id=${data.value[0].accountid}`)
       }
 
 
