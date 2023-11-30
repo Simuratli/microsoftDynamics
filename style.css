@@ -436,4 +436,26 @@ thead th{
 
 #mainImage{
     margin: 30px auto 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+#mainCapture textarea::placeholder{
+    color: #696D8C;
+    font-family: 'Segoe UI',sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+#mainCapture textarea{
+    color: var(--primary-blue-100, #1A4F95);
+    font-family:' Segoe UI', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
