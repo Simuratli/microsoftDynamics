@@ -429,3 +429,7 @@ thead th{
     margin: 0;
     
 }
+
+.personImage, .companyImage{
+    display: none;
+}

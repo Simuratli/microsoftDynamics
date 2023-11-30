@@ -64,12 +64,13 @@ let urlParameters = Object.entries(entries);
 const parameters = JSON.parse(params.query)
 
 if(parameters['companyName']){
-   document.querySelector('#mainImage').src =  '/assets/company.svg'
-   console.log(' i am compant page')
+   document.querySelector('#mainImage').querySelector('.personImage').style.display = 'none'
+   document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'block'
    message.innerHTML = parameters['companyName']
 }else{
    document.querySelector('#mainImage').src =  '/assets/person.svg'
-   console.log(' i am person page')
+   document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'none'
+   document.querySelector('#mainImage').querySelector('.personImage').style.display = 'block'
    message.innerHTML = parameters['userName']
 }
 
