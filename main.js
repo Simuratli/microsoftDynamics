@@ -467,9 +467,11 @@ const addValuesToInputFields = () => {
    const parameters = JSON.parse(params.query)
 
    if(parameters['companyName']){
-      mainImage.src = '/assets/company.svg'
+      document.querySelector('#mainImage').src =  '/assets/company.svg'
+      console.log(' i am compant page')
    }else{
-      mainImage.src = '/assets/person.svg'
+      document.querySelector('#mainImage').src =  '/assets/person.svg'
+      console.log(' i am person page')
    }
 
    let inputfields = null
