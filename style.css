@@ -433,3 +433,7 @@ thead th{
 .personImage, .companyImage{
     display: none;
 }
+
+#mainImage{
+    margin: 30px auto 20px auto;
+}
