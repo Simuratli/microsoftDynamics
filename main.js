@@ -640,7 +640,7 @@ async function sendAccounts(callback) {
          const bodyOfCompany = await getRequestBodyOfCompany('main');
          const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST',bodyOfCompany)
          console.log(createdCompanyResponse,'i am waiting')
-         if(createdCompanyResponse.status === 200){
+         if(createdCompanyResponse.ok){
             mainCapture.querySelector(".informationBlock").style.display = "none"
             successMessageIndividual.style.display = 'flex'
             goToCRMButton.style.display = 'block'
