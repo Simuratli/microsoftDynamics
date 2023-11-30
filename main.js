@@ -26,6 +26,8 @@ const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 
 // inputfields end 
 
+console.log("lreomget",CryptoJS.enc.Utf8.parse('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?'))
+
 
 let username = "";
 let contacts = null;
