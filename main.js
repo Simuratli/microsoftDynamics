@@ -810,14 +810,32 @@ const getUserMainRequestObject = async () => {
       address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
-      telephone1: document.querySelector('.phone').value,
-      mobilephone: document.querySelector('.tel').value,
-      emailaddress1: document.querySelector('.email').value,
-      uds_linkedinusercommentary: document.querySelector('.comment').value
+      // telephone1: document.querySelector('.phone').value,
+      // mobilephone: document.querySelector('.tel').value,
+      // emailaddress1: document.querySelector('.email').value,
+      // uds_linkedinusercommentary: document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
 
+
+   if (document.querySelector('.tel').value) {
+      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value})
+   }
+
+
+
+   if (document.querySelector('.email').value) {
+      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value})
+   }
+
+   if (document.querySelector('.comment').value) {
+      Object.assign(bodyOfReq, { uds_linkedinusercommentary: document.querySelector('.comment').value })
+   }
+
+   if (document.querySelector('.phone').value) {
+      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value })
+   }
 
    if (parameters.linkedinUrl) {
       Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl })
