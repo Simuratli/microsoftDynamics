@@ -625,7 +625,7 @@ async function sendAccounts(callback) {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       
       if (companies.value.length !== 0) {
-         message.innerHTML = 'Company updating...'
+         // message.innerHTML = 'Company updating...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
          const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',bodyOfCompany)
          if(createdCompanyResponse.status === 200){
@@ -641,9 +641,9 @@ async function sendAccounts(callback) {
             goToCRMButton.style.display = 'block'
             updateDataButton.style.display = 'block'
          }
-         message.innerHTML = 'Company updated'
+         // message.innerHTML = 'Company updated'
       } else {
-         message.innerHTML = 'Company creating ...'
+         // message.innerHTML = 'Company creating ...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
          const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST',bodyOfCompany)
          if(createdCompanyResponse.ok){
@@ -652,7 +652,7 @@ async function sendAccounts(callback) {
             goToCRMButton.style.display = 'block'
             goToCRMButton.classList.add('goldGoToCrmButton')
          }
-         message.innerHTML = 'Company created'
+         // message.innerHTML = 'Company created'
       }
    }
 
@@ -693,7 +693,7 @@ async function getDataverse(url, token, callback) {
 const createCompanyWithId = async (url, token) => {
 
    const parameters = JSON.parse(params.query)
-   message.innerHTML = 'Loading...'
+   // message.innerHTML = 'Loading...'
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
    headers.append("Authorization", bearer);
@@ -894,11 +894,11 @@ async function sendDataverse(url, token) {
 
    if (filtered.value.length !== 0) {
       if (filteredcontacts.value.length !== 0) {
-         message.innerHTML = 'contact updating... '
+         // message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
          await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
 
-         message.innerHTML = 'Contact Updated'
+         // message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
@@ -910,10 +910,10 @@ async function sendDataverse(url, token) {
          goToCRMButton.style.display = 'block'
          updateDataButton.style.display = 'block'
       } else {
-         message.innerHTML = 'there have company with this id: ' + parameters.customerId
+         // message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
          await createAccount('contacts', token, "POST", bodyOfReq)
-         message.innerHTML = 'Contact Created'
+         // message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
@@ -921,10 +921,10 @@ async function sendDataverse(url, token) {
    } else {
       message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
-      message.innerHTML = 'Company created'
+      // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       await createAccount('contacts', token, "POST", bodyOfReq)
-      message.innerHTML = 'Contact created'
+      // message.innerHTML = 'Contact created'
       mainCapture.querySelector(".informationBlock").style.display = "none"
       successMessageIndividual.style.display = 'flex'
       goToCRMButton.style.display = 'block'
