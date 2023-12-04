@@ -244,7 +244,7 @@ const updateMsalFunction = () => {
 
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-var urlPattern = /^https:\/\/[a-z0-9-]+\.crm[0-9]*\.dynamics\.com\/$/;
+const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)*dynamics\.com(\/[^\s]*)?$/;
 
 function checkCredentialURLs(e) {
   
