@@ -248,9 +248,14 @@ const updateMsalFunction = () => {
 
 
 function checkCredentialURLs(e) {
-
+   var uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
    switch (e.target.name) {
       case 'clientIdInput':
+         if (uuidPattern.test(e.target.value)) {
+            console.log('Valid UUID!'); // You can replace this with your desired action
+          } else{
+            console.log("Not valid")
+          }
          localStorage.setItem("clientIdInput", e.target.value);
          break;
       case 'tenantIdInput':
