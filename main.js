@@ -357,7 +357,7 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
 
 
    if (currentAccounts.length === 0) {
-      setup()
+      // setup()
    } else {
       selectAccount()
    }
