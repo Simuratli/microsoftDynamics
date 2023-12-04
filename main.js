@@ -904,6 +904,15 @@ const getUserMainRequestObject = async () => {
 }
 
 
+const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
+
+
+inputsForUserDublicateTable.forEach(element => {
+   element.addEventListener("input",()=>{
+      console.log(element.name,element.value,'test me')
+   })
+});
+
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
@@ -967,8 +976,6 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    }else{
       updateDataButton.removeAttribute("disabled")
    }
-   
-
 }
 
 async function sendDataverse(url, token) {
