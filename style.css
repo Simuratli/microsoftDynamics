@@ -485,16 +485,19 @@ thead th{
 .loaderContainer{
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
     display: grid;
     place-content: center;
-    background-color: red;
+    background-color: white;
 }
 .loader {
     width: 55px;
     aspect-ratio: 1;
-    --g1:conic-gradient(from  90deg at 3px  3px ,#0000 90deg,#fff 0);
-    --g2:conic-gradient(from -90deg at 22px 22px,#0000 90deg,#fff 0);
+    --g1:conic-gradient(from  90deg at 3px  3px ,#0000 90deg,#1A4F95 0);
+    --g2:conic-gradient(from -90deg at 22px 22px,#0000 90deg,#1A4F95 0);
     background:var(--g1),var(--g1),var(--g1), var(--g2),var(--g2),var(--g2);
     background-size: 25px 25px;
     background-repeat: no-repeat;
