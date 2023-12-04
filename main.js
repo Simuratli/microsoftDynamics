@@ -852,7 +852,8 @@ const createAccount = async (url, token, method, bodyOfReq) => {
    }
 
    const response = await fetch(webAPIEndpoint + "/" + url, options)
-   return response
+   const data = await response.json()
+   return data
 }
 
 
@@ -1022,9 +1023,7 @@ async function sendDataverse(url, token) {
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
          
-         if(!responseOfAccount.ok){
-            console.log(responseOfAccount.json(),'responseOfAccount exist')
-         }
+            console.log(responseOfAccount,'responseOfAccount exist')
          // message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
