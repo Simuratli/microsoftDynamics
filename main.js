@@ -243,12 +243,12 @@ const updateMsalFunction = () => {
 
 
 }
-
+var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 
 
 function checkCredentialURLs(e) {
-   var uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+  
    switch (e.target.name) {
       case 'clientIdInput':
          localStorage.setItem("clientIdInput", e.target.value);
@@ -262,7 +262,7 @@ function checkCredentialURLs(e) {
    }
 
 
-   if (clientIdInput.value !== '' && uuidPattern.test(clientIdInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
       setupButton.removeAttribute('disabled');
    } else {
       setupButton.setAttribute('disabled', 'true');
