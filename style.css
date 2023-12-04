@@ -488,6 +488,7 @@ thead th{
     position: absolute;
     display: grid;
     place-content: center;
+    background-color: red;
 }
 .loader {
     width: 55px;
