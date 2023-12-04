@@ -1021,7 +1021,10 @@ async function sendDataverse(url, token) {
          // message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
-         console.log(responseOfAccount,'responseOfAccount exist')
+         
+         if(!responseOfAccount.ok){
+            console.log(responseOfAccount.json(),'responseOfAccount exist')
+         }
          // message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
