@@ -24,6 +24,7 @@ const mainImage = document.querySelector('#mainImage')
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 const wentWrongForm = document.querySelector("#wentWrongForm")
+const errorMessageIndividual = document.querySelectorAll(".errorMessageIndividual")
 // inputfields end 
 // const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
 // // Encryption (AES)
@@ -1024,10 +1025,19 @@ async function sendDataverse(url, token) {
          const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
          
             console.log(responseOfAccount,'responseOfAccount exist')
+
+            if(responseOfAccount.error){
+               errorMessageIndividual.style.display = 'flex'
+               errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+            }else{
+               successMessageIndividual.style.display = 'flex'
+               goToCRMButton.style.display = 'block'
+            }
+
+
          // message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
-         successMessageIndividual.style.display = 'flex'
-         goToCRMButton.style.display = 'block'
+         
       }
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
