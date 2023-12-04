@@ -308,28 +308,11 @@ function selectAccount() {
 
 
 const setup = () => {
-
-   
-   myMSALObj.acquireTokenSilent({
-      scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
-   })
-      .then(response => {
-         updateMsalFunction()
-         mainCredentialsForm.style.display = 'none'
-         setupButton.style.display = 'none'
-         loginButton.style.display = 'block'
-         loginWithButtonForm.style.display = 'flex'
-      })
-   .catch(error => {
-         console.error(error);
-         loginWithButtonForm.style.display = 'none'
-         wentWrongForm.style.display = 'block'
-         mainCredentialsForm.style.display = 'none'
-         
-   });
-
-
-   
+   updateMsalFunction()
+   mainCredentialsForm.style.display = 'none'
+   setupButton.style.display = 'none'
+   loginButton.style.display = 'block'
+   loginWithButtonForm.style.display = 'flex'
 }
 
 
@@ -356,6 +339,12 @@ function signIn() {
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
    })
       .then(response => {
+
+         loginWithButtonForm.style.display = 'none'
+         wentWrongForm.style.display = 'none'
+         mainCredentialsForm.style.display  = 'none'
+
+
          if (response !== null) {
             username = response.account.username;
             showWelcomeMessage(username);
@@ -366,7 +355,8 @@ function signIn() {
       .catch(error => {
          console.error(error);
          loginWithButtonForm.style.display = 'none'
-
+         wentWrongForm.style.display = 'block'
+         mainCredentialsForm.style.display  = 'none'
       });
 }
 
