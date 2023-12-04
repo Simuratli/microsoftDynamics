@@ -1004,7 +1004,7 @@ async function sendDataverse(url, token) {
       if (filteredcontacts.value.length !== 0) {
          // message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
-         await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
+         const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
 
          // message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
@@ -1020,7 +1020,8 @@ async function sendDataverse(url, token) {
       } else {
          // message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
-         await createAccount('contacts', token, "POST", bodyOfReq)
+         const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
+         console.log(responseOfAccount,'responseOfAccount exist')
          // message.innerHTML = 'Contact Created'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
@@ -1031,8 +1032,9 @@ async function sendDataverse(url, token) {
       const createdCompany = await createCompanyWithId('accounts', token)
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
-      await createAccount('contacts', token, "POST", bodyOfReq)
+      const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
       // message.innerHTML = 'Contact created'
+      console.log(responseOfAccount,'responseOfAccount notexist')
       mainCapture.querySelector(".informationBlock").style.display = "none"
       successMessageIndividual.style.display = 'flex'
       goToCRMButton.style.display = 'block'
