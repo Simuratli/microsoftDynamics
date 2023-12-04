@@ -126,7 +126,7 @@ const changeRequestedNames = (name) => {
 
 
 const showLoader = async() =>{
-   loader.style.display = 'block'
+   loader.style.display = 'grid'
    setTimeout(() => {
       loader.style.display = 'none'
    }, 1000);
@@ -687,7 +687,7 @@ const updateData = async () => {
 
 
 async function sendAccounts(callback) {
-   loader.style.display = 'block'
+   loader.style.display = 'grid'
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
    const parameters = JSON.parse(params.query)
 
