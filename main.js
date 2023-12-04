@@ -670,7 +670,10 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts.value[0])
+
+      const filteredcontacts2 = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+
+      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts2.value[0])
 
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
