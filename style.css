@@ -137,7 +137,7 @@ button:disabled{
    box-shadow: none;
 }
 
-#loginWithButton{
+#loginWithButton,#wentWrongForm{
     display: none;
     flex-direction: column;
     gap: 30px;
@@ -402,7 +402,7 @@ thead th{
     margin-top: 30px;
 }
 
-#loginWithButton .youtube{
+#loginWithButton .youtube, #wentWrongForm .youtube{
     margin-top: 0;
 }
 
