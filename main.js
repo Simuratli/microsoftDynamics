@@ -256,14 +256,34 @@ function checkCredentialURLs(e) {
             clientIdInput.classList.remove("errorInput")
          }else{
             console.log("not valued")
+           if(e.target.value){
             clientIdInput.classList.add("errorInput")
+           }
          }
          localStorage.setItem("clientIdInput", e.target.value);
          break;
       case 'tenantIdInput':
+         if(clientIdPattern.test(e.target.value)){
+            console.log("valued")
+            tenantIdInput.classList.remove("errorInput")
+         }else{
+            console.log("not valued")
+           if(e.target.value){
+            tenantIdInput.classList.add("errorInput")
+           }
+         }
          localStorage.setItem("tenantIdInput", e.target.value);
          break;
       case 'crmUrlInput':
+         if(clientIdPattern.test(e.target.value)){
+            console.log("valued")
+            crmUrlInput.classList.remove("errorInput")
+         }else{
+            console.log("not valued")
+           if(e.target.value){
+            crmUrlInput.classList.add("errorInput")
+           }
+         }
          localStorage.setItem("crmUrlInput", e.target.value);
          break;
    }
