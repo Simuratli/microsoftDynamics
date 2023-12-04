@@ -245,7 +245,8 @@ const updateMsalFunction = () => {
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 var urlPattern = /^https:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]*)?$/;
-
+var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+var regex = new RegExp(expression);
 
 function checkCredentialURLs(e) {
   
@@ -279,7 +280,7 @@ function checkCredentialURLs(e) {
          localStorage.setItem("tenantIdInput", e.target.value);
          break;
       case 'crmUrlInput':
-         if(urlPattern.test(e.target.value)){
+         if(e.target.value.match(regex)){
             console.log("valued")
             crmUrlInput.classList.remove("errorInput")
          }else{
@@ -295,7 +296,7 @@ function checkCredentialURLs(e) {
    }
 
 
-   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) &&  clientIdPattern.test(tenantIdInput.value) &&  urlPattern.test(crmUrlInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) &&  clientIdPattern.test(tenantIdInput.value) &&  crmUrlInput.value.match(regex)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
       setupButton.removeAttribute('disabled');
    } else {
       setupButton.setAttribute('disabled', 'true');
