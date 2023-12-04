@@ -361,7 +361,9 @@ function signIn() {
       })
       .catch(error => {
          console.log(error.message);
-        
+         if(error.message.includes('user_cancelled')){
+            console.log("CANCELLLED")
+         }
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'block'
          mainCredentialsForm.style.display  = 'none'
