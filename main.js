@@ -310,7 +310,7 @@ function selectAccount() {
 const setup = () => {
 
    
-   myMSALObj.ssoSilent({
+   myMSALObj.acquireTokenSilent({
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
    })
       .then(response => {
