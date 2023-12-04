@@ -244,7 +244,7 @@ const updateMsalFunction = () => {
 
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-const urlPattern =/^https:\/\/[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,}){1,}(\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]*)?$/
+const urlPattern = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
 
 function checkCredentialURLs(e) {
   
