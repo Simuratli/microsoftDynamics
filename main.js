@@ -960,7 +960,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-
+   console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")')
    if(document.querySelectorAll(".differentInputMain").length === 0){
       updateDataButton.setAttribute("disabled",false)
    }else{
