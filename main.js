@@ -363,7 +363,7 @@ function signIn() {
          console.log(error.message);
          if(!error.message.includes('user_cancelled')){
             loginWithButtonForm.style.display = 'none'
-            wentWrongForm.style.display = 'block'
+            wentWrongForm.style.display = 'flex'
             mainCredentialsForm.style.display  = 'none'
          }
       });
