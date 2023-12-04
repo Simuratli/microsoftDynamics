@@ -29,7 +29,7 @@ const wentWrongForm = document.querySelector("#wentWrongForm")
 // // Encryption (AES)
 // const secretKey = "yourSecretKey";
 // const encryptedString = CryptoJS.AES.encrypt(originalString, "nazrin").toString();
-
+const loader = document.querySelector('#loader')
 
 
 
@@ -125,6 +125,14 @@ const changeRequestedNames = (name) => {
 }
 
 
+const showLoader = async() =>{
+   loader.style.display = 'block'
+   setTimeout(() => {
+      loader.style.display = 'none'
+   }, 1000);
+}
+
+
 
 
 const inputElements = document.querySelectorAll('.inputForUser');
@@ -190,6 +198,7 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 // Called from signIn or selectAccount functions
 function showWelcomeMessage(username) {
+   showLoader()
    // message.innerHTML = `Welcome ${username}`;
    loginWithButtonForm.style.display = "none";
    logoutButton.style.display = "block";
@@ -382,7 +391,7 @@ const tryAgain = ()=>{
 
 // Called by the loginButton
 function signIn() {
-
+   showLoader()
 
    myMSALObj.loginPopup({
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
@@ -678,6 +687,7 @@ const updateData = async () => {
 
 
 async function sendAccounts(callback) {
+   loader.style.display = 'block'
    const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] })
    const parameters = JSON.parse(params.query)
 
@@ -721,7 +731,7 @@ async function sendAccounts(callback) {
    }
 
    sendAccountsButton.style.display = 'none'
-   
+   loader.style.display = 'none'
 }
 
 

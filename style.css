@@ -492,6 +492,7 @@ thead th{
     display: grid;
     place-content: center;
     background-color: white;
+    display: none;
 }
 .loader {
     width: 55px;
