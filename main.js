@@ -251,6 +251,11 @@ function checkCredentialURLs(e) {
   
    switch (e.target.name) {
       case 'clientIdInput':
+         if(clientIdPattern.test(e.target.value)){
+            clientIdInput.classList.remove("errorInput")
+         }else{
+            clientIdInput.classList.add("errorInput")
+         }
          localStorage.setItem("clientIdInput", e.target.value);
          break;
       case 'tenantIdInput':
