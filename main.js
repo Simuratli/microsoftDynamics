@@ -959,6 +959,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       });
    });
 
+
+
+   console.log(document.querySelectorAll(".differentInputMain"),'sdfsgfbadlkfgkljahdfhasdfkjhasdjf')
+
 }
 
 async function sendDataverse(url, token) {
