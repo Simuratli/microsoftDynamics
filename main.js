@@ -61,22 +61,22 @@ let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
 const parameters = JSON.parse(params.query)
 
-if(parameters['companyName']){
+if (parameters['companyName']) {
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'block'
    message.innerHTML = parameters['companyName']
    const messages = document.querySelectorAll("#message")
    messages.forEach(mes => {
-      mes.innerHTML =  parameters['companyName'] ? parameters['companyName'] : ""
+      mes.innerHTML = parameters['companyName'] ? parameters['companyName'] : ""
    });
 
-}else{
+} else {
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'block'
    message.innerHTML = parameters['userName']
    const messages = document.querySelectorAll("#message")
    messages.forEach(mes => {
-      mes.innerHTML =  parameters['userName'] ?  parameters['userName'] : ""
+      mes.innerHTML = parameters['userName'] ? parameters['userName'] : ""
    });
 }
 
@@ -125,7 +125,7 @@ const changeRequestedNames = (name) => {
 }
 
 
-const showLoader = async() =>{
+const showLoader = async () => {
    loader.style.display = 'grid'
    setTimeout(() => {
       loader.style.display = 'none'
@@ -262,58 +262,58 @@ const updateMsalFunction = () => {
 
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-var expression =/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)?$/i;
+var expression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)?$/i;
 var regex = new RegExp(expression);
 
 function checkCredentialURLs(e) {
-  
+
    switch (e.target.name) {
       case 'clientIdInput':
-         if(clientIdPattern.test(e.target.value)){
+         if (clientIdPattern.test(e.target.value)) {
             console.log("valued")
             clientIdInput.classList.remove("errorInput")
-         }else{
+         } else {
             console.log("not valued")
-           if(e.target.value){
-            clientIdInput.classList.add("errorInput")
-           }else{
-            clientIdInput.classList.remove("errorInput")
-           }
+            if (e.target.value) {
+               clientIdInput.classList.add("errorInput")
+            } else {
+               clientIdInput.classList.remove("errorInput")
+            }
          }
          localStorage.setItem("clientIdInput", e.target.value);
          break;
       case 'tenantIdInput':
-         if(clientIdPattern.test(e.target.value)){
+         if (clientIdPattern.test(e.target.value)) {
             console.log("valued")
             tenantIdInput.classList.remove("errorInput")
-         }else{
+         } else {
             console.log("not valued")
-           if(e.target.value){
-            tenantIdInput.classList.add("errorInput")
-           }else{
-            tenantIdInput.classList.remove("errorInput")
-           }
+            if (e.target.value) {
+               tenantIdInput.classList.add("errorInput")
+            } else {
+               tenantIdInput.classList.remove("errorInput")
+            }
          }
          localStorage.setItem("tenantIdInput", e.target.value);
          break;
       case 'crmUrlInput':
-         if(e.target.value.match(regex)){
+         if (e.target.value.match(regex)) {
             console.log("valued")
             crmUrlInput.classList.remove("errorInput")
-         }else{
+         } else {
             console.log("not valued")
-           if(e.target.value){
-            crmUrlInput.classList.add("errorInput")
-           }else{
-            crmUrlInput.classList.remove("errorInput")
-           }
+            if (e.target.value) {
+               crmUrlInput.classList.add("errorInput")
+            } else {
+               crmUrlInput.classList.remove("errorInput")
+            }
          }
          localStorage.setItem("crmUrlInput", e.target.value);
          break;
    }
 
 
-   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) &&  clientIdPattern.test(tenantIdInput.value) &&  crmUrlInput.value.match(regex)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex) && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
       setupButton.removeAttribute('disabled');
    } else {
       setupButton.setAttribute('disabled', 'true');
@@ -383,7 +383,7 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
 
 
 
-const tryAgain = ()=>{
+const tryAgain = () => {
    mainCredentialsForm.style.display = 'block'
    wentWrongForm.style.display = 'none'
    setupButton.style.display = 'block'
@@ -400,7 +400,7 @@ function signIn() {
 
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'none'
-         mainCredentialsForm.style.display  = 'none'
+         mainCredentialsForm.style.display = 'none'
 
 
          if (response !== null) {
@@ -412,10 +412,10 @@ function signIn() {
       })
       .catch(error => {
          console.log(error.message);
-         if(!error.message.includes('user_cancelled')){
+         if (!error.message.includes('user_cancelled')) {
             loginWithButtonForm.style.display = 'none'
             wentWrongForm.style.display = 'flex'
-            mainCredentialsForm.style.display  = 'none'
+            mainCredentialsForm.style.display = 'none'
          }
       });
 }
@@ -423,11 +423,11 @@ function signIn() {
 // Shows greeting and enables logoutButton and getAccountsButton
 
 
-const getRequestBodyOfCompany = async (type) =>{
+const getRequestBodyOfCompany = async (type) => {
    const parameters = JSON.parse(params.query);
    let bodyRequest = {}
 
-   if(type === 'main'){
+   if (type === 'main') {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
          name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
@@ -436,18 +436,18 @@ const getRequestBodyOfCompany = async (type) =>{
          websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
          uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value),
          uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
-   
+
       }
-   
+
       if (parameters.linkedinCompanyUrl) {
          Object.assign(bodyRequest, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
       }
-   
+
       if (parameters.salesCompanyUrl) {
          Object.assign(bodyRequest, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
       }
 
-   }else if(type === "updated"){
+   } else if (type === "updated") {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
          name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value,
@@ -456,13 +456,13 @@ const getRequestBodyOfCompany = async (type) =>{
          websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
          uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value),
          uds_linkedincompanycommentary: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
-   
+
       }
-   
+
       if (parameters.linkedinCompanyUrl) {
          Object.assign(bodyRequest, { uds_linkedinprofilecompanyurl: parameters.linkedinCompanyUrl })
       }
-   
+
       if (parameters.salesCompanyUrl) {
          Object.assign(bodyRequest, { uds_salesnavigatorcompanyurl: parameters.salesCompanyUrl })
       }
@@ -548,36 +548,36 @@ const addValuesToInputFields = () => {
 
 
 
-   if(inputfields && urlParameters){
+   if (inputfields && urlParameters) {
       for (const [key, value] of urlParameters) {
          for (i = 0; i < inputfields.length; ++i) {
             if (inputfields[i].getAttribute('name') === key) {
                inputfields[i].setAttribute("value", value)
             }
-            if(inputfields[i].getAttribute('name') === 'linkedinUrl'){
-               if(entries['salesUrl']){
+            if (inputfields[i].getAttribute('name') === 'linkedinUrl') {
+               if (entries['salesUrl']) {
                   inputfields[i].setAttribute("value", entries['salesUrl'])
                }
             }
 
-            
-            
-            if(inputfields[i].getAttribute('name') === 'linkedinCompanyUrl'){
-               if(entries['salesCompanyUrl']){
+
+
+            if (inputfields[i].getAttribute('name') === 'linkedinCompanyUrl') {
+               if (entries['salesCompanyUrl']) {
                   inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
                }
             }
-            
-            if(inputfields[i].getAttribute('name') === 'lnSize'){
+
+            if (inputfields[i].getAttribute('name') === 'lnSize') {
                inputfields[i].setAttribute("value", Number(value))
-               if(isNaN(value)){
+               if (isNaN(value)) {
                   inputfields[i].setAttribute("value", 0)
-               }else{
+               } else {
                   inputfields[i].setAttribute("value", Number(value))
                }
             }
-            
-            
+
+
          }
       }
    }
@@ -658,7 +658,7 @@ const getUserUpdatedRequestObject = async () => {
 
 
 const updateData = async () => {
-   
+
    const parameters = JSON.parse(params.query);
 
 
@@ -670,7 +670,7 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-      updateExistedTableForEditableFields(elements,elements,existedInputs,filteredcontacts.value[0])
+      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts.value[0])
 
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
@@ -678,8 +678,8 @@ const updateData = async () => {
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
-      const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',requestBodyOfCompany)
-      updateExistedTableForEditableFields(elements,elements,existedInputs,companies.value[0])
+      const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
+      updateExistedTableForEditableFields(elements, elements, existedInputs, companies.value[0])
    }
 
 }
@@ -697,15 +697,15 @@ async function sendAccounts(callback) {
 
    } else {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      
+
       if (companies.value.length !== 0) {
          // message.innerHTML = 'Company updating...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
-         const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH',bodyOfCompany)
-         if(createdCompanyResponse.status === 200){
+         const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', bodyOfCompany)
+         if (createdCompanyResponse.status === 200) {
             ifExistCompany.style.display = 'block';
             mainCapture.style.display = 'none'
-            
+
             const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
             const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
             const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
@@ -719,8 +719,8 @@ async function sendAccounts(callback) {
       } else {
          // message.innerHTML = 'Company creating ...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
-         const createdCompanyResponse =  await createCompany("accounts", response.accessToken, 'POST',bodyOfCompany)
-         if(createdCompanyResponse.ok){
+         const createdCompanyResponse = await createCompany("accounts", response.accessToken, 'POST', bodyOfCompany)
+         if (createdCompanyResponse.ok) {
             mainCapture.querySelector(".informationBlock").style.display = "none"
             successMessageIndividual.style.display = 'flex'
             goToCRMButton.style.display = 'block'
@@ -793,7 +793,7 @@ const createCompanyWithId = async (url, token) => {
 }
 
 
-const createCompany = async (url, token, method,requestBodyOfCompany) => {
+const createCompany = async (url, token, method, requestBodyOfCompany) => {
    const parameteres = JSON.parse(params.query)
    const headers = new Headers();
    const bearer = `Bearer ${token}`;
@@ -805,7 +805,7 @@ const createCompany = async (url, token, method,requestBodyOfCompany) => {
    headers.append("Content-Type", "application/json");
    headers.append("Prefer", "return=representation");
 
-  
+
 
    const options = {
       method: method,
@@ -874,13 +874,13 @@ const getUserMainRequestObject = async () => {
 
 
    if (document.querySelector('.tel').value) {
-      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value})
+      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value })
    }
 
 
 
    if (document.querySelector('.email').value) {
-      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value})
+      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value })
    }
 
    if (document.querySelector('.comment').value) {
@@ -907,7 +907,7 @@ const getUserMainRequestObject = async () => {
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
    const keys = Object.keys(existedData);
-   
+
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
@@ -943,14 +943,37 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
       }
    });
+
+
+
+   const obj1Keys = Object.keys(elements).sort();
+   const obj2Keys = Object.keys(existedTableElement).sort();
+
+
+   if (obj1Keys.length !== obj2Keys.length) {
+      console.log(objEqual,'is equal oonbb');
+   } else {
+      const areEqual = obj1Keys.every((key, index) => {
+         const objValue1 = obj1[changeRequestedNames(key)];
+         const objValue2 = obj2[obj2Keys[index]];
+         return objValue1 === objValue2;
+      });
+      if (areEqual) {
+         objEqual = true;
+         console.log(objEqual,'is equal oonbb');
+      } else {
+         console.log(objEqual,'is equal oonbb');
+      }
+   }
+
+
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
-            
-         if(changeRequestedNames(element.name) === existedTableElement.name){
-            if(element.value !== existedTableElement.value){
+         if (changeRequestedNames(element.name) === existedTableElement.name) {
+            if (element.value !== existedTableElement.value) {
                element.classList.add('differentInputMain')
                existedTableElement.classList.add('differentInputSide')
-            }else{
+            } else {
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
             }
@@ -961,7 +984,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 }
 
 async function sendDataverse(url, token) {
-   
+
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
@@ -993,7 +1016,7 @@ async function sendDataverse(url, token) {
          goToCRMButton.style.display = 'block'
       }
    } else {
-      message.innerHTML = '0 company find. You need to create company first'
+      // message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
@@ -1010,28 +1033,28 @@ async function sendDataverse(url, token) {
 
 // Renders the table with data from GetAccounts
 function writeTable(data) {
-   
+
 }
 
 selectAccount();
 
 
-const goToCrm = async () =>{
+const goToCrm = async () => {
 
 
    const parameters = JSON.parse(params.query)
    let data = null
-   if(!parameters["companyName"]){
+   if (!parameters["companyName"]) {
       data = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-   }else{
+   } else {
       data = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
    }
 
-   if(data.value){
+   if (data.value) {
 
-      if(!parameters["companyName"]){
+      if (!parameters["companyName"]) {
          window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=contact&id=${data.value[0].contactid}`, "_blank");
-      }else{
+      } else {
          window.open(`${baseUrl}/main.aspx?pagetype=entityrecord&etn=account&id=${data.value[0].accountid}`, "_blank");
       }
 
