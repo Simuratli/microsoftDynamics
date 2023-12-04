@@ -908,10 +908,17 @@ const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
 
 
 inputsForUserDublicateTable.forEach(element => {
+   
    element.addEventListener("input",()=>{
-      console.log(element.name,element.value,'test me')
+      console.log(element.name,element.value,'test me',document.querySelector(`input[name:${changeRequestedNames(element.name)}]`))
+
    })
+
+
 });
+
+
+
 
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData) => {
