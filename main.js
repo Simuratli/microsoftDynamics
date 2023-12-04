@@ -539,7 +539,7 @@ const addValuesToInputFields = () => {
 
 
 
-   if(inputfields){
+   if(inputfields && urlParameters){
       for (const [key, value] of urlParameters) {
          for (i = 0; i < inputfields.length; ++i) {
             if (inputfields[i].getAttribute('name') === key) {
