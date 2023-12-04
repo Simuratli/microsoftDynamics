@@ -324,6 +324,7 @@ const setup = () => {
          console.error(error);
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'block'
+         mainCredentialsForm.style.display = 'none'
          
    });
 
