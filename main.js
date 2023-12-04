@@ -65,11 +65,19 @@ if(parameters['companyName']){
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'block'
    message.innerHTML = parameters['companyName']
-   console.log(document.querySelectorAll("#message"),'messages')
+   const messages = document.querySelectorAll("#message")
+   messages.forEach(mes => {
+      mes.innerHTML =  parameters['companyName']
+   });
+
 }else{
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'block'
    message.innerHTML = parameters['userName']
+   const messages = document.querySelectorAll("#message")
+   messages.forEach(mes => {
+      mes.innerHTML =  parameters['userName']
+   });
 }
 
 
