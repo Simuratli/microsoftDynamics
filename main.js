@@ -65,6 +65,7 @@ if(parameters['companyName']){
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'block'
    message.innerHTML = parameters['companyName']
+   console.log(document.querySelectorAll("#message"),'messages')
 }else{
    document.querySelector('#mainImage').querySelector('.companyImage').style.display = 'none'
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'block'
