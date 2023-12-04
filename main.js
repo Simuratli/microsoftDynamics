@@ -244,7 +244,7 @@ const updateMsalFunction = () => {
 
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-
+var urlPattern = /^https:\/\/[a-z0-9-]+\.api\.crm\.dynamics\.com$/;
 
 
 function checkCredentialURLs(e) {
@@ -262,7 +262,7 @@ function checkCredentialURLs(e) {
    }
 
 
-   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) &&  clientIdPattern.test(tenantIdInput.value) &&  urlPattern.test(crmUrlInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
       setupButton.removeAttribute('disabled');
    } else {
       setupButton.setAttribute('disabled', 'true');
