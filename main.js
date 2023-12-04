@@ -23,7 +23,7 @@ const ifExistCompany = document.querySelector("#ifExistCompany")
 const mainImage = document.querySelector('#mainImage')
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
-
+const wentWrongForm = document.querySelector("#wentWrongForm")
 // inputfields end 
 // const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
 // // Encryption (AES)
@@ -308,11 +308,27 @@ function selectAccount() {
 
 
 const setup = () => {
-   updateMsalFunction()
-   mainCredentialsForm.style.display = 'none'
-   setupButton.style.display = 'none'
-   loginButton.style.display = 'block'
-   loginWithButtonForm.style.display = 'flex'
+
+   
+   myMSALObj.loginPopup({
+      scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
+   })
+      .then(response => {
+         updateMsalFunction()
+         mainCredentialsForm.style.display = 'none'
+         setupButton.style.display = 'none'
+         loginButton.style.display = 'block'
+         loginWithButtonForm.style.display = 'flex'
+      })
+   .catch(error => {
+         console.error(error);
+         loginWithButtonForm.style.display = 'none'
+         wentWrongForm.style.display = 'block'
+         
+   });
+
+
+   
 }
 
 
@@ -348,6 +364,8 @@ function signIn() {
       })
       .catch(error => {
          console.error(error);
+         loginWithButtonForm.style.display = 'none'
+
       });
 }
 
