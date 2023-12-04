@@ -1024,7 +1024,7 @@ async function sendDataverse(url, token) {
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
          
-            console.log(responseOfAccount,'responseOfAccount exist')
+            console.log(errorMessageIndividual,'responseOfAccount errorMessageIndividual')
 
             if(responseOfAccount.error){
                errorMessageIndividual.style.display = 'flex'
