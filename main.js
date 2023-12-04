@@ -910,7 +910,7 @@ const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
 inputsForUserDublicateTable.forEach(element => {
    
    element.addEventListener("input",()=>{
-      console.log(element.name,element.value,'test me',document.querySelector(`input[name:'${changeRequestedNames(element.name)}']`))
+      console.log(element.name,element.value,'test me',document.querySelector(`input[name='${changeRequestedNames(element.name)}']`))
 
    })
 
