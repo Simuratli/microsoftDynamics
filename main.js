@@ -24,7 +24,7 @@ const mainImage = document.querySelector('#mainImage')
 // inputFields 
 const linkedinCompanyUrlInput = document.querySelector(".linkedinCompanyUrl")
 const wentWrongForm = document.querySelector("#wentWrongForm")
-const errorMessageIndividual = document.querySelectorAll(".errorMessageIndividual")
+const errorMessageIndividual = document.querySelector(".errorMessageIndividual")
 // inputfields end 
 // const originalString = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum";
 // // Encryption (AES)
