@@ -67,7 +67,7 @@ if(parameters['companyName']){
    message.innerHTML = parameters['companyName']
    const messages = document.querySelectorAll("#message")
    messages.forEach(mes => {
-      mes.innerHTML =  parameters['companyName']
+      mes.innerHTML =  parameters['companyName'] ? parameters['companyName'] : ""
    });
 
 }else{
@@ -76,7 +76,7 @@ if(parameters['companyName']){
    message.innerHTML = parameters['userName']
    const messages = document.querySelectorAll("#message")
    messages.forEach(mes => {
-      mes.innerHTML =  parameters['userName']
+      mes.innerHTML =  parameters['userName'] ?  parameters['userName'] : ""
    });
 }
 
