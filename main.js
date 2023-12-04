@@ -360,7 +360,7 @@ function signIn() {
          }
       })
       .catch(error => {
-         console.error(error);
+         console.log(error);
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'block'
          mainCredentialsForm.style.display  = 'none'
