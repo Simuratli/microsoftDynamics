@@ -411,8 +411,12 @@ function signOut() {
       mainWindowRedirectUri: msalConfig.auth.redirectUri
    };
 
-
    myMSALObj.logoutPopup(logoutRequest);
+
+   mainCredentialsForm.style.display = 'none'
+   loginWithButtonForm.style.display = 'block'
+   mainCredentialsForm.style.display = 'none'
+
 }
 
 // Provides the access token for a request, opening pop-up if necessary.
