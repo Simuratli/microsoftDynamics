@@ -258,6 +258,8 @@ function checkCredentialURLs(e) {
             console.log("not valued")
            if(e.target.value){
             clientIdInput.classList.add("errorInput")
+           }else{
+            clientIdInput.classList.remove("errorInput")
            }
          }
          localStorage.setItem("clientIdInput", e.target.value);
@@ -270,6 +272,8 @@ function checkCredentialURLs(e) {
             console.log("not valued")
            if(e.target.value){
             tenantIdInput.classList.add("errorInput")
+           }else{
+            tenantIdInput.classList.remove("errorInput")
            }
          }
          localStorage.setItem("tenantIdInput", e.target.value);
@@ -282,6 +286,8 @@ function checkCredentialURLs(e) {
             console.log("not valued")
            if(e.target.value){
             crmUrlInput.classList.add("errorInput")
+           }else{
+            crmUrlInput.classList.remove("errorInput")
            }
          }
          localStorage.setItem("crmUrlInput", e.target.value);
