@@ -412,8 +412,11 @@ thead th{
 }
 
 
+.errorMessageIndividual{
+    color: #AB0B23 !important;
+}
 .errorMessageIndividual span{
-    color: #AB0B23;
+    color: #AB0B23 !important;
 }
 
 #loginWithButton .youtube, #wentWrongForm .youtube{
