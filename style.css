@@ -55,7 +55,6 @@ input{
     border: 1px solid #696D8C;
     background: #FFF;
     outline: none;
-    cursor: pointer;
     color: var(--primary-blue-100, #1A4F95);
     font-family: 'Segoe UI' , sans-serif;
     font-size: 16px;
