@@ -331,6 +331,12 @@ if (localStorage.getItem('tenantIdInput') && localStorage.getItem('crmUrlInput')
 }
 
 
+
+const tryAgain = ()=>{
+   mainCredentialsForm.style.display = 'block'
+   wentWrongForm.style.display = 'none'
+}
+
 // Called by the loginButton
 function signIn() {
 
