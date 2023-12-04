@@ -251,11 +251,6 @@ function checkCredentialURLs(e) {
    var uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
    switch (e.target.name) {
       case 'clientIdInput':
-         if (uuidPattern.test(e.target.value)) {
-            console.log('Valid UUID!'); // You can replace this with your desired action
-          } else{
-            console.log("Not valid")
-          }
          localStorage.setItem("clientIdInput", e.target.value);
          break;
       case 'tenantIdInput':
@@ -267,7 +262,7 @@ function checkCredentialURLs(e) {
    }
 
 
-   if (clientIdInput.value !== '' && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdInput.value !== '' && uuidPattern.test(clientIdInput.value)  && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
       setupButton.removeAttribute('disabled');
    } else {
       setupButton.setAttribute('disabled', 'true');
