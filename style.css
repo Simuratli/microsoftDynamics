@@ -113,6 +113,13 @@ input{
     box-shadow: none;
 }
 
+
+#updateDataButton:disabled{
+    background: #696D8C;
+    box-shadow: none;
+    cursor: no-drop;
+}
+
 button{
     border-radius: 5px;
     background: var(--gradients-linear-orange, linear-gradient(270deg, #FF8F3E 4.23%, #FFB178 91.19%));
@@ -368,6 +375,8 @@ thead th{
 #updateDataButton, #goToCRMButton{
     display: none;
 }
+
+
 
 
 #goToCRMButton{
