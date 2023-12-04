@@ -244,7 +244,8 @@ const updateMsalFunction = () => {
 
 }
 var clientIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-const urlPattern = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+var urlPattern = /^https:\/\/[a-z0-9-]+\.api\.crm\.dynamics\.com$/;
+
 
 function checkCredentialURLs(e) {
   
@@ -278,7 +279,7 @@ function checkCredentialURLs(e) {
          localStorage.setItem("tenantIdInput", e.target.value);
          break;
       case 'crmUrlInput':
-         if(clientIdPattern.test(e.target.value)){
+         if(urlPattern.test(e.target.value)){
             console.log("valued")
             crmUrlInput.classList.remove("errorInput")
          }else{
