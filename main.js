@@ -917,7 +917,7 @@ const getUserMainRequestObject = async () => {
 const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
 
 
-const updateButtonEnableDisable = () =>{
+const updateButtonEnableDisable = (element) =>{
    const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
      
    if(element.value === existedValue){
@@ -932,8 +932,8 @@ const updateButtonEnableDisable = () =>{
 
 inputsForUserDublicateTable.forEach(element => {
    
-   element.addEventListener("input",updateButtonEnableDisable())
-   element.addEventListener("load",updateButtonEnableDisable())
+   element.addEventListener("input",updateButtonEnableDisable(element))
+   element.addEventListener("load",updateButtonEnableDisable(element))
 });
 
 
