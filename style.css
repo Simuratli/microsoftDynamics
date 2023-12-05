@@ -109,8 +109,16 @@ input{
 }
 
 #setupButton:disabled{
-    background: #696D8C;
     box-shadow: none;
+    border-radius: 5px;
+    background: var(--background-violet-100, #E8EBFE);
+    color: var(--text-secondary, #696D8C);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
 
@@ -118,6 +126,16 @@ input{
     background: #696D8C;
     box-shadow: none;
     cursor: no-drop;
+    box-shadow: none;
+    border-radius: 5px;
+    background: var(--background-violet-100, #E8EBFE);
+    color: var(--text-secondary, #696D8C);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
 button{
@@ -142,6 +160,16 @@ button:disabled{
    background: #696D8C;
    cursor: no-drop;
    box-shadow: none;
+   box-shadow: none;
+   border-radius: 5px;
+   background: var(--background-violet-100, #E8EBFE);
+   color: var(--text-secondary, #696D8C);
+   text-align: center;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 600;
+   line-height: normal;
 }
 
 #loginWithButton,#wentWrongForm{
