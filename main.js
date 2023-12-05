@@ -1029,14 +1029,16 @@ async function sendDataverse(url, token) {
             if(responseOfAccount.error){
                errorMessageIndividual.style.display = 'flex'
                errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+               sendAccountsButton.style.display = 'block'
             }else{
                successMessageIndividual.style.display = 'flex'
                goToCRMButton.style.display = 'block'
+               mainCapture.querySelector(".informationBlock").style.display = "none"
             }
 
 
          // message.innerHTML = 'Contact Created'
-         mainCapture.querySelector(".informationBlock").style.display = "none"
+        
          
       }
    } else {
@@ -1047,9 +1049,22 @@ async function sendDataverse(url, token) {
       const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
       // message.innerHTML = 'Contact created'
       console.log(responseOfAccount,'responseOfAccount notexist')
-      mainCapture.querySelector(".informationBlock").style.display = "none"
-      successMessageIndividual.style.display = 'flex'
-      goToCRMButton.style.display = 'block'
+      // mainCapture.querySelector(".informationBlock").style.display = "none"
+      // successMessageIndividual.style.display = 'flex'
+      // goToCRMButton.style.display = 'block'
+
+
+      if(responseOfAccount.error){
+         errorMessageIndividual.style.display = 'flex'
+         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+         sendAccountsButton.style.display = 'block'
+      }else{
+         successMessageIndividual.style.display = 'flex'
+         goToCRMButton.style.display = 'block'
+         mainCapture.querySelector(".informationBlock").style.display = "none"
+      }
+
+
    }
 }
 
