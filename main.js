@@ -863,7 +863,7 @@ const getUserMainRequestObject = async () => {
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname: document.querySelector('.userName').value.split(" ")[1],
+      lastname: document.querySelector('.userName').value.split(" ").shift().join(" "),
       fullname: document.querySelector('.userName').value,
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
