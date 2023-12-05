@@ -989,14 +989,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
                }
                
             } else {
-               if(addColor !== "noColor"){
-                  element.classList.remove('differentInputMain')
-                  existedTableElement.classList.remove('differentInputSide')
-               }else{
-                  element.classList.remove('blackText')
-                  existedTableElement.classList.remove('noChange')
-               }
-               
+               element.classList.remove('differentInputMain')
+               existedTableElement.classList.remove('differentInputSide')
+               element.classList.remove('blackText')
+               existedTableElement.classList.remove('noChange')
             }
          }
       });
