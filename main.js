@@ -199,6 +199,7 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 // Called from signIn or selectAccount functions
 function showWelcomeMessage(username) {
+   console.log('are you working? showWelcomeMessage')
    showLoader()
    // message.innerHTML = `Welcome ${username}`;
    loginWithButtonForm.style.display = "none";
@@ -360,6 +361,7 @@ function selectAccount() {
 
 
 const setup = () => {
+   console.log('are you working? setup')
    updateMsalFunction()
    mainCredentialsForm.style.display = 'none'
    setupButton.style.display = 'none'
@@ -483,7 +485,7 @@ function signOut() {
 
    myMSALObj.logoutPopup(logoutRequest);
 
-   mainCredentialsForm.style.display = 'block'
+   mainCredentialsForm.style.display = 'flex'
    loginWithButtonForm.style.display = 'none'
 
 }
