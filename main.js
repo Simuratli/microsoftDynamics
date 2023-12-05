@@ -720,6 +720,7 @@ async function sendAccounts(callback) {
 
             goToCRMButton.style.display = 'block'
             updateDataButton.style.display = 'block'
+            sendAccountsButton.style.display = 'none'
          }
          // message.innerHTML = 'Company updated'
       } else {
@@ -731,6 +732,7 @@ async function sendAccounts(callback) {
             successMessageIndividual.style.display = 'flex'
             goToCRMButton.style.display = 'block'
             goToCRMButton.classList.add('goldGoToCrmButton')
+            sendAccountsButton.style.display = 'none'
          }
          // message.innerHTML = 'Company created'
       }
