@@ -931,7 +931,7 @@ inputsForUserDublicateTable.forEach(element => {
 
 
 
-const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData, whichPart) => {
+const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData, wichPart) => {
    const keys = Object.keys(existedData);
 
    elements.forEach(element => {
@@ -975,17 +975,11 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
             if (element.value !== existedTableElement.value) {
-               if(whichPart !== 'noColor'){
-                  element.classList.add('differentInputMain')
-                  existedTableElement.classList.add('differentInputSide')
-               }else{
-                  element.classList.add('blackText')
-                  existedTableElement.classList.add('sasda')
-               }
+               element.classList.add('differentInputMain')
+               existedTableElement.classList.add('differentInputSide')
             } else {
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
-               element.classList.remove('blackText')
             }
          }
       });
