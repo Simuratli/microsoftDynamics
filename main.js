@@ -735,7 +735,7 @@ async function sendAccounts(callback) {
       }
    }
 
-   sendAccountsButton.style.display = 'none'
+   
    loader.style.display = 'none'
 }
 
@@ -1007,8 +1007,12 @@ async function sendDataverse(url, token) {
          // message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
-
-         // message.innerHTML = 'Contact Updated'
+         if(responseOfAccount.error){
+            errorMessageIndividual.style.display = 'flex'
+            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+            sendAccountsButton.style.display = 'block'
+         }else{
+            // message.innerHTML = 'Contact Updated'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
@@ -1019,6 +1023,11 @@ async function sendDataverse(url, token) {
          await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
          goToCRMButton.style.display = 'block'
          updateDataButton.style.display = 'block'
+            sendAccountsButton.style.display = 'none'
+
+         }
+         
+         
       } else {
          // message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
@@ -1034,6 +1043,7 @@ async function sendDataverse(url, token) {
                successMessageIndividual.style.display = 'flex'
                goToCRMButton.style.display = 'block'
                mainCapture.querySelector(".informationBlock").style.display = "none"
+               sendAccountsButton.style.display = 'none'
             }
 
 
@@ -1062,6 +1072,7 @@ async function sendDataverse(url, token) {
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
+         sendAccountsButton.style.display = 'none'
       }
 
 
