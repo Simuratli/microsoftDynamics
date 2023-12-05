@@ -628,10 +628,9 @@ const getUserUpdatedRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastname = document.querySelector('.userNameUpdated').value.split(" ")
-   console.log(lastname,'lastname updatae')
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
-      lastname: lastname[1] ? lastname.shift().join(" ") : " ",
+      lastname: lastname[1] ? lastname.filter((_, i) => i > 0).join(" ") : " ",
       fullname: document.querySelector('.userNameUpdated').value,
       jobtitle: document.querySelector('.jobTitleUpdated').value,
       address1_name: document.querySelector('.locationUpdated').value,
@@ -864,11 +863,9 @@ const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastName = document.querySelector('.userName').value.split(" ")
-   const lastName2 = lastName.filter((_, i) => i > 0).join(" ");
-   console.log(lastName,'lastname querySelector',lastName2)
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname: lastName.shift().join(" "),
+      lastname:  lastName.filter((_, i) => i > 0).join(" "),
       fullname: document.querySelector('.userName').value,
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
