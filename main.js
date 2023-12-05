@@ -395,7 +395,7 @@ const tryAgain = () => {
 // Called by the loginButton
 function signIn() {
    showLoader()
-
+   console.log('sign in works')
    myMSALObj.loginPopup({
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
    })
