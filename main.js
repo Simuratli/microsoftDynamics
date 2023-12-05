@@ -627,9 +627,10 @@ async function filterBackend(url, callback) {
 const getUserUpdatedRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const lastname = document.querySelector('.userNameUpdated').value.split(" ")
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
-      lastname: document.querySelector('.userNameUpdated').value.split(" ")[1] ? document.querySelector('.userNameUpdated').value.split(" ").shift().join(" ") : " ",
+      lastname: lastname[1] ? lastname.shift().join(" ") : " ",
       fullname: document.querySelector('.userNameUpdated').value,
       jobtitle: document.querySelector('.jobTitleUpdated').value,
       address1_name: document.querySelector('.locationUpdated').value,
@@ -861,9 +862,11 @@ const createAccount = async (url, token, method, bodyOfReq) => {
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const lastName = document.querySelector('.userName').value.split(" ")
+
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname: document.querySelector('.userName').value.split(" ").shift().join(" "),
+      lastname: lastName.shift().join(" "),
       fullname: document.querySelector('.userName').value,
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
