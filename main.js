@@ -336,8 +336,7 @@ updateMsalFunction()
 
 // new part finished here 
 
-
-
+console.log('alooooo')
 
 
 
