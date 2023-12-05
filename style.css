@@ -68,6 +68,17 @@ input{
     flex-direction: column;
     /* gap: 15px; */
     margin-bottom: 30px;
+    padding: 0 30px;
+}
+
+.blackText{
+    color: #1E2432;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family:'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
 }
 
 
