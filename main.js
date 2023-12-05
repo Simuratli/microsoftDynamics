@@ -863,9 +863,9 @@ const createAccount = async (url, token, method, bodyOfReq) => {
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-   let lastName = document.querySelector('.userName').value.split(" ")
-   lastName = lastName.splice(1, lastName.length)
-   console.log(lastName,'lastname querySelector')
+   const lastName = document.querySelector('.userName').value.split(" ")
+   const lastName2 = lastName.filter((_, i) => i > 0);
+   console.log(lastName,'lastname querySelector',lastName2)
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
       lastname: lastName.shift().join(" "),
