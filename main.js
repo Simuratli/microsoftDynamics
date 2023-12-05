@@ -1002,13 +1002,13 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-   console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")',document.querySelectorAll(".differentInputMain").length)
+   // console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")',document.querySelectorAll(".differentInputMain").length)
    
-   if(document.querySelectorAll(".differentInputMain").length === 0){
-      updateDataButton.setAttribute("disabled",true)
-   }else{
-      updateDataButton.removeAttribute("disabled")
-   }
+   // if(document.querySelectorAll(".differentInputMain").length === 0){
+   //    updateDataButton.setAttribute("disabled",true)
+   // }else{
+   //    updateDataButton.removeAttribute("disabled")
+   // }
 }
 
 async function sendDataverse(url, token) {
