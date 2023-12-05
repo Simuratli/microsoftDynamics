@@ -980,7 +980,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
                   existedTableElement.classList.add('differentInputSide')
                }else{
                   element.classList.add('blackText')
-                  existedTableElement.classList.add('')
+                  existedTableElement.classList.add('sasda')
                }
             } else {
                element.classList.remove('differentInputMain')
