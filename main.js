@@ -1029,6 +1029,7 @@ async function sendDataverse(url, token) {
             sendAccountsButton.style.display = 'block'
          }else{
             // message.innerHTML = 'Contact Updated'
+         errorMessageIndividual.style.display = 'none'
          mainCapture.style.display = 'none'
          ifExistUserTable.style.display = 'block'
 
@@ -1057,6 +1058,7 @@ async function sendDataverse(url, token) {
                sendAccountsButton.style.display = 'block'
             }else{
                successMessageIndividual.style.display = 'flex'
+               errorMessageIndividual.style.display = 'none'
                goToCRMButton.style.display = 'block'
                mainCapture.querySelector(".informationBlock").style.display = "none"
                sendAccountsButton.style.display = 'none'
@@ -1089,6 +1091,7 @@ async function sendDataverse(url, token) {
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          sendAccountsButton.style.display = 'none'
+         errorMessageIndividual.style.display = 'none'
       }
 
 
