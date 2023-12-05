@@ -672,9 +672,9 @@ const updateData = async () => {
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
 
-      const filteredcontacts2 = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+      // const filteredcontacts2 = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
-      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts2.value[0])
+      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts.value[0])
 
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
@@ -683,8 +683,8 @@ const updateData = async () => {
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
-      const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0])
+      // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      updateExistedTableForEditableFields(elements, elements, existedInputs, companies.value[0])
    }
 
 }
