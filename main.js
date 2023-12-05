@@ -628,6 +628,7 @@ const getUserUpdatedRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastname = document.querySelector('.userNameUpdated').value.split(" ")
+   console.log(lastname,'lastname updatae')
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
       lastname: lastname[1] ? lastname.shift().join(" ") : " ",
@@ -863,7 +864,7 @@ const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastName = document.querySelector('.userName').value.split(" ")
-
+   console.log(lastName,'lastname querySelector')
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
       lastname: lastName.shift().join(" "),
