@@ -660,6 +660,7 @@ const getUserUpdatedRequestObject = async () => {
 
 const updateData = async () => {
 
+   loader.style.display = 'grid'
    const parameters = JSON.parse(params.query);
 
 
@@ -686,7 +687,7 @@ const updateData = async () => {
       // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       updateExistedTableForEditableFields(elements, elements, existedInputs, companies.value[0],'noColor')
    }
-
+   loader.style.display = 'none'
 }
 
 
