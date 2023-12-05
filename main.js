@@ -917,22 +917,19 @@ const getUserMainRequestObject = async () => {
 const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
 
 
-
-
-
 inputsForUserDublicateTable.forEach(element => {
    
    element.addEventListener("input",()=>{
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
-     
+      console.log(element.name,element.value,'test me', existedValue)
       if(element.value === existedValue){
-         console.log(element.name,element.value,'test me', existedValue)
-         updateDataButton.setAttribute("disabled",true)
+         updateDataButton.setAttribute("disabled")
       }else{
-         console.log(element.name,element.value,'test me not equar', existedValue)
          updateDataButton.removeAttribute("disabled")
       }
    })
+
+
 });
 
 
@@ -1005,13 +1002,13 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-   // console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")',document.querySelectorAll(".differentInputMain").length)
+   console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")',document.querySelectorAll(".differentInputMain").length)
    
-   // if(document.querySelectorAll(".differentInputMain").length === 0){
-   //    updateDataButton.setAttribute("disabled",true)
-   // }else{
-   //    updateDataButton.removeAttribute("disabled")
-   // }
+   if(document.querySelectorAll(".differentInputMain").length === 0){
+      updateDataButton.setAttribute("disabled",true)
+   }else{
+      updateDataButton.removeAttribute("disabled")
+   }
 }
 
 async function sendDataverse(url, token) {
