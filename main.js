@@ -926,6 +926,7 @@ inputsForUserDublicateTable.forEach(element => {
          console.log(element.name,element.value,'test me', existedValue)
          updateDataButton.setAttribute("disabled")
       }else{
+         console.log(element.name,element.value,'test me not equar', existedValue)
          updateDataButton.removeAttribute("disabled")
       }
    })
