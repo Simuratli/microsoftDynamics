@@ -483,9 +483,8 @@ function signOut() {
 
    myMSALObj.logoutPopup(logoutRequest);
 
-   mainCredentialsForm.style.display = 'none'
-   loginWithButtonForm.style.display = 'block'
-   mainCredentialsForm.style.display = 'none'
+   mainCredentialsForm.style.display = 'block'
+   loginWithButtonForm.style.display = 'none'
 
 }
 
