@@ -211,16 +211,16 @@ const addValuesToInputFields = () => {
 
    let inputfields = null
 
-   fieldsForCompanyForms.style.display = 'none'
-   fieldsForUserForms.style.display = 'none'
+   // fieldsForCompanyForms.style.display = 'none'
+   // fieldsForUserForms.style.display = 'none'
 
    if ('companyName' in entries) {
-      fieldsForCompanyForms.style.display = 'flex'
-      fieldsForUserForms.style.display = 'none'
+      // fieldsForCompanyForms.style.display = 'flex'
+      // fieldsForUserForms.style.display = 'none'
       inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
    } else {
-      fieldsForCompanyForms.style.display = 'none'
-      fieldsForUserForms.style.display = 'flex'
+      // fieldsForCompanyForms.style.display = 'none'
+      // fieldsForUserForms.style.display = 'flex'
       inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    }
 
