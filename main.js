@@ -206,60 +206,60 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 
-const addValuesToInputFields = () => {
-   console.log("dene bnireay")
+// const addValuesToInputFields = () => {
+//    console.log("dene bnireay")
 
-   let inputfields = null
+//    let inputfields = null
 
-   // fieldsForCompanyForms.style.display = 'none'
-   // fieldsForUserForms.style.display = 'none'
+//    // fieldsForCompanyForms.style.display = 'none'
+//    // fieldsForUserForms.style.display = 'none'
 
-   if ('companyName' in entries) {
-      // fieldsForCompanyForms.style.display = 'flex'
-      // fieldsForUserForms.style.display = 'none'
-      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
-   } else {
-      // fieldsForCompanyForms.style.display = 'none'
-      // fieldsForUserForms.style.display = 'flex'
-      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-   }
-
-
-
-   if (inputfields && urlParameters) {
-      for (const [key, value] of urlParameters) {
-         for (i = 0; i < inputfields.length; ++i) {
-            if (inputfields[i].getAttribute('name') === key) {
-               inputfields[i].setAttribute("value", value)
-            }
-            if (inputfields[i].getAttribute('name') === 'linkedinUrl') {
-               if (entries['salesUrl']) {
-                  inputfields[i].setAttribute("value", entries['salesUrl'])
-               }
-            }
+//    if ('companyName' in entries) {
+//       // fieldsForCompanyForms.style.display = 'flex'
+//       // fieldsForUserForms.style.display = 'none'
+//       inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+//    } else {
+//       // fieldsForCompanyForms.style.display = 'none'
+//       // fieldsForUserForms.style.display = 'flex'
+//       inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+//    }
 
 
 
-            if (inputfields[i].getAttribute('name') === 'linkedinCompanyUrl') {
-               if (entries['salesCompanyUrl']) {
-                  inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
-               }
-            }
-
-            if (inputfields[i].getAttribute('name') === 'lnSize') {
-               inputfields[i].setAttribute("value", Number(value))
-               if (isNaN(value)) {
-                  inputfields[i].setAttribute("value", 0)
-               } else {
-                  inputfields[i].setAttribute("value", Number(value))
-               }
-            }
+//    if (inputfields && urlParameters) {
+//       for (const [key, value] of urlParameters) {
+//          for (i = 0; i < inputfields.length; ++i) {
+//             if (inputfields[i].getAttribute('name') === key) {
+//                inputfields[i].setAttribute("value", value)
+//             }
+//             if (inputfields[i].getAttribute('name') === 'linkedinUrl') {
+//                if (entries['salesUrl']) {
+//                   inputfields[i].setAttribute("value", entries['salesUrl'])
+//                }
+//             }
 
 
-         }
-      }
-   }
-}
+
+//             if (inputfields[i].getAttribute('name') === 'linkedinCompanyUrl') {
+//                if (entries['salesCompanyUrl']) {
+//                   inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
+//                }
+//             }
+
+//             if (inputfields[i].getAttribute('name') === 'lnSize') {
+//                inputfields[i].setAttribute("value", Number(value))
+//                if (isNaN(value)) {
+//                   inputfields[i].setAttribute("value", 0)
+//                } else {
+//                   inputfields[i].setAttribute("value", Number(value))
+//                }
+//             }
+
+
+//          }
+//       }
+//    }
+// }
 
 
 
@@ -273,7 +273,8 @@ const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
       
 
    }else{
-      addValuesToInputFields()
+      // addValuesToInputFields()
+      console.log("yoxdur qaqa")
    }
    // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
    // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
