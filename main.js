@@ -266,12 +266,9 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
-   
+   console.log(exist,'existhere have')
    if(exist){
-      console.log(exist,'existhere have')
       await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
-      
-
    }else{
       // addValuesToInputFields()
       console.log("yoxdur qaqa")
