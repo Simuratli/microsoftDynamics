@@ -206,7 +206,12 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 const fillFormElements = async (exist) => {
-   console.log(exist,'existhere')
+   
+   if(exist){
+      console.log(exist,'existhere have')
+   }else{
+      console.log(exist,'existhere not')
+   }
    // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
    // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    // const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
