@@ -330,7 +330,7 @@ const existOrNotFunction = async () => {
       }
 
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
-      await fillFormElements(contacts.value[0], existedInputs);
+      await fillFormElements(companies.value[0], existedInputs);
 
    } else {
       const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
