@@ -266,7 +266,7 @@ const addValuesToInputFields = () => {
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
    console.log(existedData, existedFields, 'existedFieldsexistedFields')
    const keys = Object.keys(existedData)
-
+   console.log(parameters,'paramssss')
 
    existedFields.forEach(element => {
       for (const key of keys) {
