@@ -269,9 +269,8 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
    console.log(parameters,'paramssss')
 
 
-   const companies =  await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const companies =  await filterBackend(`accounts?$select="name"$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
 
-   console.log(companies,'companies,;companiescompaniescompanies')
 
    existedFields.forEach(element => {
       for (const key of keys) {
