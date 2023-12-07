@@ -268,9 +268,12 @@ const addValuesToInputFields = () => {
 const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
    
    if(exist){
-      console.log(exist,'existhere have')
+     
+      const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
+      const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+      const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
-      
+
 
    }else{
       addValuesToInputFields()
