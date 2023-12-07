@@ -273,6 +273,12 @@ const addDatasToExistedFieldsInTable = async (existedData,existedFields) => {
            if(key === element.name){
             element.value = existedData[key]
            }
+
+           if(key === 'uds_linkedin' &&  existedData[key]){
+            console.log('i am linkedin url', existedData[key])
+           }else if(key === 'uds_salesnavigatoruserurl' &&  existedData[key]){
+            console.log('i am sales url', existedData[key])
+           }
          }
    });
 
