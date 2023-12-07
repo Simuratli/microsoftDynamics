@@ -49,6 +49,16 @@ const redirectUrl = "/";
 let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
 
+
+
+
+
+addEventListener("load", (event) => {
+   console.log("i am loading")
+});
+
+
+
 // base "https://orgfdbab4d2.api.crm.dynamics.com"
 // clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
 // tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
