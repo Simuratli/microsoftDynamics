@@ -269,7 +269,11 @@ const addDatasToExistedFieldsInTable = async (existedData,existedFields) => {
 
 
    existedFields.forEach(element => {
-         console.log(element.name,'check names')
+         for (const key of keys) {
+           if(key === element.name){
+            element.value === existedData[key]
+           }
+         }
    });
 
 
