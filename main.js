@@ -218,6 +218,9 @@ const existOrNotFunction = async () => {
          ifExistUserTable.style.display = 'block'
          ifExistCompany.style.display = 'none'
          mainCapture.style.display = 'none'
+         sendAccountsButton.style.display = 'none'
+         updateDataButton.style.display = 'block'
+         goToCRMButton.style.display = 'block'
       }else{
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
@@ -225,6 +228,9 @@ const existOrNotFunction = async () => {
          mainCapture.style.display = 'block'
          fieldsForCompanyForms.style.display = 'none'
          fieldsForUserForms.style.display = 'block'
+         sendAccountsButton.style.display = 'block'
+         updateDataButton.style.display = 'none'
+         goToCRMButton.style.display = 'none'
       }
    }
 }
