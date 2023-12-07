@@ -264,7 +264,6 @@ const addValuesToInputFields = () => {
 
 
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
-   console.log(existedData, existedFields, 'existedFieldsexistedFields')
    const keys = Object.keys(existedData)
    const companies =  await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    existedFields.forEach(element => {
@@ -276,22 +275,18 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
          if (element.name === 'linkedinUrl') {
             if (key === 'uds_linkedin' && existedData[key]) {
-               console.log('i am linkedin url', existedData[key])
                element.value = existedData[key]
 
             } else if (key === 'uds_salesnavigatoruserurl' && existedData[key]) {
-               console.log('i am sales url', existedData[key])
                element.value = existedData[key]
             }
          }
-
          if(element.name === 'customer'){
             if(companies.value[0]){
                console.log(companies,'testm 21312e')
                element.value = companies.value[0].name ?  companies.value[0].name : ""
             }
          }
-
       }
    });
 
@@ -301,13 +296,11 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 
 const fillFormElements = async (exist,existedInputs) => {
-
    if (exist) {
       addDatasToExistedFieldsInTable(exist, existedInputs)
    } else {
       addValuesToInputFields()
    }
-   // await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, existedContact)
 }
 
 
@@ -336,7 +329,8 @@ const existOrNotFunction = async () => {
          goToCRMButton.style.display = 'none'
       }
 
-      await fillFormElements(companies.value[0]);
+      const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
+      await fillFormElements(contacts.value[0], existedInputs);
 
    } else {
       const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
