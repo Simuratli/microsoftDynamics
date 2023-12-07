@@ -290,6 +290,12 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
             }
          }
 
+         if(element.name === 'customer'){
+            if(companies.value[0]){
+               element.name === companies.value[0].name
+            }
+         }
+
       }
    });
 
