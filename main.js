@@ -289,9 +289,9 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
                element.value = existedData[key]
             }
          }
-
+         console.log(companies,'testme')
          if(element.name === 'customer'){
-            console.log(companies,'testme')
+            
             if(companies.value[0]){
                element.name === companies.value[0].name
             }
