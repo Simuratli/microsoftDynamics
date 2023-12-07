@@ -263,23 +263,30 @@ const addValuesToInputFields = () => {
 
 
 
-const addDatasToExistedFieldsInTable = async (existedData,existedFields) => {
-   console.log(existedData,existedFields,'existedFieldsexistedFields')
+const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
+   console.log(existedData, existedFields, 'existedFieldsexistedFields')
    const keys = Object.keys(existedData)
 
 
    existedFields.forEach(element => {
-         for (const key of keys) {
-           if(key === element.name){
+      for (const key of keys) {
+         if (key === element.name) {
             element.value = existedData[key]
-           }
-
-           if(key === 'uds_linkedin' &&  existedData[key]){
-            console.log('i am linkedin url', existedData[key])
-           }else if(key === 'uds_salesnavigatoruserurl' &&  existedData[key]){
-            console.log('i am sales url', existedData[key])
-           }
          }
+
+
+         if (element.name === 'linkedinUrl') {
+            if (key === 'uds_linkedin' && existedData[key]) {
+               console.log('i am linkedin url', existedData[key])
+               element.value = existedData[key]
+
+            } else if (key === 'uds_salesnavigatoruserurl' && existedData[key]) {
+               console.log('i am sales url', existedData[key])
+               element.value = existedData[key]
+            }
+         }
+
+      }
    });
 
 
@@ -287,18 +294,18 @@ const addDatasToExistedFieldsInTable = async (existedData,existedFields) => {
 
 
 
-const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
-   
-   if(exist){
-     
+const fillFormElements = async (exist, elements, elementsMain, existedInputs) => {
+
+   if (exist) {
+
       // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
       // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-      addDatasToExistedFieldsInTable(exist,existedInputs)
+      addDatasToExistedFieldsInTable(exist, existedInputs)
       // await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
 
 
-   }else{
+   } else {
       addValuesToInputFields()
    }
    // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
@@ -310,9 +317,9 @@ const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
 
 
 const existOrNotFunction = async () => {
-   if(parameters['companyName']){
+   if (parameters['companyName']) {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      if(companies.value.length !== 0){
+      if (companies.value.length !== 0) {
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
          ifExistCompany.style.display = 'block'
@@ -320,8 +327,8 @@ const existOrNotFunction = async () => {
          sendAccountsButton.style.display = 'none'
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
-         
-      }else{
+
+      } else {
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
          ifExistCompany.style.display = 'none'
@@ -332,12 +339,12 @@ const existOrNotFunction = async () => {
          updateDataButton.style.display = 'none'
          goToCRMButton.style.display = 'none'
       }
-      
+
       await fillFormElements(companies.value[0]);
 
-   }else{
+   } else {
       const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      if(contacts.value.length !== 0){
+      if (contacts.value.length !== 0) {
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'block'
          ifExistCompany.style.display = 'none'
@@ -346,7 +353,7 @@ const existOrNotFunction = async () => {
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
 
-      }else{
+      } else {
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
          ifExistCompany.style.display = 'none'
@@ -361,8 +368,8 @@ const existOrNotFunction = async () => {
       const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
       const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-      await fillFormElements(contacts.value[0],elements,elementsMain,existedInputs);
-      
+      await fillFormElements(contacts.value[0], elements, elementsMain, existedInputs);
+
    }
 }
 
@@ -803,7 +810,7 @@ const updateData = async () => {
 
       const filteredcontacts2 = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
-      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts2.value[0],'noColor')
+      updateExistedTableForEditableFields(elements, elements, existedInputs, filteredcontacts2.value[0], 'noColor')
 
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
@@ -813,7 +820,7 @@ const updateData = async () => {
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
       const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0],'noColor')
+      updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
    }
    loader.style.display = 'none'
 }
@@ -866,7 +873,7 @@ async function sendAccounts(callback) {
       }
    }
 
-   
+
    loader.style.display = 'none'
 }
 
@@ -996,7 +1003,7 @@ const getUserMainRequestObject = async () => {
    const lastName = document.querySelector('.userName').value.split(" ")
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname:  lastName.filter((_, i) => i > 0).join(" "),
+      lastname: lastName.filter((_, i) => i > 0).join(" "),
       fullname: document.querySelector('.userName').value,
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
@@ -1046,13 +1053,13 @@ const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
 
 
 inputsForUserDublicateTable.forEach(element => {
-   
-   element.addEventListener("input",()=>{
+
+   element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
-      console.log(element.name,element.value,'test me', existedValue)
-      if(element.value === existedValue){
+      console.log(element.name, element.value, 'test me', existedValue)
+      if (element.value === existedValue) {
          updateDataButton.setAttribute("disabled")
-      }else{
+      } else {
          updateDataButton.removeAttribute("disabled")
       }
    })
@@ -1068,7 +1075,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    const keys = Object.keys(existedData);
 
 
-   
+
 
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
@@ -1111,14 +1118,14 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
             if (element.value !== existedTableElement.value) {
-               if(addColor !== "noColor"){
+               if (addColor !== "noColor") {
                   element.classList.add('differentInputMain')
                   existedTableElement.classList.add('differentInputSide')
-               }else{
+               } else {
                   element.classList.add('blackText')
                   existedTableElement.classList.add('noChange')
                }
-               
+
             } else {
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
@@ -1130,11 +1137,11 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-   console.log(document.querySelectorAll(".differentInputMain"),'document.querySelectorAll(".differentInputMain")',document.querySelectorAll(".differentInputMain").length)
-   
-   if(document.querySelectorAll(".differentInputMain").length === 0){
-      updateDataButton.setAttribute("disabled",true)
-   }else{
+   console.log(document.querySelectorAll(".differentInputMain"), 'document.querySelectorAll(".differentInputMain")', document.querySelectorAll(".differentInputMain").length)
+
+   if (document.querySelectorAll(".differentInputMain").length === 0) {
+      updateDataButton.setAttribute("disabled", true)
+   } else {
       updateDataButton.removeAttribute("disabled")
    }
 }
@@ -1150,70 +1157,70 @@ async function sendDataverse(url, token) {
          // message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
-         if(responseOfAccount.error){
+         if (responseOfAccount.error) {
             errorMessageIndividual.style.display = 'flex'
-            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
             sendAccountsButton.style.display = 'block'
-         }else{
+         } else {
             // message.innerHTML = 'Contact Updated'
-         errorMessageIndividual.style.display = 'none'
-         mainCapture.style.display = 'none'
-         ifExistUserTable.style.display = 'block'
+            errorMessageIndividual.style.display = 'none'
+            mainCapture.style.display = 'none'
+            ifExistUserTable.style.display = 'block'
 
-         //update exist table after capturing
-         const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-         const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-         const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-         await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
-         goToCRMButton.style.display = 'block'
-         updateDataButton.style.display = 'block'
+            //update exist table after capturing
+            const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+            const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+            const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
+            goToCRMButton.style.display = 'block'
+            updateDataButton.style.display = 'block'
             sendAccountsButton.style.display = 'none'
 
          }
-         
-         
+
+
       } else {
          // message.innerHTML = 'there have company with this id: ' + parameters.customerId
          const bodyOfReq = await getUserMainRequestObject()
-         const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
-         
-            console.log(errorMessageIndividual,'responseOfAccount errorMessageIndividual')
+         const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
-            if(responseOfAccount.error){
-               errorMessageIndividual.style.display = 'flex'
-               errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
-               sendAccountsButton.style.display = 'block'
-            }else{
-               successMessageIndividual.style.display = 'flex'
-               errorMessageIndividual.style.display = 'none'
-               goToCRMButton.style.display = 'block'
-               mainCapture.querySelector(".informationBlock").style.display = "none"
-               sendAccountsButton.style.display = 'none'
-            }
+         console.log(errorMessageIndividual, 'responseOfAccount errorMessageIndividual')
+
+         if (responseOfAccount.error) {
+            errorMessageIndividual.style.display = 'flex'
+            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
+            sendAccountsButton.style.display = 'block'
+         } else {
+            successMessageIndividual.style.display = 'flex'
+            errorMessageIndividual.style.display = 'none'
+            goToCRMButton.style.display = 'block'
+            mainCapture.querySelector(".informationBlock").style.display = "none"
+            sendAccountsButton.style.display = 'none'
+         }
 
 
          // message.innerHTML = 'Contact Created'
-        
-         
+
+
       }
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
-      const responseOfAccount =  await createAccount('contacts', token, "POST", bodyOfReq)
+      const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
       // message.innerHTML = 'Contact created'
-      console.log(responseOfAccount,'responseOfAccount notexist')
+      console.log(responseOfAccount, 'responseOfAccount notexist')
       // mainCapture.querySelector(".informationBlock").style.display = "none"
       // successMessageIndividual.style.display = 'flex'
       // goToCRMButton.style.display = 'block'
 
 
-      if(responseOfAccount.error){
+      if (responseOfAccount.error) {
          errorMessageIndividual.style.display = 'flex'
-         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code }`
+         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
          sendAccountsButton.style.display = 'block'
-      }else{
+      } else {
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
