@@ -269,7 +269,7 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
    console.log(parameters,'paramssss')
 
 
-   const companies =  await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, ${Number(parameters.customerId)})`)
+   const companies =  await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
 
    console.log(companies,'companies,;companiescompaniescompanies')
 
