@@ -202,7 +202,7 @@ let msalConfig = {
 };
 
 
-let myMSALObj = new msal.PublicClientApplication(msalConfig,elements,elementsMain,);
+let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
