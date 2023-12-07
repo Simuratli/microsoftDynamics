@@ -80,17 +80,7 @@ if (parameters['companyName']) {
 
 
 
-const loadingEventFunction = async () => {
-   if(parameters['companyName']){
-      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      console.log('companies',companies)
-   }else{
-      const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      console.log('filteredcontacts',contacts)
-   }
-}
 
-addEventListener("load", loadingEventFunction);
 
 
 
@@ -213,6 +203,43 @@ let msalConfig = {
 
 
 let myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+
+
+const existOrNotFunction = async () => {
+   if(parameters['companyName']){
+      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      console.log('companies',companies)
+   }else{
+      const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+      console.log('filteredcontacts',contacts)
+      if(contacts.value.length !== 0){
+         mainCredentialsForm.style.display = 'none'
+         ifExistUserTable.style.display = 'block'
+         ifExistCompany.style.display = 'none'
+         mainCapture.style.display = 'none'
+      }else{
+         mainCredentialsForm.style.display = 'none'
+         ifExistUserTable.style.display = 'none'
+         ifExistCompany.style.display = 'none'
+         mainCapture.style.display = 'block'
+         fieldsForCompanyForms.style.display = 'none'
+         fieldsForUserForms.style.display = 'block'
+      }
+   }
+}
+
+
+const loadingEventFunction = async () => {
+   const currentAccounts = myMSALObj.getAllAccounts();
+   if (currentAccounts.length === 1) {
+      existOrNotFunction()
+   }
+}
+
+addEventListener("load", loadingEventFunction);
+
+
 
 
 
