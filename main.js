@@ -202,13 +202,16 @@ let msalConfig = {
 };
 
 
-let myMSALObj = new msal.PublicClientApplication(msalConfig);
+let myMSALObj = new msal.PublicClientApplication(msalConfig,elements,elementsMain,);
 
 
-const fillFormElements = async (exist) => {
+const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
    
    if(exist){
       console.log(exist,'existhere have')
+      await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
+
+
    }else{
       console.log(exist,'existhere not')
    }
@@ -256,6 +259,13 @@ const existOrNotFunction = async () => {
          sendAccountsButton.style.display = 'none'
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
+
+         const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+         const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+         const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+         await fillFormElements(contacts.value[0],elements,elementsMain,existedInputs);
+
+
       }else{
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
@@ -268,7 +278,8 @@ const existOrNotFunction = async () => {
          goToCRMButton.style.display = 'none'
       }
 
-      await fillFormElements(contacts.value[0]);
+
+      
    }
 }
 
