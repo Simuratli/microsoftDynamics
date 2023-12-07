@@ -207,7 +207,7 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 const addValuesToInputFields = () => {
-
+   console.log("dene bnireay")
 
    let inputfields = null
 
