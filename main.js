@@ -209,7 +209,28 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 const existOrNotFunction = async () => {
    if(parameters['companyName']){
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      console.log('companies',companies)
+
+      if(companies.value.length !== 0){
+         mainCredentialsForm.style.display = 'none'
+         ifExistUserTable.style.display = 'none'
+         ifExistCompany.style.display = 'block'
+         mainCapture.style.display = 'none'
+         sendAccountsButton.style.display = 'none'
+         updateDataButton.style.display = 'block'
+         goToCRMButton.style.display = 'block'
+      }else{
+         mainCredentialsForm.style.display = 'none'
+         ifExistUserTable.style.display = 'none'
+         ifExistCompany.style.display = 'none'
+         mainCapture.style.display = 'block'
+         fieldsForCompanyForms.style.display = 'block'
+         fieldsForUserForms.style.display = 'none'
+         sendAccountsButton.style.display = 'block'
+         updateDataButton.style.display = 'none'
+         goToCRMButton.style.display = 'none'
+      }
+
+
    }else{
       const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       console.log('filteredcontacts',contacts)
