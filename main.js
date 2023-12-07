@@ -50,20 +50,6 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
 
 
-
-
-
-addEventListener("load", (event) => {
-   console.log("i am loading")
-});
-
-
-
-// base "https://orgfdbab4d2.api.crm.dynamics.com"
-// clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
-// tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
-
-
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
@@ -90,6 +76,28 @@ if (parameters['companyName']) {
       mes.innerHTML = parameters['userName'] ? parameters['userName'] : ""
    });
 }
+
+
+
+
+const loadingEventFunction = async () => {
+   if(parameters['companyName']){
+      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+   }else{
+      const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+   }
+}
+
+addEventListener("load", loadingEventFunction);
+
+
+
+// base "https://orgfdbab4d2.api.crm.dynamics.com"
+// clientId "8d5c861b-044a-4978-b3ac-d9d913169ff2"
+// tenantId "b1f4d83b-a807-43ec-b4af-fc3b4c20f9c1"
+
+
+
 
 
 const changeRequestedNames = (name) => {
