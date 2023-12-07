@@ -274,6 +274,7 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 
          if (element.name === 'linkedinUrl' || element.name === "linkedinCompanyUrl") {
+            console.log('test me here is new')
             if (key === 'uds_linkedin' && existedData[key]) {
                element.value = existedData[key]
 
