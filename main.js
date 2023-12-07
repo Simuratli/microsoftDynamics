@@ -269,9 +269,9 @@ const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
    
    if(exist){
      
-      const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
-      const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
-      const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
+      const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+      const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+      const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
 
 
