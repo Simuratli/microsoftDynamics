@@ -206,72 +206,74 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 
-// const addValuesToInputFields = () => {
-//    console.log("dene bnireay")
+const addValuesToInputFields = () => {
+   console.log("dene bnireay")
 
-//    let inputfields = null
+   let inputfields = null
 
-//    // fieldsForCompanyForms.style.display = 'none'
-//    // fieldsForUserForms.style.display = 'none'
+   // fieldsForCompanyForms.style.display = 'none'
+   // fieldsForUserForms.style.display = 'none'
 
-//    if ('companyName' in entries) {
-//       // fieldsForCompanyForms.style.display = 'flex'
-//       // fieldsForUserForms.style.display = 'none'
-//       inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
-//    } else {
-//       // fieldsForCompanyForms.style.display = 'none'
-//       // fieldsForUserForms.style.display = 'flex'
-//       inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-//    }
-
-
-
-//    if (inputfields && urlParameters) {
-//       for (const [key, value] of urlParameters) {
-//          for (i = 0; i < inputfields.length; ++i) {
-//             if (inputfields[i].getAttribute('name') === key) {
-//                inputfields[i].setAttribute("value", value)
-//             }
-//             if (inputfields[i].getAttribute('name') === 'linkedinUrl') {
-//                if (entries['salesUrl']) {
-//                   inputfields[i].setAttribute("value", entries['salesUrl'])
-//                }
-//             }
+   if ('companyName' in entries) {
+      // fieldsForCompanyForms.style.display = 'flex'
+      // fieldsForUserForms.style.display = 'none'
+      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+   } else {
+      // fieldsForCompanyForms.style.display = 'none'
+      // fieldsForUserForms.style.display = 'flex'
+      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+   }
 
 
 
-//             if (inputfields[i].getAttribute('name') === 'linkedinCompanyUrl') {
-//                if (entries['salesCompanyUrl']) {
-//                   inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
-//                }
-//             }
-
-//             if (inputfields[i].getAttribute('name') === 'lnSize') {
-//                inputfields[i].setAttribute("value", Number(value))
-//                if (isNaN(value)) {
-//                   inputfields[i].setAttribute("value", 0)
-//                } else {
-//                   inputfields[i].setAttribute("value", Number(value))
-//                }
-//             }
+   if (inputfields && urlParameters) {
+      for (const [key, value] of urlParameters) {
+         for (i = 0; i < inputfields.length; ++i) {
+            if (inputfields[i].getAttribute('name') === key) {
+               inputfields[i].setAttribute("value", value)
+            }
+            if (inputfields[i].getAttribute('name') === 'linkedinUrl') {
+               if (entries['salesUrl']) {
+                  inputfields[i].setAttribute("value", entries['salesUrl'])
+               }
+            }
 
 
-//          }
-//       }
-//    }
-// }
+
+            if (inputfields[i].getAttribute('name') === 'linkedinCompanyUrl') {
+               if (entries['salesCompanyUrl']) {
+                  inputfields[i].setAttribute("value", entries['salesCompanyUrl'])
+               }
+            }
+
+            if (inputfields[i].getAttribute('name') === 'lnSize') {
+               inputfields[i].setAttribute("value", Number(value))
+               if (isNaN(value)) {
+                  inputfields[i].setAttribute("value", 0)
+               } else {
+                  inputfields[i].setAttribute("value", Number(value))
+               }
+            }
+
+
+         }
+      }
+   }
+}
 
 
 
 
 
 const fillFormElements = async (exist,elements,elementsMain,existedInputs) => {
-   console.log(exist,'existhere have')
+   
    if(exist){
+      console.log(exist,'existhere have')
       await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
+      
+
    }else{
-      // addValuesToInputFields()
-      console.log("yoxdur qaqa")
+      addValuesToInputFields()
    }
    // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
    // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
@@ -318,12 +320,6 @@ const existOrNotFunction = async () => {
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
 
-         const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-         const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-         const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-         await fillFormElements(contacts.value[0],elements,elementsMain,existedInputs);
-
-
       }else{
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
@@ -336,7 +332,10 @@ const existOrNotFunction = async () => {
          goToCRMButton.style.display = 'none'
       }
 
-
+      const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+      const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+      const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+      await fillFormElements(contacts.value[0],elements,elementsMain,existedInputs);
       
    }
 }
