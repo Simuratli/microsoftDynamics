@@ -266,12 +266,7 @@ const addValuesToInputFields = () => {
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
    console.log(existedData, existedFields, 'existedFieldsexistedFields')
    const keys = Object.keys(existedData)
-   console.log(parameters,'paramssss')
-
-
    const companies =  await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-
-
    existedFields.forEach(element => {
       for (const key of keys) {
          if (key === element.name) {
@@ -305,23 +300,13 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 
 
-const fillFormElements = async (exist, elements, elementsMain, existedInputs) => {
+const fillFormElements = async (exist,existedInputs) => {
 
    if (exist) {
-
-      // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-      // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-      const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       addDatasToExistedFieldsInTable(exist, existedInputs)
-      // await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, exist)
-
-
    } else {
       addValuesToInputFields()
    }
-   // const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-   // const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-   // const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
    // await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, existedContact)
 }
 
@@ -376,10 +361,8 @@ const existOrNotFunction = async () => {
          goToCRMButton.style.display = 'none'
       }
 
-      const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-      const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-      await fillFormElements(contacts.value[0], elements, elementsMain, existedInputs);
+      await fillFormElements(contacts.value[0], existedInputs);
 
    }
 }
