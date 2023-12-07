@@ -271,7 +271,7 @@ const addDatasToExistedFieldsInTable = async (existedData,existedFields) => {
    existedFields.forEach(element => {
          for (const key of keys) {
            if(key === element.name){
-            element.value === existedData[key]
+            element.value = existedData[key]
            }
          }
    });
