@@ -578,3 +578,8 @@ thead th{
     75%  {background-position:100% 0   ,0 0   ,0    100% }
     100% {background-position:100% 100%,0 0   ,0    100% }
   }
+
+
+  textarea{
+    resize: none;
+  }
