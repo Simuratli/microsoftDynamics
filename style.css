@@ -10,7 +10,7 @@ body {
     padding: 30px;
 }
 
-#logoutButton, #getAccountsButton, #sendAccountsButton, #loginButton{
+ #getAccountsButton, #sendAccountsButton, #loginButton{
     display: none;
 }
 

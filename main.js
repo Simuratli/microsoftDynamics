@@ -526,6 +526,7 @@ updateMsalFunction()
 function selectAccount() {
    const currentAccounts = myMSALObj.getAllAccounts();
    if (currentAccounts.length === 0) {
+      logoutButton.style.display = 'none'
       return;
    } else if (currentAccounts.length > 1) {
       // Add choose account code here
