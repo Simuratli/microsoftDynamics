@@ -298,7 +298,6 @@ const fillFormElements = async (exist,existedInputs) => {
    if (exist) {
       addDatasToExistedFieldsInTable(exist, existedInputs)
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")))
-      const existedInputs = parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".existed") : document.querySelector("#ifExistUser").querySelectorAll(".existed")
       const elements = parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser") : document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")
       
       highLightDifferentInputs(elements,existedInputs)
