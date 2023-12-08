@@ -583,3 +583,8 @@ thead th{
   textarea{
     resize: none;
   }
+
+
+  input:read-only{
+    cursor: not-allowed;
+  }
