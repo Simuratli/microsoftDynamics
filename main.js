@@ -1099,6 +1099,14 @@ const highLightDifferentInputs = async (elements,existedInputs,addColor) =>{
          }
       });
    });
+
+
+
+   if (document.querySelectorAll(".differentInputMain").length === 0) {
+      updateDataButton.setAttribute("disabled", true)
+   } else {
+      updateDataButton.removeAttribute("disabled")
+   }
 }
 
 
@@ -1148,13 +1156,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    await highLightDifferentInputs(elements,existedInputs)
 
 
-   console.log(document.querySelectorAll(".differentInputMain"), 'document.querySelectorAll(".differentInputMain")', document.querySelectorAll(".differentInputMain").length)
-
-   if (document.querySelectorAll(".differentInputMain").length === 0) {
-      updateDataButton.setAttribute("disabled", true)
-   } else {
-      updateDataButton.removeAttribute("disabled")
-   }
+   
 }
 
 async function sendDataverse(url, token) {
