@@ -297,7 +297,7 @@ const fillFormElements = async (exist,existedInputs) => {
    if (exist) {
       addDatasToExistedFieldsInTable(exist, existedInputs)
    } else {
-      addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")))
+      addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
    }
       
 }
