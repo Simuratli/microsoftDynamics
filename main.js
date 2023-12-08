@@ -1075,7 +1075,7 @@ inputsForUserDublicateTable.forEach(element => {
 
 
 
-const highLightDifferentInputs = async (elements,existedInputs) =>{ 
+const highLightDifferentInputs = async (elements,existedInputs,addColor) =>{ 
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
