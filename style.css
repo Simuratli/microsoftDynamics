@@ -426,6 +426,9 @@ thead th{
     display: none;
 }
 
+#ifExistCompany{
+    display: none;
+}
 
 
 

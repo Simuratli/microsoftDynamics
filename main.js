@@ -341,7 +341,7 @@ const existOrNotFunction = async () => {
          ifExistCompany.style.display = 'none'
          mainCapture.style.display = 'none'
          sendAccountsButton.style.display = 'none'
-         // ifExistUserTable.style.display = 'block'
+         ifExistUserTable.style.display = 'block'
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
 
