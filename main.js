@@ -590,7 +590,9 @@ function signIn() {
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'none'
          mainCredentialsForm.style.display = 'none'
-         
+         logoutButton.forEach(element=>{
+            element.style.display = 'block'
+         })
 
          if (response !== null) {
             username = response.account.username;
