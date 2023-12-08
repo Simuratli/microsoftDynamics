@@ -253,6 +253,7 @@ const addValuesToInputFields = (inputfields) => {
 
 
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
+   logoutButton.style.display = "block";
    const keys = Object.keys(existedData)
    const companies =  await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    existedFields.forEach(element => {
@@ -306,7 +307,7 @@ const fillFormElements = async (exist,existedInputs) => {
 
 
 const existOrNotFunction = async () => {
-   logoutButton.style.display = "block";
+   
    loader.style.display = 'grid'
    if (parameters['companyName']) {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
