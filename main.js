@@ -280,6 +280,7 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
          if(element.name === 'customer'){
             if(companies.value[0]){
                console.log(companies,'testm 21312e')
+               console.log(parameters,'paramtersetsrt')
                element.value = companies.value[0].name ?  companies.value[0].name : ""
             }
          }
@@ -905,7 +906,6 @@ async function getDataverse(url, token, callback) {
 
 }
 
-console.log(parameters,'paramtersetsrt')
 
 
 const createCompanyWithId = async (url, token) => {
