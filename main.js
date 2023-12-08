@@ -380,21 +380,20 @@ addEventListener("load", loadingEventFunction);
 
 
 // Called from signIn or selectAccount functions
-function showWelcomeMessage(username) {
-   console.log('are you working? showWelcomeMessage')
-   showLoader()
-   // message.innerHTML = `Welcome ${username}`;
-   loginWithButtonForm.style.display = "none";
-   logoutButton.style.display = "block";
-   // getAccountsButton.style.display = "block";
-   sendAccountsButton.style.display = "block";
-   mainCredentialsForm.style.display = 'none'
-   mainCapture.style.display = 'block'
-   list.style.visibility = 'visible'
-   list.style.position = 'relative'
-   list.style.display = 'flex'
-
-}
+// function showWelcomeMessage(username) {
+//    console.log('are you working? showWelcomeMessage')
+//    showLoader()
+//    // message.innerHTML = `Welcome ${username}`;
+//    loginWithButtonForm.style.display = "none";
+//    logoutButton.style.display = "block";
+//    // getAccountsButton.style.display = "block";
+//    sendAccountsButton.style.display = "block";
+//    mainCredentialsForm.style.display = 'none'
+//    mainCapture.style.display = 'block'
+//    list.style.visibility = 'visible'
+//    list.style.position = 'relative'
+//    list.style.display = 'flex'
+// }
 
 
 
