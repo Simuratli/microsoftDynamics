@@ -206,14 +206,11 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 
-const addValuesToInputFields = (inputfields) => {
+const addValuesToInputFields = async (inputfields) => {
  
 
    // fieldsForCompanyForms.style.display = 'none'
    // fieldsForUserForms.style.display = 'none'
-
-  
-
 
    if (inputfields && urlParameters) {
       for (const [key, value] of urlParameters) {
@@ -296,10 +293,9 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 const fillFormElements = async (exist,existedInputs) => {
    if (exist) {
-      addDatasToExistedFieldsInTable(exist, existedInputs)
-      addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")))
-      const elements = parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser") : document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")
-      
+      await addDatasToExistedFieldsInTable(exist, existedInputs)
+      await addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")))
+      const elements = await parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser") : document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")
       highLightDifferentInputs(elements,existedInputs)
    } else {
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
