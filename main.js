@@ -1080,6 +1080,7 @@ const highLightDifferentInputs = async (elements,existedInputs) =>{
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
             if (element.value !== existedTableElement.value) {
+               console.log('test hwere work or not !==')
                if (addColor !== "noColor") {
                   element.classList.add('differentInputMain')
                   existedTableElement.classList.add('differentInputSide')
@@ -1089,6 +1090,7 @@ const highLightDifferentInputs = async (elements,existedInputs) =>{
                }
 
             } else {
+               console.log('test hwere work or not ====')
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
                element.classList.remove('blackText')
