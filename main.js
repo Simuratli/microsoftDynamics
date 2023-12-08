@@ -206,24 +206,13 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 
-const addValuesToInputFields = () => {
-   console.log("dene bnireay")
-
-   let inputfields = null
+const addValuesToInputFields = (inputfields) => {
+ 
 
    // fieldsForCompanyForms.style.display = 'none'
    // fieldsForUserForms.style.display = 'none'
 
-   if ('companyName' in entries) {
-      // fieldsForCompanyForms.style.display = 'flex'
-      // fieldsForUserForms.style.display = 'none'
-      inputfields = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
-   } else {
-      // fieldsForCompanyForms.style.display = 'none'
-      // fieldsForUserForms.style.display = 'flex'
-      inputfields = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-   }
-
+  
 
 
    if (inputfields && urlParameters) {
@@ -296,9 +285,11 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
          }
       }
    });
-
-
 }
+
+
+
+
 
 
 
@@ -306,8 +297,9 @@ const fillFormElements = async (exist,existedInputs) => {
    if (exist) {
       addDatasToExistedFieldsInTable(exist, existedInputs)
    } else {
-      addValuesToInputFields()
+      addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")))
    }
+      
 }
 
 
