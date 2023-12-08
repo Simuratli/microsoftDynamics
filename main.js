@@ -369,6 +369,7 @@ const existOrNotFunction = async () => {
 
 
 const loadingEventFunction = async () => {
+   showLoader()
    const currentAccounts = myMSALObj.getAllAccounts();
    if (currentAccounts.length === 1) {
       existOrNotFunction()
