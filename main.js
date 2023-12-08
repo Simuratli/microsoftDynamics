@@ -138,11 +138,10 @@ const changeRequestedNames = (name) => {
 
 const showLoader = async () => {
    loader.style.display = 'grid'
-   setTimeout(() => {
+    setTimeout(() => {
       loader.style.display = 'none'
    }, 1000);
 }
-
 
 
 
