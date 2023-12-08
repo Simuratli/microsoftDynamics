@@ -1,5 +1,5 @@
 const loginButton = document.getElementById("loginButton");
-const logoutButton = document.getElementById("logoutButton");
+const logoutButton = document.querySelectorAll(".logoutButton");
 const setupButton = document.getElementById("setupButton");
 const getAccountsButton = document.getElementById("getAccountsButton");
 const sendAccountsButton = document.getElementById("sendAccountsButton");
@@ -386,7 +386,7 @@ function showWelcomeMessage(username) {
    showLoader()
    // message.innerHTML = `Welcome ${username}`;
    loginWithButtonForm.style.display = "none";
-   logoutButton.style.display = "block";
+   // logoutButton.style.display = "block";
    // getAccountsButton.style.display = "block";
    // sendAccountsButton.style.display = "block";
    // mainCredentialsForm.style.display = 'none'
@@ -526,7 +526,9 @@ updateMsalFunction()
 function selectAccount() {
    const currentAccounts = myMSALObj.getAllAccounts();
    if (currentAccounts.length === 0) {
-      logoutButton.style.display = 'none'
+      logoutButton.forEach(element => {
+         element.style.display = 'none'
+      });
       return;
    } else if (currentAccounts.length > 1) {
       // Add choose account code here
@@ -534,7 +536,9 @@ function selectAccount() {
    } else if (currentAccounts.length === 1) {
       username = currentAccounts[0].username;
       showWelcomeMessage(username);
-      logoutButton.style.display = "block";
+      logoutButton.forEach(element => {
+         element.style.display = 'block'
+      });
    }
 }
 
