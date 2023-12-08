@@ -531,7 +531,6 @@ function selectAccount() {
       logoutButton.forEach(element => {
          element.style.display = 'none'
       });
-      mainCredentialsForm.style.display = 'flex'
       return;
    } else if (currentAccounts.length > 1) {
       // Add choose account code here
@@ -675,7 +674,7 @@ function signOut() {
    };
 
    myMSALObj.logoutPopup(logoutRequest);
-   console.log("looguru")
+
    mainCredentialsForm.style.display = 'flex'
    loginWithButtonForm.style.display = 'none'
 
