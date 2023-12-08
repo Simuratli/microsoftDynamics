@@ -393,6 +393,7 @@ function showWelcomeMessage(username) {
    // list.style.visibility = 'visible'
    // list.style.position = 'relative'
    // list.style.display = 'flex'
+   existOrNotFunction()
 }
 
 
@@ -583,7 +584,7 @@ function signIn() {
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'none'
          mainCredentialsForm.style.display = 'none'
-
+         
 
          if (response !== null) {
             username = response.account.username;
