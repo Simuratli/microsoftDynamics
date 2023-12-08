@@ -306,7 +306,8 @@ const fillFormElements = async (exist,existedInputs) => {
 
 const existOrNotFunction = async () => {
    loader.style.display = 'grid'
-   // showLoader()
+   if(parameters){
+       // showLoader()
    if (parameters['companyName']) {
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       if (companies.value.length !== 0) {
@@ -362,6 +363,7 @@ const existOrNotFunction = async () => {
 
    }
 
+   }
    loader.style.display = 'none'
 }
 
