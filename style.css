@@ -485,7 +485,7 @@ thead th{
     line-height: 140%; /* 19.6px */
 }
 
-#logoutButton{
+.logoutButton{
     padding: 0;
     margin: 0;
     border: 0;
@@ -502,7 +502,7 @@ thead th{
     background-color: transparent;
 }
 
-#logoutButton svg{
+.logoutButton svg{
     width: 100%;
     height: 100%;
     object-fit: cover;
