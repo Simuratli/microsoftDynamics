@@ -298,6 +298,10 @@ const fillFormElements = async (exist,existedInputs) => {
    if (exist) {
       addDatasToExistedFieldsInTable(exist, existedInputs)
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")))
+      const existedInputs = parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".existed") : document.querySelector("#ifExistUser").querySelectorAll(".existed")
+      const elements = parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser") : document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")
+      
+      highLightDifferentInputs(elements,existedInputs)
    } else {
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
    }
@@ -1072,6 +1076,30 @@ inputsForUserDublicateTable.forEach(element => {
 
 
 
+const highLightDifferentInputs = async (elements,existedInputs) =>{ 
+   elements.forEach(element => {
+      existedInputs.forEach(existedTableElement => {
+         if (changeRequestedNames(element.name) === existedTableElement.name) {
+            if (element.value !== existedTableElement.value) {
+               if (addColor !== "noColor") {
+                  element.classList.add('differentInputMain')
+                  existedTableElement.classList.add('differentInputSide')
+               } else {
+                  element.classList.add('blackText')
+                  existedTableElement.classList.add('noChange')
+               }
+
+            } else {
+               element.classList.remove('differentInputMain')
+               existedTableElement.classList.remove('differentInputSide')
+               element.classList.remove('blackText')
+               existedTableElement.classList.remove('noChange')
+            }
+         }
+      });
+   });
+}
+
 
 const updateExistedTableForEditableFields = async (elements, elementsMain, existedInputs, existedData, addColor) => {
    const keys = Object.keys(existedData);
@@ -1116,27 +1144,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-   elements.forEach(element => {
-      existedInputs.forEach(existedTableElement => {
-         if (changeRequestedNames(element.name) === existedTableElement.name) {
-            if (element.value !== existedTableElement.value) {
-               if (addColor !== "noColor") {
-                  element.classList.add('differentInputMain')
-                  existedTableElement.classList.add('differentInputSide')
-               } else {
-                  element.classList.add('blackText')
-                  existedTableElement.classList.add('noChange')
-               }
-
-            } else {
-               element.classList.remove('differentInputMain')
-               existedTableElement.classList.remove('differentInputSide')
-               element.classList.remove('blackText')
-               existedTableElement.classList.remove('noChange')
-            }
-         }
-      });
-   });
+   await highLightDifferentInputs(elements,existedInputs)
 
 
    console.log(document.querySelectorAll(".differentInputMain"), 'document.querySelectorAll(".differentInputMain")', document.querySelectorAll(".differentInputMain").length)
