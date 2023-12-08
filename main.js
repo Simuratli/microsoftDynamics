@@ -531,6 +531,7 @@ function selectAccount() {
       logoutButton.forEach(element => {
          element.style.display = 'none'
       });
+      mainCredentialsForm.style.display = 'flex'
       return;
    } else if (currentAccounts.length > 1) {
       // Add choose account code here
