@@ -905,6 +905,8 @@ async function getDataverse(url, token, callback) {
 
 }
 
+console.log(parameters,'paramtersetsrt')
+
 
 const createCompanyWithId = async (url, token) => {
 
