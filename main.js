@@ -366,9 +366,13 @@ const existOrNotFunction = async () => {
 
 const loadingEventFunction = async () => {
    showLoader()
+   mainCredentialsForm.style.display = 'none'
    const currentAccounts = myMSALObj.getAllAccounts();
    if (currentAccounts.length === 1) {
+      mainCredentialsForm.style.display = 'none'
       await existOrNotFunction()
+   }else{
+      mainCredentialsForm.style.display = 'block'
    }
 }
 
