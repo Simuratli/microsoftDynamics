@@ -674,7 +674,7 @@ function signOut() {
    };
 
    myMSALObj.logoutPopup(logoutRequest);
-
+   console.log("looguru")
    mainCredentialsForm.style.display = 'flex'
    loginWithButtonForm.style.display = 'none'
 
