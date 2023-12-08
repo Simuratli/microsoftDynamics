@@ -253,7 +253,6 @@ const addValuesToInputFields = (inputfields) => {
 
 
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
-   logoutButton.style.display = "block";
    const keys = Object.keys(existedData)
    const companies =  await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    existedFields.forEach(element => {
@@ -534,7 +533,7 @@ function selectAccount() {
    } else if (currentAccounts.length === 1) {
       username = currentAccounts[0].username;
       showWelcomeMessage(username);
-
+      logoutButton.style.display = "block";
    }
 }
 
