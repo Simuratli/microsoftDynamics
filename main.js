@@ -671,7 +671,7 @@ function signOut() {
    };
 
    myMSALObj.logoutPopup(logoutRequest);
-
+   showLoader()
    mainCredentialsForm.style.display = 'flex'
    loginWithButtonForm.style.display = 'none'
 
