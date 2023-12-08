@@ -1163,7 +1163,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 }
 
 async function sendDataverse(url, token) {
-
+   console.log('sendDataverse working')
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
