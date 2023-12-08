@@ -338,23 +338,24 @@ const existOrNotFunction = async () => {
       const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       if (contacts.value.length !== 0) {
          mainCredentialsForm.style.display = 'none'
-         ifExistUserTable.style.display = 'block'
          ifExistCompany.style.display = 'none'
          mainCapture.style.display = 'none'
          sendAccountsButton.style.display = 'none'
+         ifExistUserTable.style.display = 'block'
          updateDataButton.style.display = 'block'
          goToCRMButton.style.display = 'block'
 
       } else {
+         
          mainCredentialsForm.style.display = 'none'
          ifExistUserTable.style.display = 'none'
          ifExistCompany.style.display = 'none'
-         mainCapture.style.display = 'block'
          fieldsForCompanyForms.style.display = 'none'
-         fieldsForUserForms.style.display = 'flex'
-         sendAccountsButton.style.display = 'block'
          updateDataButton.style.display = 'none'
          goToCRMButton.style.display = 'none'
+         fieldsForUserForms.style.display = 'flex'
+         sendAccountsButton.style.display = 'block'
+         mainCapture.style.display = 'block'
       }
 
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
@@ -368,7 +369,7 @@ const loadingEventFunction = async () => {
    showLoader()
    const currentAccounts = myMSALObj.getAllAccounts();
    if (currentAccounts.length === 1) {
-      existOrNotFunction()
+      await existOrNotFunction()
    }
 }
 
