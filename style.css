@@ -544,6 +544,16 @@ thead th{
 }
 
 
+.errorForInputText{
+    color: var(--semantic-error, #CE1E1E);
+    font-family:'Segoe UI', sans-serif;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
 /* HTML: <div class="loader"></div> */
 
 
