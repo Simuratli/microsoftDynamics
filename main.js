@@ -948,12 +948,12 @@ async function sendAccounts(callback) {
             formElements.forEach(element => {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
-                  console.log(element, 'i had error')
+                  console.log(element, 'i had error 1')
                   element.classList.add("errorInput")
                   insertElementAfter(element.name, newErrorTextElement);
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
-                     console.log(element, 'i had error')
+                     console.log(element, 'i had error 2')
                      element.classList.add("errorInput")
                      insertElementAfter(element.name, newErrorTextElement);
                   }
