@@ -342,6 +342,7 @@ const existOrNotFunction = async () => {
       // showLoader()
       if (parameters['companyName']) {
          const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+         console.log('companiessss' , companies)
          if (companies.value.length !== 0) {
             mainCredentialsForm.style.display = 'none'
             ifExistUserTable.style.display = 'none'
