@@ -946,16 +946,17 @@ async function sendAccounts(callback) {
             });
 
             formElements.forEach(element => {
+               console.log(nameOfFieldError,'nameOfFieldError')
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
                   console.log(element, 'i had error 1')
-                  insertElementAfter(element.name, newErrorTextElement);
+                  insertElementAfter(element.name, newErrorTextElement,'company');
                   element.classList.add("errorInput")
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      console.log(element, 'i had error 2')
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement);
+                     insertElementAfter(element.name, newErrorTextElement,'company');
                   }
                }
             });
@@ -1248,12 +1249,20 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 }
 
 
-function insertElementAfter(inputName, newElement) {
-   // Find the reference element (input with the specified name)
+function insertElementAfter(inputName, newElement,forWhere) {
+  
    var referenceElement = document.querySelector('[name="' + inputName + '"]');
-   console.log(referenceElement,'referenceelement')
-   // Insert the new element after the reference element
+   
+   if(forWhere==='company'){
+      referenceElement = document.querySelector("#fieldsForCompany").querySelector('[name="' + inputName + '"]')
+   }else{
+      referenceElement = document.querySelector("#fieldsForUser").querySelector('[name="' + inputName + '"]');
+   }
+
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
+ 
+
+
 }
 
 async function sendDataverse(url, token) {
@@ -1289,12 +1298,12 @@ async function sendDataverse(url, token) {
                if (changeRequestedNames(element.name) === nameOfFieldError) {
                   console.log(element, 'i had error')
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name, newErrorTextElement);
+                  insertElementAfter(element.name, newErrorTextElement,'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      console.log(element, 'i had error')
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement);
+                     insertElementAfter(element.name, newErrorTextElement,'contact');
                   }
                }
             });
@@ -1338,7 +1347,7 @@ async function sendDataverse(url, token) {
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
 
             const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
-            console.log(nameOfFieldError,'nameOfFieldError')
+           
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
@@ -1348,12 +1357,12 @@ async function sendDataverse(url, token) {
                if (changeRequestedNames(element.name) === nameOfFieldError) {
                   console.log(element, 'i had error')
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name, newErrorTextElement);
+                  insertElementAfter(element.name, newErrorTextElement,'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      console.log(element, 'i had error')
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement);
+                     insertElementAfter(element.name, newErrorTextElement,'contact');
                   }
                }
             });
