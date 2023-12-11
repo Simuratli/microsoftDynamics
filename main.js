@@ -1072,7 +1072,6 @@ console.log(parameters,'oapranetesr')
 
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
-   const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastName = document.querySelector('.userName').value.split(" ")
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
@@ -1081,7 +1080,7 @@ const getUserMainRequestObject = async () => {
       jobtitle: document.querySelector('.jobTitle').value,
       address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
-      'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
+      // 'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       // telephone1: document.querySelector('.phone').value,
       // mobilephone: document.querySelector('.tel').value,
       // emailaddress1: document.querySelector('.email').value,
@@ -1090,7 +1089,10 @@ const getUserMainRequestObject = async () => {
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
 
-
+   if(parameters.customerId !== "all"){
+      const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+      Object.assign(bodyOfReq, { 'parentcustomerid_account@odata.bind':`/accounts(${accounts.value[0].accountid})` })
+   }
 
 
    
@@ -1299,7 +1301,9 @@ async function sendDataverse(url, token) {
 
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
+     if(parameters.customerId !== "all"){
       const createdCompany = await createCompanyWithId('accounts', token)
+     }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
