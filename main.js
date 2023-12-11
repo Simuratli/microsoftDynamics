@@ -823,7 +823,7 @@ const updateData = async () => {
             inputsForAddingError.forEach(element=>{
                if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
                   element.classList.add("errorInput")
-                  element.nextSibling.style.display = 'block'
+                  nextSiblingElement.classList.add('highlight')
                   console.log(element.nextSibling,'errorInput errorInput')
                }
             })

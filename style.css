@@ -558,6 +558,10 @@ thead th{
     display: none;
 }
 
+.highlight{
+    display: block;
+}
+
 
 /* HTML: <div class="loader"></div> */
 
