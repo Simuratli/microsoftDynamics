@@ -96,6 +96,8 @@ const convertNameToNormalString = (name) => {
          return "Job title"
       case "firstname":
          return "Firstname"
+      case "lastname":
+         return "Lastname"
       case "fullname":
          return "Fullname"
       case "address1_name":
