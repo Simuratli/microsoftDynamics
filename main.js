@@ -1255,6 +1255,7 @@ async function sendDataverse(url, token) {
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
                }else if(changeRequestedNames(element.name) === 'fullname'){
+                  console.log(element,'i had error ele')
                   if(nameOfFieldError === 'lastname'){
                      console.log(element,'i had error')
                   }
