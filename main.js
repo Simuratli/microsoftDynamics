@@ -812,7 +812,15 @@ const updateData = async () => {
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
+      const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
+
+      if(responseOfCreateAccount.error){
+         console.log(responseOfCreateAccount.error.message,'error message')
+
+         if(responseOfCreateAccount.error.message.inludes("length")){
+            console.log(responseOfCreateAccount.error.message.split("'")," cutted error")
+         }
+      }
 
       const filteredcontacts2 = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
