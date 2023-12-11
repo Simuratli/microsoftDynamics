@@ -291,7 +291,6 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 
          if (element.name === 'linkedinUrl' || element.name === "linkedinCompanyUrl") {
-            console.log('test me here is new')
             if (key === 'uds_linkedin' && existedData[key]) {
                element.value = existedData[key]
 
@@ -307,8 +306,6 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
          }
          if (element.name === 'customer') {
             if (companies.value[0]) {
-               console.log(companies, 'testm 21312e')
-               console.log(parameters, 'paramtersetsrt')
                element.value = companies.value[0].name ? companies.value[0].name : ""
             }
          }
@@ -426,7 +423,6 @@ addEventListener("load", loadingEventFunction);
 
 // Called from signIn or selectAccount functions
 function showWelcomeMessage(username) {
-   console.log('are you working? showWelcomeMessage')
    showLoader()
    // message.innerHTML = `Welcome ${username}`;
    loginWithButtonForm.style.display = "none";
@@ -499,10 +495,8 @@ function checkCredentialURLs(e) {
    switch (e.target.name) {
       case 'clientIdInput':
          if (clientIdPattern.test(e.target.value)) {
-            console.log("valued")
             clientIdInput.classList.remove("errorInput")
          } else {
-            console.log("not valued")
             if (e.target.value) {
                clientIdInput.classList.add("errorInput")
             } else {
@@ -513,10 +507,8 @@ function checkCredentialURLs(e) {
          break;
       case 'tenantIdInput':
          if (clientIdPattern.test(e.target.value)) {
-            console.log("valued")
             tenantIdInput.classList.remove("errorInput")
          } else {
-            console.log("not valued")
             if (e.target.value) {
                tenantIdInput.classList.add("errorInput")
             } else {
@@ -527,10 +519,8 @@ function checkCredentialURLs(e) {
          break;
       case 'crmUrlInput':
          if (e.target.value.match(regex)) {
-            console.log("valued")
             crmUrlInput.classList.remove("errorInput")
          } else {
-            console.log("not valued")
             if (e.target.value) {
                crmUrlInput.classList.add("errorInput")
             } else {
@@ -543,8 +533,10 @@ function checkCredentialURLs(e) {
 
 
    if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex) && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+      console.log('iam suitable')
       setupButton.removeAttribute('disabled');
    } else {
+      console.log('iam not suitable')
       setupButton.setAttribute('disabled', 'true');
    }
 }
@@ -591,7 +583,6 @@ function selectAccount() {
 
 
 const setup = () => {
-   console.log('are you working? setup')
    updateMsalFunction()
    mainCredentialsForm.style.display = 'none'
    setupButton.style.display = 'none'
@@ -625,7 +616,6 @@ const tryAgain = () => {
 // Called by the loginButton
 function signIn() {
    showLoader()
-   console.log('sign in works')
    myMSALObj.loginPopup({
       scopes: ["User.Read", baseUrl + "/user_impersonation"] //<= Includes Dataverse scope
    })
@@ -646,7 +636,6 @@ function signIn() {
          }
       })
       .catch(error => {
-         console.log(error.message);
          if (!error.message.includes('user_cancelled')) {
             loginWithButtonForm.style.display = 'none'
             wentWrongForm.style.display = 'flex'
@@ -852,18 +841,15 @@ const updateData = async () => {
       const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
 
       if (responseOfCreateAccount.error) {
-         console.log(responseOfCreateAccount.error.message, 'error message')
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1]
          if (errorMessageText.includes("length")) {
-            console.log(errorRequestFieldName, " cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element => {
                if (changeRequestedNames(element.name) === errorRequestFieldName) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorRequestFieldName)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
-                  console.log(element.parentNode.childNodes[3], 'errorInput errorInput')
                }
             })
          }
@@ -877,24 +863,20 @@ const updateData = async () => {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-      console.log("companiescompaniescompaniescompaniescompaniescompanies", companies)
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
-      console.log(createdCompanyResponse, 'error message')
 
       if (createdCompanyResponse.error) {
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if (errorMessageText.includes("length")) {
-            console.log(errorMessageText.split("'")[1], " cutted error")
             const inputsForAddingError = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element => {
                if (changeRequestedNames(element.name) === errorMessageText.split("'")[1]) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
-                  console.log(element.parentNode.childNodes[3], 'errorInput errorInput')
                }
             })
          }
@@ -946,15 +928,12 @@ async function sendAccounts(callback) {
             });
 
             formElements.forEach(element => {
-               console.log(nameOfFieldError,'nameOfFieldError')
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
-                  console.log(element, 'i had error 1')
                   insertElementAfter(element.name, newErrorTextElement,'company');
                   element.classList.add("errorInput")
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
-                     console.log(element, 'i had error 2')
                      element.classList.add("errorInput")
                      insertElementAfter(element.name, newErrorTextElement,'company');
                   }
@@ -1150,7 +1129,6 @@ inputsForUserDublicateTable.forEach(element => {
 
    element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
-      console.log(element.name, element.value, 'test me', existedValue)
       if (element.value === existedValue) {
          updateDataButton.setAttribute("disabled")
       } else {
@@ -1169,7 +1147,6 @@ const highLightDifferentInputs = async (elements, existedInputs, addColor) => {
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
             if (element.value !== existedTableElement.value) {
-               console.log('test hwere work or not !==')
                if (addColor !== "noColor") {
                   element.classList.add('differentInputMain')
                   existedTableElement.classList.add('differentInputSide')
@@ -1179,7 +1156,6 @@ const highLightDifferentInputs = async (elements, existedInputs, addColor) => {
                }
 
             } else {
-               console.log('test hwere work or not ====')
                element.classList.remove('differentInputMain')
                existedTableElement.classList.remove('differentInputSide')
                element.classList.remove('blackText')
@@ -1266,7 +1242,6 @@ function insertElementAfter(inputName, newElement,forWhere) {
 }
 
 async function sendDataverse(url, token) {
-   console.log('sendDataverse working')
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
 
@@ -1275,7 +1250,6 @@ async function sendDataverse(url, token) {
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
-      console.log(errorMessageIndividual, 'responseOfAccount errorMessageIndividual')
       const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
       if (responseOfAccount.error) {
          const errorMessageText = responseOfAccount.error.message.toString();
@@ -1296,12 +1270,10 @@ async function sendDataverse(url, token) {
             formElements.forEach(element => {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
-                  console.log(element, 'i had error')
                   element.classList.add("errorInput")
                   insertElementAfter(element.name, newErrorTextElement,'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
-                     console.log(element, 'i had error')
                      element.classList.add("errorInput")
                      insertElementAfter(element.name, newErrorTextElement,'contact');
                   }
@@ -1328,7 +1300,6 @@ async function sendDataverse(url, token) {
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
       // message.innerHTML = 'Contact created'
-      console.log(responseOfAccount, 'responseOfAccount notexist')
       // mainCapture.querySelector(".informationBlock").style.display = "none"
       // successMessageIndividual.style.display = 'flex'
       // goToCRMButton.style.display = 'block'
@@ -1355,12 +1326,10 @@ async function sendDataverse(url, token) {
             formElements.forEach(element => {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
-                  console.log(element, 'i had error')
                   element.classList.add("errorInput")
                   insertElementAfter(element.name, newErrorTextElement,'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
-                     console.log(element, 'i had error')
                      element.classList.add("errorInput")
                      insertElementAfter(element.name, newErrorTextElement,'contact');
                   }
