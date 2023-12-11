@@ -823,6 +823,7 @@ const updateData = async () => {
             inputsForAddingError.forEach(element=>{
                if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
                   element.classList.add("errorInput")
+                  element.parentNode.childNodes[3].innerHTML = `${errorMessageText.split("'")[1]} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
                   console.log(element.parentNode.childNodes[3],'errorInput errorInput')
                }
