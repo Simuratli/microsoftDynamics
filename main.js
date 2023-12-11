@@ -876,6 +876,7 @@ const updateData = async () => {
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      console.log("companiescompaniescompaniescompaniescompaniescompanies",companies)
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
