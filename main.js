@@ -843,10 +843,11 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-      const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1] 
+      
       if(responseOfCreateAccount.error){
          console.log(responseOfCreateAccount.error.message,'error message')
          const errorMessageText = responseOfCreateAccount.error.message.toString()
+         const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1] 
          if(errorMessageText.includes("length")){
             console.log(errorRequestFieldName," cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
