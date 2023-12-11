@@ -1256,23 +1256,25 @@ async function sendDataverse(url, token) {
 
          if(errorMessageText.includes("length")){
             const nameOfFieldError = errorMessageText.split("'")[1]
-            console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
 
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
-
             const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-
+            
             formElements.forEach(element => {
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
+                  element.classList.add("errorInput")
                   insertElementAfter(element.name,newErrorTextElement);
                }else if(changeRequestedNames(element.name) === 'fullname'){
                   if(nameOfFieldError === 'lastname'){
                      console.log(element,'i had error')
+                     element.classList.add("errorInput")
                      insertElementAfter(element.name,newErrorTextElement);
                   }
+               }else{
+                  element.classList.remove("errorInput")
                }
             });
 
