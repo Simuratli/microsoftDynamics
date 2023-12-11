@@ -1250,7 +1250,7 @@ async function sendDataverse(url, token) {
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
       console.log(errorMessageIndividual, 'responseOfAccount errorMessageIndividual')
-
+      const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
       if (responseOfAccount.error) {
          const errorMessageText = responseOfAccount.error.message.toString();
 
@@ -1260,7 +1260,7 @@ async function sendDataverse(url, token) {
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
-            const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+            
             
             formElements.forEach(element => {
                if(changeRequestedNames(element.name) === nameOfFieldError){
@@ -1284,6 +1284,9 @@ async function sendDataverse(url, token) {
          errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
          sendAccountsButton.style.display = 'block'
       } else {
+         formElements.forEach(element=>{
+            element.classList.remove("errorInput")
+         })
          successMessageIndividual.style.display = 'flex'
          errorMessageIndividual.style.display = 'none'
          goToCRMButton.style.display = 'block'
