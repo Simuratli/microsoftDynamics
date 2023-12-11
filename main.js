@@ -833,12 +833,13 @@ const updateData = async () => {
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      const responseOfCreateCompany = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-      console.log(responseOfCreateCompany,'error message buraya bajksd')
-      if(responseOfCreateCompany.error){
-         
-         const errorMessageText = responseOfCreateCompany.error.message.toString()
+      const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
+
+      if(responseOfCreateAccount.error){
+         console.log(responseOfCreateAccount.error.message,'error message')
+         const errorMessageText = responseOfCreateAccount.error.message.toString()
          if(errorMessageText.includes("length")){
+            console.log(errorMessageText.split("'")[1]," cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element=>{
                if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
@@ -862,10 +863,10 @@ const updateData = async () => {
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
-      
+      console.log(createdCompanyResponse,'error message')
       if(createdCompanyResponse.error){
-         console.log(responseOfCreateAccount.error.message,'error message')
-         const errorMessageText = responseOfCreateAccount.error.message.toString()
+         
+         const errorMessageText = createdCompanyResponse.error.message.toString()
          if(errorMessageText.includes("length")){
             console.log(errorMessageText.split("'")[1]," cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
