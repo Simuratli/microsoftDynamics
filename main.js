@@ -369,11 +369,8 @@ const existOrNotFunction = async () => {
          await fillFormElements(companies.value[0], existedInputs);
 
       } else {
-         const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-         // const contactstest = await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}') or contains(fullname, '${parameters.userName}')`) 
-         const contactstest = await filterBackend(`contacts?$filter=contains(fullname, '${parameters.userName}')`)
-         
-         console.log('contactscontacts' , contactstest, parameters)
+         // const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+         const contacts = await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}') or contains(fullname, '${parameters.userName}')`) 
 
 
          if (contacts.value.length !== 0) {
