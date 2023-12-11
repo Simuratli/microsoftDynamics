@@ -875,7 +875,8 @@ const updateData = async () => {
 
    } else {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
-      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
       console.log("companiescompaniescompaniescompaniescompaniescompanies",companies)
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
@@ -899,7 +900,8 @@ const updateData = async () => {
          }
       }
 
-      const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies2 = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
       updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
    }
    loader.style.display = 'none'
@@ -917,8 +919,8 @@ async function sendAccounts(callback) {
       await sendDataverse("contacts", response.accessToken, callback);
 
    } else {
-      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-
+      // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
       if (companies.value.length !== 0) {
          // message.innerHTML = 'Company updating...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
@@ -1352,7 +1354,8 @@ const goToCrm = async () => {
    if (!parameters["companyName"]) {
       data = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
    } else {
-      data = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      // data = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      data = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
    }
 
    if (data.value) {
