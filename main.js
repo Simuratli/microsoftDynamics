@@ -1243,6 +1243,7 @@ function insertElementAfter(inputName, newElement,forWhere) {
 
 async function sendDataverse(url, token) {
    const parameters = JSON.parse(params.query)
+   console.log('pammeretes',parameters)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
 
    if (filtered.value.length !== 0) {
