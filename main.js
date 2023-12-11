@@ -532,7 +532,7 @@ function checkCredentialURLs(e) {
    }
 
 
-   if (clientIdInput.value !== '' && clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex) && tenantIdInput.value !== '' && crmUrlInput.value !== '') {
+   if (clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex)) {
       console.log('iam suitable')
       setupButton.removeAttribute('disabled');
    } else {
