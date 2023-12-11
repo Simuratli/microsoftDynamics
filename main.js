@@ -925,19 +925,19 @@ async function sendAccounts(callback) {
          // message.innerHTML = 'Company updating...'
          const bodyOfCompany = await getRequestBodyOfCompany('main');
          const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', bodyOfCompany)
-         if (createdCompanyResponse.status === 200) {
+         
+         if (!createdCompanyResponse.error) {
             ifExistCompany.style.display = 'block';
             mainCapture.style.display = 'none'
-
             const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
             const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
             const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
             await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, companies.value[0])
-
-
             goToCRMButton.style.display = 'block'
             updateDataButton.style.display = 'block'
             sendAccountsButton.style.display = 'none'
+         }else{
+            console.log('thereHaveError')
          }
          // message.innerHTML = 'Company updated'
       } else {
@@ -1320,7 +1320,7 @@ async function sendDataverse(url, token) {
 
          const errorMessageText = responseOfAccount.error.message.toString();
 
-         
+
          if(errorMessageText.includes("length")){
             const nameOfFieldError = errorMessageText.split("'")[1]
 
