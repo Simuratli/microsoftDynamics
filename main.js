@@ -343,7 +343,7 @@ const existOrNotFunction = async () => {
       if (parameters['companyName']) {
          // const companies = parameters.linkedinCompanyUrl !== "" ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
          const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-         console.log('companiessss' , companies,parameters)
+         
          if (companies.value.length !== 0) {
             mainCredentialsForm.style.display = 'none'
             ifExistUserTable.style.display = 'none'
@@ -370,6 +370,10 @@ const existOrNotFunction = async () => {
 
       } else {
          const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+         
+         console.log('contactscontacts' , contacts, parameters)
+
+
          if (contacts.value.length !== 0) {
             mainCredentialsForm.style.display = 'none'
             ifExistCompany.style.display = 'none'
