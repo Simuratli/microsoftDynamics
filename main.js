@@ -370,7 +370,7 @@ const existOrNotFunction = async () => {
 
       } else {
          const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-         const contactstest = await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}') or contains(fullname, ${parameters.userName})`) 
+         const contactstest = await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}') or contains(fullname, '${parameters.userName}')`) 
          
          console.log('contactscontacts' , contactstest, parameters)
 
