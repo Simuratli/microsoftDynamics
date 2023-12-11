@@ -102,9 +102,9 @@ const convertNameToNormalString = (name) => {
       case "address1_name":
          return "Adress name"
       case "mobilephone":
-         return "Mobile phone"
+         return "Personal phone"
       case "telephone1":
-         return "Telephone"
+         return "Work phone"
       case "uds_linkedinusercommentary":
          return "Commentary"
    }
