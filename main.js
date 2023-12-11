@@ -1338,7 +1338,7 @@ async function sendDataverse(url, token) {
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
 
             const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
-
+            console.log(nameOfFieldError,'nameOfFieldError')
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
