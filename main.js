@@ -819,6 +819,12 @@ const updateData = async () => {
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          if(errorMessageText.includes("length")){
             console.log(errorMessageText.split("'")[1]," cutted error")
+            const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+            inputsForAddingError.forEach(element=>{
+               if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
+                  element.classList.add("errorInput")
+               }
+            })
          }
       }
 
