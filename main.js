@@ -930,7 +930,37 @@ async function sendAccounts(callback) {
          goToCRMButton.classList.add('goldGoToCrmButton')
          sendAccountsButton.style.display = 'none'
       }else{
-         console.log("we have error")
+         const errorMessageText = createdCompanyResponse.error.message.toString();
+         const formElements = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
+         if (errorMessageText.includes("length")) {
+            const nameOfFieldError = errorMessageText.split("'")[1]
+
+            const newErrorTextElement = document.createElement(`p`)
+            newErrorTextElement.classList.add("errorForInputTextNormal")
+            newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
+
+            const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
+
+            errorTextsForRemove.forEach(element => {
+               element.style.display = 'none'
+            });
+
+            formElements.forEach(element => {
+               element.classList.remove("errorInput")
+               if (changeRequestedNames(element.name) === nameOfFieldError) {
+                  console.log(element, 'i had error')
+                  element.classList.add("errorInput")
+                  insertElementAfter(element.name, newErrorTextElement);
+               } else if (changeRequestedNames(element.name) === 'fullname') {
+                  if (nameOfFieldError === 'lastname') {
+                     console.log(element, 'i had error')
+                     element.classList.add("errorInput")
+                     insertElementAfter(element.name, newErrorTextElement);
+                  }
+               }
+            });
+
+         }
       }
    }
 
