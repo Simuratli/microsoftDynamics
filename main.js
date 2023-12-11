@@ -1257,6 +1257,7 @@ async function sendDataverse(url, token) {
             console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
 
             const newErrorTextElement = document.createElement(`p`)
+            newErrorTextElement.classList.add("errorForInputText")
             newErrorTextElement.innerHTML = errorMessageText
 
             const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
@@ -1265,11 +1266,15 @@ async function sendDataverse(url, token) {
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
                   insertElementAfter(element.name,newErrorTextElement);
+                  element.classList.add('errorInput')
                }else if(changeRequestedNames(element.name) === 'fullname'){
                   if(nameOfFieldError === 'lastname'){
                      console.log(element,'i had error')
+                      element.classList.add('errorInput')
                      insertElementAfter(element.name,newErrorTextElement);
                   }
+               }else{
+                  element.classList.remove('errorInput')
                }
             });
 
