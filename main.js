@@ -1275,7 +1275,7 @@ async function sendDataverse(url, token) {
                   }
                }else{
                   element.classList.remove("errorInput")
-                  console.log(nameOfFieldError,'nameoeferror fiedls')
+                  console.log(element.name,'nameoeferror fiedls')
                }
             });
 
