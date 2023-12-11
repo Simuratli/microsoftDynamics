@@ -1266,15 +1266,11 @@ async function sendDataverse(url, token) {
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
                   insertElementAfter(element.name,newErrorTextElement);
-                  element.classList.add('errorInput')
                }else if(changeRequestedNames(element.name) === 'fullname'){
                   if(nameOfFieldError === 'lastname'){
-                     console.log(element,'i had error 2')
-                      element.classList.add('errorInput')
+                     console.log(element,'i had error')
                      insertElementAfter(element.name,newErrorTextElement);
                   }
-               }else{
-                  element.classList.remove('errorInput')
                }
             });
 
