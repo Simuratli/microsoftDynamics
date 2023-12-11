@@ -562,8 +562,8 @@ thead th{
 
 .errorForInputTextNormal{
     color: var(--semantic-error, #CE1E1E);
-    font-family:'Segoe UI', sans-serif;
-    font-size: 8px;
+    font-family: Segoe UI;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
