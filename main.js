@@ -1174,6 +1174,10 @@ async function sendDataverse(url, token) {
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
          if (responseOfAccount.error) {
+            console.log(responseOfAccount.error.message,'error message')
+            if(responseOfAccount.error.message.inludes('length')){
+                  console.log(responseOfAccount.error.message.split("'"),'spliterror')
+            }
             errorMessageIndividual.style.display = 'flex'
             errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
             sendAccountsButton.style.display = 'block'
