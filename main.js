@@ -1317,6 +1317,10 @@ async function sendDataverse(url, token) {
 
 
       if (responseOfAccount.error) {
+
+         const errorMessageText = responseOfAccount.error.message.toString();
+
+         
          if(errorMessageText.includes("length")){
             const nameOfFieldError = errorMessageText.split("'")[1]
 
