@@ -107,6 +107,8 @@ const convertNameToNormalString = (name) => {
          return "Work phone"
       case "uds_linkedinusercommentary":
          return "Commentary"
+      default:
+         return "Change me"
    }
 }
 
@@ -831,13 +833,12 @@ const updateData = async () => {
       const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
+      const responseOfCreateCompany = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
 
-      if(responseOfCreateAccount.error){
-         console.log(responseOfCreateAccount.error.message,'error message')
-         const errorMessageText = responseOfCreateAccount.error.message.toString()
+      if(responseOfCreateCompany.error){
+         console.log(responseOfCreateCompany.error.message,'error message')
+         const errorMessageText = responseOfCreateCompany.error.message.toString()
          if(errorMessageText.includes("length")){
-            console.log(errorMessageText.split("'")[1]," cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element=>{
                if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
@@ -861,6 +862,24 @@ const updateData = async () => {
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
+      
+      if(createdCompanyResponse.error){
+         console.log(responseOfCreateAccount.error.message,'error message')
+         const errorMessageText = responseOfCreateAccount.error.message.toString()
+         if(errorMessageText.includes("length")){
+            console.log(errorMessageText.split("'")[1]," cutted error")
+            const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
+            inputsForAddingError.forEach(element=>{
+               if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
+                  element.classList.add("errorInput")
+                  element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
+                  element.parentNode.childNodes[3].style.display = 'block'
+                  console.log(element.parentNode.childNodes[3],'errorInput errorInput')
+               }
+            })
+         }
+      }
+      
       const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
    }
