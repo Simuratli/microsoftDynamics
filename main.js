@@ -1228,6 +1228,15 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
 }
 
+
+function insertElementAfter(inputName, newElement) {
+   // Find the reference element (input with the specified name)
+   var referenceElement = document.querySelector('input[name="' + inputName + '"]');
+ 
+   // Insert the new element after the reference element
+   referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
+ }
+
 async function sendDataverse(url, token) {
    console.log('sendDataverse working')
    const parameters = JSON.parse(params.query)
@@ -1247,17 +1256,19 @@ async function sendDataverse(url, token) {
             const nameOfFieldError = errorMessageText.split("'")[1]
             console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
 
-            // const newErrorTextElement = document.createElement(`<p>${errorMessageText}</p>`)
+            const newErrorTextElement = document.createElement(`p`)
+            newErrorTextElement.innerHTML = errorMessageText
 
             const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
 
             formElements.forEach(element => {
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
+                  insertElementAfter(element.name,newErrorTextElement);
                }else if(changeRequestedNames(element.name) === 'fullname'){
-                  console.log(element,'i had error ele')
                   if(nameOfFieldError === 'lastname'){
                      console.log(element,'i had error')
+                     insertElementAfter(element.name,newErrorTextElement);
                   }
                }
             });
