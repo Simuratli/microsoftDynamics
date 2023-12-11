@@ -343,7 +343,7 @@ const existOrNotFunction = async () => {
       if (parameters['companyName']) {
          // const companies = parameters.linkedinCompanyUrl !== "" ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
          const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-         
+
          if (companies.value.length !== 0) {
             mainCredentialsForm.style.display = 'none'
             ifExistUserTable.style.display = 'none'
@@ -877,7 +877,7 @@ const updateData = async () => {
       const response = await getTokenPopup({ scopes: [baseUrl + "/.default"] });
       // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-      console.log("companiescompaniescompaniescompaniescompaniescompanies",companies)
+      console.log("companiescompaniescompaniescompaniescompaniescompanies", companies)
       const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
@@ -920,38 +920,17 @@ async function sendAccounts(callback) {
 
    } else {
       // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      const companies = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-      if (companies.value.length !== 0) {
-         // message.innerHTML = 'Company updating...'
-         const bodyOfCompany = await getRequestBodyOfCompany('main');
-         const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', bodyOfCompany)
-         
-         if (!createdCompanyResponse.error) {
-            ifExistCompany.style.display = 'block';
-            mainCapture.style.display = 'none'
-            const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
-            const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
-            const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
-            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, companies.value[0])
-            goToCRMButton.style.display = 'block'
-            updateDataButton.style.display = 'block'
-            sendAccountsButton.style.display = 'none'
-         }else{
-            console.log('thereHaveError')
-         }
-         // message.innerHTML = 'Company updated'
-      } else {
-         // message.innerHTML = 'Company creating ...'
-         const bodyOfCompany = await getRequestBodyOfCompany('main');
-         const createdCompanyResponse = await createCompany("accounts", response.accessToken, 'POST', bodyOfCompany)
-         if (createdCompanyResponse.ok) {
-            mainCapture.querySelector(".informationBlock").style.display = "none"
-            successMessageIndividual.style.display = 'flex'
-            goToCRMButton.style.display = 'block'
-            goToCRMButton.classList.add('goldGoToCrmButton')
-            sendAccountsButton.style.display = 'none'
-         }
-         // message.innerHTML = 'Company created'
+      const bodyOfCompany = await getRequestBodyOfCompany('main');
+      const createdCompanyResponse = await createCompany("accounts", response.accessToken, 'POST', bodyOfCompany)
+      
+      if (!createdCompanyResponse.error) {
+         mainCapture.querySelector(".informationBlock").style.display = "none"
+         successMessageIndividual.style.display = 'flex'
+         goToCRMButton.style.display = 'block'
+         goToCRMButton.classList.add('goldGoToCrmButton')
+         sendAccountsButton.style.display = 'none'
+      }else{
+         console.log("we have error")
       }
    }
 
@@ -1242,10 +1221,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 function insertElementAfter(inputName, newElement) {
    // Find the reference element (input with the specified name)
    var referenceElement = document.querySelector('[name="' + inputName + '"]');
- 
+
    // Insert the new element after the reference element
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
- }
+}
 
 async function sendDataverse(url, token) {
    console.log('sendDataverse working')
@@ -1262,30 +1241,30 @@ async function sendDataverse(url, token) {
       if (responseOfAccount.error) {
          const errorMessageText = responseOfAccount.error.message.toString();
 
-         if(errorMessageText.includes("length")){
+         if (errorMessageText.includes("length")) {
             const nameOfFieldError = errorMessageText.split("'")[1]
 
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
-            
+
             const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
 
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
-            
+
             formElements.forEach(element => {
                element.classList.remove("errorInput")
-               if(changeRequestedNames(element.name) === nameOfFieldError){
-                  console.log(element,'i had error')
+               if (changeRequestedNames(element.name) === nameOfFieldError) {
+                  console.log(element, 'i had error')
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name,newErrorTextElement);
-               }else if(changeRequestedNames(element.name) === 'fullname'){
-                  if(nameOfFieldError === 'lastname'){
-                     console.log(element,'i had error')
+                  insertElementAfter(element.name, newErrorTextElement);
+               } else if (changeRequestedNames(element.name) === 'fullname') {
+                  if (nameOfFieldError === 'lastname') {
+                     console.log(element, 'i had error')
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name,newErrorTextElement);
+                     insertElementAfter(element.name, newErrorTextElement);
                   }
                }
             });
@@ -1294,7 +1273,7 @@ async function sendDataverse(url, token) {
 
          sendAccountsButton.style.display = 'block'
       } else {
-         formElements.forEach(element=>{
+         formElements.forEach(element => {
             element.classList.remove("errorInput")
          })
          successMessageIndividual.style.display = 'flex'
@@ -1321,30 +1300,30 @@ async function sendDataverse(url, token) {
          const errorMessageText = responseOfAccount.error.message.toString();
 
 
-         if(errorMessageText.includes("length")){
+         if (errorMessageText.includes("length")) {
             const nameOfFieldError = errorMessageText.split("'")[1]
 
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
-            
+
             const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
 
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
-            
+
             formElements.forEach(element => {
                element.classList.remove("errorInput")
-               if(changeRequestedNames(element.name) === nameOfFieldError){
-                  console.log(element,'i had error')
+               if (changeRequestedNames(element.name) === nameOfFieldError) {
+                  console.log(element, 'i had error')
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name,newErrorTextElement);
-               }else if(changeRequestedNames(element.name) === 'fullname'){
-                  if(nameOfFieldError === 'lastname'){
-                     console.log(element,'i had error')
+                  insertElementAfter(element.name, newErrorTextElement);
+               } else if (changeRequestedNames(element.name) === 'fullname') {
+                  if (nameOfFieldError === 'lastname') {
+                     console.log(element, 'i had error')
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name,newErrorTextElement);
+                     insertElementAfter(element.name, newErrorTextElement);
                   }
                }
             });
@@ -1354,7 +1333,7 @@ async function sendDataverse(url, token) {
 
 
 
-         
+
       } else {
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
