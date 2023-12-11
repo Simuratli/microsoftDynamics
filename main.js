@@ -856,6 +856,13 @@ const updateData = async () => {
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
                   console.log(element.parentNode.childNodes[3],'errorInput errorInput')
+               }else if(errorMessageText.split("'")[1] === 'firstname' && errorMessageText.split("'")[1] === 'lastname'){
+                  if(changeRequestedNames(element.name) === 'fullname'){
+                     element.classList.add("errorInput")
+                     element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
+                     element.parentNode.childNodes[3].style.display = 'block'
+                     console.log(element.parentNode.childNodes[3],'errorInput errorInput')
+                  }
                }
             })
          }
