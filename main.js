@@ -1022,7 +1022,7 @@ const createCompany = async (url, token, method, requestBodyOfCompany) => {
 
 
 
-   const response = fetch(webAPIEndpoint + "/" + url, options)
+   const response = await fetch(webAPIEndpoint + "/" + url, options)
    return response.json()
 }
 
