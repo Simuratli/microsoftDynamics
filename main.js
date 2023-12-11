@@ -91,6 +91,25 @@ if (parameters['companyName']) {
 
 
 
+const convertNameToNormalString = (name) => {
+   switch (name) {
+      case "jobtitle":
+         return "Job title"
+      case "firstname":
+         return "Firstname"
+      case "fullname":
+         return "Fullname"
+      case "address1_name":
+         return "Adress name"
+      case "mobilephone":
+         return "Mobile phone"
+      case "telephone1":
+         return "Telephone"
+      case "uds_linkedinusercommentary":
+         return "Commentary"
+   }
+}
+
 
 const changeRequestedNames = (name) => {
    switch (name) {
@@ -823,7 +842,7 @@ const updateData = async () => {
             inputsForAddingError.forEach(element=>{
                if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
                   element.classList.add("errorInput")
-                  element.parentNode.childNodes[3].innerHTML = `${errorMessageText.split("'")[1]} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
+                  element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
                   console.log(element.parentNode.childNodes[3],'errorInput errorInput')
                }
