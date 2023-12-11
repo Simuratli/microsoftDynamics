@@ -606,3 +606,15 @@ thead th{
   input:read-only{
     cursor: not-allowed;
   }
+
+
+   /* Hide the number input buttons */
+   input[type="number"]::-webkit-inner-spin-button,
+   input[type="number"]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+   }
+
+   input[type="number"] {
+     -moz-appearance: textfield;
+   }
