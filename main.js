@@ -1261,8 +1261,14 @@ async function sendDataverse(url, token) {
             newErrorTextElement.classList.add("errorForInputTextNormal")
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
             
+            const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
+
+            errorTextsForRemove.forEach(element => {
+               element.style.display = 'none'
+            });
             
             formElements.forEach(element => {
+               element.classList.remove("errorInput")
                if(changeRequestedNames(element.name) === nameOfFieldError){
                   console.log(element,'i had error')
                   element.classList.add("errorInput")
@@ -1273,9 +1279,6 @@ async function sendDataverse(url, token) {
                      element.classList.add("errorInput")
                      insertElementAfter(element.name,newErrorTextElement);
                   }
-               }else{
-                  element.classList.remove("errorInput")
-                  console.log(element.name,'nameoeferror fiedls')
                }
             });
 
