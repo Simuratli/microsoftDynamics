@@ -1292,15 +1292,12 @@ async function sendDataverse(url, token) {
 
          }
 
-         errorMessageIndividual.style.display = 'flex'
-         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
          sendAccountsButton.style.display = 'block'
       } else {
          formElements.forEach(element=>{
             element.classList.remove("errorInput")
          })
          successMessageIndividual.style.display = 'flex'
-         errorMessageIndividual.style.display = 'none'
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          sendAccountsButton.style.display = 'none'
@@ -1320,9 +1317,40 @@ async function sendDataverse(url, token) {
 
 
       if (responseOfAccount.error) {
-         errorMessageIndividual.style.display = 'flex'
-         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
+         if(errorMessageText.includes("length")){
+            const nameOfFieldError = errorMessageText.split("'")[1]
+
+            const newErrorTextElement = document.createElement(`p`)
+            newErrorTextElement.classList.add("errorForInputTextNormal")
+            newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
+            
+            const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
+
+            errorTextsForRemove.forEach(element => {
+               element.style.display = 'none'
+            });
+            
+            formElements.forEach(element => {
+               element.classList.remove("errorInput")
+               if(changeRequestedNames(element.name) === nameOfFieldError){
+                  console.log(element,'i had error')
+                  element.classList.add("errorInput")
+                  insertElementAfter(element.name,newErrorTextElement);
+               }else if(changeRequestedNames(element.name) === 'fullname'){
+                  if(nameOfFieldError === 'lastname'){
+                     console.log(element,'i had error')
+                     element.classList.add("errorInput")
+                     insertElementAfter(element.name,newErrorTextElement);
+                  }
+               }
+            });
+
+         }
          sendAccountsButton.style.display = 'block'
+
+
+
+         
       } else {
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
