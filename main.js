@@ -864,8 +864,8 @@ const updateData = async () => {
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
       console.log(createdCompanyResponse,'error message')
+      
       if(createdCompanyResponse.error){
-         
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if(errorMessageText.includes("length")){
             console.log(errorMessageText.split("'")[1]," cutted error")
@@ -1023,7 +1023,7 @@ const createCompany = async (url, token, method, requestBodyOfCompany) => {
 
 
    const response = fetch(webAPIEndpoint + "/" + url, options)
-   return response
+   return response.json()
 }
 
 
