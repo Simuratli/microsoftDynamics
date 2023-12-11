@@ -1068,7 +1068,7 @@ const createAccount = async (url, token, method, bodyOfReq) => {
    return data
 }
 
-
+console.log(parameters,'oapranetesr')
 
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
@@ -1091,6 +1091,9 @@ const getUserMainRequestObject = async () => {
    }
 
 
+
+
+   
    if (document.querySelector('.tel').value) {
       Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value })
    }
