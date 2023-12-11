@@ -843,26 +843,19 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-
+      const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1] 
       if(responseOfCreateAccount.error){
          console.log(responseOfCreateAccount.error.message,'error message')
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          if(errorMessageText.includes("length")){
-            console.log(errorMessageText.split("'")[1]," cutted error")
+            console.log(errorRequestFieldName," cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element=>{
-               if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
+               if(changeRequestedNames(element.name) === errorRequestFieldName){
                   element.classList.add("errorInput")
-                  element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
+                  element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorRequestFieldName)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
                   console.log(element.parentNode.childNodes[3],'errorInput errorInput')
-               }else if(errorMessageText.split("'")[1] === 'firstname' && errorMessageText.split("'")[1] === 'lastname'){
-                  if(changeRequestedNames(element.name) === 'fullname'){
-                     element.classList.add("errorInput")
-                     element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
-                     element.parentNode.childNodes[3].style.display = 'block'
-                     console.log(element.parentNode.childNodes[3],'errorInput errorInput')
-                  }
                }
             })
          }
