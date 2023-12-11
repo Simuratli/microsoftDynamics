@@ -818,7 +818,7 @@ const updateData = async () => {
          console.log(responseOfCreateAccount.error.message,'error message')
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          if(errorMessageText.includes("length")){
-            console.log(errorMessageText.split("'")," cutted error")
+            console.log(errorMessageText.split("'")[1]," cutted error")
          }
       }
 
