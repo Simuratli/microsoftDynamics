@@ -834,9 +834,9 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       const responseOfCreateCompany = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-
+      console.log(responseOfCreateCompany,'error message buraya bajksd')
       if(responseOfCreateCompany.error){
-         console.log(responseOfCreateCompany.error.message,'error message')
+         
          const errorMessageText = responseOfCreateCompany.error.message.toString()
          if(errorMessageText.includes("length")){
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
