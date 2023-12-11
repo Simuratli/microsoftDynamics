@@ -1251,7 +1251,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 function insertElementAfter(inputName, newElement) {
    // Find the reference element (input with the specified name)
    var referenceElement = document.querySelector('[name="' + inputName + '"]');
-
+   console.log(referenceElement,'referenceelement')
    // Insert the new element after the reference element
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
 }
