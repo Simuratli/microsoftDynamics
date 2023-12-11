@@ -111,11 +111,11 @@ const convertNameToNormalString = (name) => {
       case 'numberofemployees':
          return "Number of employees"
       case 'uds_linkedincompanycommentary':
-         return "Commentary" 
+         return "Commentary"
       case 'websiteurl':
-         return "Website URL" 
+         return "Website URL"
       case 'name':
-         return "Company name" 
+         return "Company name"
       default:
          return "Input "
    }
@@ -168,7 +168,7 @@ const changeRequestedNames = (name) => {
 
 const showLoader = async () => {
    loader.style.display = 'grid'
-    setTimeout(() => {
+   setTimeout(() => {
       loader.style.display = 'none'
    }, 1000);
 }
@@ -236,7 +236,7 @@ let myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 
 const addValuesToInputFields = async (inputfields) => {
- 
+
 
    // fieldsForCompanyForms.style.display = 'none'
    // fieldsForUserForms.style.display = 'none'
@@ -280,7 +280,7 @@ const addValuesToInputFields = async (inputfields) => {
 
 const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
    const keys = Object.keys(existedData)
-   const companies =  await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
+   const companies = await filterBackend(`accounts?$select=name&$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    existedFields.forEach(element => {
       for (const key of keys) {
          if (key === element.name) {
@@ -295,19 +295,19 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
             } else if (key === 'uds_salesnavigatoruserurl' && existedData[key]) {
                element.value = existedData[key]
-            }else if(key === 'uds_linkedinprofilecompanyurl' && existedData[key]){
+            } else if (key === 'uds_linkedinprofilecompanyurl' && existedData[key]) {
                element.value = existedData[key]
-            }else if(key === 'uds_salesnavigatorcompanyurl' && existedData[key]){
+            } else if (key === 'uds_salesnavigatorcompanyurl' && existedData[key]) {
                element.value = existedData[key]
             }
 
-            
+
          }
-         if(element.name === 'customer'){
-            if(companies.value[0]){
-               console.log(companies,'testm 21312e')
-               console.log(parameters,'paramtersetsrt')
-               element.value = companies.value[0].name ?  companies.value[0].name : ""
+         if (element.name === 'customer') {
+            if (companies.value[0]) {
+               console.log(companies, 'testm 21312e')
+               console.log(parameters, 'paramtersetsrt')
+               element.value = companies.value[0].name ? companies.value[0].name : ""
             }
          }
       }
@@ -320,78 +320,78 @@ const addDatasToExistedFieldsInTable = async (existedData, existedFields) => {
 
 
 
-const fillFormElements = async (exist,existedInputs) => {
+const fillFormElements = async (exist, existedInputs) => {
    if (exist) {
       await addDatasToExistedFieldsInTable(exist, existedInputs)
       await addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")))
       const elements = await parameters['companyName'] ? document.querySelector("#ifExistCompany").querySelectorAll(".inputForUser") : document.querySelector("#ifExistUser").querySelectorAll(".inputForUser")
-      highLightDifferentInputs(elements,existedInputs)
+      highLightDifferentInputs(elements, existedInputs)
    } else {
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
    }
-      
+
 }
 
 
 
 const existOrNotFunction = async () => {
    loader.style.display = 'grid'
-   if(parameters){
-       // showLoader()
-   if (parameters['companyName']) {
-      const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      if (companies.value.length !== 0) {
-         mainCredentialsForm.style.display = 'none'
-         ifExistUserTable.style.display = 'none'
-         ifExistCompany.style.display = 'block'
-         mainCapture.style.display = 'none'
-         sendAccountsButton.style.display = 'none'
-         updateDataButton.style.display = 'block'
-         goToCRMButton.style.display = 'block'
+   if (parameters) {
+      // showLoader()
+      if (parameters['companyName']) {
+         const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+         if (companies.value.length !== 0) {
+            mainCredentialsForm.style.display = 'none'
+            ifExistUserTable.style.display = 'none'
+            ifExistCompany.style.display = 'block'
+            mainCapture.style.display = 'none'
+            sendAccountsButton.style.display = 'none'
+            updateDataButton.style.display = 'block'
+            goToCRMButton.style.display = 'block'
+
+         } else {
+            mainCredentialsForm.style.display = 'none'
+            ifExistUserTable.style.display = 'none'
+            ifExistCompany.style.display = 'none'
+            mainCapture.style.display = 'block'
+            fieldsForCompanyForms.style.display = 'flex'
+            fieldsForUserForms.style.display = 'none'
+            sendAccountsButton.style.display = 'block'
+            updateDataButton.style.display = 'none'
+            goToCRMButton.style.display = 'none'
+         }
+
+         const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
+         await fillFormElements(companies.value[0], existedInputs);
 
       } else {
-         mainCredentialsForm.style.display = 'none'
-         ifExistUserTable.style.display = 'none'
-         ifExistCompany.style.display = 'none'
-         mainCapture.style.display = 'block'
-         fieldsForCompanyForms.style.display = 'flex'
-         fieldsForUserForms.style.display = 'none'
-         sendAccountsButton.style.display = 'block'
-         updateDataButton.style.display = 'none'
-         goToCRMButton.style.display = 'none'
+         const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
+         if (contacts.value.length !== 0) {
+            mainCredentialsForm.style.display = 'none'
+            ifExistCompany.style.display = 'none'
+            mainCapture.style.display = 'none'
+            sendAccountsButton.style.display = 'none'
+            ifExistUserTable.style.display = 'block'
+            updateDataButton.style.display = 'block'
+            goToCRMButton.style.display = 'block'
+
+         } else {
+
+            mainCredentialsForm.style.display = 'none'
+            ifExistUserTable.style.display = 'none'
+            ifExistCompany.style.display = 'none'
+            fieldsForCompanyForms.style.display = 'none'
+            updateDataButton.style.display = 'none'
+            goToCRMButton.style.display = 'none'
+            fieldsForUserForms.style.display = 'flex'
+            sendAccountsButton.style.display = 'block'
+            mainCapture.style.display = 'block'
+         }
+
+         const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
+         await fillFormElements(contacts.value[0], existedInputs);
+
       }
-
-      const existedInputs = document.querySelector('#ifExistCompany').querySelectorAll(".existed");
-      await fillFormElements(companies.value[0], existedInputs);
-
-   } else {
-      const contacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
-      if (contacts.value.length !== 0) {
-         mainCredentialsForm.style.display = 'none'
-         ifExistCompany.style.display = 'none'
-         mainCapture.style.display = 'none'
-         sendAccountsButton.style.display = 'none'
-         ifExistUserTable.style.display = 'block'
-         updateDataButton.style.display = 'block'
-         goToCRMButton.style.display = 'block'
-
-      } else {
-         
-         mainCredentialsForm.style.display = 'none'
-         ifExistUserTable.style.display = 'none'
-         ifExistCompany.style.display = 'none'
-         fieldsForCompanyForms.style.display = 'none'
-         updateDataButton.style.display = 'none'
-         goToCRMButton.style.display = 'none'
-         fieldsForUserForms.style.display = 'flex'
-         sendAccountsButton.style.display = 'block'
-         mainCapture.style.display = 'block'
-      }
-
-      const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-      await fillFormElements(contacts.value[0], existedInputs);
-
-   }
 
    }
    loader.style.display = 'none'
@@ -405,7 +405,7 @@ const loadingEventFunction = async () => {
    if (currentAccounts.length === 1) {
       mainCredentialsForm.style.display = 'none'
       await existOrNotFunction()
-   }else{
+   } else {
       mainCredentialsForm.style.display = 'block'
    }
 }
@@ -627,7 +627,7 @@ function signIn() {
          loginWithButtonForm.style.display = 'none'
          wentWrongForm.style.display = 'none'
          mainCredentialsForm.style.display = 'none'
-         logoutButton.forEach(element=>{
+         logoutButton.forEach(element => {
             element.style.display = 'block'
          })
 
@@ -843,20 +843,20 @@ const updateData = async () => {
       getContacts()
       const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
       const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
-      
-      if(responseOfCreateAccount.error){
-         console.log(responseOfCreateAccount.error.message,'error message')
+
+      if (responseOfCreateAccount.error) {
+         console.log(responseOfCreateAccount.error.message, 'error message')
          const errorMessageText = responseOfCreateAccount.error.message.toString()
-         const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1] 
-         if(errorMessageText.includes("length")){
-            console.log(errorRequestFieldName," cutted error")
+         const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1]
+         if (errorMessageText.includes("length")) {
+            console.log(errorRequestFieldName, " cutted error")
             const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-            inputsForAddingError.forEach(element=>{
-               if(changeRequestedNames(element.name) === errorRequestFieldName){
+            inputsForAddingError.forEach(element => {
+               if (changeRequestedNames(element.name) === errorRequestFieldName) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorRequestFieldName)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
-                  console.log(element.parentNode.childNodes[3],'errorInput errorInput')
+                  console.log(element.parentNode.childNodes[3], 'errorInput errorInput')
                }
             })
          }
@@ -873,24 +873,24 @@ const updateData = async () => {
       const elements = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
       const requestBodyOfCompany = await getRequestBodyOfCompany('updated')
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
-      console.log(createdCompanyResponse,'error message')
-      
-      if(createdCompanyResponse.error){
+      console.log(createdCompanyResponse, 'error message')
+
+      if (createdCompanyResponse.error) {
          const errorMessageText = createdCompanyResponse.error.message.toString()
-         if(errorMessageText.includes("length")){
-            console.log(errorMessageText.split("'")[1]," cutted error")
+         if (errorMessageText.includes("length")) {
+            console.log(errorMessageText.split("'")[1], " cutted error")
             const inputsForAddingError = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
-            inputsForAddingError.forEach(element=>{
-               if(changeRequestedNames(element.name) === errorMessageText.split("'")[1]){
+            inputsForAddingError.forEach(element => {
+               if (changeRequestedNames(element.name) === errorMessageText.split("'")[1]) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
                   element.parentNode.childNodes[3].style.display = 'block'
-                  console.log(element.parentNode.childNodes[3],'errorInput errorInput')
+                  console.log(element.parentNode.childNodes[3], 'errorInput errorInput')
                }
             })
          }
       }
-      
+
       const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
    }
@@ -998,7 +998,7 @@ const createCompanyWithId = async (url, token) => {
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name:parameters.customer
+         name: parameters.customer
       })
    }
 
@@ -1144,7 +1144,7 @@ inputsForUserDublicateTable.forEach(element => {
 
 
 
-const highLightDifferentInputs = async (elements,existedInputs,addColor) =>{ 
+const highLightDifferentInputs = async (elements, existedInputs, addColor) => {
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
@@ -1222,10 +1222,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    });
 
 
-   await highLightDifferentInputs(elements,existedInputs)
+   await highLightDifferentInputs(elements, existedInputs)
 
 
-   
+
 }
 
 async function sendDataverse(url, token) {
@@ -1239,10 +1239,14 @@ async function sendDataverse(url, token) {
          // message.innerHTML = 'contact updating... '
          const bodyOfReq = await getUserMainRequestObject()
          const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
+
+
          if (responseOfAccount.error) {
-            console.log(responseOfAccount.error.message,'error message')
-            if(responseOfAccount.error.message.inludes('length')){
-                  console.log(responseOfAccount.error.message.split("'"),'spliterror')
+            const errorMessageText = responseOfAccount.error.message.toString()
+            console.log(errorMessageText, 'error message')
+            if (errorMessageText.inludes('length')) {
+               const nameOfFieldError = responseOfAccount.error.message.split("'")[1]
+               console.log(nameOfFieldError, 'spliterror')
             }
             errorMessageIndividual.style.display = 'flex'
             errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
