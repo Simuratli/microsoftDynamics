@@ -1257,7 +1257,6 @@ async function sendDataverse(url, token) {
             console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
 
             const newErrorTextElement = document.createElement(`p`)
-            newErrorTextElement.classList.add("errorForInputText")
             newErrorTextElement.innerHTML = errorMessageText
 
             const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
