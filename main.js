@@ -1246,6 +1246,17 @@ async function sendDataverse(url, token) {
          if(errorMessageText.includes("length")){
             const nameOfFieldError = errorMessageText.split("'")[1]
             console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
+
+            const newErrorTextElement = document.createElement(`<p>${errorMessageText}</p>`)
+
+            const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+
+            formElements.forEach(element => {
+               if(changeRequestedNames(element.name) === nameOfFieldError){
+                  console.log(element,'i had error')
+               }
+            });
+
          }
 
          errorMessageIndividual.style.display = 'flex'
