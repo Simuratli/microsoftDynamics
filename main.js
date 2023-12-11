@@ -1258,7 +1258,7 @@ async function sendDataverse(url, token) {
 
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
-            newErrorTextElement.innerHTML = errorMessageText
+            newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
 
             const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
 
