@@ -1232,67 +1232,33 @@ async function sendDataverse(url, token) {
    console.log('sendDataverse working')
    const parameters = JSON.parse(params.query)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-   const filteredcontacts = parameters.linkedinUrl ? await filterBackend(`contacts?$filter=contains(uds_linkedin, '${parameters.linkedinUrl}')`) : await filterBackend(`contacts?$filter=contains(uds_salesnavigatoruserurl, '${parameters.salesUrl}')`)
 
    if (filtered.value.length !== 0) {
-      if (filteredcontacts.value.length !== 0) {
-         // message.innerHTML = 'contact updating... '
-         const bodyOfReq = await getUserMainRequestObject()
-         const responseOfAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, token, 'PATCH', bodyOfReq)
+      // message.innerHTML = 'there have company with this id: ' + parameters.customerId
+      const bodyOfReq = await getUserMainRequestObject()
+      const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
+      console.log(errorMessageIndividual, 'responseOfAccount errorMessageIndividual')
 
-         if (responseOfAccount.error) {
-            const errorMessageText = responseOfAccount.error.message.toString()
-            console.log(errorMessageText, 'error message')
-            if (errorMessageText.inludes('length')) {
-               const nameOfFieldError = responseOfAccount.error.message.split("'")[1]
-               console.log(nameOfFieldError, 'spliterror')
-            }
-            errorMessageIndividual.style.display = 'flex'
-            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
-            sendAccountsButton.style.display = 'block'
-         } else {
-            // message.innerHTML = 'Contact Updated'
-            errorMessageIndividual.style.display = 'none'
-            mainCapture.style.display = 'none'
-            ifExistUserTable.style.display = 'block'
+      if (responseOfAccount.error) {
+         const errorMessageText = responseOfAccount.error.message.toString();
 
-            //update exist table after capturing
-            const elements = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
-            const elementsMain = document.querySelector('#mainCapture').querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
-            const existedInputs = document.querySelector('#ifExistUser').querySelectorAll(".existed");
-            await updateExistedTableForEditableFields(elements, elementsMain, existedInputs, filteredcontacts.value[0])
-            goToCRMButton.style.display = 'block'
-            updateDataButton.style.display = 'block'
-            sendAccountsButton.style.display = 'none'
-
+         if(errorMessageText.includes("length")){
+            const nameOfFieldError = errorMessageText.split("'")[1]
+            console.log(nameOfFieldError,'nameOfFieldErrornameOfFieldError')
          }
 
-
+         errorMessageIndividual.style.display = 'flex'
+         errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
+         sendAccountsButton.style.display = 'block'
       } else {
-         // message.innerHTML = 'there have company with this id: ' + parameters.customerId
-         const bodyOfReq = await getUserMainRequestObject()
-         const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
-
-         console.log(errorMessageIndividual, 'responseOfAccount errorMessageIndividual')
-
-         if (responseOfAccount.error) {
-            errorMessageIndividual.style.display = 'flex'
-            errorMessageIndividual.innerHTML = `Error: ${responseOfAccount.error.code}`
-            sendAccountsButton.style.display = 'block'
-         } else {
-            successMessageIndividual.style.display = 'flex'
-            errorMessageIndividual.style.display = 'none'
-            goToCRMButton.style.display = 'block'
-            mainCapture.querySelector(".informationBlock").style.display = "none"
-            sendAccountsButton.style.display = 'none'
-         }
-
-
-         // message.innerHTML = 'Contact Created'
-
-
+         successMessageIndividual.style.display = 'flex'
+         errorMessageIndividual.style.display = 'none'
+         goToCRMButton.style.display = 'block'
+         mainCapture.querySelector(".informationBlock").style.display = "none"
+         sendAccountsButton.style.display = 'none'
       }
+
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
       const createdCompany = await createCompanyWithId('accounts', token)
