@@ -1172,6 +1172,11 @@ inputsForUserDublicateTable.forEach(element => {
          
 
       } else {
+         element.classList.add('differentInputMain')
+         const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
+         const parentelement = element.parentElement
+         const nextSibling = parentelement.nextElementSibling
+         nextSibling.querySelector("input").classList.add("differentInputSide")
          updateDataButton.removeAttribute("disabled")
       }
    })
