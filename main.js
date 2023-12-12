@@ -106,13 +106,13 @@ const convertNameToNormalString = (name) => {
          return "Personal phone"
       case "telephone1":
          return "Work phone"
-      case "uds_linkedinusercommentary":
+      case "description":
          return "Commentary"
       case 'uds_geocodes':
          return "Company adress"
       case 'numberofemployees':
          return "Number of employees"
-      case 'uds_linkedincompanycommentary':
+      case 'description':
          return "Commentary"
       case 'websiteurl':
          return "Website URL"
@@ -159,7 +159,7 @@ const changeRequestedNames = (name) => {
       case 'lnSize':
          return "uds_linkedinsize"
       case 'comment':
-         return parameters.companyName ? "uds_linkedincompanycommentary" : "uds_linkedinusercommentary"
+         return parameters.companyName ? "description" : "description"
       case 'tel':
          return "mobilephone"
       default:
@@ -659,7 +659,7 @@ const getRequestBodyOfCompany = async (type) => {
          uds_geocodes: document.querySelector('#fieldsForCompany').querySelector(".location").value,
          websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
          uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value),
-         uds_linkedincompanycommentary: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
+         description: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
 
       }
 
@@ -679,7 +679,7 @@ const getRequestBodyOfCompany = async (type) => {
          uds_geocodes: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value,
          websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
          uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value),
-         uds_linkedincompanycommentary: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
+         description: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
 
       }
 
@@ -806,7 +806,7 @@ const getUserUpdatedRequestObject = async () => {
       telephone1: document.querySelector('.phoneUpdated').value,
       mobilephone: document.querySelector('.telUpdated').value,
       emailaddress1: document.querySelector('.emailUpdated').value,
-      uds_linkedinusercommentary: document.querySelector('.commentUpdated').value
+      description: document.querySelector('.commentUpdated').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
@@ -1102,7 +1102,7 @@ const getUserMainRequestObject = async () => {
       // telephone1: document.querySelector('.phone').value,
       // mobilephone: document.querySelector('.tel').value,
       // emailaddress1: document.querySelector('.email').value,
-      // uds_linkedinusercommentary: document.querySelector('.comment').value
+      // description: document.querySelector('.comment').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
@@ -1125,7 +1125,7 @@ const getUserMainRequestObject = async () => {
    }
 
    if (document.querySelector('.comment').value) {
-      Object.assign(bodyOfReq, { uds_linkedinusercommentary: document.querySelector('.comment').value })
+      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value })
    }
 
    if (document.querySelector('.phone').value) {
