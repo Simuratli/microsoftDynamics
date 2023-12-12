@@ -1161,7 +1161,7 @@ inputsForUserDublicateTable.forEach(element => {
    element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
       if (element.value === existedValue) {
-         updateDataButton.setAttribute("disabled")
+         updateDataButton.setAttribute("disabled",true)
          element.classList.remove('differentInputMain')
       } else {
          updateDataButton.removeAttribute("disabled")
