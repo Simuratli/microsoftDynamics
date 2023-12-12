@@ -845,6 +845,12 @@ const updateData = async () => {
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1]
          if (errorMessageText.includes("length")) {
+            const errorTexts = document.querySelector(".errorForInputText")
+
+            errorTexts.forEach(element => {
+               element.style.display = 'none'
+            });
+
             inputsForAddingError.forEach(element => {
                element.classList.remove("errorInput")
                // element.parentNode.childNodes[3].style.display = 'none'
@@ -875,6 +881,11 @@ const updateData = async () => {
          
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if (errorMessageText.includes("length")) {
+            const errorTexts = document.querySelector(".errorForInputText")
+
+            errorTexts.forEach(element => {
+               element.style.display = 'none'
+            });
             inputsForAddingError.forEach(element => {
                element.classList.remove("errorInput")
                // element.parentNode.childNodes[3].style.display = 'none'
