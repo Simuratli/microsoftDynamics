@@ -1161,22 +1161,22 @@ inputsForUserDublicateTable.forEach(element => {
    element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
       if (element.value === existedValue) {
-         // element.classList.remove('differentInputMain')
+         element.classList.remove('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
-         // const parentelement = element.parentElement
-         // const nextSibling = parentelement.nextElementSibling
-         // nextSibling.querySelector("input").classList.remove("differentInputSide")
+         const parentelement = element.parentElement
+         const nextSibling = parentelement.nextElementSibling
+         nextSibling.querySelector("input").classList.remove("differentInputSide")
          if(isThereHaveDifference.length === 0){
             updateDataButton.setAttribute("disabled",true)
          }
          
 
       } else {
-         // element.classList.add('differentInputMain')
-         // const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
-         // const parentelement = element.parentElement
-         // const nextSibling = parentelement.nextElementSibling
-         // nextSibling.querySelector("input").classList.add("differentInputSide")
+         element.classList.add('differentInputMain')
+         const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
+         const parentelement = element.parentElement
+         const nextSibling = parentelement.nextElementSibling
+         nextSibling.querySelector("input").classList.add("differentInputSide")
          updateDataButton.removeAttribute("disabled")
       }
    })
