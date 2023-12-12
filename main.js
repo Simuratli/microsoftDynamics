@@ -841,11 +841,13 @@ const updateData = async () => {
       const responseOfCreateAccount = await createAccount(`contacts(${filteredcontacts.value[0].contactid})`, response.accessToken, 'PATCH', bodyOfReq)
 
       if (responseOfCreateAccount.error) {
+         const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1]
          if (errorMessageText.includes("length")) {
-            const inputsForAddingError = document.querySelector('#ifExistUser').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element => {
+               element.classList.remove("errorInput")
+               element.parentNode.childNodes[3].style.display = 'none'
                if (changeRequestedNames(element.name) === errorRequestFieldName) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorRequestFieldName)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
@@ -869,10 +871,15 @@ const updateData = async () => {
       const createdCompanyResponse = await createCompany(`accounts(${companies.value[0].accountid})`, response.accessToken, 'PATCH', requestBodyOfCompany)
 
       if (createdCompanyResponse.error) {
+         const inputsForAddingError = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
+         
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if (errorMessageText.includes("length")) {
-            const inputsForAddingError = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
             inputsForAddingError.forEach(element => {
+               element.classList.remove("errorInput")
+               element.parentNode.childNodes[3].style.display = 'none'
+
+
                if (changeRequestedNames(element.name) === errorMessageText.split("'")[1]) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorMessageText.split("'")[1])} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
