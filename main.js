@@ -1163,6 +1163,9 @@ inputsForUserDublicateTable.forEach(element => {
       if (element.value === existedValue) {
          element.classList.remove('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
+         const parentelement = element.parentElement
+         const nextSibling = parentelement.nextElementSibling
+         nextSibling.querySelector("input").classList.remove("differentInputSide")
          if(isThereHaveDifference.length === 0){
             updateDataButton.setAttribute("disabled",true)
          }
