@@ -138,6 +138,8 @@ const changeRequestedNames = (name) => {
          return 'telephone1';
       case 'email':
          return 'emailaddress1';
+      case 'personalEmail':
+         return 'emailaddress2';
       case 'linkedinUrl':
          return "uds_linkedin"
       case 'customerId':
@@ -806,6 +808,7 @@ const getUserUpdatedRequestObject = async () => {
       telephone1: document.querySelector('.phoneUpdated').value,
       mobilephone: document.querySelector('.telUpdated').value,
       emailaddress1: document.querySelector('.emailUpdated').value,
+      emailaddress2: document.querySelector('.personalEmailUpdated').value,
       description: document.querySelector('.commentUpdated').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
@@ -1123,6 +1126,11 @@ const getUserMainRequestObject = async () => {
    if (document.querySelector('.email').value) {
       Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value })
    }
+
+   if (document.querySelector('.personalEmail').value) {
+      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value })
+   }
+
 
    if (document.querySelector('.comment').value) {
       Object.assign(bodyOfReq, { description: document.querySelector('.comment').value })
