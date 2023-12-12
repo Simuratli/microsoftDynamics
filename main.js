@@ -847,7 +847,7 @@ const updateData = async () => {
          if (errorMessageText.includes("length")) {
             inputsForAddingError.forEach(element => {
                element.classList.remove("errorInput")
-               element.parentNode.childNodes[3].style.display = 'none'
+               element.parentNode.childNodes[3]?.style.display = 'none'
                if (changeRequestedNames(element.name) === errorRequestFieldName) {
                   element.classList.add("errorInput")
                   element.parentNode.childNodes[3].innerHTML = `${convertNameToNormalString(errorRequestFieldName)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form`
@@ -877,7 +877,7 @@ const updateData = async () => {
          if (errorMessageText.includes("length")) {
             inputsForAddingError.forEach(element => {
                element.classList.remove("errorInput")
-               element.parentNode.childNodes[3].style.display = 'none'
+               element.parentNode.childNodes[3]?.style.display = 'none'
 
 
                if (changeRequestedNames(element.name) === errorMessageText.split("'")[1]) {
