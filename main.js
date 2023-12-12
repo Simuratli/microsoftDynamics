@@ -845,7 +845,7 @@ const updateData = async () => {
          const errorMessageText = responseOfCreateAccount.error.message.toString()
          const errorRequestFieldName = errorMessageText.split("'")[1] === 'lastname' ? 'fullname' : errorMessageText.split("'")[1]
          if (errorMessageText.includes("length")) {
-            const errorTexts = document.querySelector(".errorForInputText")
+            const errorTexts = document.querySelectorAll(".errorForInputText")
 
             errorTexts.forEach(element => {
                element.style.display = 'none'
@@ -881,7 +881,7 @@ const updateData = async () => {
          
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if (errorMessageText.includes("length")) {
-            const errorTexts = document.querySelector(".errorForInputText")
+            const errorTexts = document.querySelectorAll(".errorForInputText")
 
             errorTexts.forEach(element => {
                element.style.display = 'none'
