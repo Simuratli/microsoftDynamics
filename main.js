@@ -705,11 +705,13 @@ function signOut() {
       postLogoutRedirectUri: msalConfig.auth.redirectUri,
       mainWindowRedirectUri: msalConfig.auth.redirectUri
    };
-
-   myMSALObj.logoutPopup(logoutRequest);
    showLoader()
-   mainCredentialsForm.style.display = 'flex'
-   loginWithButtonForm.style.display = 'none'
+  
+   myMSALObj.logoutPopup(logoutRequest).then((res)=>{
+      mainCredentialsForm.style.display = 'flex'
+      loginWithButtonForm.style.display = 'none'
+   });
+   
 
 }
 
