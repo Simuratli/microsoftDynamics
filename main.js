@@ -1335,6 +1335,12 @@ async function sendDataverse(url, token) {
          formElements.forEach(element => {
             element.classList.remove("errorInput")
          })
+
+         const errrorField = document.querySelector('.errorForInputTextNormal')
+         if(errrorField){
+            errrorField.style.display = 'none'
+         }
+
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
