@@ -45,7 +45,7 @@ let accounts = null;
 let baseUrl = localStorage.getItem("crmUrlInput");      //<= Change this
 let clientId = localStorage.getItem("clientIdInput");; //<= Change this
 let tenantId = localStorage.getItem("tenantIdInput");; //<= Change this
-const redirectUrl = `/${window.location.search}`;
+const redirectUrl = "/";
 let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
 
@@ -713,7 +713,7 @@ function signOut() {
    const logoutRequest = {
       account: myMSALObj.getAccountByUsername(username),
       postLogoutRedirectUri: msalConfig.auth.redirectUri,
-      mainWindowRedirectUri: msalConfig.auth.redirectUri
+      mainWindowRedirectUri:`${msalConfig.auth.redirectUri}${window.location.search}`
    };
    showLoader()
   
