@@ -1331,11 +1331,15 @@ async function sendDataverse(url, token) {
       } else {
          formElements.forEach(element => {
             element.classList.remove("errorInput")
+            element.value = element.value.trim().replace(/\s+/g, ' ')
          })
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
          mainCapture.querySelector(".informationBlock").style.display = "none"
          sendAccountsButton.style.display = 'none'
+
+
+
       }
 
    } else {
