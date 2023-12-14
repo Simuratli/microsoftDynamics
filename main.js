@@ -1225,11 +1225,10 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 
 
 
-
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
-            element.value = elementMain.value
+            element.value.replace(/\s+/g, ' ') = elementMain.value.replace(/\s+/g, ' ')
          }
       });
    });
