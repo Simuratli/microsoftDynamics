@@ -54,9 +54,15 @@ const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 console.log(params,'testme')
-let entries = JSON.parse(params.query)
+
+
+let entries = params.query ?  JSON.parse(params.query) : null;
 let urlParameters = Object.entries(entries);
-const parameters = JSON.parse(params.query)
+let parameters = params.query ? JSON.parse(params.query) : null
+
+
+
+
 
 if (parameters['companyName']) {
    document.querySelector('#mainImage').querySelector('.personImage').style.display = 'none'
