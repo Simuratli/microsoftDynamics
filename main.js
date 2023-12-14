@@ -901,11 +901,13 @@ const updateData = async () => {
                }
             })
          }
+      }else{
+         // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+         const companies2 = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
+         updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
       }
 
-      // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-      const companies2 = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-      updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
+      
    }
    loader.style.display = 'none'
 }
