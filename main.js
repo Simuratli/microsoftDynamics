@@ -1355,6 +1355,7 @@ async function sendDataverse(url, token) {
 
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
+         goToCRMButton.classList.add('goldGoToCrmButton')
          mainCapture.querySelector(".informationBlock").style.display = "none"
          sendAccountsButton.style.display = 'none'
 
@@ -1416,6 +1417,7 @@ async function sendDataverse(url, token) {
       } else {
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
+         goToCRMButton.classList.add('goldGoToCrmButton')
          mainCapture.querySelector(".informationBlock").style.display = "none"
          sendAccountsButton.style.display = 'none'
          errorMessageIndividual.style.display = 'none'
