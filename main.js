@@ -799,7 +799,7 @@ const getUserUpdatedRequestObject = async () => {
    const lastname = document.querySelector('.userNameUpdated').value.split(" ")
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
-      lastname: lastname[1] ? lastname.filter((_, i) => i > 0).join(" ") : " ",
+      lastname: lastname.filter((_, i) => i > 0).join(" "),
       fullname: document.querySelector('.userNameUpdated').value.trim().replace(/\s+/g, ' '),
       jobtitle: document.querySelector('.jobTitleUpdated').value.trim().replace(/\s+/g, ' '),
       address1_name: document.querySelector('.locationUpdated').value.trim().replace(/\s+/g, ' '),
