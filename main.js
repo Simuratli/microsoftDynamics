@@ -56,10 +56,9 @@ const params = Object.fromEntries(urlParams.entries());
 console.log(params,'testme')
 
 
-let entries = params.query ?  JSON.parse(params.query) : {};
+let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
-let parameters = params.query ? JSON.parse(params.query) : {}
-
+let parameters = JSON.parse(params.query)
 
 
 
