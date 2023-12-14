@@ -1095,11 +1095,11 @@ const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const lastName = document.querySelector('.userName').value.split(" ")
    const bodyOfReq = {
-      firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname: lastName.filter((_, i) => i > 0).join(" "),
-      fullname: document.querySelector('.userName').value,
-      jobtitle: document.querySelector('.jobTitle').value,
-      address1_name: document.querySelector('.location').value,
+      firstname: document.querySelector('.userName').value.split(" ")[0].trim(),
+      lastname: lastName.filter((_, i) => i > 0).join(" ").trim(),
+      fullname: document.querySelector('.userName').value.trim(),
+      jobtitle: document.querySelector('.jobTitle').value.trim(),
+      address1_name: document.querySelector('.location').value.trim(),
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       // 'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       // telephone1: document.querySelector('.phone').value,
@@ -1118,34 +1118,34 @@ const getUserMainRequestObject = async () => {
 
    
    if (document.querySelector('.tel').value) {
-      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value })
+      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value.trim() })
    }
 
 
 
    if (document.querySelector('.email').value) {
-      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value })
+      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value.trim() })
    }
 
    if (document.querySelector('.personalEmail').value) {
-      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value })
+      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value.trim() })
    }
 
 
    if (document.querySelector('.comment').value) {
-      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value })
+      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value.trim() })
    }
 
    if (document.querySelector('.phone').value) {
-      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value })
+      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value.trim() })
    }
 
    if (parameters.linkedinUrl) {
-      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl })
+      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl.trim() })
    }
 
    if (parameters.salesUrl) {
-      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl })
+      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl.trim() })
    }
 
 
