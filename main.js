@@ -1095,8 +1095,8 @@ const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const lastName = document.querySelector('.userName').value.split(" ")
    const bodyOfReq = {
-      firstname: document.querySelector('.userName').value.split(" ")[0],
-      lastname: lastName.filter((_, i) => i > 0).join(" "),
+      firstname: document.querySelector('.userName').value.split(" ")[0].trim().replace(/\s+/g, ' '),
+      lastname: lastName.filter((_, i) => i > 0).join(" ").trim().replace(/\s+/g, ' '),
       fullname: document.querySelector('.userName').value.trim().replace(/\s+/g, ' '),
       jobtitle: document.querySelector('.jobTitle').value.trim().replace(/\s+/g, ' '),
       address1_name: document.querySelector('.location').value.trim().replace(/\s+/g, ' '),
