@@ -798,9 +798,9 @@ const getUserUpdatedRequestObject = async () => {
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const lastname = document.querySelector('.userNameUpdated').value.trim().split(" ")
    const bodyOfReq = {
+      fullname: document.querySelector('.userNameUpdated').value.trim(),
       firstname: document.querySelector('.userNameUpdated').value.trim().split(" ")[0],
       lastname: lastname[1] ? lastname.filter((_, i) => i > 0).join(" ") : " ",
-      fullname: document.querySelector('.userNameUpdated').value.trim(),
       jobtitle: document.querySelector('.jobTitleUpdated').value.trim(),
       address1_name: document.querySelector('.locationUpdated').value.trim(),
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
@@ -1243,8 +1243,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       for (const key of keys) {
          const value = existedData[key];
          if (element.name === key) {
-            element.value = value.trim()
-
+            // element.value = value.trim()
          }
          if (element.name === "linkedinUrl") {
             if (key === 'uds_linkedin' && value) {
