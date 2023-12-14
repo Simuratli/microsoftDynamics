@@ -1330,8 +1330,10 @@ async function sendDataverse(url, token) {
          sendAccountsButton.style.display = 'block'
       } else {
          formElements.forEach(element => {
-            element.classList.remove("errorInput")
+            console.log(element,'allah allaah')
             element.value = element.value.trim().replace(/\s+/g, ' ')
+            element.classList.remove("errorInput")
+            
          })
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
