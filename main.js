@@ -548,9 +548,9 @@ clientIdInput.addEventListener('input', checkCredentialURLs);
 tenantIdInput.addEventListener('input', checkCredentialURLs);
 crmUrlInput.addEventListener('input', checkCredentialURLs);
 
-clientIdInput.addEventListener("blur", updateMsalFunction)
-tenantIdInput.addEventListener("blur", updateMsalFunction)
-crmUrlInput.addEventListener("blur", updateMsalFunction)
+clientIdInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
+tenantIdInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
+crmUrlInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
 
 
 updateMsalFunction()
