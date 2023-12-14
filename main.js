@@ -1191,7 +1191,7 @@ const highLightDifferentInputs = async (elements, existedInputs, addColor) => {
    elements.forEach(element => {
       existedInputs.forEach(existedTableElement => {
          if (changeRequestedNames(element.name) === existedTableElement.name) {
-            if (element.value !== existedTableElement.value) {
+            if (element.value.trim() !== existedTableElement.value.trim()) {
                if (addColor !== "noColor") {
                   element.classList.add('differentInputMain')
                   existedTableElement.classList.add('differentInputSide')
