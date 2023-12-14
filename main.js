@@ -706,7 +706,7 @@ const getRequestBodyOfCompany = async (type) => {
    return bodyRequest
 }
 
-console.log(msalConfig.auth.redirectUri,'msalConfig.auth.redirectUri',msalConfig)
+console.log(msalConfig.auth.redirectUri,'msalConfig.auth.redirectUri',msalConfig,window.location.href)
 // Called by the logoutButton
 function signOut() {
   
