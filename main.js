@@ -1357,7 +1357,7 @@ async function sendDataverse(url, token) {
 
          const errorMessageText = responseOfAccount.error.message.toString();
 
-
+         const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
          if (errorMessageText.includes("length")) {
             const nameOfFieldError = errorMessageText.split("'")[1]
 
