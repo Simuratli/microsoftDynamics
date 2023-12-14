@@ -656,12 +656,12 @@ const getRequestBodyOfCompany = async (type) => {
    if (type === 'main') {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
-         name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
+         name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value.trim(),
          numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
-         address1_name: document.querySelector('#fieldsForCompany').querySelector(".location").value,
-         websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
+         address1_name: document.querySelector('#fieldsForCompany').querySelector(".location").value.trim(),
+         websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value.trim(),
          uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value),
-         description: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
+         description: document.querySelector('#fieldsForCompany').querySelector(".comment").value.trim(),
 
       }
 
@@ -676,12 +676,12 @@ const getRequestBodyOfCompany = async (type) => {
    } else if (type === "updated") {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
-         name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value,
+         name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value.trim(),
          numberofemployees: document.querySelector('#ifExistCompany').querySelector(".numberofemployeesUpdated").value,
-         address1_name: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value,
-         websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
+         address1_name: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value.trim(),
+         websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value.trim(),
          uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value),
-         description: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
+         description: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value.trim(),
 
       }
 
