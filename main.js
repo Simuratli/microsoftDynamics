@@ -1161,6 +1161,7 @@ inputsForUserDublicateTable.forEach(element => {
    element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
       if (element.value === existedValue) {
+        
          element.classList.remove('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
          const parentelement = element.parentElement
@@ -1172,6 +1173,7 @@ inputsForUserDublicateTable.forEach(element => {
          
 
       } else {
+         console.log('i am workings',element.value)
          element.classList.add('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
          const parentelement = element.parentElement
