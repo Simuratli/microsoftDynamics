@@ -45,7 +45,7 @@ let accounts = null;
 let baseUrl = localStorage.getItem("crmUrlInput");      //<= Change this
 let clientId = localStorage.getItem("clientIdInput");; //<= Change this
 let tenantId = localStorage.getItem("tenantIdInput");; //<= Change this
-const redirectUrl = window.location.search;
+const redirectUrl = `/${window.location.search}`;
 let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 
 
