@@ -53,14 +53,18 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
+
+sessionStorage.setItem("urlParams",JSON.stringify(window.location.search))
+sessionStorage.setItem("params",JSON.stringify(urlParams.entries()))
+
 console.log(url,'testme url')
 console.log(urlParams,'testme urlParams')
 console.log(url,'testme')
 
 
-let entries = JSON.parse(params.query)
+let entries = params.query ? JSON.parse(params.query) : JSON.parse(sessionStorage.getItem("params"))
 let urlParameters = Object.entries(entries);
-let parameters = JSON.parse(params.query)
+let parameters =  params.query ? JSON.parse(params.query) : JSON.parse(sessionStorage.getItem("params"))
 
 
 
