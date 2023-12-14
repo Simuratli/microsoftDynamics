@@ -1097,9 +1097,9 @@ const getUserMainRequestObject = async () => {
    const bodyOfReq = {
       firstname: document.querySelector('.userName').value.split(" ")[0],
       lastname: lastName.filter((_, i) => i > 0).join(" "),
-      fullname: document.querySelector('.userName').value,
-      jobtitle: document.querySelector('.jobTitle').value,
-      address1_name: document.querySelector('.location').value,
+      fullname: document.querySelector('.userName').value.trim().replace(/\s+/g, ' '),
+      jobtitle: document.querySelector('.jobTitle').value.trim().replace(/\s+/g, ' '),
+      address1_name: document.querySelector('.location').value.trim().replace(/\s+/g, ' '),
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       // 'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       // telephone1: document.querySelector('.phone').value,
