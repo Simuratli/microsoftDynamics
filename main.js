@@ -800,16 +800,16 @@ const getUserUpdatedRequestObject = async () => {
    const bodyOfReq = {
       firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
       lastname: lastname[1] ? lastname.filter((_, i) => i > 0).join(" ") : " ",
-      fullname: document.querySelector('.userNameUpdated').value.trim(),
-      jobtitle: document.querySelector('.jobTitleUpdated').value.trim(),
-      address1_name: document.querySelector('.locationUpdated').value.trim(),
+      fullname: document.querySelector('.userNameUpdated').value.trim().replace(/\s+/g, ' '),
+      jobtitle: document.querySelector('.jobTitleUpdated').value.trim().replace(/\s+/g, ' '),
+      address1_name: document.querySelector('.locationUpdated').value.trim().replace(/\s+/g, ' '),
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
-      telephone1: document.querySelector('.phoneUpdated').value.trim(),
-      mobilephone: document.querySelector('.telUpdated').value.trim(),
-      emailaddress1: document.querySelector('.emailUpdated').value.trim(),
-      emailaddress2: document.querySelector('.personalEmailUpdated').value.trim(),
-      description: document.querySelector('.commentUpdated').value.trim()
+      telephone1: document.querySelector('.phoneUpdated').value.trim().replace(/\s+/g, ' '),
+      mobilephone: document.querySelector('.telUpdated').value.trim().replace(/\s+/g, ' '),
+      emailaddress1: document.querySelector('.emailUpdated').value.trim().replace(/\s+/g, ' '),
+      emailaddress2: document.querySelector('.personalEmailUpdated').value.trim().replace(/\s+/g, ' '),
+      description: document.querySelector('.commentUpdated').value.trim().replace(/\s+/g, ' ')
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
@@ -1118,26 +1118,26 @@ const getUserMainRequestObject = async () => {
 
    
    if (document.querySelector('.tel').value) {
-      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value.trim() })
+      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value.trim().replace(/\s+/g, ' ') })
    }
 
 
 
    if (document.querySelector('.email').value) {
-      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value.trim() })
+      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value.trim().replace(/\s+/g, ' ') })
    }
 
    if (document.querySelector('.personalEmail').value) {
-      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value.trim() })
+      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value.trim().replace(/\s+/g, ' ') })
    }
 
 
    if (document.querySelector('.comment').value) {
-      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value.trim() })
+      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value.trim().replace(/\s+/g, ' ') })
    }
 
    if (document.querySelector('.phone').value) {
-      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value.trim() })
+      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value.trim().replace(/\s+/g, ' ') })
    }
 
    if (parameters.linkedinUrl) {
