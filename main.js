@@ -1229,7 +1229,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
-            element.value = elementMain.value
+            element.value = elementMain.value.trim()
          }
       });
    });
@@ -1239,22 +1239,22 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       for (const key of keys) {
          const value = existedData[key];
          if (element.name === key) {
-            element.value = value
+            element.value = value.trim()
 
          }
          if (element.name === "linkedinUrl") {
             if (key === 'uds_linkedin' && value) {
-               element.value = value
+               element.value = value.trim()
             } else if (key === 'uds_salesnavigatoruserurl' && value) {
-               element.value = value
+               element.value = value.trim()
             }
          }
 
          if (element.name === "linkedinCompanyUrl") {
             if (key === 'uds_linkedinprofilecompanyurl' && value) {
-               element.value = value
+               element.value = value.trim()
             } else if (key === 'uds_salesnavigatorcompanyurl' && value) {
-               element.value = value
+               element.value = value.trim()
             }
          }
 
