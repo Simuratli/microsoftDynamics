@@ -532,7 +532,7 @@ function checkCredentialURLs(e) {
          localStorage.setItem("crmUrlInput", e.target.value);
          break;
    }
-
+   console.log('test me')
 
    if (clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex)) {
       console.log('iam suitable')
