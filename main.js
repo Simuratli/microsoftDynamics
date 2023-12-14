@@ -1289,13 +1289,13 @@ async function sendDataverse(url, token) {
    const parameters = JSON.parse(params.query)
    console.log('pammeretes',parameters)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-
+   const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    if (filtered.value.length !== 0) {
       // message.innerHTML = 'there have company with this id: ' + parameters.customerId
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
-      const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+    
       if (responseOfAccount.error) {
          const errorMessageText = responseOfAccount.error.message.toString();
 
