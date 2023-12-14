@@ -53,7 +53,9 @@ let webAPIEndpoint = baseUrl + "/api/data/v9.2";
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
-console.log(params,'testme')
+console.log(url,'testme url')
+console.log(urlParams,'testme urlParams')
+console.log(url,'testme')
 
 
 let entries = JSON.parse(params.query)
