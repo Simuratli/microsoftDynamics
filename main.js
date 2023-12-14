@@ -1153,7 +1153,7 @@ const getUserMainRequestObject = async () => {
 }
 
 
-const inputsForUserDublicateTable = document.querySelectorAll(".inputForUser");
+const inputsForUserDublicateTable = document.querySelectorAll(".dublicateTableElement");
 
 
 inputsForUserDublicateTable.forEach(element => {
