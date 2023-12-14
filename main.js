@@ -532,7 +532,7 @@ function checkCredentialURLs(e) {
          localStorage.setItem("crmUrlInput", e.target.value);
          break;
    }
-   console.log('test me')
+
 
    if (clientIdPattern.test(clientIdInput.value) && clientIdPattern.test(tenantIdInput.value) && crmUrlInput.value.match(regex)) {
       console.log('iam suitable')
@@ -548,9 +548,9 @@ clientIdInput.addEventListener('input', checkCredentialURLs);
 tenantIdInput.addEventListener('input', checkCredentialURLs);
 crmUrlInput.addEventListener('input', checkCredentialURLs);
 
-clientIdInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
-tenantIdInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
-crmUrlInput.addEventListener("blur", ()=>{updateMsalFunction();checkCredentialURLs()})
+clientIdInput.addEventListener("blur", updateMsalFunction)
+tenantIdInput.addEventListener("blur", updateMsalFunction)
+crmUrlInput.addEventListener("blur", updateMsalFunction)
 
 
 updateMsalFunction()
@@ -656,12 +656,12 @@ const getRequestBodyOfCompany = async (type) => {
    if (type === 'main') {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
-         name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value.trim(),
-         numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value.trim(),
-         address1_name: document.querySelector('#fieldsForCompany').querySelector(".location").value.trim(),
-         websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value.trim(),
-         uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value.trim()),
-         description: document.querySelector('#fieldsForCompany').querySelector(".comment").value.trim(),
+         name: document.querySelector('#fieldsForCompany').querySelector(".companyName").value,
+         numberofemployees: document.querySelector('#fieldsForCompany').querySelector(".numberOfWorkers").value,
+         address1_name: document.querySelector('#fieldsForCompany').querySelector(".location").value,
+         websiteurl: document.querySelector('#fieldsForCompany').querySelector(".companyUrl").value,
+         uds_linkedinsize: Number(document.querySelector('#fieldsForCompany').querySelector(".lnSize").value),
+         description: document.querySelector('#fieldsForCompany').querySelector(".comment").value,
 
       }
 
@@ -676,12 +676,12 @@ const getRequestBodyOfCompany = async (type) => {
    } else if (type === "updated") {
       bodyRequest = {
          uds_linkedincompanyid: parameters.idOfCompany,
-         name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value.trim(),
-         numberofemployees: document.querySelector('#ifExistCompany').querySelector(".numberofemployeesUpdated").value.trim(),
-         address1_name: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value.trim(),
-         websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value.trim(),
-         uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value.trim()),
-         description: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value.trim(),
+         name: document.querySelector('#ifExistCompany').querySelector(".companyNameUpdated").value,
+         numberofemployees: document.querySelector('#ifExistCompany').querySelector(".numberofemployeesUpdated").value,
+         address1_name: document.querySelector('#ifExistCompany').querySelector(".locationUpdated").value,
+         websiteurl: document.querySelector('#ifExistCompany').querySelector(".websiteurlUpdated").value,
+         uds_linkedinsize: Number(document.querySelector('#ifExistCompany').querySelector(".lnSize").value),
+         description: document.querySelector('#ifExistCompany').querySelector(".commentUpdated").value,
 
       }
 
@@ -796,20 +796,20 @@ async function filterBackend(url, callback) {
 const getUserUpdatedRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-   const lastname = document.querySelector('.userNameUpdated').value.trim().split(" ")
+   const lastname = document.querySelector('.userNameUpdated').value.split(" ")
    const bodyOfReq = {
-      fullname: document.querySelector('.userNameUpdated').value.trim(),
-      firstname: document.querySelector('.userNameUpdated').value.trim().split(" ")[0],
+      firstname: document.querySelector('.userNameUpdated').value.split(" ")[0],
       lastname: lastname[1] ? lastname.filter((_, i) => i > 0).join(" ") : " ",
-      jobtitle: document.querySelector('.jobTitleUpdated').value.trim(),
-      address1_name: document.querySelector('.locationUpdated').value.trim(),
+      fullname: document.querySelector('.userNameUpdated').value,
+      jobtitle: document.querySelector('.jobTitleUpdated').value,
+      address1_name: document.querySelector('.locationUpdated').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
-      telephone1: document.querySelector('.phoneUpdated').value.trim(),
-      mobilephone: document.querySelector('.telUpdated').value.trim(),
-      emailaddress1: document.querySelector('.emailUpdated').value.trim(),
-      emailaddress2: document.querySelector('.personalEmailUpdated').value.trim(),
-      description: document.querySelector('.commentUpdated').value.trim()
+      telephone1: document.querySelector('.phoneUpdated').value,
+      mobilephone: document.querySelector('.telUpdated').value,
+      emailaddress1: document.querySelector('.emailUpdated').value,
+      emailaddress2: document.querySelector('.personalEmailUpdated').value,
+      description: document.querySelector('.commentUpdated').value
       // uds_linkedin:dataObjectForRequest.uds_linkedin,
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
@@ -901,13 +901,11 @@ const updateData = async () => {
                }
             })
          }
-      }else{
-         // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
-         const companies2 = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
-         updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
       }
 
-      
+      // const companies2 = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
+      const companies2 = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.idOfCompany}')`)
+      updateExistedTableForEditableFields(elements, elements, existedInputs, companies2.value[0], 'noColor')
    }
    loader.style.display = 'none'
 }
@@ -1097,11 +1095,11 @@ const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
    const lastName = document.querySelector('.userName').value.split(" ")
    const bodyOfReq = {
-      firstname: document.querySelector('.userName').value.split(" ")[0].trim(),
-      lastname: lastName.filter((_, i) => i > 0).join(" ").trim(),
-      fullname: document.querySelector('.userName').value.trim(),
-      jobtitle: document.querySelector('.jobTitle').value.trim(),
-      address1_name: document.querySelector('.location').value.trim(),
+      firstname: document.querySelector('.userName').value.split(" ")[0],
+      lastname: lastName.filter((_, i) => i > 0).join(" "),
+      fullname: document.querySelector('.userName').value,
+      jobtitle: document.querySelector('.jobTitle').value,
+      address1_name: document.querySelector('.location').value,
       // _parentcustomerid_value: accounts.filter(account=>account.uds_linkedincompanyid === urlParameters['customerId'])[0].accountid,
       // 'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})`,
       // telephone1: document.querySelector('.phone').value,
@@ -1120,34 +1118,34 @@ const getUserMainRequestObject = async () => {
 
    
    if (document.querySelector('.tel').value) {
-      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value.trim() })
+      Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value })
    }
 
 
 
    if (document.querySelector('.email').value) {
-      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value.trim() })
+      Object.assign(bodyOfReq, { emailaddress1: document.querySelector('.email').value })
    }
 
    if (document.querySelector('.personalEmail').value) {
-      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value.trim() })
+      Object.assign(bodyOfReq, { emailaddress2: document.querySelector('.personalEmail').value })
    }
 
 
    if (document.querySelector('.comment').value) {
-      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value.trim() })
+      Object.assign(bodyOfReq, { description: document.querySelector('.comment').value })
    }
 
    if (document.querySelector('.phone').value) {
-      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value.trim() })
+      Object.assign(bodyOfReq, { telephone1: document.querySelector('.phone').value })
    }
 
    if (parameters.linkedinUrl) {
-      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl.trim() })
+      Object.assign(bodyOfReq, { uds_linkedin: parameters.linkedinUrl })
    }
 
    if (parameters.salesUrl) {
-      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl.trim() })
+      Object.assign(bodyOfReq, { uds_salesnavigatoruserurl: parameters.salesUrl })
    }
 
 
@@ -1162,10 +1160,7 @@ inputsForUserDublicateTable.forEach(element => {
 
    element.addEventListener("input", () => {
       const existedValue = document.querySelector(`[name='${changeRequestedNames(element.name)}']`)?.value
-      console.log('i am workings',element)
-
       if (element.value === existedValue) {
-        
          element.classList.remove('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
          const parentelement = element.parentElement
@@ -1177,7 +1172,6 @@ inputsForUserDublicateTable.forEach(element => {
          
 
       } else {
-         
          element.classList.add('differentInputMain')
          const isThereHaveDifference = document.querySelectorAll(".differentInputMain")
          const parentelement = element.parentElement
@@ -1235,7 +1229,7 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
    elements.forEach(element => {
       elementsMain.forEach(elementMain => {
          if (elementMain.name === element.name) {
-            element.value = elementMain.value.trim()
+            element.value = elementMain.value
          }
       });
    });
@@ -1245,21 +1239,22 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
       for (const key of keys) {
          const value = existedData[key];
          if (element.name === key) {
-            // element.value = value.trim()
+            element.value = value
+
          }
          if (element.name === "linkedinUrl") {
             if (key === 'uds_linkedin' && value) {
-               element.value = value.trim()
+               element.value = value
             } else if (key === 'uds_salesnavigatoruserurl' && value) {
-               element.value = value.trim()
+               element.value = value
             }
          }
 
          if (element.name === "linkedinCompanyUrl") {
             if (key === 'uds_linkedinprofilecompanyurl' && value) {
-               element.value = value.trim()
+               element.value = value
             } else if (key === 'uds_salesnavigatorcompanyurl' && value) {
-               element.value = value.trim()
+               element.value = value
             }
          }
 
@@ -1362,7 +1357,7 @@ async function sendDataverse(url, token) {
 
          const errorMessageText = responseOfAccount.error.message.toString();
 
-         const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
+
          if (errorMessageText.includes("length")) {
             const nameOfFieldError = errorMessageText.split("'")[1]
 
