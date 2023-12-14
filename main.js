@@ -54,17 +54,15 @@ const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 
-sessionStorage.setItem("urlParams",JSON.stringify(window.location.search))
-sessionStorage.setItem("params",JSON.stringify(urlParams.entries()))
 
 console.log(url,'testme url')
 console.log(urlParams,'testme urlParams')
 console.log(url,'testme')
 
 
-let entries = params.query ? JSON.parse(params.query) : JSON.parse(sessionStorage.getItem("params"))
+let entries = JSON.parse(params.query)
 let urlParameters = Object.entries(entries);
-let parameters =  params.query ? JSON.parse(params.query) : JSON.parse(sessionStorage.getItem("params"))
+let parameters = JSON.parse(params.query)
 
 
 
@@ -711,6 +709,7 @@ const getRequestBodyOfCompany = async (type) => {
 
 // Called by the logoutButton
 function signOut() {
+   console.log(msalConfig.auth.redirectUri,'msalConfig.auth.redirectUri')
    const logoutRequest = {
       account: myMSALObj.getAccountByUsername(username),
       postLogoutRedirectUri: msalConfig.auth.redirectUri,
