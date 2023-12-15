@@ -1030,7 +1030,7 @@ const createCompanyWithId = async (url, token) => {
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value
+         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value.slice(0, 160)
       })
    }
 
@@ -1366,33 +1366,9 @@ async function sendDataverse(url, token) {
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
      
-      if(parameters.customerId !== "all"){
-      const createdCompany = await createCompanyWithId('accounts', token)
-      console.log(createdCompany,'essage')
-      if(createdCompany.error){
-         const createCompantWihIdError = createdCompany.error.message
-         if (createCompantWihIdError.includes("length")) {
-            const nameOfFieldError = createCompantWihIdError.split("'")[1]
-
-            const newErrorTextElement = document.createElement(`p`)
-            newErrorTextElement.classList.add("errorForInputTextNormal")
-            newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
-
-            const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
-           
-            errorTextsForRemove.forEach(element => {
-               element.style.display = 'none'
-            });
-            document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
-            insertElementAfter("customer", newErrorTextElement,'contact');
-         }
-         loader.style.display = 'none'
-         throw new Error('Error')
-         
-      }else{
-         console.log('test me here working')
+      if(parameters.customerId !== "all" && document.querySelector("#fieldsForUser").querySelector(".customer").value){
+         const createdCompany = await createCompanyWithId('accounts', token)
       }
-     }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
