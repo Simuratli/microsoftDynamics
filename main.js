@@ -1037,7 +1037,7 @@ const createCompanyWithId = async (url, token) => {
 
 
    const response = fetch(webAPIEndpoint + "/" + url, options)
-   const data = response.json()
+   const data = await response.json()
    return data
 }
 
