@@ -1385,7 +1385,6 @@ async function sendDataverse(url, token) {
             insertElementAfter("customer", newErrorTextElement,'contact');
          }
       }
-     }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
