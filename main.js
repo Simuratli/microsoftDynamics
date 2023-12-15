@@ -1030,14 +1030,14 @@ const createCompanyWithId = async (url, token) => {
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value.slice(0, 160)
+         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value
       })
    }
 
 
 
-   const response = await fetch(webAPIEndpoint + "/" + url, options)
-   const data = await response.json()
+   const response = fetch(webAPIEndpoint + "/" + url, options)
+   const data = response.json()
    return data
 }
 
@@ -1365,10 +1365,9 @@ async function sendDataverse(url, token) {
 
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
-     
-      if(parameters.customerId !== "all" && document.querySelector("#fieldsForUser").querySelector(".customer").value){
-         const createdCompany = await createCompanyWithId('accounts', token)
-      }
+     if(parameters.customerId !== "all"){
+      const createdCompany = await createCompanyWithId('accounts', token)
+     }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
