@@ -1375,7 +1375,7 @@ async function sendDataverse(url, token) {
 
          
          if (createCompantWihIdError.includes("length")) {
-            const nameOfFieldError = errorMessageText.split("'")[1]
+            const nameOfFieldError = createCompantWihIdError.split("'")[1]
 
             const newErrorTextElement = document.createElement(`p`)
             newErrorTextElement.classList.add("errorForInputTextNormal")
