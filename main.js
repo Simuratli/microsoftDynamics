@@ -1386,7 +1386,7 @@ async function sendDataverse(url, token) {
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
-
+            document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
             
             return
