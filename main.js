@@ -1365,12 +1365,38 @@ async function sendDataverse(url, token) {
 
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
-     if(parameters.customerId !== "all"){
+     
+      if(parameters.customerId !== "all"){
       const createdCompany = await createCompanyWithId('accounts', token)
       console.log(createdCompany,'essage')
-      if(createdCompany.error.message){
-         console.log(createdCompany.error.message,'createdCompany.error.message')
+      if(createdCompany.error){
+         const createCompantWihIdError = createdCompany.error.message
+
+
+         
+         if (createCompantWihIdError.includes("length")) {
+            const nameOfFieldError = errorMessageText.split("'")[1]
+
+            const newErrorTextElement = document.createElement(`p`)
+            newErrorTextElement.classList.add("errorForInputTextNormal")
+            newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
+
+            const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
+           
+            errorTextsForRemove.forEach(element => {
+               element.style.display = 'none'
+            });
+
+            insertElementAfter("customer", newErrorTextElement,'contact');
+            
+            return
+         }
+
+
+
       }
+
+
 
      }
       // message.innerHTML = 'Company created'
