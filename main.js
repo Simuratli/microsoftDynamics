@@ -1371,9 +1371,6 @@ async function sendDataverse(url, token) {
       console.log(createdCompany,'essage')
       if(createdCompany.error){
          const createCompantWihIdError = createdCompany.error.message
-
-
-         
          if (createCompantWihIdError.includes("length")) {
             const nameOfFieldError = createCompantWihIdError.split("'")[1]
 
@@ -1388,16 +1385,9 @@ async function sendDataverse(url, token) {
             });
             document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
-            
-            return
          }
-
-
-
+         return 0
       }
-
-
-
      }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
