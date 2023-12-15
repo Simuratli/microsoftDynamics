@@ -1386,7 +1386,7 @@ async function sendDataverse(url, token) {
             document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
          }
-         throw Error('Error')
+         throw new Error('Error')
       }
      }
       // message.innerHTML = 'Company created'
