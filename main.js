@@ -1386,7 +1386,7 @@ async function sendDataverse(url, token) {
             document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
          }
-         loader.style.display = 'grid'
+         loader.style.display = 'none'
          throw new Error('Error')
          
       }
