@@ -1030,7 +1030,7 @@ const createCompanyWithId = async (url, token) => {
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value
+         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value.splice(0,160)
       })
    }
 
