@@ -1367,9 +1367,9 @@ async function sendDataverse(url, token) {
       // message.innerHTML = '0 company find. You need to create company first'
      if(parameters.customerId !== "all"){
       const createdCompany = await createCompanyWithId('accounts', token)
-      console.log(createCompany,'essage')
-      if(createCompany.error.message){
-         console.log(createCompany.error.message,'createCompany.error.message')
+      console.log(createdCompany,'essage')
+      if(createdCompany.error.message){
+         console.log(createdCompany.error.message,'createdCompany.error.message')
       }
 
      }
