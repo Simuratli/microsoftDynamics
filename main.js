@@ -1364,13 +1364,11 @@ async function sendDataverse(url, token) {
       }
 
    } else {
-      // message.innerHTML = '0 company find. You need to create company first'
-     
-      if(parameters.customerId !== "all"){
-      const createdCompany = await createCompanyWithId('accounts', token)
-      console.log(createdCompany,'essage')
-      if(createdCompany.error){
-         const createCompantWihIdError = createdCompany.error.message
+      
+      try {
+          await createCompanyWithId('accounts', token)
+      } catch (error) {
+         const createCompantWihIdError = error.message
          if (createCompantWihIdError.includes("length")) {
             const nameOfFieldError = createCompantWihIdError.split("'")[1]
 
@@ -1386,7 +1384,6 @@ async function sendDataverse(url, token) {
             document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
          }
-         // return 0
       }
      }
       // message.innerHTML = 'Company created'
