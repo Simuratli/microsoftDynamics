@@ -1024,13 +1024,13 @@ const createCompanyWithId = async (url, token) => {
    headers.append("OData-MaxVersion", "4.0");
    headers.append("OData-Version", "4.0");
    headers.append("Content-Type", "application/json");
-
+   const valueOfName = document.querySelector("#fieldsForUser").querySelector(".customer").value
    const options = {
       method: "POST",
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name: parameters.customer
+         name:valueOfName.slice(0,160)
       })
    }
 
