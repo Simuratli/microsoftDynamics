@@ -1389,6 +1389,8 @@ async function sendDataverse(url, token) {
          loader.style.display = 'none'
          throw new Error('Error')
          
+      }else{
+         console.log('test me here working')
       }
      }
       // message.innerHTML = 'Company created'
