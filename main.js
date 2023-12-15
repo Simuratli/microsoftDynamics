@@ -1386,7 +1386,7 @@ async function sendDataverse(url, token) {
             document.querySelector("#fieldsForUser").querySelector(".customer").classList.add("errorInput")
             insertElementAfter("customer", newErrorTextElement,'contact');
          }
-         return 0
+         // return 0
       }
      }
       // message.innerHTML = 'Company created'
