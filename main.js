@@ -1029,8 +1029,8 @@ const createCompanyWithId = async (url, token) => {
       method: "POST",
       headers: headers,
       body: JSON.stringify({
-         uds_linkedincompanyid: document.querySelector('#fieldsForUser').querySelector(".customer"),
-         name: parameters.customer
+         uds_linkedincompanyid: parameters.customerId,
+         name:  document.querySelector('#fieldsForUser').querySelector(".customer").value
       })
    }
 
