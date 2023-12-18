@@ -1469,7 +1469,7 @@ const inputElements = document.querySelectorAll(".inputForUser")
 
 
 const validateInputFields  = (e) => {
-   console.log(e.target.value,'test', e.target.name)
+   console.log(e.target.value,'test', e.target.name, e.currentTarget)
 }
 
 
