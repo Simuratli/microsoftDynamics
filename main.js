@@ -1486,13 +1486,13 @@ const addErrorMessage = (type,inputName,node) => {
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
       newErrorTextElement.innerHTML = `not valid`
-      console.log(node,'test me type')
-      if(node === "fieldsForUser"){
+      if(node.id === "fieldsForUser"){
          insertElementAfter(inputName, newErrorTextElement,'user')
       }else{
          insertElementAfter(inputName, newErrorTextElement,'company')
       }
    }else{
+      console.log(node.nextElementSibling(),'nextsbling')
 
    }
 }
@@ -1506,7 +1506,7 @@ const validateInputFields  = (e) => {
    switch (e.target.name) {
       case 'userName':
             if(!validateString(160,e.target.value)){
-               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode.id)
+               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode)
             }
          break;
    
