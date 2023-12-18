@@ -1461,3 +1461,20 @@ const goToCrm = async () => {
 
    }
 }
+
+
+// validation part 
+
+const inputElements = document.querySelectorAll(".inputForUser")
+
+
+const validateInputFields  = (e) => {
+   console.log(e.target.value,'test')
+}
+
+
+
+
+inputElements.forEach((element)=>{
+   element.addEventListener("input", validateInputFields)
+})
