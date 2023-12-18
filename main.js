@@ -1518,7 +1518,7 @@ const addErrorMessage = (currentElement, type,inputName,node,action) => {
       if(type === 'div'){
          currentElement.classList.remove("errorInput")
       }else{
-         node.childNodes[3].classList.remove("errorInput")
+         node.childNodes[1].classList.remove("errorInput")
       }
    }
 }
