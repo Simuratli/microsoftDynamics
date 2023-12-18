@@ -1501,7 +1501,7 @@ const addErrorMessage = (currentElement, type,inputName,node,action) => {
    }else{
       node.childNodes[3].innerHTML = 'Not valid'
       node.childNodes[3].style.display = 'block'
-
+      node.childNodes[3].classList.add("errorInput")
    }
 
 
@@ -1515,6 +1515,11 @@ const addErrorMessage = (currentElement, type,inputName,node,action) => {
       errorsNormal.forEach((error)=>{
          error.style.display = 'none'
       })
+      if(type === 'div'){
+         currentElement.classList.remove("errorInput")
+      }else{
+         node.childNodes[3].classList.remove("errorInput")
+      }
    }
 }
 
