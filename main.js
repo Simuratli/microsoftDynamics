@@ -1480,6 +1480,15 @@ function validateString(count,inputString) {
 }
 
 
+const addErrorMessage = (type) => {
+   console.log(type,'test me type')
+   if(type === 'exist'){
+
+   }else{
+
+   }
+}
+
 // validation part 
 
 const inputElements = document.querySelectorAll(".inputForUser")
@@ -1491,6 +1500,7 @@ const validateInputFields  = (e) => {
    switch (e.target.name) {
       case 'userName':
             console.log(validateString(160,e.target.value))
+            addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase())
          break;
    
       default:
