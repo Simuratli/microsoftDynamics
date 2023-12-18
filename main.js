@@ -1480,10 +1480,14 @@ function validateString(count,inputString) {
 }
 
 
-const addErrorMessage = (type) => {
-   console.log(type,'test me type')
-   if(type === 'exist'){
+const addErrorMessage = (type,inputName,node) => {
+   console.log(node,'test me type')
+   if(type === 'div'){
+      const newErrorTextElement = document.createElement(`p`)
+      newErrorTextElement.classList.add("errorForInputTextNormal")
+      newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
 
+      insertElementAfter(inputName, newErrorTextElement,'user')
    }else{
 
    }
@@ -1500,7 +1504,7 @@ const validateInputFields  = (e) => {
       case 'userName':
             console.log()
             if(!validateString(160,e.target.value)){
-               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase())
+               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode.classList)
             }
          break;
    
