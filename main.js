@@ -1463,6 +1463,23 @@ const goToCrm = async () => {
 }
 
 
+
+
+function validateString(count,inputString) {
+   // Check if the length is within the limit
+   if (inputString.length > count) {
+       return false;
+   }
+
+   // Check if the string contains only Latin characters
+   if (!/^[a-zA-Z]+$/.test(inputString)) {
+       return false;
+   }
+
+   return true;
+}
+
+
 // validation part 
 
 const inputElements = document.querySelectorAll(".inputForUser")
@@ -1470,6 +1487,16 @@ const inputElements = document.querySelectorAll(".inputForUser")
 
 const validateInputFields  = (e) => {
    console.log(e.target.value,'test', e.target.name, e.currentTarget.parentNode)
+
+   switch (e.target.name) {
+      case 'userName':
+            console.log(validateString(160,e.target.value))
+         break;
+   
+      default:
+         break;
+   }
+
 }
 
 
