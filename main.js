@@ -1486,6 +1486,10 @@ const addErrorMessage = (type,inputName,node,action) => {
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
       newErrorTextElement.innerHTML = `not valid`
+      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
+      errorsNormal.forEach((error)=>{
+         error.style.display = 'none'
+      })
       if(node.id === "fieldsForUser"){
          insertElementAfter(inputName, newErrorTextElement,'user')
       }else{
@@ -1501,11 +1505,12 @@ const addErrorMessage = (type,inputName,node,action) => {
 
 
    if(action === 'remove'){
-      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
+      
       const errors = document.querySelectorAll(".errorForInputText")
       errors.forEach((error)=>{
          error.style.display = 'none'
       })
+      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
       errorsNormal.forEach((error)=>{
          error.style.display = 'none'
       })
