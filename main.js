@@ -1485,7 +1485,7 @@ const addErrorMessage = (type,inputName,node) => {
    if(type === 'div'){
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
-      newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
+      newErrorTextElement.innerHTML = `not valid`
 
       insertElementAfter(inputName, newErrorTextElement,'user')
    }else{
