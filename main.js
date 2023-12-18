@@ -1492,7 +1492,7 @@ const addErrorMessage = (type,inputName,node) => {
          insertElementAfter(inputName, newErrorTextElement,'company')
       }
    }else{
-      console.log(node,'nextsbling')
+      console.log(node.childNodes(),'nextsbling')
 
    }
 }
