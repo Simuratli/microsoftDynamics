@@ -1482,22 +1482,7 @@ function validateString(count,inputString) {
 
 const addErrorMessage = (type,inputName,node,action) => {
    
-   if(type === 'div'){
-      const newErrorTextElement = document.createElement(`p`)
-      newErrorTextElement.classList.add("errorForInputTextNormal")
-      newErrorTextElement.innerHTML = `not valid`
-      if(node.id === "fieldsForUser"){
-         insertElementAfter(inputName, newErrorTextElement,'user')
-      }else{
-         insertElementAfter(inputName, newErrorTextElement,'company')
-      }
-
-     
-   }else{
-      node.childNodes[3].innerHTML = 'Not valid'
-      node.childNodes[3].style.display = 'block'
-
-   }
+   
 
 
    if(action === 'remove'){
@@ -1505,6 +1490,23 @@ const addErrorMessage = (type,inputName,node,action) => {
       errors.forEach((error)=>{
          error.style.display = 'none'
       })
+   }else{
+      if(type === 'div'){
+         const newErrorTextElement = document.createElement(`p`)
+         newErrorTextElement.classList.add("errorForInputText")
+         newErrorTextElement.innerHTML = `not valid`
+         if(node.id === "fieldsForUser"){
+            insertElementAfter(inputName, newErrorTextElement,'user')
+         }else{
+            insertElementAfter(inputName, newErrorTextElement,'company')
+         }
+   
+        
+      }else{
+         node.childNodes[3].innerHTML = 'Not valid'
+         node.childNodes[3].style.display = 'block'
+   
+      }
    }
 }
 
