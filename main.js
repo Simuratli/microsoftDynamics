@@ -1502,6 +1502,7 @@ const validateInputFields  = (e) => {
    switch (e.target.name) {
       case 'userName':
             if(!validateString(160,e.target.value)){
+               console.log("testastrsaasdasd ")
                addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode.id)
             }
          break;
