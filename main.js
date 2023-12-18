@@ -1487,7 +1487,11 @@ const addErrorMessage = (type,inputName,node) => {
       newErrorTextElement.classList.add("errorForInputTextNormal")
       newErrorTextElement.innerHTML = `not valid`
       console.log(node,'test me type')
-      insertElementAfter(inputName, newErrorTextElement,'user')
+      if(node === "fieldsForUser"){
+         insertElementAfter(inputName, newErrorTextElement,'user')
+      }else{
+         insertElementAfter(inputName, newErrorTextElement,'company')
+      }
    }else{
 
    }
