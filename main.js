@@ -1493,6 +1493,7 @@ const addErrorMessage = (type,inputName,node) => {
       }
    }else{
       node.childNodes[3].innerHTML = 'Not valid'
+      node.childNodes[3].style.display = 'block'
 
    }
 }
