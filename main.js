@@ -1481,12 +1481,12 @@ function validateString(count,inputString) {
 
 
 const addErrorMessage = (type,inputName,node) => {
-   console.log(node,'test me type')
+   
    if(type === 'div'){
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
       newErrorTextElement.innerHTML = `not valid`
-
+      console.log(node,'test me type')
       insertElementAfter(inputName, newErrorTextElement,'user')
    }else{
 
@@ -1498,7 +1498,6 @@ const addErrorMessage = (type,inputName,node) => {
 const inputElements = document.querySelectorAll(".inputForUser")
 
 const validateInputFields  = (e) => {
-   console.log(e.target.value,'test', e.target.name, e.currentTarget.parentNode)
 
    switch (e.target.name) {
       case 'userName':
