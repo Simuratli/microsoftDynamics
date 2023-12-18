@@ -1493,14 +1493,15 @@ const addErrorMessage = (type) => {
 
 const inputElements = document.querySelectorAll(".inputForUser")
 
-
 const validateInputFields  = (e) => {
    console.log(e.target.value,'test', e.target.name, e.currentTarget.parentNode)
 
    switch (e.target.name) {
       case 'userName':
-            console.log(validateString(160,e.target.value))
-            addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase())
+            console.log()
+            if(!validateString(160,e.target.value)){
+               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase())
+            }
          break;
    
       default:
@@ -1513,5 +1514,5 @@ const validateInputFields  = (e) => {
 
 
 inputElements.forEach((element)=>{
-   element.addEventListener("input", validateInputFields)
+   element.addEventListener("blur", validateInputFields)
 })
