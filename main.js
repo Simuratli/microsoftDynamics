@@ -1516,5 +1516,5 @@ const validateInputFields  = (e) => {
 
 
 inputElements.forEach((element)=>{
-   element.addEventListener("blur", validateInputFields)
+   element.addEventListener("input", validateInputFields)
 })
