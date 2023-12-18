@@ -1472,8 +1472,8 @@ function validateString(count,inputString) {
    }
 
    // Check if the string contains only Latin characters
-   if (!/^[a-zA-Z]+$/.test(inputString)) {
-       return false;
+   if (!/^[a-zA-Z\s'-]+$/.test(inputString)) {
+      return false;
    }
 
    return true;
