@@ -1501,7 +1501,7 @@ const addErrorMessage = (currentElement, type,inputName,node,action) => {
    }else{
       node.childNodes[3].innerHTML = 'Not valid'
       node.childNodes[3].style.display = 'block'
-      node.childNodes[0].classList.add("errorInput")
+      node.childNodes[1].classList.add("errorInput")
    }
 
 
