@@ -1480,7 +1480,7 @@ function validateString(count,inputString) {
 }
 
 
-const addErrorMessage = (type,inputName,node) => {
+const addErrorMessage = (type,inputName,node,action) => {
    
    if(type === 'div'){
       const newErrorTextElement = document.createElement(`p`)
@@ -1491,10 +1491,20 @@ const addErrorMessage = (type,inputName,node) => {
       }else{
          insertElementAfter(inputName, newErrorTextElement,'company')
       }
+
+     
    }else{
       node.childNodes[3].innerHTML = 'Not valid'
       node.childNodes[3].style.display = 'block'
 
+   }
+
+
+   if(action === 'remove'){
+      const errors = document.querySelectorAll(".errorForInputText")
+      errors.forEach((error)=>{
+         error.style.display = 'none'
+      })
    }
 }
 
@@ -1507,7 +1517,9 @@ const validateInputFields  = (e) => {
    switch (e.target.name) {
       case 'userName':
             if(!validateString(160,e.target.value)){
-               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode)
+               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
+            }else{
+               addErrorMessage(e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
          break;
    
