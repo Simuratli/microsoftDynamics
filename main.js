@@ -1501,13 +1501,14 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          if(currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
             currentElement.nextElementSibling.remove()
          }
+         sendAccountsButton.removeAttribute("disabled")
       } else {
          node.childNodes[1].classList.remove("errorInput")
          node.childNodes[3].style.display = 'none'
          console.log(node.childNodes[3],'remove sibling if td')
+         updateDataButton.removeAttribute("disabled")
       }
    }else{
-      console.log('add',currentElement)
       if (type === 'div') {
          const newErrorTextElement = document.createElement(`p`)
          newErrorTextElement.classList.add("errorForInputTextNormal")
@@ -1524,18 +1525,15 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
                insertElementAfter(inputName, newErrorTextElement, 'company')
             }
          }
-
-         
-
          currentElement.classList.add("errorInput")
-   
-   
+         sendAccountsButton.setAttribute('disabled',true)
       } else {
          node.childNodes[3].innerHTML = `${count} characters allowed`
          node.childNodes[3].style.display = 'block'
          node.childNodes[1].classList.add("errorInput")
+         updateDataButton.setAttribute('disabled',true)
       }
-   
+      
    }
 }
 
