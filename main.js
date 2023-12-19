@@ -1494,10 +1494,16 @@ function validateEmail(count, email) {
 
    // Check if the email length is within the limit
    if (email.length > count) {
-      return false;
+      return {
+         result:false,
+         message:`Character limit: ${count}`
+      };
    }
 
-   return emailPattern.test(email);
+   return {
+      result:emailPattern.test(email),
+      message:"Not valid email"
+   };
 }
 
 
@@ -1626,10 +1632,10 @@ const validateInputFields = (e) => {
          }
          break;
       case 'email':
-         if (!validateEmail(100, e.target.value)) {
-            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         if (!validateEmail(100, e.target.value).result) {
+            addErrorMessage(validateEmail(100, e.target.value).message, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage(validateEmail(100, e.target.value).message, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'personalEmail':
