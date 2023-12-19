@@ -1489,26 +1489,45 @@ function validateNumber(max, number) {
 }
 
 
+function validateEmail(count, email) {
+   var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+   // Check if the email length is within the limit
+   if (email.length > count) {
+      return false;
+   }
+
+   return emailPattern.test(email);
+}
+
+
+function validateURL(url) {
+   // Regular expression for a simple URL validation
+   var urlPattern = /^(?:(?:https?|ftp):\/\/)?(?:(?:www\.|(?!www))[a-zA-Z0-9-]{1,63}(?<!-)\.?)+[a-zA-Z]{2,}(?:\/[^\s]*)?$/;
+
+   // Test the URL against the pattern
+   return urlPattern.test(url);
+}
 
 
 
 
 const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
- 
+
 
    if (action === 'remove') {
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
-         if(currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
+         if (currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
             currentElement.nextElementSibling.remove()
          }
       } else {
          node.childNodes[1].classList.remove("errorInput")
          node.childNodes[3].style.display = 'none'
-         console.log(node.childNodes[3],'remove sibling if td')
+         console.log(node.childNodes[3], 'remove sibling if td')
       }
-   }else{
+   } else {
       if (type === 'div') {
          const newErrorTextElement = document.createElement(`p`)
          newErrorTextElement.classList.add("errorForInputTextNormal")
@@ -1517,7 +1536,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
          // errorsNormal.forEach((error) => {
          //    error.style.display = 'none'
          // })
-         if(!currentElement.nextElementSibling  || !currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
+         if (!currentElement.nextElementSibling || !currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
             if (node.id === "fieldsForUser") {
                insertElementAfter(inputName, newErrorTextElement, 'user')
             } else {
@@ -1530,23 +1549,23 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
          node.childNodes[3].style.display = 'block'
          node.childNodes[1].classList.add("errorInput")
       }
-      
+
    }
 
 
    const erroredInputs = document.querySelectorAll(".errorInput")
-   console.log(erroredInputs,'erroredInputs')
+   console.log(erroredInputs, 'erroredInputs')
 
-   if(erroredInputs.length !== 0){
-      if (type === 'div'){
-         sendAccountsButton.setAttribute("disabled",true)
-      }else{
-         updateDataButton.setAttribute("disabled",true)
+   if (erroredInputs.length !== 0) {
+      if (type === 'div') {
+         sendAccountsButton.setAttribute("disabled", true)
+      } else {
+         updateDataButton.setAttribute("disabled", true)
       }
-   }else{
-      if (type === 'div'){
+   } else {
+      if (type === 'div') {
          sendAccountsButton.removeAttribute("disabled")
-      }else{
+      } else {
          updateDataButton.removeAttribute("disabled")
       }
    }
@@ -1555,16 +1574,8 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 }
 
 
-function validateURL(url) {
-   // Regular expression for a simple URL validation
-   var urlPattern = /^(?:(?:https?|ftp):\/\/)?(?:(?:www\.|(?!www))[a-zA-Z0-9-]{1,63}(?<!-)\.?)+[a-zA-Z]{2,}(?:\/[^\s]*)?$/;
- 
-   // Test the URL against the pattern
-   return urlPattern.test(url);
- }
 
 
- 
 // validation part 
 
 const inputElements = document.querySelectorAll(".inputForUser")
@@ -1615,14 +1626,14 @@ const validateInputFields = (e) => {
          }
          break;
       case 'email':
-         if (!validateString(100, e.target.value)) {
+         if (!validateEmail(100, e.target.value)) {
             addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
             addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'personalEmail':
-         if (!validateString(100, e.target.value)) {
+         if (!validateEmail(100, e.target.value)) {
             addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
             addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
