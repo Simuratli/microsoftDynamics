@@ -1522,9 +1522,9 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          error.style.display = 'none'
       })
       const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      errorsNormal.forEach((error) => {
-         error.style.display = 'none'
-      })
+      // errorsNormal.forEach((error) => {
+      //    error.style.display = 'none'
+      // })
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
       } else {
