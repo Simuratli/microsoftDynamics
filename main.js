@@ -1500,8 +1500,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
    if (action === 'remove') {
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
-         console.log(currentElement.nextElementSibling,'remove sibling if div')
-         if(currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
+         if(currentElement.nextElementSibling && currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
             currentElement.nextElementSibling.remove()
          }
       } else {
@@ -1518,8 +1517,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
          // errorsNormal.forEach((error) => {
          //    error.style.display = 'none'
          // })
-         console.log(currentElement.nextElementSibling.classList,'currentElement.nextElementSibling.classList')
-         if(!currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
+         if(currentElement.nextElementSibling  && !currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
             if (node.id === "fieldsForUser") {
                insertElementAfter(inputName, newErrorTextElement, 'user')
             } else {
