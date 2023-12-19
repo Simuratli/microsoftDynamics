@@ -1492,28 +1492,7 @@ function validateNumber(max, number) {
 
 const addErrorMessage = (count, currentElement, type, inputName, node, action) => {
 
-   if (type === 'div') {
-      const newErrorTextElement = document.createElement(`p`)
-      newErrorTextElement.classList.add("errorForInputTextNormal")
-      newErrorTextElement.innerHTML = `${count} characters allowed`
-      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      // errorsNormal.forEach((error) => {
-      //    error.style.display = 'none'
-      // })
-      if (node.id === "fieldsForUser") {
-         insertElementAfter(inputName, newErrorTextElement, 'user')
-      } else {
-         insertElementAfter(inputName, newErrorTextElement, 'company')
-      }
-      currentElement.classList.add("errorInput")
-
-
-   } else {
-      node.childNodes[3].innerHTML = `${count} characters allowed`
-      node.childNodes[3].style.display = 'block'
-      node.childNodes[1].classList.add("errorInput")
-   }
-
+ 
 
    if (action === 'remove') {
 
@@ -1530,6 +1509,29 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
       } else {
          node.childNodes[1].classList.remove("errorInput")
       }
+   }else{
+      if (type === 'div') {
+         const newErrorTextElement = document.createElement(`p`)
+         newErrorTextElement.classList.add("errorForInputTextNormal")
+         newErrorTextElement.innerHTML = `${count} characters allowed`
+         const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
+         // errorsNormal.forEach((error) => {
+         //    error.style.display = 'none'
+         // })
+         if (node.id === "fieldsForUser") {
+            insertElementAfter(inputName, newErrorTextElement, 'user')
+         } else {
+            insertElementAfter(inputName, newErrorTextElement, 'company')
+         }
+         currentElement.classList.add("errorInput")
+   
+   
+      } else {
+         node.childNodes[3].innerHTML = `${count} characters allowed`
+         node.childNodes[3].style.display = 'block'
+         node.childNodes[1].classList.add("errorInput")
+      }
+   
    }
 }
 
