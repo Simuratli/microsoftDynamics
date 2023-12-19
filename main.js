@@ -1490,7 +1490,7 @@ function validateNumber(max, number) {
 
 
 
-const addErrorMessage = (count, currentElement, type, inputName, node, action) => {
+const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
  
 
@@ -1510,7 +1510,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
       if (type === 'div') {
          const newErrorTextElement = document.createElement(`p`)
          newErrorTextElement.classList.add("errorForInputTextNormal")
-         newErrorTextElement.innerHTML = `${count} characters allowed`
+         newErrorTextElement.innerHTML = `${message} characters allowed`
          const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
          // errorsNormal.forEach((error) => {
          //    error.style.display = 'none'
@@ -1525,7 +1525,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          }
          currentElement.classList.add("errorInput")
       } else {
-         node.childNodes[3].innerHTML = `${count} characters allowed`
+         node.childNodes[3].innerHTML = `${message} characters allowed`
          node.childNodes[3].style.display = 'block'
          node.childNodes[1].classList.add("errorInput")
       }
@@ -1573,86 +1573,86 @@ const validateInputFields = (e) => {
    switch (e.target.name) {
       case 'userName':
          if (!validateString(100, e.target.value)) {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'jobTitle':
          if (!validateString(1000, e.target.value)) {
-            addErrorMessage(1000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 1000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(1000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 1000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'location':
          if (!validateString(200, e.target.value)) {
-            addErrorMessage(200, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 200", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(200, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 200", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'customer':
          if (!validateString(160, e.target.value)) {
-            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 160", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 160", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'phone':
          if (!validateString(50, e.target.value)) {
-            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 50", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 50", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'tel':
          if (!validateString(50, e.target.value)) {
-            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 50", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 50", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'email':
          if (!validateString(100, e.target.value)) {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'personalEmail':
          if (!validateString(100, e.target.value)) {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 100", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'comment':
          if (!validateString(2000, e.target.value)) {
-            addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 2000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 2000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'companyName':
          if (!validateString(160, e.target.value)) {
-            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Character limit: 160", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Character limit: 160", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'lnSize':
          if (!validateNumber(2147483647, e.target.value)) {
-            addErrorMessage(2147483647, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Max: 2147483647", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(2147483647, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Max: 2147483647", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'numberOfWorkers':
          if (!validateNumber(1000000000, e.target.value)) {
-            addErrorMessage(1000000000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+            addErrorMessage("Max: 1000000000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
-            addErrorMessage(1000000000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+            addErrorMessage("Max: 1000000000", e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       case 'companyUrl':
