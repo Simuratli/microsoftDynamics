@@ -1495,19 +1495,13 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
  
 
    if (action === 'remove') {
-      console.log('remove',currentElement)
-      const errors = document.querySelectorAll(".errorForInputText")
-      errors.forEach((error) => {
-         error.style.display = 'none'
-      })
-      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      // errorsNormal.forEach((error) => {
-      //    error.style.display = 'none'
-      // })
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
+         console.log(currentElement.nextElementSibling,'remove sibling if div')
       } else {
          node.childNodes[1].classList.remove("errorInput")
+         node.childNodes[3].style.display = 'none'
+         console.log(node.childNodes[3],'remove sibling if td')
       }
    }else{
       console.log('add',currentElement)
