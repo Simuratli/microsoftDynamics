@@ -1551,7 +1551,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
          }
          currentElement.classList.add("errorInput")
       } else {
-         node.childNodes[3].innerHTML = `${message} characters allowed`
+         node.childNodes[3].innerHTML = `${message}`
          node.childNodes[3].style.display = 'block'
          node.childNodes[1].classList.add("errorInput")
       }
