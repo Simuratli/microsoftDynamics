@@ -1490,6 +1490,9 @@ function validateNumber(max, number) {
 
 
 
+
+
+
 const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
  
@@ -1510,7 +1513,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
       if (type === 'div') {
          const newErrorTextElement = document.createElement(`p`)
          newErrorTextElement.classList.add("errorForInputTextNormal")
-         newErrorTextElement.innerHTML = `${message} characters allowed`
+         newErrorTextElement.innerHTML = `${message}`
          const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
          // errorsNormal.forEach((error) => {
          //    error.style.display = 'none'
