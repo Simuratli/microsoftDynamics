@@ -1515,7 +1515,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          //    error.style.display = 'none'
          // })
          console.log(currentElement.nextElementSibling.classList,'currentElement.nextElementSibling.classList')
-         if(!currentElement.nextElementSibling.classList.includes("errorForInputTextNormal")){
+         if(!currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
             if (node.id === "fieldsForUser") {
                insertElementAfter(inputName, newErrorTextElement, 'user')
             } else {
