@@ -1534,6 +1534,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
 
 
    const erroredInputs = document.querySelectorAll(".errorInput")
+   console.log(erroredInputs,'erroredInputs')
 
    if(erroredInputs.length === 0){
       if (type === 'div'){
