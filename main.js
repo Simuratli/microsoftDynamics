@@ -1481,12 +1481,12 @@ function validateString(count,inputString) {
 }
 
 
-const addErrorMessage = (currentElement, type,inputName,node,action) => {
+const addErrorMessage = (count,currentElement, type,inputName,node,action) => {
    
    if(type === 'div'){
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
-      newErrorTextElement.innerHTML = `not valid`
+      newErrorTextElement.innerHTML = `${count} characters allowed`
       const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
       errorsNormal.forEach((error)=>{
          error.style.display = 'none'
@@ -1500,7 +1500,7 @@ const addErrorMessage = (currentElement, type,inputName,node,action) => {
 
      
    }else{
-      node.childNodes[3].innerHTML = 'Not valid'
+      node.childNodes[3].innerHTML = `${count} characters allowed`
       node.childNodes[3].style.display = 'block'
       node.childNodes[1].classList.add("errorInput")
    }
@@ -1533,22 +1533,22 @@ const validateInputFields  = (e) => {
    switch (e.target.name) {
       case 'userName':
             if(!validateString(100,e.target.value)){
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
+               addErrorMessage(100,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
+               addErrorMessage(100,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
          break;
       case 'jobTitle':
             if(!validateString(1000,e.target.value)){
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
+               addErrorMessage(1000,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
+               addErrorMessage(1000,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
       case 'location':
             if(!validateString(200,e.target.value)){
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
+               addErrorMessage(200,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
-               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
+               addErrorMessage(200,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
          
          break;
