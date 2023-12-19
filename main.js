@@ -1501,12 +1501,10 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          if(currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")){
             currentElement.nextElementSibling.remove()
          }
-         sendAccountsButton.removeAttribute("disabled")
       } else {
          node.childNodes[1].classList.remove("errorInput")
          node.childNodes[3].style.display = 'none'
          console.log(node.childNodes[3],'remove sibling if td')
-         updateDataButton.removeAttribute("disabled")
       }
    }else{
       if (type === 'div') {
@@ -1526,15 +1524,32 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
             }
          }
          currentElement.classList.add("errorInput")
-         sendAccountsButton.setAttribute('disabled',true)
       } else {
          node.childNodes[3].innerHTML = `${count} characters allowed`
          node.childNodes[3].style.display = 'block'
          node.childNodes[1].classList.add("errorInput")
-         updateDataButton.setAttribute('disabled',true)
       }
       
    }
+
+
+   const erroredInputs = document.querySelectorAll(".errorInput")
+
+   if(erroredInputs.length === 0){
+      if (type === 'div'){
+         sendAccountsButton.setAttribute("disabled",true)
+      }else{
+         updateDataButton.setAttribute("disabled",true)
+      }
+   }else{
+      if (type === 'div'){
+         sendAccountsButton.removeAttribute("disabled")
+      }else{
+         updateDataButton.removeAttribute("disabled")
+      }
+   }
+
+
 }
 
 
