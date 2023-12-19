@@ -1573,6 +1573,27 @@ const validateInputFields = (e) => {
             addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
+      case 'email':
+         if (!validateString(100, e.target.value)) {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'personalEmail':
+         if (!validateString(100, e.target.value)) {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'comment':
+         if (!validateString(2000, e.target.value)) {
+            addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
       default:
          break;
    }
