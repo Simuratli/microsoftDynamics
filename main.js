@@ -1490,7 +1490,7 @@ function validateNumber(max, number) {
 
 
 function validateEmail(count, email) {
-   var emailPattern =  /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[a-zA-Z]{2,})$/;
+   // var emailPattern =  /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[a-zA-Z]{2,})$/;
 
    // Check if the email length is within the limit
    if (email.length > count) {
@@ -1507,7 +1507,7 @@ function validateEmail(count, email) {
       }
    }
    return {
-      result:emailPattern.test(email),
+      result: email.match(regex),
       message:"Not valid email"
    };
 }
