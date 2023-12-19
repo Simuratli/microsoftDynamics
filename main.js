@@ -1471,10 +1471,10 @@ function validateString(count,inputString) {
        return false;
    }
 
-   // Check if the string contains only Latin characters
-   if (!/^[a-zA-Z\s'-]+$/.test(inputString)) {
-      return false;
-   }
+   // // Check if the string contains only Latin characters
+   // if (!/^[a-zA-Z\s'-]+$/.test(inputString)) {
+   //    return false;
+   // }
 
    return true;
 }
@@ -1531,20 +1531,20 @@ const validateInputFields  = (e) => {
 
    switch (e.target.name) {
       case 'userName':
-            if(!validateString(160,e.target.value)){
+            if(!validateString(100,e.target.value)){
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
          break;
       case 'jobTitle':
-            if(!validateString(160,e.target.value)){
+            if(!validateString(1000,e.target.value)){
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
       case 'location':
-            if(!validateString(160,e.target.value)){
+            if(!validateString(200,e.target.value)){
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
             }else{
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
