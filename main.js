@@ -1515,22 +1515,22 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
    }
 
 
-   if (action === 'remove') {
+   // if (action === 'remove') {
 
-      const errors = document.querySelectorAll(".errorForInputText")
-      errors.forEach((error) => {
-         error.style.display = 'none'
-      })
-      const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      errorsNormal.forEach((error) => {
-         error.style.display = 'none'
-      })
-      if (type === 'div') {
-         currentElement.classList.remove("errorInput")
-      } else {
-         node.childNodes[1].classList.remove("errorInput")
-      }
-   }
+   //    const errors = document.querySelectorAll(".errorForInputText")
+   //    errors.forEach((error) => {
+   //       error.style.display = 'none'
+   //    })
+   //    const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
+   //    errorsNormal.forEach((error) => {
+   //       error.style.display = 'none'
+   //    })
+   //    if (type === 'div') {
+   //       currentElement.classList.remove("errorInput")
+   //    } else {
+   //       node.childNodes[1].classList.remove("errorInput")
+   //    }
+   // }
 }
 
 
