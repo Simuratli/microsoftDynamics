@@ -1495,7 +1495,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
  
 
    if (action === 'remove') {
-
+      console.log('remove',currentElement)
       const errors = document.querySelectorAll(".errorForInputText")
       errors.forEach((error) => {
          error.style.display = 'none'
@@ -1510,6 +1510,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          node.childNodes[1].classList.remove("errorInput")
       }
    }else{
+      console.log('add',currentElement)
       if (type === 'div') {
          const newErrorTextElement = document.createElement(`p`)
          newErrorTextElement.classList.add("errorForInputTextNormal")
