@@ -1498,7 +1498,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
          console.log(currentElement.nextElementSibling,'remove sibling if div')
-         currentElement.nextElementSibling.style.display = 'none'
+         currentElement.nextElementSibling.remove()
       } else {
          node.childNodes[1].classList.remove("errorInput")
          node.childNodes[3].style.display = 'none'
