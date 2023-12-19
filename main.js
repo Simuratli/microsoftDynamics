@@ -1514,11 +1514,17 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
          // errorsNormal.forEach((error) => {
          //    error.style.display = 'none'
          // })
-         if (node.id === "fieldsForUser") {
-            insertElementAfter(inputName, newErrorTextElement, 'user')
-         } else {
-            insertElementAfter(inputName, newErrorTextElement, 'company')
+         console.log(currentElement.nextElementSibling.classList,'currentElement.nextElementSibling.classList')
+         if(!currentElement.nextElementSibling.classList.includes("errorForInputTextNormal")){
+            if (node.id === "fieldsForUser") {
+               insertElementAfter(inputName, newErrorTextElement, 'user')
+            } else {
+               insertElementAfter(inputName, newErrorTextElement, 'company')
+            }
          }
+
+         
+
          currentElement.classList.add("errorInput")
    
    
