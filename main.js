@@ -1467,6 +1467,7 @@ const goToCrm = async () => {
 
 function validateString(count,inputString) {
    // Check if the length is within the limit
+   console.log(inputString.length,count,'test me')
    if (inputString.length > count) {
        return false;
    }
