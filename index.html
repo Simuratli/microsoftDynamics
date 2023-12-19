@@ -75,8 +75,8 @@
          <div id="fieldsForCompany">
             <input class="inputForUser linkedinCompanyUrl" type="text" placeholder="Company profile link" name="linkedinCompanyUrl" readonly>
             <input class="inputForUser companyName" type="text" placeholder="Company name" name="companyName">
-            <input class="inputForUser lnSize" type="number" placeholder="Employees on Ln" name="lnSize">
-            <input class="inputForUser numberOfWorkers" type="number" placeholder="Company size" name="numberOfWorkers">
+            <input class="inputForUser lnSize" type="number" min="0" placeholder="Employees on Ln" name="lnSize">
+            <input class="inputForUser numberOfWorkers" type="number" min="0" placeholder="Company size" name="numberOfWorkers">
             <input class="inputForUser location" type="text" placeholder="Company address" name="location">
             <input class="inputForUser companyUrl" type="text" placeholder="Website" name="companyUrl">
             <textarea class="comment inputForUser" name="comment" placeholder="Add comment"></textarea>
@@ -245,7 +245,7 @@
                <tr>
                   <td>Employees on Ln</td>
                   <td>
-                     <input type="number" placeholder="Employees on Ln" class="inputForUser dublicateTableElement lnSize lnSizeUpdated" name="lnSize"/>
+                     <input type="number" min="0" placeholder="Employees on Ln" class="inputForUser dublicateTableElement lnSize lnSizeUpdated" name="lnSize"/>
                      <p class="errorForInputText">Job Title exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.</p>
                   </td>
                   <td><input class="existed" readonly placeholder="Employees on Ln" name="uds_linkedinsize" /></td>
@@ -253,7 +253,7 @@
                <tr>
                   <td>Company size</td>
                   <td>
-                     <input type="number" placeholder="Company size"  class="inputForUser dublicateTableElement numberofemployees numberofemployeesUpdated" name="numberOfWorkers"/>
+                     <input type="number" min="0" placeholder="Company size"  class="inputForUser dublicateTableElement numberofemployees numberofemployeesUpdated" name="numberOfWorkers"/>
                      <p class="errorForInputText">Job Title exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.</p>
                   </td>
                   <td><input  class="existed" readonly placeholder="Company size" name="numberofemployees" /></td>
