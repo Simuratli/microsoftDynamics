@@ -1500,6 +1500,12 @@ function validateEmail(count, email) {
       };
    }
 
+   if(email === "") {
+      return { 
+         result : true,
+         message:"Correct"
+      }
+   }
    return {
       result:emailPattern.test(email),
       message:"Not valid email"
