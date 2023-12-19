@@ -1507,7 +1507,7 @@ function validateEmail(count, email) {
       }
    }
    return {
-      result:emailPattern.test(email),
+      result:!/^([\w-]|(?<!\.)\.)+[a-zA-Z0-9]@[a-zA-Z0-9]([\w\-]+)((\.([a-zA-Z]){2,100})+)$/i.test(emailPattern),
       message:"Not valid email"
    };
 }
