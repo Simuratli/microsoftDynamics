@@ -55,9 +55,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlParams.entries());
 
 
-console.log(url,'testme url')
-console.log(urlParams,'testme urlParams')
-console.log(url,'testme')
+console.log(url, 'testme url')
+console.log(urlParams, 'testme urlParams')
+console.log(url, 'testme')
 
 
 let entries = JSON.parse(params.query)
@@ -706,22 +706,22 @@ const getRequestBodyOfCompany = async (type) => {
    return bodyRequest
 }
 
-console.log(msalConfig.auth.redirectUri,'msalConfig.auth.redirectUri',msalConfig,window.location.search)
+console.log(msalConfig.auth.redirectUri, 'msalConfig.auth.redirectUri', msalConfig, window.location.search)
 // Called by the logoutButton
 function signOut() {
-  
+
    const logoutRequest = {
       account: myMSALObj.getAccountByUsername(username),
       postLogoutRedirectUri: msalConfig.auth.redirectUri,
-      mainWindowRedirectUri:`${msalConfig.auth.redirectUri}${window.location.search}`
+      mainWindowRedirectUri: `${msalConfig.auth.redirectUri}${window.location.search}`
    };
    showLoader()
-  
-   myMSALObj.logoutPopup(logoutRequest).then((res)=>{
+
+   myMSALObj.logoutPopup(logoutRequest).then((res) => {
       mainCredentialsForm.style.display = 'flex'
       loginWithButtonForm.style.display = 'none'
    });
-   
+
 
 }
 
@@ -893,7 +893,7 @@ const updateData = async () => {
 
       if (createdCompanyResponse.error) {
          const inputsForAddingError = document.querySelector('#ifExistCompany').querySelectorAll(".inputForUser")
-         
+
          const errorMessageText = createdCompanyResponse.error.message.toString()
          if (errorMessageText.includes("length")) {
             const errorTexts = document.querySelectorAll(".errorForInputText")
@@ -937,14 +937,14 @@ async function sendAccounts(callback) {
       // const companies = parameters.linkedinCompanyUrl ? await filterBackend(`accounts?$filter=contains(uds_linkedinprofilecompanyurl, '${parameters.linkedinCompanyUrl}')`) : await filterBackend(`accounts?$filter=contains(uds_salesnavigatorcompanyurl, '${parameters.salesCompanyUrl}')`)
       const bodyOfCompany = await getRequestBodyOfCompany('main');
       const createdCompanyResponse = await createCompany("accounts", response.accessToken, 'POST', bodyOfCompany)
-      
+
       if (!createdCompanyResponse.error) {
          mainCapture.querySelector(".informationBlock").style.display = "none"
          successMessageIndividual.style.display = 'flex'
          goToCRMButton.style.display = 'block'
          goToCRMButton.classList.add('goldGoToCrmButton')
          sendAccountsButton.style.display = 'none'
-      }else{
+      } else {
          const errorMessageText = createdCompanyResponse.error.message.toString();
          const formElements = document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")
          if (errorMessageText.includes("length")) {
@@ -963,12 +963,12 @@ async function sendAccounts(callback) {
             formElements.forEach(element => {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
-                  insertElementAfter(element.name, newErrorTextElement,'company');
+                  insertElementAfter(element.name, newErrorTextElement, 'company');
                   element.classList.add("errorInput")
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement,'company');
+                     insertElementAfter(element.name, newErrorTextElement, 'company');
                   }
                }
             });
@@ -1030,7 +1030,7 @@ const createCompanyWithId = async (url, token) => {
       headers: headers,
       body: JSON.stringify({
          uds_linkedincompanyid: parameters.customerId,
-         name:valueOfName.slice(0,160)
+         name: valueOfName.slice(0, 160)
       })
    }
 
@@ -1101,7 +1101,7 @@ const createAccount = async (url, token, method, bodyOfReq) => {
    return data
 }
 
-console.log(parameters,'oapranetesr')
+console.log(parameters, 'oapranetesr')
 
 const getUserMainRequestObject = async () => {
    const parameters = JSON.parse(params.query);
@@ -1122,13 +1122,13 @@ const getUserMainRequestObject = async () => {
       // uds_salesnavigatoruserurl:dataObjectForRequest.uds_salesnavigatoruserurl
    }
 
-   if(parameters.customerId !== "all"){
+   if (parameters.customerId !== "all") {
       const accounts = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
-      Object.assign(bodyOfReq, { 'parentcustomerid_account@odata.bind':`/accounts(${accounts.value[0].accountid})` })
+      Object.assign(bodyOfReq, { 'parentcustomerid_account@odata.bind': `/accounts(${accounts.value[0].accountid})` })
    }
 
 
-   
+
    if (document.querySelector('.tel').value) {
       Object.assign(bodyOfReq, { mobilephone: document.querySelector('.tel').value.trim().replace(/\s+/g, ' ') })
    }
@@ -1178,10 +1178,10 @@ inputsForUserDublicateTable.forEach(element => {
          const parentelement = element.parentElement
          const nextSibling = parentelement.nextElementSibling
          nextSibling.querySelector("input").classList.remove("differentInputSide")
-         if(isThereHaveDifference.length === 0){
-            updateDataButton.setAttribute("disabled",true)
+         if (isThereHaveDifference.length === 0) {
+            updateDataButton.setAttribute("disabled", true)
          }
-         
+
 
       } else {
          element.classList.add('differentInputMain')
@@ -1281,25 +1281,25 @@ const updateExistedTableForEditableFields = async (elements, elementsMain, exist
 }
 
 
-function insertElementAfter(inputName, newElement,forWhere) {
-  
+function insertElementAfter(inputName, newElement, forWhere) {
+
    var referenceElement = document.querySelector('[name="' + inputName + '"]');
-   
-   if(forWhere==='company'){
+
+   if (forWhere === 'company') {
       referenceElement = document.querySelector("#fieldsForCompany").querySelector('[name="' + inputName + '"]')
-   }else{
+   } else {
       referenceElement = document.querySelector("#fieldsForUser").querySelector('[name="' + inputName + '"]');
    }
 
    referenceElement.parentNode.insertBefore(newElement, referenceElement.nextSibling);
- 
+
 
 
 }
 
 async function sendDataverse(url, token) {
    const parameters = JSON.parse(params.query)
-   console.log('pammeretes',parameters)
+   console.log('pammeretes', parameters)
    const filtered = await filterBackend(`accounts?$filter=contains(uds_linkedincompanyid, '${parameters.customerId}')`)
    const formElements = document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")
    if (filtered.value.length !== 0) {
@@ -1307,7 +1307,7 @@ async function sendDataverse(url, token) {
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
 
-    
+
       if (responseOfAccount.error) {
          const errorMessageText = responseOfAccount.error.message.toString();
 
@@ -1328,11 +1328,11 @@ async function sendDataverse(url, token) {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name, newErrorTextElement,'contact');
+                  insertElementAfter(element.name, newErrorTextElement, 'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement,'contact');
+                     insertElementAfter(element.name, newErrorTextElement, 'contact');
                   }
                }
             });
@@ -1349,7 +1349,7 @@ async function sendDataverse(url, token) {
          })
 
          const errrorField = document.querySelector('.errorForInputTextNormal')
-         if(errrorField){
+         if (errrorField) {
             errrorField.style.display = 'none'
          }
 
@@ -1365,9 +1365,9 @@ async function sendDataverse(url, token) {
 
    } else {
       // message.innerHTML = '0 company find. You need to create company first'
-     if(parameters.customerId !== "all"){
-      const createdCompany = await createCompanyWithId('accounts', token)
-     }
+      if (parameters.customerId !== "all") {
+         const createdCompany = await createCompanyWithId('accounts', token)
+      }
       // message.innerHTML = 'Company created'
       const bodyOfReq = await getUserMainRequestObject()
       const responseOfAccount = await createAccount('contacts', token, "POST", bodyOfReq)
@@ -1390,7 +1390,7 @@ async function sendDataverse(url, token) {
             newErrorTextElement.innerHTML = `${convertNameToNormalString(nameOfFieldError)} exceeds CRM character limit. Please extend the CRM limit or shorten the title in the extension form.`
 
             const errorTextsForRemove = document.querySelectorAll(".errorForInputTextNormal")
-           
+
             errorTextsForRemove.forEach(element => {
                element.style.display = 'none'
             });
@@ -1399,11 +1399,11 @@ async function sendDataverse(url, token) {
                element.classList.remove("errorInput")
                if (changeRequestedNames(element.name) === nameOfFieldError) {
                   element.classList.add("errorInput")
-                  insertElementAfter(element.name, newErrorTextElement,'contact');
+                  insertElementAfter(element.name, newErrorTextElement, 'contact');
                } else if (changeRequestedNames(element.name) === 'fullname') {
                   if (nameOfFieldError === 'lastname') {
                      element.classList.add("errorInput")
-                     insertElementAfter(element.name, newErrorTextElement,'contact');
+                     insertElementAfter(element.name, newErrorTextElement, 'contact');
                   }
                }
             });
@@ -1465,11 +1465,11 @@ const goToCrm = async () => {
 
 
 
-function validateString(count,inputString) {
+function validateString(count, inputString) {
    // Check if the length is within the limit
-   console.log(inputString.length,count,'test me')
+   console.log(inputString.length, count, 'test me')
    if (inputString.length > count) {
-       return false;
+      return false;
    }
 
    // // Check if the string contains only Latin characters
@@ -1481,44 +1481,44 @@ function validateString(count,inputString) {
 }
 
 
-const addErrorMessage = (count,currentElement, type,inputName,node,action) => {
-   
-   if(type === 'div'){
+const addErrorMessage = (count, currentElement, type, inputName, node, action) => {
+
+   if (type === 'div') {
       const newErrorTextElement = document.createElement(`p`)
       newErrorTextElement.classList.add("errorForInputTextNormal")
       newErrorTextElement.innerHTML = `${count} characters allowed`
       const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      errorsNormal.forEach((error)=>{
+      errorsNormal.forEach((error) => {
          error.style.display = 'none'
       })
-      if(node.id === "fieldsForUser"){
-         insertElementAfter(inputName, newErrorTextElement,'user')
-      }else{
-         insertElementAfter(inputName, newErrorTextElement,'company')
+      if (node.id === "fieldsForUser") {
+         insertElementAfter(inputName, newErrorTextElement, 'user')
+      } else {
+         insertElementAfter(inputName, newErrorTextElement, 'company')
       }
       currentElement.classList.add("errorInput")
 
-     
-   }else{
+
+   } else {
       node.childNodes[3].innerHTML = `${count} characters allowed`
       node.childNodes[3].style.display = 'block'
       node.childNodes[1].classList.add("errorInput")
    }
 
 
-   if(action === 'remove'){
-      
+   if (action === 'remove') {
+
       const errors = document.querySelectorAll(".errorForInputText")
-      errors.forEach((error)=>{
+      errors.forEach((error) => {
          error.style.display = 'none'
       })
       const errorsNormal = document.querySelectorAll(".errorForInputTextNormal")
-      errorsNormal.forEach((error)=>{
+      errorsNormal.forEach((error) => {
          error.style.display = 'none'
       })
-      if(type === 'div'){
+      if (type === 'div') {
          currentElement.classList.remove("errorInput")
-      }else{
+      } else {
          node.childNodes[1].classList.remove("errorInput")
       }
    }
@@ -1528,29 +1528,29 @@ const addErrorMessage = (count,currentElement, type,inputName,node,action) => {
 
 const inputElements = document.querySelectorAll(".inputForUser")
 
-const validateInputFields  = (e) => {
+const validateInputFields = (e) => {
 
    switch (e.target.name) {
       case 'userName':
-            if(!validateString(100,e.target.value)){
-               addErrorMessage(100,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
-            }else{
-               addErrorMessage(100,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
-            }
+         if (!validateString(100, e.target.value)) {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(100, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
          break;
       case 'jobTitle':
-            if(!validateString(1000,e.target.value)){
-               addErrorMessage(1000,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
-            }else{
-               addErrorMessage(1000,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
-            }
+         if (!validateString(1000, e.target.value)) {
+            addErrorMessage(1000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(1000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
       case 'location':
-            if(!validateString(200,e.target.value)){
-               addErrorMessage(200,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
-            }else{
-               addErrorMessage(200,e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
-            }
-         
+         if (!validateString(200, e.target.value)) {
+            addErrorMessage(200, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(200, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
          break;
       default:
          break;
@@ -1561,6 +1561,6 @@ const validateInputFields  = (e) => {
 
 
 
-inputElements.forEach((element)=>{
+inputElements.forEach((element) => {
    element.addEventListener("input", validateInputFields)
 })
