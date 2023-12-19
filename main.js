@@ -1559,6 +1559,20 @@ const validateInputFields = (e) => {
             addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
+      case 'phone':
+         if (!validateString(50, e.target.value)) {
+            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'tel':
+         if (!validateString(50, e.target.value)) {
+            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(50, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
       default:
          break;
    }
