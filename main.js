@@ -1481,6 +1481,15 @@ function validateString(count, inputString) {
 }
 
 
+function validateNumber(max, number) {
+   if (number > max) {
+      return false;
+   }
+   return true;
+}
+
+
+
 const addErrorMessage = (count, currentElement, type, inputName, node, action) => {
 
    if (type === 'div') {
@@ -1524,6 +1533,17 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
    }
 }
 
+
+function validateURL(url) {
+   // Regular expression for a simple URL validation
+   var urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+ 
+   // Test the URL against the pattern
+   return urlPattern.test(url);
+ }
+
+
+ 
 // validation part 
 
 const inputElements = document.querySelectorAll(".inputForUser")
@@ -1592,6 +1612,34 @@ const validateInputFields = (e) => {
             addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
          } else {
             addErrorMessage(2000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'companyName':
+         if (!validateString(160, e.target.value)) {
+            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(160, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'lnSize':
+         if (!validateNumber(2147483647, e.target.value)) {
+            addErrorMessage(2147483647, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(2147483647, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'numberOfWorkers':
+         if (!validateNumber(1000000000, e.target.value)) {
+            addErrorMessage(1000000000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage(1000000000, e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
+         }
+         break;
+      case 'companyUrl':
+         if (!validateURL(e.target.value)) {
+            addErrorMessage('https://example.com', e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'add')
+         } else {
+            addErrorMessage('https://example.com', e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(), e.target.name, e.currentTarget.parentNode, 'remove')
          }
          break;
       default:
