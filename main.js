@@ -1543,6 +1543,13 @@ const validateInputFields  = (e) => {
             }else{
                addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
             }
+      case 'location':
+            if(!validateString(160,e.target.value)){
+               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'add')
+            }else{
+               addErrorMessage(e.currentTarget, e.currentTarget.parentNode.nodeName.toLowerCase(),e.target.name,e.currentTarget.parentNode,'remove')
+            }
+         
          break;
       default:
          break;
