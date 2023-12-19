@@ -1536,7 +1536,7 @@ const addErrorMessage = (count, currentElement, type, inputName, node, action) =
 
 function validateURL(url) {
    // Regular expression for a simple URL validation
-   var urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+   var urlPattern = /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i;
  
    // Test the URL against the pattern
    return urlPattern.test(url);
