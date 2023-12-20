@@ -1546,7 +1546,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
    if (action === 'remove') {
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
-         if (currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
+         if (currentElement.nextElementSibling && currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
             currentElement.nextElementSibling.remove()
          }
       } else {
