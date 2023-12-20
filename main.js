@@ -343,9 +343,14 @@ const fillFormElements = async (exist, existedInputs) => {
    const inputElements = document.querySelectorAll(".inputForUser")
 
    inputElements.forEach((element) => {
-      element.addEventListener("load", validateInputFields)
-
-
+      // element.addEventListener("load", validateInputFields)
+      validateInputFields({
+         target: {
+            name: element.name,
+            value: element.value, // Set the default value here
+         },
+         currentTarget: element,
+      });
    })
 
 
