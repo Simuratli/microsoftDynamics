@@ -1541,7 +1541,7 @@ function validateURL(url) {
 
 const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
-   console.log(currentElement,'currentElement.nextElementSibling')
+   console.log(currentElement,'currentElement.nextElementSibling test here')
 
    if (action === 'remove') {
       if (type === 'div') {
@@ -1607,7 +1607,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 
 
 const validateInputFields = (e) => {
-
+   console.log(e.currentTarget,'test here main')
    switch (e.target.name) {
       case 'userName':
          if (!validateString(100, e.target.value)) {
