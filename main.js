@@ -1541,12 +1541,12 @@ function validateURL(url) {
 
 const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
-
+   console.log(currentElement.nextElementSibling,'currentElement.nextElementSibling')
 
    if (action === 'remove') {
       if (type === 'div') {
          currentElement.classList.remove("errorInput")
-         if (currentElement.nextElementSibling.classList && currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
+         if (currentElement.nextElementSibling.classList.contains("errorForInputTextNormal")) {
             currentElement.nextElementSibling.remove()
          }
       } else {
