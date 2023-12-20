@@ -1593,8 +1593,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
       if (type === 'div') {
          sendAccountsButton.removeAttribute("disabled")
       } else {
-
-         if(document.querySelectorAll(".differentInputMain").length === 0){
+         if(document.querySelectorAll(".differentInputMain").length !== 0){
             updateDataButton.removeAttribute("disabled")
          }
       }
