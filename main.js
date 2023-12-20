@@ -1541,7 +1541,7 @@ function validateURL(url) {
 
 const addErrorMessage = (message, currentElement, type, inputName, node, action) => {
 
-   console.log(currentElement,'current test here',currentElement.nextElementSibling)
+   console.log(currentElement,'current test here',currentElement.nextElementSibling , type)
 
    if (action === 'remove') {
       if (type === 'div') {
