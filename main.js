@@ -1550,8 +1550,8 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
             currentElement.nextElementSibling.remove()
          }
       } else {
-         node.childNodes[1].classList.remove("errorInput")
-         node.childNodes[3].style.display = 'none'
+         node.childNodes[1]?.classList.remove("errorInput")
+         node.childNodes[3]?.style.display = 'none'
          console.log(node.childNodes[3], 'remove sibling if td')
       }
    } else {
