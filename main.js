@@ -1579,23 +1579,56 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 
    }
 
-
-   const erroredInputs = document.querySelectorAll(".errorInput")
-   console.log(erroredInputs, 'erroredInputs')
-
-   if (erroredInputs.length !== 0) {
-      if (type === 'div') {
-         sendAccountsButton.setAttribute("disabled", true)
-      } else {
-         updateDataButton.setAttribute("disabled", true)
+   if(type === 'div'){
+      if(parameters['companyName']){
+         const erroredInputs = document.querySelector("#fieldsForCompany").querySelectorAll(".errorInput")
+         if (erroredInputs.length !== 0) {
+            sendAccountsButton.setAttribute("disabled", true)
+         } else {
+            sendAccountsButton.removeAttribute("disabled")
+         }
+      }else{
+         const erroredInputs = document.querySelector("#fieldsForUser").querySelectorAll(".errorInput")
+         if (erroredInputs.length !== 0) {
+            sendAccountsButton.setAttribute("disabled", true)
+         } else {
+            sendAccountsButton.removeAttribute("disabled")
+         }
       }
-   } else {
-      if (type === 'div') {
-         sendAccountsButton.removeAttribute("disabled")
-      } else {
-         updateDataButton.removeAttribute("disabled")
+   }else{
+      if(parameters['companyName']){
+         const erroredInputs = document.querySelector("#fieldsForCompany").querySelectorAll(".errorInput")
+         if (erroredInputs.length !== 0) {
+            updateDataButton.setAttribute("disabled", true)
+         } else {
+            updateDataButton.removeAttribute("disabled")
+         }
+      }else{
+         const erroredInputs = document.querySelector("#fieldsForUser").querySelectorAll(".errorInput")
+         if (erroredInputs.length !== 0) {
+            updateDataButton.setAttribute("disabled", true)
+         } else {
+            updateDataButton.removeAttribute("disabled")
+         }
       }
    }
+
+
+   
+
+   // if (erroredInputs.length !== 0) {
+   //    if (type === 'div') {
+   //       sendAccountsButton.setAttribute("disabled", true)
+   //    } else {
+   //       updateDataButton.setAttribute("disabled", true)
+   //    }
+   // } else {
+   //    if (type === 'div') {
+   //       sendAccountsButton.removeAttribute("disabled")
+   //    } else {
+   //       updateDataButton.removeAttribute("disabled")
+   //    }
+   // }
 
 
 }
