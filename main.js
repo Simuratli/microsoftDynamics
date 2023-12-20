@@ -1550,7 +1550,6 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
             currentElement.nextElementSibling.remove()
          }
       } else {
-         console.log(node.childNodes)
          node.childNodes[1].classList.remove("errorInput")
          node.childNodes[3].style.display = 'none'
          console.log(node.childNodes[3], 'remove sibling if td')
@@ -1580,42 +1579,9 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 
    }
 
-   // if(type === 'div'){
-   //    if(parameters['companyName']){
-   //       const erroredInputs = document.querySelector("#fieldsForCompany").querySelectorAll(".errorInput")
-   //       if (erroredInputs.length !== 0) {
-   //          sendAccountsButton.setAttribute("disabled", true)
-   //       } else {
-   //          sendAccountsButton.removeAttribute("disabled")
-   //       }
-   //    }else{
-   //       const erroredInputs = document.querySelector("#fieldsForUser").querySelectorAll(".errorInput")
-   //       if (erroredInputs.length !== 0) {
-   //          sendAccountsButton.setAttribute("disabled", true)
-   //       } else {
-   //          sendAccountsButton.removeAttribute("disabled")
-   //       }
-   //    }
-   // }else{
-   //    if(parameters['companyName']){
-   //       const erroredInputs = document.querySelector("#fieldsForCompany").querySelectorAll(".errorInput")
-   //       if (erroredInputs.length !== 0) {
-   //          updateDataButton.setAttribute("disabled", true)
-   //       } else {
-   //          updateDataButton.removeAttribute("disabled")
-   //       }
-   //    }else{
-   //       const erroredInputs = document.querySelector("#fieldsForUser").querySelectorAll(".errorInput")
-   //       if (erroredInputs.length !== 0) {
-   //          updateDataButton.setAttribute("disabled", true)
-   //       } else {
-   //          updateDataButton.removeAttribute("disabled")
-   //       }
-   //    }
-   // }
 
-
-   
+   const erroredInputs = document.querySelectorAll(".errorInput")
+   console.log(erroredInputs, 'erroredInputs')
 
    if (erroredInputs.length !== 0) {
       if (type === 'div') {
