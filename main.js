@@ -339,6 +339,17 @@ const fillFormElements = async (exist, existedInputs) => {
    } else {
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
    }
+   
+   const inputElements = document.querySelectorAll(".inputForUser")
+
+   inputElements.forEach((element) => {
+      // element.addEventListener("input", validateInputFields)
+
+
+      validateInputFields(element)
+   })
+
+
 
 }
 
@@ -1590,7 +1601,6 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 
 // validation part 
 
-const inputElements = document.querySelectorAll(".inputForUser")
 
 const validateInputFields = (e) => {
 
@@ -1693,8 +1703,8 @@ const validateInputFields = (e) => {
 }
 
 
-
+const inputElements = document.querySelectorAll(".inputForUser")
 
 inputElements.forEach((element) => {
-   element.addEventListener("change", validateInputFields)
+   element.addEventListener("input", validateInputFields)
 })
