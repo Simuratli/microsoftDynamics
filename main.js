@@ -340,18 +340,18 @@ const fillFormElements = async (exist, existedInputs) => {
       addValuesToInputFields(parameters['companyName'] ? addValuesToInputFields(document.querySelector("#fieldsForCompany").querySelectorAll(".inputForUser")) : addValuesToInputFields(document.querySelector("#fieldsForUser").querySelectorAll(".inputForUser")))
    }
    
-   const inputElements = document.querySelectorAll(".inputForUser")
+   // const inputElements = document.querySelectorAll(".inputForUser")
 
-   inputElements.forEach((element) => {
-      // element.addEventListener("load", validateInputFields)
-      validateInputFields({
-         target: {
-            name: element.name,
-            value: element.value, // Set the default value here
-         },
-         currentTarget: element,
-      });
-   })
+   // inputElements.forEach((element) => {
+   //    // element.addEventListener("load", validateInputFields)
+   //    validateInputFields({
+   //       target: {
+   //          name: element.name,
+   //          value: element.value, // Set the default value here
+   //       },
+   //       currentTarget: element,
+   //    });
+   // })
 
 
 
