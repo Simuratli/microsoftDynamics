@@ -343,10 +343,9 @@ const fillFormElements = async (exist, existedInputs) => {
    const inputElements = document.querySelectorAll(".inputForUser")
 
    inputElements.forEach((element) => {
-      // element.addEventListener("input", validateInputFields)
+      element.addEventListener("load", validateInputFields)
 
 
-      validateInputFields(element)
    })
 
 
