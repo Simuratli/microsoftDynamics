@@ -1696,5 +1696,5 @@ const validateInputFields = (e) => {
 
 
 inputElements.forEach((element) => {
-   element.addEventListener("input", validateInputFields)
+   element.addEventListener("change", validateInputFields)
 })
