@@ -1607,7 +1607,7 @@ const addErrorMessage = (message, currentElement, type, inputName, node, action)
 
 
 const validateInputFields = (e) => {
-   console.log(e.currentTarget.parentNode,'test here main')
+   console.log(e.currentTarget.parentNode,'haydaaaa',e)
    switch (e.target.name) {
       case 'userName':
          if (!validateString(100, e.target.value)) {
